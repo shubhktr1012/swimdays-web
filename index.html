@@ -14,14 +14,54 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,ital,wght@6..96,400;6..96,500;6..96,600&family=Outfit:wght@300;400;500&display=swap"
         rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <!-- Promo Marquee -->
+    <div class="marquee-bar">
+        <div class="marquee-bar__track">
+            <!-- Repeated items for loop -->
+            <span class="marquee-bar__item">Join our newsletter to receive 10% off your first order <span
+                    class="marquee-bar__separator">✦</span></span>
+            <span class="marquee-bar__item">Join our newsletter to receive 10% off your first order <span
+                    class="marquee-bar__separator">✦</span></span>
+            <span class="marquee-bar__item">Join our newsletter to receive 10% off your first order <span
+                    class="marquee-bar__separator">✦</span></span>
+            <span class="marquee-bar__item">Join our newsletter to receive 10% off your first order <span
+                    class="marquee-bar__separator">✦</span></span>
+            <span class="marquee-bar__item">Join our newsletter to receive 10% off your first order <span
+                    class="marquee-bar__separator">✦</span></span>
+            <span class="marquee-bar__item">Join our newsletter to receive 10% off your first order <span
+                    class="marquee-bar__separator">✦</span></span>
+            <span class="marquee-bar__item">Join our newsletter to receive 10% off your first order <span
+                    class="marquee-bar__separator">✦</span></span>
+            <span class="marquee-bar__item">Join our newsletter to receive 10% off your first order <span
+                    class="marquee-bar__separator">✦</span></span>
+            <span class="marquee-bar__item">Get 10% off if you sign up for our newsletter <span
+                    class="marquee-bar__separator">✦</span></span>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="navbar__container">
+            <!-- Left Zone: Toggle (Mobile) + Mobile Search + Explore (Desktop) -->
+            <div class="navbar__left">
+                <button class="navbar__toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <button class="navbar__action-btn navbar__search-mobile" aria-label="Search">
+                    <i class="ph ph-magnifying-glass"></i>
+                </button>
+                <a href="#catalog" class="navbar__explore">Explore</a>
+            </div>
+
+            <!-- Center Zone: Brand Logo -->
             <a href="#" class="navbar__logo">
                 <div class="navbar__logo-wrapper">
                     <span class="navbar__logo-text">Swimdays</span>
@@ -32,17 +72,18 @@
                 </div>
             </a>
 
-            <button class="navbar__toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-
-            <ul class="navbar__menu">
-                <li><a href="#catalog" class="navbar__link">Catalog</a></li>
-                <li><a href="#instagram" class="navbar__link">@swimdays</a></li>
-                <li><a href="#contact" class="navbar__link navbar__link--cta">Contact</a></li>
-            </ul>
+            <!-- Right Zone: Search (Desktop) + Wishlist + Cart -->
+            <div class="navbar__right">
+                <button class="navbar__action-btn navbar__action-btn--search" aria-label="Search">
+                    <i class="ph ph-magnifying-glass"></i>
+                </button>
+                <button class="navbar__action-btn" aria-label="Wishlist">
+                    <i class="ph ph-heart"></i>
+                </button>
+                <button class="navbar__action-btn" aria-label="Cart">
+                    <i class="ph ph-shopping-cart"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -160,89 +201,10 @@
                 </div>
             </article>
 
-            <!-- Product 7 -->
-            <article class="product-card">
-                <div class="product-card__image">
-                    <div class="product-card__placeholder" style="background: #D4C5B9;"></div>
-                    <div class="product-card__overlay">
-                        <span class="product-card__quick-view">Quick View</span>
-                    </div>
-                </div>
-                <div class="product-card__info">
-                    <h3 class="product-card__name">The Corsica One-Piece</h3>
-                    <p class="product-card__price">₹8,900</p>
-                </div>
-            </article>
+        </div>
 
-            <!-- Product 8 -->
-            <article class="product-card">
-                <div class="product-card__image">
-                    <div class="product-card__placeholder" style="background: #A39081;"></div>
-                    <div class="product-card__overlay">
-                        <span class="product-card__quick-view">Quick View</span>
-                    </div>
-                </div>
-                <div class="product-card__info">
-                    <h3 class="product-card__name">The Mykonos Max</h3>
-                    <p class="product-card__price">₹11,500</p>
-                </div>
-            </article>
-
-            <!-- Product 9 -->
-            <article class="product-card">
-                <div class="product-card__image">
-                    <div class="product-card__placeholder" style="background: #E8E0D8;"></div>
-                    <div class="product-card__overlay">
-                        <span class="product-card__quick-view">Quick View</span>
-                    </div>
-                </div>
-                <div class="product-card__info">
-                    <h3 class="product-card__name">The Sicily Sarong</h3>
-                    <p class="product-card__price">₹4,200</p>
-                </div>
-            </article>
-
-            <!-- Product 10 -->
-            <article class="product-card">
-                <div class="product-card__image">
-                    <div class="product-card__placeholder" style="background: #C9B8A8;"></div>
-                    <div class="product-card__overlay">
-                        <span class="product-card__quick-view">Quick View</span>
-                    </div>
-                </div>
-                <div class="product-card__info">
-                    <h3 class="product-card__name">The Dubai Drape</h3>
-                    <p class="product-card__price">₹9,800</p>
-                </div>
-            </article>
-
-            <!-- Product 11 -->
-            <article class="product-card">
-                <div class="product-card__image">
-                    <div class="product-card__placeholder" style="background: #B5A599;"></div>
-                    <div class="product-card__overlay">
-                        <span class="product-card__quick-view">Quick View</span>
-                    </div>
-                </div>
-                <div class="product-card__info">
-                    <h3 class="product-card__name">The Maldives Modest</h3>
-                    <p class="product-card__price">₹7,500</p>
-                </div>
-            </article>
-
-            <!-- Product 12 -->
-            <article class="product-card">
-                <div class="product-card__image">
-                    <div class="product-card__placeholder" style="background: #DDD5CC;"></div>
-                    <div class="product-card__overlay">
-                        <span class="product-card__quick-view">Quick View</span>
-                    </div>
-                </div>
-                <div class="product-card__info">
-                    <h3 class="product-card__name">The Bali Burkini</h3>
-                    <p class="product-card__price">₹13,200</p>
-                </div>
-            </article>
+        <div class="catalog__cta">
+            <a href="#" class="btn btn--outline">View More</a>
         </div>
 
 
@@ -278,7 +240,9 @@
     <section id="instagram" class="instagram">
         <div class="instagram__header">
             <span class="instagram__label">Follow the Journey</span>
-            <h2 class="instagram__title">@swimdays.official</h2>
+            <h2 class="instagram__title">
+                <a href="https://www.instagram.com/swimdays.official/?hl=en" target="_blank">@swimdays.official</a>
+            </h2>
         </div>
         <div class="instagram__grid">
             <div class="instagram__item" style="background: #D4C5B9;"></div>
@@ -287,6 +251,47 @@
             <div class="instagram__item" style="background: #C9B8A8;"></div>
             <div class="instagram__item" style="background: #B5A599;"></div>
             <div class="instagram__item" style="background: #DDD5CC;"></div>
+        </div>
+    </section>
+
+    <!-- Newsletter & FAQ Section -->
+    <section class="newsletter-faq">
+        <div class="newsletter-faq__container">
+            <div class="newsletter-column">
+                <h2 class="newsletter__title">Newsletter</h2>
+                <p class="newsletter__text">Unlock exclusive access to new drops and 10% off your first order.</p>
+                <form class="newsletter__form">
+                    <input type="email" placeholder="Your email" required class="newsletter__input">
+                    <button type="submit" class="newsletter__btn">Subscribe</button>
+                </form>
+            </div>
+
+            <div class="faq-column">
+                <h2 class="faq__title">Frequently Asked Questions</h2>
+                <div class="faq__accordion">
+                    <details class="faq__item">
+                        <summary class="faq__question">Shipping & Delivery <span class="icon-plus">+</span></summary>
+                        <div class="faq__answer">
+                            <p>We ship worldwide. Standard shipping takes 3-5 business days. Express options available
+                                at checkout.</p>
+                        </div>
+                    </details>
+                    <details class="faq__item">
+                        <summary class="faq__question">Returns & Exchanges <span class="icon-plus">+</span></summary>
+                        <div class="faq__answer">
+                            <p>Returns are accepted within 30 days of purchase. Items must be unworn and with original
+                                tags.</p>
+                        </div>
+                    </details>
+                    <details class="faq__item">
+                        <summary class="faq__question">Sizing Guide <span class="icon-plus">+</span></summary>
+                        <div class="faq__answer">
+                            <p>Our sizing is true to size. View our detailed size guide for measurements and fit tips.
+                            </p>
+                        </div>
+                    </details>
+                </div>
+            </div>
         </div>
     </section>
 
