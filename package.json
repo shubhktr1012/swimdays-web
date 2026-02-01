@@ -1,0 +1,13 @@
+{
+  "name": "swimdays-web",
+  "version": "1.0.0",
+  "description": "Swimdays - Modest Luxury Swimwear Demo",
+  "main": "main.js",
+  "scripts": {
+    "dev": "npx serve .",
+    "preview": "npx live-server --port=3000"
+  },
+  "keywords": ["swimwear", "modest", "luxury", "e-commerce"],
+  "author": "",
+  "license": "ISC"
+}
