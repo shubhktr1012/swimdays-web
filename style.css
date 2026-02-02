@@ -416,6 +416,18 @@ h6 {
     text-align: center;
     padding-top: calc(var(--navbar-height) + var(--promo-height));
     --font-serif: 'Cardiff', serif;
+    min-height: 700px;
+    /* Prevent collapse on short screens */
+}
+
+@media (max-height: 750px) {
+    .hero__scroll-indicator {
+        display: none;
+    }
+
+    .hero__content {
+        padding-bottom: 0;
+    }
 }
 
 .hero__background {
