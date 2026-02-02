@@ -55,7 +55,7 @@
 
     /* Typography */
     --font-serif: 'Dravica', 'Bodoni Moda', serif;
-    --font-sans: 'Outfit', sans-serif;
+    --font-sans: 'Manrope', sans-serif;
 
     /* Spacing */
     --space-xs: 0.5rem;
@@ -67,8 +67,12 @@
 
     /* Layout */
     --max-width: 1440px;
-    --navbar-height: 90px;
+    --navbar-height: 85px;
     --promo-height: 30px;
+
+    /* Transitions */
+    --transition-fast: all 0.2s ease;
+    --transition-medium: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ---------- Reset & Base ---------- */
@@ -194,7 +198,10 @@ h6 {
     left: 0;
     width: 100%;
     height: var(--navbar-height);
-    background: transparent;
+    background: rgba(254, 248, 234, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(126, 181, 175, 0.1);
     transition: background 0.3s ease, box-shadow 0.3s ease;
     z-index: 1000;
     display: flex;
@@ -202,7 +209,12 @@ h6 {
 }
 
 .navbar.scrolled {
-    background: var(--color-cream);
+    background: rgba(254, 248, 234, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(126, 181, 175, 0.1);
+    /* Faint Palm border */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
 }
 
 /* Navbar Layout */
@@ -367,8 +379,8 @@ h6 {
     left: 0;
     width: 0;
     height: 1px;
-    background: var(--color-sun);
-    /* Changed to Sun for warm interaction */
+    background: var(--color-palm);
+    /* Changed to Palm for coastal vibe */
     transition: width 0.3s ease;
 }
 
@@ -402,8 +414,20 @@ h6 {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding-top: var(--navbar-height);
+    padding-top: calc(var(--navbar-height) + var(--promo-height));
     --font-serif: 'Cardiff', serif;
+    min-height: 700px;
+    /* Prevent collapse on short screens */
+}
+
+@media (max-height: 750px) {
+    .hero__scroll-indicator {
+        display: none;
+    }
+
+    .hero__content {
+        padding-bottom: 0;
+    }
 }
 
 .hero__background {
@@ -413,7 +437,7 @@ h6 {
     width: 100%;
     height: 100%;
     /* Gradient placeholder for image - uses brand cream */
-    background: linear-gradient(135deg, var(--color-cream) 0%, #F5EEE0 100%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(222, 167, 111, 0.2) 100%), var(--color-cream);
     z-index: -2;
 }
 
@@ -494,7 +518,7 @@ h6 {
 .hero__cta {
     display: inline-block;
     padding: 1.25rem 3rem;
-    background: var(--color-charcoal);
+    background: var(--color-sun);
     color: var(--color-cream);
     font-size: 0.7rem;
     font-weight: 500;
@@ -657,7 +681,15 @@ h6 {
 
 .catalog__cta {
     text-align: center;
-    margin-top: var(--space-xl);
+    margin-top: var(--space-lg);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.catalog__grid--more {
+    margin-top: var(--space-md);
 }
 
 /* Product Card */
@@ -750,6 +782,7 @@ h6 {
 .features {
     padding: var(--space-xl) var(--space-md);
     background: var(--color-charcoal);
+    color: var(--color-cream);
 }
 
 .features__container {
@@ -768,6 +801,7 @@ h6 {
 .feature__icon {
     font-size: 1.5rem;
     margin-bottom: var(--space-sm);
+    color: var(--color-cream);
 }
 
 .feature__title {
@@ -819,7 +853,8 @@ h6 {
 }
 
 .instagram__title a:hover {
-    opacity: 0.7;
+    opacity: 1;
+    color: var(--color-palm);
 }
 
 /* ---------- Promo Marquee ---------- */
@@ -870,13 +905,38 @@ h6 {
     }
 }
 
-.instagram__grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
+.instagram__marquee {
+    overflow: hidden;
+    width: 100%;
+}
+
+.instagram__track {
+    display: flex;
+    gap: 0;
+    width: max-content;
+    animation: instagram-scroll 60s linear infinite;
+    /* Really slow */
+}
+
+.instagram__track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes instagram-scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 .instagram__item {
-    aspect-ratio: 1;
+    width: 16.666vw;
+    /* 6 items per screen width (100/6) */
+    height: 16.666vw;
+    flex-shrink: 0;
     cursor: pointer;
     transition: var(--transition-medium);
 }
@@ -952,7 +1012,7 @@ h6 {
 }
 
 .footer__column ul li a:hover {
-    color: var(--color-cream);
+    color: var(--color-palm);
 }
 
 .footer__bottom {
@@ -973,12 +1033,9 @@ h6 {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .instagram__grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .instagram__item:nth-child(n+4) {
-        display: none;
+    .instagram__item:nth-child(n) {
+        display: block;
+        /* Show all items for scrolling */
     }
 }
 
@@ -1086,7 +1143,7 @@ h6 {
 
 /* ---------- Newsletter & FAQ Section ---------- */
 .newsletter-faq {
-    background-color: var(--color-pearl);
+    background-color: var(--color-charcoal);
     padding: var(--space-xl) var(--space-md);
 }
 
@@ -1108,14 +1165,14 @@ h6 {
     font-family: 'Cardiff', serif;
     font-size: 2.5rem;
     font-weight: 300;
-    color: var(--color-palm);
+    color: var(--color-cream);
     margin-bottom: var(--space-sm);
     word-spacing: -0.2em;
 }
 
 .newsletter__text {
     font-size: 1rem;
-    color: var(--color-charcoal);
+    color: var(--color-taupe);
     margin-bottom: var(--space-md);
     max-width: 400px;
 }
@@ -1129,7 +1186,7 @@ h6 {
 .newsletter__input {
     flex: 1;
     padding: 1rem;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--color-sand);
     background: #fff;
     font-family: var(--font-sans);
     font-size: 0.9rem;
@@ -1139,12 +1196,12 @@ h6 {
 }
 
 .newsletter__input:focus {
-    border-color: var(--color-charcoal);
+    border-color: var(--color-sand);
 }
 
 .newsletter__btn {
     padding: 1rem 2rem;
-    background: var(--color-charcoal);
+    background: var(--color-sun);
     color: #fff;
     border: none;
     font-family: var(--font-sans);
@@ -1157,7 +1214,7 @@ h6 {
 }
 
 .newsletter__btn:hover {
-    background-color: #000;
+    background-color: var(--color-sun);
 }
 
 /* FAQ Column */
@@ -1165,7 +1222,7 @@ h6 {
     font-family: 'Cardiff', serif;
     font-size: 2.5rem;
     font-weight: 300;
-    color: var(--color-palm);
+    color: var(--color-cream);
     margin-bottom: var(--space-md);
     word-spacing: -0.2em;
 }
@@ -1177,7 +1234,7 @@ h6 {
 }
 
 .faq__item {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid var(--color-sand);
 }
 
 .faq__question {
@@ -1186,7 +1243,7 @@ h6 {
     padding: 1rem 0;
     font-size: 1.1rem;
     font-weight: 500;
-    color: var(--color-charcoal);
+    color: var(--color-cream);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1214,7 +1271,7 @@ h6 {
 .faq__answer {
     padding-bottom: 1.5rem;
     font-size: 0.95rem;
-    color: var(--color-charcoal);
+    color: var(--color-taupe);
     line-height: 1.6;
 }
 
