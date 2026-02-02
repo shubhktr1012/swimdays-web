@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,ital,wght@6..96,400;6..96,500;6..96,600&family=Outfit:wght@300;400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,ital,wght@6..96,400;6..96,500;6..96,600&family=Manrope:wght@300;400;500;600&display=swap"
         rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
@@ -203,6 +203,92 @@
 
         </div>
 
+        <div class="catalog__grid catalog__grid--more hidden">
+            <!-- Product 7 -->
+            <article class="product-card">
+                <div class="product-card__image">
+                    <div class="product-card__placeholder" style="background: #E8E0D8;"></div>
+                    <div class="product-card__overlay">
+                        <span class="product-card__quick-view">Quick View</span>
+                    </div>
+                </div>
+                <div class="product-card__info">
+                    <h3 class="product-card__name">The Amalfi Allure</h3>
+                    <p class="product-card__price">₹6,200</p>
+                </div>
+            </article>
+
+            <!-- Product 8 -->
+            <article class="product-card">
+                <div class="product-card__image">
+                    <div class="product-card__placeholder" style="background: #C9B8A8;"></div>
+                    <div class="product-card__overlay">
+                        <span class="product-card__quick-view">Quick View</span>
+                    </div>
+                </div>
+                <div class="product-card__info">
+                    <h3 class="product-card__name">The Santorini Sun</h3>
+                    <p class="product-card__price">₹7,500</p>
+                </div>
+            </article>
+
+            <!-- Product 9 -->
+            <article class="product-card">
+                <div class="product-card__image">
+                    <div class="product-card__placeholder" style="background: #B5A599;"></div>
+                    <div class="product-card__overlay">
+                        <span class="product-card__quick-view">Quick View</span>
+                    </div>
+                </div>
+                <div class="product-card__info">
+                    <h3 class="product-card__name">The Mykonos Muse</h3>
+                    <p class="product-card__price">₹8,100</p>
+                </div>
+            </article>
+
+            <!-- Product 10 -->
+            <article class="product-card">
+                <div class="product-card__image">
+                    <div class="product-card__placeholder" style="background: #DDD5CC;"></div>
+                    <div class="product-card__overlay">
+                        <span class="product-card__quick-view">Quick View</span>
+                    </div>
+                </div>
+                <div class="product-card__info">
+                    <h3 class="product-card__name">The Tulum Touch</h3>
+                    <p class="product-card__price">₹9,500</p>
+                </div>
+            </article>
+
+            <!-- Product 11 -->
+            <article class="product-card">
+                <div class="product-card__image">
+                    <div class="product-card__placeholder" style="background: #E8E0D8;"></div>
+                    <div class="product-card__overlay">
+                        <span class="product-card__quick-view">Quick View</span>
+                    </div>
+                </div>
+                <div class="product-card__info">
+                    <h3 class="product-card__name">The Bali Breeze</h3>
+                    <p class="product-card__price">₹5,900</p>
+                </div>
+            </article>
+
+            <!-- Product 12 -->
+            <article class="product-card">
+                <div class="product-card__image">
+                    <div class="product-card__placeholder" style="background: #C9B8A8;"></div>
+                    <div class="product-card__overlay">
+                        <span class="product-card__quick-view">Quick View</span>
+                    </div>
+                </div>
+                <div class="product-card__info">
+                    <h3 class="product-card__name">The Corsica Chic</h3>
+                    <p class="product-card__price">₹8,800</p>
+                </div>
+            </article>
+        </div>
+
         <div class="catalog__cta">
             <a href="#" class="btn btn--outline">View More</a>
         </div>
@@ -244,13 +330,23 @@
                 <a href="https://www.instagram.com/swimdays.official/?hl=en" target="_blank">@swimdays.official</a>
             </h2>
         </div>
-        <div class="instagram__grid">
-            <div class="instagram__item" style="background: #D4C5B9;"></div>
-            <div class="instagram__item" style="background: #A39081;"></div>
-            <div class="instagram__item" style="background: #E8E0D8;"></div>
-            <div class="instagram__item" style="background: #C9B8A8;"></div>
-            <div class="instagram__item" style="background: #B5A599;"></div>
-            <div class="instagram__item" style="background: #DDD5CC;"></div>
+        <div class="instagram__marquee">
+            <div class="instagram__track">
+                <!-- Set 1 -->
+                <div class="instagram__item" style="background: #D4C5B9;"></div>
+                <div class="instagram__item" style="background: #A39081;"></div>
+                <div class="instagram__item" style="background: #E8E0D8;"></div>
+                <div class="instagram__item" style="background: #C9B8A8;"></div>
+                <div class="instagram__item" style="background: #B5A599;"></div>
+                <div class="instagram__item" style="background: #DDD5CC;"></div>
+                <!-- Set 2 (Duplicate for Loop) -->
+                <div class="instagram__item" style="background: #D4C5B9;"></div>
+                <div class="instagram__item" style="background: #A39081;"></div>
+                <div class="instagram__item" style="background: #E8E0D8;"></div>
+                <div class="instagram__item" style="background: #C9B8A8;"></div>
+                <div class="instagram__item" style="background: #B5A599;"></div>
+                <div class="instagram__item" style="background: #DDD5CC;"></div>
+            </div>
         </div>
     </section>
 
@@ -346,7 +442,7 @@
     </footer>
 
     <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
-    <script src="main.js"></script>
+    <script type="module" src="main.js"></script>
 </body>
 
 </html>
