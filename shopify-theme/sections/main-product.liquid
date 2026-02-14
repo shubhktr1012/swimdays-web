@@ -1,0 +1,77 @@
+<section class="section">
+  <div class="page-width pdp">
+    <div class="pdp__gallery" data-main-image>
+      {% if product.featured_image %}
+        {{ product.featured_image | image_url: width: 1200 | image_tag: class: 'pdp__main-image', loading: 'eager', widths: '480, 760, 1024, 1200' }}
+      {% else %}
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+
+      {% if product.images.size > 1 %}
+        <div class="pdp__thumbs">
+          {% for image in product.images limit: 4 %}
+            <button class="pdp__thumb" type="button" data-thumb-url="{{ image | image_url: width: 1200 }}" aria-label="Preview image {{ forloop.index }}">
+              {{ image | image_url: width: 200 | image_tag: loading: 'lazy' }}
+            </button>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div>
+      <h1>{{ product.title }}</h1>
+      <p>{{ product.price | money }}</p>
+
+      {% if product.metafields.custom.embroidery_detail != blank %}
+        <p><strong>Hand-finished detail:</strong> {{ product.metafields.custom.embroidery_detail }}</p>
+      {% endif %}
+
+      {% if product.metafields.custom.value_indicator != blank %}
+        <ul class="pdp__value-list">
+          {% assign value_points = product.metafields.custom.value_indicator.value | split: '|' %}
+          {% for point in value_points %}
+            <li>{{ point | strip }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      {% form 'product', product, class: 'form-grid' %}
+        {% unless product.has_only_default_variant %}
+          {% for option in product.options_with_values %}
+            <label for="Option-{{ section.id }}-{{ option.position }}">{{ option.name }}</label>
+            <select id="Option-{{ section.id }}-{{ option.position }}" name="options[{{ option.name }}]">
+              {% for value in option.values %}
+                <option value="{{ value }}">{{ value }}</option>
+              {% endfor %}
+            </select>
+          {% endfor %}
+        {% endunless %}
+
+        <label for="Quantity-{{ section.id }}">Quantity</label>
+        <input id="Quantity-{{ section.id }}" type="number" name="quantity" value="1" min="1">
+
+        <button class="btn btn--solid" type="submit" {% unless product.available %}disabled{% endunless %}>
+          {% if product.available %}
+            {{ 'products.product.add_to_cart' | t }}
+          {% else %}
+            {{ 'products.product.sold_out' | t }}
+          {% endif %}
+        </button>
+      {% endform %}
+
+      {% if product.metafields.custom.care_instructions != blank %}
+        <div class="pdp__care">
+          <strong>Care instructions</strong>
+          <div>{{ product.metafields.custom.care_instructions | metafield_tag }}</div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main product",
+  "settings": []
+}
+{% endschema %}

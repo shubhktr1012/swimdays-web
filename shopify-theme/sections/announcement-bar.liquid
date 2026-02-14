@@ -1,0 +1,44 @@
+{%- if section.settings.show_bar -%}
+  <div class="announcement" role="status" aria-label="Store announcements">
+    <div class="announcement__track">
+      <span>{{ section.settings.message_one }}</span>
+      <span>{{ section.settings.message_two }}</span>
+      <span>{{ section.settings.message_three }}</span>
+      <span>{{ section.settings.message_one }}</span>
+      <span>{{ section.settings.message_two }}</span>
+      <span>{{ section.settings.message_three }}</span>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_bar",
+      "label": "Show announcement bar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "message_one",
+      "label": "Message 1",
+      "default": "Hand-beaded modest luxury"
+    },
+    {
+      "type": "text",
+      "id": "message_two",
+      "label": "Message 2",
+      "default": "Sizes XS-4XL"
+    },
+    {
+      "type": "text",
+      "id": "message_three",
+      "label": "Message 3",
+      "default": "Worldwide shipping"
+    }
+  ]
+}
+{% endschema %}

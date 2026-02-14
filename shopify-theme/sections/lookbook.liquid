@@ -1,0 +1,78 @@
+<section class="section" id="lookbook">
+  <div class="page-width">
+    <div class="section-head">
+      <h2>{{ section.settings.heading }}</h2>
+      <p>{{ section.settings.copy }}</p>
+    </div>
+
+    <div class="lookbook-grid">
+      {% for block in section.blocks %}
+        <article class="lookbook-item" {{ block.shopify_attributes }}>
+          {% if block.settings.image != blank %}
+            {{ block.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '450, 650, 900, 1200' }}
+          {% else %}
+            {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+
+          {% if block.settings.linked_product != blank %}
+            <a class="lookbook-item__overlay" href="{{ block.settings.linked_product.url }}">
+              <strong>Shop this look</strong><br>
+              <span>{{ block.settings.linked_product.title }}</span>
+              <span>{{ block.settings.linked_product.price | money }}</span>
+            </a>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Lookbook",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Swimdays lookbook"
+    },
+    {
+      "type": "textarea",
+      "id": "copy",
+      "label": "Copy",
+      "default": "Editorial scenes tied directly to the products featured in each story."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "look",
+      "name": "Look",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Lifestyle image"
+        },
+        {
+          "type": "product",
+          "id": "linked_product",
+          "label": "Linked product"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Lookbook",
+      "blocks": [
+        { "type": "look" },
+        { "type": "look" },
+        { "type": "look" },
+        { "type": "look" }
+      ]
+    }
+  ]
+}
+{% endschema %}

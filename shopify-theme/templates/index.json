@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-banner",
+      "settings": {}
+    },
+    "featured": {
+      "type": "featured-collection",
+      "settings": {}
+    },
+    "lookbook": {
+      "type": "lookbook",
+      "settings": {}
+    },
+    "newsletter": {
+      "type": "newsletter-signup",
+      "settings": {}
+    }
+  },
+  "order": ["hero", "featured", "lookbook", "newsletter"]
+}
