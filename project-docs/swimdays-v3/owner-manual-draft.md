@@ -1,5 +1,16 @@
 # Swimdays Owner Manual (Draft)
 
+## 0. Pre-Start Setup (Manual Actions Required Now)
+
+- Create/confirm Shopify development store access.
+- From `shopify-theme/`, run:
+  - `shopify auth login`
+  - `shopify theme dev --store <your-dev-store>.myshopify.com`
+- In Shopify admin, create/confirm navigation menus used by header/footer.
+- Create metafield definitions from `project-docs/swimdays-v3/metafields-definition.md`.
+- Prepare product CSV from `project-docs/swimdays-v3/sku-import-template.csv`.
+- Upload initial product images and confirm naming/alt text quality.
+
 ## 1. Updating Homepage Content
 
 - Go to Online Store > Themes > Customize.

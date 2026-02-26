@@ -1,5 +1,19 @@
 # Swimdays v3 QA Checklist
 
+## Status Snapshot (as of February 14, 2026)
+
+- Store-connected QA: not started yet
+- Code scaffold QA: partially complete
+- Blocking dependency: development store setup and product/media upload
+
+## Code Scaffold Checks (Completed)
+
+- [x] Theme templates mapped to valid section files
+- [x] Section schema scaffolds created for core homepage and PDP blocks
+- [x] Newsletter form scaffolded with `contact[tags]=newsletter`
+- [x] Deferred theme JS and base CSS architecture in place
+- [x] Core image lazy-loading patterns applied in collection/lookbook sections
+
 ## Functional
 
 - [ ] Add-to-cart works for all products and variants
