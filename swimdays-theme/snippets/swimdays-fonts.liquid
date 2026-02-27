@@ -1,62 +1,49 @@
 {%- comment -%} Swimdays Custom Fonts {%- endcomment -%}
 
 <style>
-  @font-face {
-    font-family: 'Aboreto';
-    src: url('{{ 'aboreto-regular.woff2' | asset_url }}') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
+  @font-face { font-family: 'Aboreto'; src: url('{{ 'Aboreto-Regular.ttf' | asset_url }}') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'Katheriny'; src: url('{{ 'KatherinySignatureFreeReg-j91M0.otf' | asset_url }}') format('opentype'); font-weight: 400; font-style: normal; font-display: swap; }
 
-  @font-face {
-    font-family: 'Poppins';
-    src: url('{{ 'poppins-regular.woff2' | asset_url }}') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
+  /* Poppins */
+  @font-face { font-family: 'Poppins'; src: url('{{ 'Poppins-Thin.ttf' | asset_url }}') format('truetype'); font-weight: 100; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'Poppins'; src: url('{{ 'Poppins-ThinItalic.ttf' | asset_url }}') format('truetype'); font-weight: 100; font-style: italic; font-display: swap; }
+  @font-face { font-family: 'Poppins'; src: url('{{ 'Poppins-ExtraLight.ttf' | asset_url }}') format('truetype'); font-weight: 200; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'Poppins'; src: url('{{ 'Poppins-ExtraLightItalic.ttf' | asset_url }}') format('truetype'); font-weight: 200; font-style: italic; font-display: swap; }
+  @font-face { font-family: 'Poppins'; src: url('{{ 'Poppins-Light.ttf' | asset_url }}') format('truetype'); font-weight: 300; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'Poppins'; src: url('{{ 'Poppins-LightItalic.ttf' | asset_url }}') format('truetype'); font-weight: 300; font-style: italic; font-display: swap; }
+  @font-face { font-family: 'Poppins'; src: url('{{ 'Poppins-Regular.ttf' | asset_url }}') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'Poppins'; src: url('{{ 'Poppins-Italic.ttf' | asset_url }}') format('truetype'); font-weight: 400; font-style: italic; font-display: swap; }
+  @font-face { font-family: 'Poppins'; src: url('{{ 'Poppins-Medium.ttf' | asset_url }}') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'Poppins'; src: url('{{ 'Poppins-MediumItalic.ttf' | asset_url }}') format('truetype'); font-weight: 500; font-style: italic; font-display: swap; }
+  @font-face { font-family: 'Poppins'; src: url('{{ 'Poppins-SemiBold.ttf' | asset_url }}') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'Poppins'; src: url('{{ 'Poppins-SemiBoldItalic.ttf' | asset_url }}') format('truetype'); font-weight: 600; font-style: italic; font-display: swap; }
+  @font-face { font-family: 'Poppins'; src: url('{{ 'Poppins-Bold.ttf' | asset_url }}') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'Poppins'; src: url('{{ 'Poppins-BoldItalic.ttf' | asset_url }}') format('truetype'); font-weight: 700; font-style: italic; font-display: swap; }
+  @font-face { font-family: 'Poppins'; src: url('{{ 'Poppins-ExtraBold.ttf' | asset_url }}') format('truetype'); font-weight: 800; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'Poppins'; src: url('{{ 'Poppins-ExtraBoldItalic.ttf' | asset_url }}') format('truetype'); font-weight: 800; font-style: italic; font-display: swap; }
+  @font-face { font-family: 'Poppins'; src: url('{{ 'Poppins-Black.ttf' | asset_url }}') format('truetype'); font-weight: 900; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'Poppins'; src: url('{{ 'Poppins-BlackItalic.ttf' | asset_url }}') format('truetype'); font-weight: 900; font-style: italic; font-display: swap; }
 
-  @font-face {
-    font-family: 'Poppins';
-    src: url('{{ 'poppins-medium.woff2' | asset_url }}') format('woff2');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Poppins';
-    src: url('{{ 'poppins-semibold.woff2' | asset_url }}') format('woff2');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'PublicSans';
-    src: url('{{ 'public-sans-regular.woff2' | asset_url }}') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'PublicSans';
-    src: url('{{ 'public-sans-italic.woff2' | asset_url }}') format('woff2');
-    font-weight: 400;
-    font-style: italic;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Katheriny';
-    src: url('{{ 'katheriny-regular.woff2' | asset_url }}') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
+  /* Public Sans */
+  @font-face { font-family: 'PublicSans'; src: url('{{ 'PublicSans-Thin.ttf' | asset_url }}') format('truetype'); font-weight: 100; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'PublicSans'; src: url('{{ 'PublicSans-ThinItalic.ttf' | asset_url }}') format('truetype'); font-weight: 100; font-style: italic; font-display: swap; }
+  @font-face { font-family: 'PublicSans'; src: url('{{ 'PublicSans-ExtraLight.ttf' | asset_url }}') format('truetype'); font-weight: 200; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'PublicSans'; src: url('{{ 'PublicSans-ExtraLightItalic.ttf' | asset_url }}') format('truetype'); font-weight: 200; font-style: italic; font-display: swap; }
+  @font-face { font-family: 'PublicSans'; src: url('{{ 'PublicSans-Light.ttf' | asset_url }}') format('truetype'); font-weight: 300; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'PublicSans'; src: url('{{ 'PublicSans-LightItalic.ttf' | asset_url }}') format('truetype'); font-weight: 300; font-style: italic; font-display: swap; }
+  @font-face { font-family: 'PublicSans'; src: url('{{ 'PublicSans-Regular.ttf' | asset_url }}') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'PublicSans'; src: url('{{ 'PublicSans-Italic.ttf' | asset_url }}') format('truetype'); font-weight: 400; font-style: italic; font-display: swap; }
+  @font-face { font-family: 'PublicSans'; src: url('{{ 'PublicSans-Medium.ttf' | asset_url }}') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'PublicSans'; src: url('{{ 'PublicSans-MediumItalic.ttf' | asset_url }}') format('truetype'); font-weight: 500; font-style: italic; font-display: swap; }
+  @font-face { font-family: 'PublicSans'; src: url('{{ 'PublicSans-SemiBold.ttf' | asset_url }}') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'PublicSans'; src: url('{{ 'PublicSans-SemiBoldItalic.ttf' | asset_url }}') format('truetype'); font-weight: 600; font-style: italic; font-display: swap; }
+  @font-face { font-family: 'PublicSans'; src: url('{{ 'PublicSans-Bold.ttf' | asset_url }}') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'PublicSans'; src: url('{{ 'PublicSans-BoldItalic.ttf' | asset_url }}') format('truetype'); font-weight: 700; font-style: italic; font-display: swap; }
+  @font-face { font-family: 'PublicSans'; src: url('{{ 'PublicSans-ExtraBold.ttf' | asset_url }}') format('truetype'); font-weight: 800; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'PublicSans'; src: url('{{ 'PublicSans-ExtraBoldItalic.ttf' | asset_url }}') format('truetype'); font-weight: 800; font-style: italic; font-display: swap; }
+  @font-face { font-family: 'PublicSans'; src: url('{{ 'PublicSans-Black.ttf' | asset_url }}') format('truetype'); font-weight: 900; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'PublicSans'; src: url('{{ 'PublicSans-BlackItalic.ttf' | asset_url }}') format('truetype'); font-weight: 900; font-style: italic; font-display: swap; }
 </style>
 
 {%- comment -%} Preload the heading font for faster rendering {%- endcomment -%}
-<link rel="preload" href="{{ 'aboreto-regular.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ 'Aboreto-Regular.ttf' | asset_url }}" as="font" type="font/ttf" crossorigin>
