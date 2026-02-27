@@ -4,3 +4,10 @@ node_modules/
 documents/
 .agent/
 .agents/
+
+# Old v3 workspace
+shopify-theme/
+
+# Shopify CLI
+.shopify-cli/
+.env
