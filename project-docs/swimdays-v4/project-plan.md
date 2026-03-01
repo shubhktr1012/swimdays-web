@@ -42,7 +42,7 @@ the project budget while remaining editable in Shopify native tooling.
 
 ### Phase 1: Foundation (Days 1-2)
 
-- [ ] Setup Development Environment (CLI, Atelier theme pull)
+- [x] Setup Development Environment (CLI, Atelier theme pull)
 - [ ] Configure Store Baseline (Payments, Shipping, Taxes)
 - [ ] Initial App Setup (Shopify Email, Search & Discovery)
 
@@ -51,7 +51,7 @@ the project budget while remaining editable in Shopify native tooling.
 - [ ] Create Collections (Moss, Cove, All, New Arrivals)
 - [ ] Set up Menus & Navigation
 - [ ] Product Upload & "Pairs Best With" Mapping
-- [ ] Font installation (`swimdays-fonts.liquid`)
+- [x] Font installation (`swimdays-fonts.liquid`)
 
 ### Phase 3: Theme Customization (Days 6-10)
 

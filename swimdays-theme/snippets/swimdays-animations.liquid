@@ -1,0 +1,44 @@
+<!-- GSAP & ScrollTrigger -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+<!-- Lenis (Smooth Scroll) -->
+<script src="https://unpkg.com/lenis@1.0.42/dist/lenis.min.js" defer></script>
+
+<!-- Animation Initialization -->
+<script defer>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Register ScrollTrigger
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+    }
+
+    // 2. Initialize Lenis
+    if (typeof Lenis !== 'undefined') {
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
+        direction: 'vertical', // vertical, horizontal
+        gestureDirection: 'vertical', // vertical, horizontal, both
+        smooth: true,
+        mouseMultiplier: 1,
+        smoothTouch: false,
+        touchMultiplier: 2,
+        infinite: false,
+      });
+
+      // 3. Sync Lenis with GSAP ScrollTrigger
+      lenis.on('scroll', ScrollTrigger.update);
+
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+
+      // Disable GSAP's lag smoothing to prevent conflicts with Lenis
+      gsap.ticker.lagSmoothing(0);
+
+      // Expose globally for use in other scripts
+      window.lenis = lenis;
+    }
+  });
+</script>
