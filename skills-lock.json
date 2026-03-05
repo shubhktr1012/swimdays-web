@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "skills": {
+    "responsive-design": {
+      "source": "wshobson/agents",
+      "sourceType": "github",
+      "computedHash": "9df1908623814c4c93cc1fde25caa211b2d28c8ffcdc2b5a12c6b7ae456f0f89"
+    },
+    "shopify-expert": {
+      "source": "jeffallan/claude-skills",
+      "sourceType": "github",
+      "computedHash": "5388ee3b7dbc70ca85db354eff8a8ffda6780120afdb92b3bf5c930c4a793af4"
+    },
+    "shopify-liquid-themes": {
+      "source": "benjaminsehl/liquid-skills",
+      "sourceType": "github",
+      "computedHash": "ffbd442951b3c06c451d4fa39a7b7cc0dea3618976bdb87508621e7c561eabe7"
+    },
+    "shopify-theme-development-guidelines": {
+      "source": "mindrally/skills",
+      "sourceType": "github",
+      "computedHash": "88c5eefca564837a7aeaaf18ed5a0f73e404b91358bb421a526b5827daf5606a"
+    },
+    "unsplash": {
+      "source": "cevatkerim/skills",
+      "sourceType": "github",
+      "computedHash": "2f124dcb8d877c676c8b03e741c6406180bebf3176a00440e454d587319931ee"
+    }
+  }
+}

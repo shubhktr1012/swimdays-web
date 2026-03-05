@@ -6,12 +6,9 @@
   lang="{{ request.locale.iso_code }}"
 >
   <head>
+    <link rel="icon" type="image/svg+xml" href="{{ 'swimdays_favicon.svg' | asset_url }}">
     {%- if settings.favicon != blank -%}
-      <link
-        rel="icon"
-        type="image/png"
-        href="{{ settings.favicon | image_url: width: 32, height: 32 }}"
-      >
+      <link rel="alternate icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
 
     {% comment %} This a way to wait for main content to load when navigating to a new page so that the view transitions can work consistently {% endcomment %}
@@ -45,6 +42,7 @@
     <div id="header-group">
       {% sections 'header-group' %}
     </div>
+    {%- section 'swimdays-header' -%}
 
     <script>
       // Inline header height and menu style calculations to prevent layout shift
@@ -60,6 +58,7 @@
 
         if (!header || !headerGroup) return;
 
+        const headerTopRow = header.querySelector('.header__row--top');
         const headerHeight = header.offsetHeight;
 
         // Calculate the total height of the header group
@@ -79,6 +78,12 @@
         // Set CSS variables
         document.body.style.setProperty('--header-height', `${headerHeight}px`);
         document.body.style.setProperty('--header-group-height', `${headerGroupHeight}px`);
+
+        if (headerTopRow) {
+          window.requestAnimationFrame(function () {
+            document.body.style.setProperty('--top-row-height', `${headerTopRow.offsetHeight}px`);
+          });
+        }
 
         /**
          * Updates CSS custom properties for transparent header offset calculation
@@ -118,7 +123,9 @@
       {{ content_for_layout }}
     </main>
 
-    {% sections 'footer-group' %}
+    <footer>
+      {% sections 'footer-group' %}
+    </footer>
 
     {% render 'search-modal' %}
 

@@ -1,0 +1,349 @@
+{% doc %}
+  Swimdays custom header section based on the local prototype.
+  Renders a responsive desktop navigation with a mobile drawer.
+{% enddoc %}
+
+{{ 'swimdays-navbar.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign menu = section.settings.menu
+  assign logo_alt = section.settings.logo_alt | default: shop.name
+  assign account_url = routes.account_login_url
+
+  if customer
+    assign account_url = routes.account_url
+  endif
+%}
+
+<header-component
+  id="header-component"
+  class="swimdays-header-component"
+  data-swimdays-header="{{ section.id }}"
+>
+  <header
+    class="swimdays-navbar"
+    style="--nav-logo-max-width: {{ section.settings.logo_max_width }}px;"
+  >
+    <div class="navbar-inner">
+      <div class="navbar-left">
+        <div class="navbar-mobile-actions">
+          <button
+            class="navbar-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="mobile-menu-{{ section.id }}"
+            aria-label="Open menu"
+          >
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M4 7H20" stroke-width="1.6" stroke-linecap="round"></path>
+              <path d="M4 12H20" stroke-width="1.6" stroke-linecap="round"></path>
+              <path d="M9 17H20" stroke-width="1.6" stroke-linecap="round"></path>
+            </svg>
+          </button>
+
+          <a class="navbar-icon-button" href="{{ routes.search_url }}" aria-label="Search">
+            <img class="navbar-icon" src="{{ 'icon-search.svg' | asset_url }}" alt="">
+          </a>
+        </div>
+
+        {% if menu != blank and menu.links != blank %}
+          <nav class="navbar-primary-nav" aria-label="{{ menu.title | default: 'Primary navigation' | escape }}">
+            <ul class="navbar-links">
+              {% for link in menu.links %}
+                <li class="{% if link.links != blank %}has-dropdown{% endif %}">
+                  <a
+                    href="{{ link.url }}"
+                    {% if link.current or link.child_active %}
+                      aria-current="page"
+                    {% endif %}
+                  >
+                    <span>{{ link.title }}</span>
+                    {% if link.links != blank %}
+                      <svg class="nav-dropdown-caret" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                    {% endif %}
+                  </a>
+
+                  {% if link.links != blank %}
+                    <ul class="dropdown-menu">
+                      {% for child_link in link.links %}
+                        <li>
+                          <a
+                            href="{{ child_link.url }}"
+                            {% if child_link.current %}
+                              aria-current="page"
+                            {% endif %}
+                          >
+                            {{ child_link.title }}
+                          </a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  {% endif %}
+                </li>
+              {% endfor %}
+            </ul>
+          </nav>
+        {% endif %}
+      </div>
+
+      <div class="navbar-center">
+        <a href="{{ routes.root_url }}" aria-label="{{ logo_alt | escape }}">
+          {% if section.settings.logo_image != blank %}
+            {{
+              section.settings.logo_image
+              | image_url: width: 320
+              | image_tag:
+                alt: logo_alt,
+                loading: 'eager',
+                widths: '120, 160, 240, 320',
+                sizes: '(min-width: 960px) 170px, 42vw'
+            }}
+          {% else %}
+            <img src="{{ 'swimdays_logo.svg' | asset_url }}" alt="{{ logo_alt | escape }}">
+          {% endif %}
+        </a>
+      </div>
+
+      <div class="navbar-right">
+        <a class="navbar-icon-button desktop-only" href="{{ routes.search_url }}" aria-label="Search">
+          <img class="navbar-icon" src="{{ 'icon-search.svg' | asset_url }}" alt="">
+        </a>
+
+        {% if shop.customer_accounts_enabled %}
+          <a class="navbar-icon-button" href="{{ account_url }}" aria-label="Account">
+            <img class="navbar-icon" src="{{ 'icon-account.svg' | asset_url }}" alt="">
+          </a>
+        {% endif %}
+
+        <a class="badge-wrapper" href="{{ routes.cart_url }}" aria-label="Cart{% if cart.item_count > 0 %} with {{ cart.item_count }} items{% endif %}">
+          <img class="navbar-icon" src="{{ 'icon-cart.svg' | asset_url }}" alt="">
+          {% if cart.item_count > 0 %}
+            <span class="icon-badge">{{ cart.item_count }}</span>
+          {% endif %}
+        </a>
+      </div>
+
+      <div class="mobile-menu" id="mobile-menu-{{ section.id }}" aria-hidden="true">
+        <div class="mobile-menu-inner">
+          <div class="mobile-menu-header">
+            <p>{{ section.settings.drawer_label }}</p>
+            <button class="mobile-menu-close" type="button" aria-label="Close menu">&times;</button>
+          </div>
+
+          {% if menu != blank and menu.links != blank %}
+            <ul class="mobile-menu-list">
+              {% for link in menu.links %}
+                <li>
+                  {% if link.links != blank %}
+                    <details {% if forloop.first %}open{% endif %}>
+                      <summary>{{ link.title }}</summary>
+                      <ul class="mobile-submenu">
+                        {% for child_link in link.links %}
+                          <li>
+                            <a
+                              href="{{ child_link.url }}"
+                              {% if child_link.current %}
+                                aria-current="page"
+                              {% endif %}
+                            >
+                              {{ child_link.title }}
+                            </a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    </details>
+                  {% else %}
+                    <a
+                      href="{{ link.url }}"
+                      {% if link.current %}
+                        aria-current="page"
+                      {% endif %}
+                    >
+                      {{ link.title }}
+                    </a>
+                  {% endif %}
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </header>
+</header-component>
+
+<script>
+  (() => {
+    const headerComponent = document.querySelector('[data-swimdays-header="{{ section.id }}"]');
+    if (!headerComponent || headerComponent.dataset.initialized === 'true') return;
+
+    headerComponent.dataset.initialized = 'true';
+
+    const navbar = headerComponent.querySelector('.swimdays-navbar');
+    const menuToggle = headerComponent.querySelector('.navbar-toggle');
+    const menuClose = headerComponent.querySelector('.mobile-menu-close');
+    const mobileMenu = headerComponent.querySelector('.mobile-menu');
+    const mobileMenuLinks = headerComponent.querySelectorAll('.mobile-menu a');
+    const desktopViewport = window.matchMedia('(min-width: 960px)');
+    let fallbackScrollHandlerAttached = false;
+
+    const updateHeaderMetrics = () => {
+      const headerGroup = document.querySelector('#header-group');
+      const announcementHeight = headerGroup
+        ? Array.from(headerGroup.children).reduce((total, element) => {
+            if (!(element instanceof HTMLElement) || element.contains(headerComponent)) return total;
+            return total + element.offsetHeight;
+          }, 0)
+        : 0;
+
+      document.body.style.setProperty('--header-height', `${headerComponent.offsetHeight}px`);
+      document.body.style.setProperty('--header-group-height', `${announcementHeight}px`);
+      document.body.style.setProperty('--transparent-header-offset-boolean', '0');
+    };
+
+    const syncScrolledState = () => {
+      const isScrolled = window.scrollY > 20;
+      navbar.classList.toggle('is-scrolled', isScrolled);
+      headerComponent.classList.toggle('is-scrolled', isScrolled);
+      updateHeaderMetrics();
+    };
+
+    const setMenuState = (isOpen) => {
+      navbar.classList.toggle('menu-open', isOpen);
+      document.body.classList.toggle('swimdays-nav-locked', isOpen);
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+    };
+
+    const attachFallbackScrollHandler = () => {
+      if (fallbackScrollHandlerAttached) return;
+      fallbackScrollHandlerAttached = true;
+      window.addEventListener('scroll', syncScrolledState, { passive: true });
+      syncScrolledState();
+    };
+
+    const initializeGsapScroll = () => {
+      if (typeof window.gsap === 'undefined' || typeof window.ScrollTrigger === 'undefined') {
+        attachFallbackScrollHandler();
+        return;
+      }
+
+      window.gsap.registerPlugin(window.ScrollTrigger);
+      syncScrolledState();
+
+      window.ScrollTrigger.create({
+        trigger: document.body,
+        start: 'top top-=20',
+        end: 99999,
+        onUpdate: () => {
+          syncScrolledState();
+        }
+      });
+    };
+
+    window.addEventListener('resize', updateHeaderMetrics);
+    window.addEventListener('load', initializeGsapScroll, { once: true });
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navbar.classList.contains('menu-open');
+      setMenuState(!isOpen);
+    });
+
+    menuClose.addEventListener('click', () => {
+      setMenuState(false);
+    });
+
+    mobileMenuLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        setMenuState(false);
+      });
+    });
+
+    mobileMenu.addEventListener('click', (event) => {
+      if (event.target === mobileMenu) {
+        setMenuState(false);
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && navbar.classList.contains('menu-open')) {
+        setMenuState(false);
+      }
+    });
+
+    if (desktopViewport.addEventListener) {
+      desktopViewport.addEventListener('change', (event) => {
+        if (event.matches) {
+          setMenuState(false);
+          updateHeaderMetrics();
+        }
+      });
+    } else if (desktopViewport.addListener) {
+      desktopViewport.addListener((event) => {
+        if (event.matches) {
+          setMenuState(false);
+          updateHeaderMetrics();
+        }
+      });
+    }
+
+    if (document.documentElement.classList.contains('shopify-design-mode')) {
+      document.addEventListener('shopify:section:load', (event) => {
+        if (event.detail.sectionId === '{{ section.id }}') {
+          updateHeaderMetrics();
+        }
+      });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Swimdays Header",
+  "tag": "section",
+  "class": "swimdays-header-section",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Logo image"
+    },
+    {
+      "type": "text",
+      "id": "logo_alt",
+      "label": "Logo alt text",
+      "default": "Swimdays"
+    },
+    {
+      "type": "range",
+      "id": "logo_max_width",
+      "label": "Logo max width",
+      "min": 100,
+      "max": 240,
+      "step": 10,
+      "unit": "px",
+      "default": 170
+    },
+    {
+      "type": "text",
+      "id": "drawer_label",
+      "label": "Drawer label",
+      "default": "Browse"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Swimdays Header"
+    }
+  ]
+}
+{% endschema %}

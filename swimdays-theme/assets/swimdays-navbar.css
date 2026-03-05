@@ -1,0 +1,469 @@
+.swimdays-header-component {
+  display: block;
+  height: var(--nav-height, clamp(68px, 8vw, 80px));
+}
+
+.swimdays-header-component.is-scrolled {
+  height: var(--nav-height-scrolled, clamp(60px, 7vw, 64px));
+}
+
+body.swimdays-nav-locked {
+  overflow: hidden;
+}
+
+.swimdays-navbar {
+  --nav-height: clamp(68px, 8vw, 80px);
+  --nav-height-scrolled: clamp(60px, 7vw, 64px);
+  --nav-inline-padding: clamp(18px, 4vw, 40px);
+  --nav-link-gap: clamp(24px, 3vw, 40px);
+  --nav-foreground: #111;
+  --nav-icon-filter: none;
+  --nav-panel-bg: rgba(252, 252, 250, 0.94);
+  --nav-border: rgba(17, 17, 17, 0.08);
+  --nav-logo-max-width: 170px;
+  position: fixed;
+  top: var(--header-group-height, 0px);
+  left: 0;
+  width: 100%;
+  height: var(--nav-height);
+  background: transparent;
+  z-index: 1000;
+  container-type: inline-size;
+  container-name: navbar;
+  transition:
+    transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    height 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.swimdays-navbar::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 -32px;
+  background: rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.94) 54%,
+    rgba(0, 0, 0, 0.55) 78%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.94) 54%,
+    rgba(0, 0, 0, 0.55) 78%,
+    transparent 100%
+  );
+  pointer-events: none;
+  transition:
+    background 0.4s ease,
+    backdrop-filter 0.4s ease,
+    -webkit-backdrop-filter 0.4s ease;
+}
+
+.swimdays-navbar.is-scrolled {
+  height: var(--nav-height-scrolled);
+}
+
+.swimdays-navbar.is-scrolled::before,
+.swimdays-navbar.menu-open::before {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(20px) saturate(170%);
+  -webkit-backdrop-filter: blur(20px) saturate(170%);
+}
+
+.swimdays-navbar .navbar-inner {
+  max-width: 1920px;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  padding: 0 var(--nav-inline-padding);
+  box-sizing: border-box;
+  position: relative;
+  gap: 16px;
+}
+
+.swimdays-navbar .navbar-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  gap: 14px;
+}
+
+.swimdays-navbar .navbar-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  max-width: calc(100% - 208px);
+}
+
+.swimdays-navbar .navbar-center a {
+  display: inline-flex;
+  pointer-events: auto;
+}
+
+.swimdays-navbar .navbar-center img {
+  height: clamp(24px, 4vw, 28px);
+  max-width: min(var(--nav-logo-max-width), 42vw);
+  width: auto;
+  display: block;
+  cursor: pointer;
+  filter: var(--nav-icon-filter);
+  transition: filter 0.25s ease;
+}
+
+.swimdays-navbar .navbar-right {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  align-items: center;
+  margin-left: auto;
+}
+
+.swimdays-navbar .navbar-primary-nav {
+  min-width: 0;
+  display: none;
+}
+
+.swimdays-navbar .navbar-mobile-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.swimdays-navbar .navbar-links {
+  display: flex;
+  gap: var(--nav-link-gap);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.swimdays-navbar .navbar-links > li {
+  position: relative;
+}
+
+.swimdays-navbar .navbar-links > li > a,
+.swimdays-navbar .mobile-menu a,
+.swimdays-navbar .mobile-menu summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  color: var(--nav-foreground);
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  transition: color 0.25s ease;
+}
+
+.swimdays-navbar .navbar-links > li > a {
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.swimdays-navbar .nav-dropdown-caret {
+  width: 10px;
+  height: 10px;
+  flex: 0 0 auto;
+}
+
+.swimdays-navbar .navbar-links > li > a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--nav-foreground);
+  transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.swimdays-navbar .navbar-links > li > a:hover::after,
+.swimdays-navbar .navbar-links > li > a[aria-current='page']::after {
+  width: 100%;
+}
+
+.swimdays-navbar .has-dropdown {
+  padding-bottom: 20px;
+  margin-bottom: -20px;
+}
+
+.swimdays-navbar .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  list-style: none;
+  margin: 0;
+  padding: 16px 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+    visibility 0.3s;
+}
+
+.swimdays-navbar .has-dropdown:hover .dropdown-menu,
+.swimdays-navbar .has-dropdown:focus-within .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.swimdays-navbar .dropdown-menu a {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+  color: #666;
+  font-weight: 400;
+  transition: color 0.2s ease;
+}
+
+.swimdays-navbar .dropdown-menu a:hover,
+.swimdays-navbar .dropdown-menu a[aria-current='page'] {
+  color: #000;
+}
+
+.swimdays-navbar .navbar-icon-button,
+.swimdays-navbar .navbar-toggle,
+.swimdays-navbar .badge-wrapper,
+.swimdays-navbar .mobile-menu-close {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  appearance: none;
+  text-decoration: none;
+}
+
+.swimdays-navbar .navbar-toggle {
+  width: 24px;
+  height: 24px;
+}
+
+.swimdays-navbar .navbar-toggle svg {
+  width: 100%;
+  height: 100%;
+  stroke: var(--nav-foreground);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.swimdays-navbar .navbar-icon {
+  width: 22px;
+  height: 22px;
+  display: block;
+  filter: var(--nav-icon-filter);
+  transition: opacity 0.2s ease, transform 0.2s ease, filter 0.25s ease;
+}
+
+.swimdays-navbar .navbar-icon-button:hover .navbar-icon,
+.swimdays-navbar .badge-wrapper:hover .navbar-icon,
+.swimdays-navbar .navbar-toggle:hover svg {
+  opacity: 0.6;
+  transform: scale(1.05);
+}
+
+.swimdays-navbar .badge-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.swimdays-navbar .icon-badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: transparent;
+  color: var(--nav-foreground);
+  border: 1px solid var(--nav-foreground);
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  height: 16px;
+  min-width: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 0 4px;
+  box-sizing: border-box;
+  letter-spacing: 0;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.swimdays-navbar .desktop-only {
+  display: none;
+}
+
+.swimdays-navbar .mobile-menu {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0;
+  background: rgba(12, 17, 24, 0.24);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.28s ease, visibility 0.28s ease;
+  box-sizing: border-box;
+}
+
+.swimdays-navbar.menu-open .mobile-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.swimdays-navbar .mobile-menu-inner {
+  width: min(86vw, 380px);
+  max-width: 100%;
+  height: 100dvh;
+  padding: calc(var(--nav-height) + 20px) 24px 32px;
+  border-right: 1px solid var(--nav-border);
+  border-radius: 0 28px 28px 0;
+  background: linear-gradient(180deg, rgba(247, 246, 242, 0.98) 0%, rgba(255, 255, 255, 0.96) 100%);
+  box-shadow: 18px 0 64px rgba(17, 17, 17, 0.14);
+  transform: translateX(calc(-100% - 24px));
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.swimdays-navbar.menu-open .mobile-menu-inner {
+  transform: translateX(0);
+}
+
+.swimdays-navbar .mobile-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.swimdays-navbar .mobile-menu-header p {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(17, 17, 17, 0.6);
+}
+
+.swimdays-navbar .mobile-menu-close {
+  width: 28px;
+  height: 28px;
+  font-size: 28px;
+  line-height: 1;
+  color: var(--nav-foreground);
+}
+
+.swimdays-navbar .mobile-menu-list,
+.swimdays-navbar .mobile-submenu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.swimdays-navbar .mobile-menu-list {
+  display: grid;
+  gap: 18px;
+}
+
+.swimdays-navbar .mobile-menu-list > li {
+  border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+  padding-bottom: 18px;
+}
+
+.swimdays-navbar .mobile-menu-list > li:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.swimdays-navbar .mobile-menu details[open] summary {
+  margin-bottom: 14px;
+}
+
+.swimdays-navbar .mobile-menu summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.swimdays-navbar .mobile-menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.swimdays-navbar .mobile-submenu {
+  display: grid;
+  gap: 12px;
+  padding-left: 4px;
+}
+
+.swimdays-navbar .mobile-submenu a {
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: rgba(17, 17, 17, 0.66);
+}
+
+@container navbar (min-width: 960px) {
+  .swimdays-navbar .navbar-inner {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .swimdays-navbar .navbar-left {
+    gap: 0;
+  }
+
+  .swimdays-navbar .navbar-center {
+    position: static;
+    transform: none;
+    max-width: none;
+  }
+
+  .swimdays-navbar .navbar-right {
+    gap: 24px;
+  }
+
+  .swimdays-navbar .navbar-mobile-actions,
+  .swimdays-navbar .mobile-menu {
+    display: none;
+  }
+
+  .swimdays-navbar .navbar-primary-nav {
+    display: block;
+  }
+
+  .swimdays-navbar .desktop-only {
+    display: inline-flex;
+  }
+}
