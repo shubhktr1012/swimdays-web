@@ -1,0 +1,617 @@
+{% liquid
+  assign hero_link = section.settings.hero_link
+  assign background_image = section.settings.background_image
+%}
+
+<section class="swimdays-home-hero" id="hero">
+  <div class="swimdays-home-hero__stage">
+    {% if background_image != blank %}
+      {{ background_image | image_url: width: 2400 | image_tag: class: 'swimdays-home-hero__background-image', alt: '', loading: 'eager', fetchpriority: 'high', widths: '900, 1200, 1600, 2000, 2400', sizes: '100vw' }}
+    {% endif %}
+
+    <div class="hero-poster-grid" data-hero-grid>
+      {% if section.settings.poster_1_image != blank %}
+      <a class="hero-poster center-poster has-photo left-poster is-active" href="{{ section.settings.poster_1_link | default: hero_link | default: routes.all_products_collection_url }}" data-hero-slide>
+          {{ section.settings.poster_1_image | image_url: width: 1400 | image_tag: alt: '', loading: 'eager', widths: '360, 520, 720, 960, 1200, 1400', sizes: '(max-width: 767px) calc(100vw - 48px), (max-width: 1439px) 28vw, 420px' }}
+        <div class="hero-poster-content">
+          <span class="hero-poster-club">{{ section.settings.poster_1_club | default: section.settings.poster_club }}</span>
+          <h2 class="hero-poster-title">{{ section.settings.poster_1_title | default: section.settings.poster_title }}</h2>
+          <span class="hero-poster-shop-now">{{ section.settings.poster_1_shop_now | default: section.settings.poster_shop_now }}</span>
+          <div class="hero-poster-footer">
+            <span class="hero-poster-footer-note">{{ section.settings.poster_1_footer_left | default: section.settings.poster_footer_left }}</span>
+            <span class="hero-poster-footer-note">{{ section.settings.poster_1_footer_right | default: section.settings.poster_footer_right }}</span>
+          </div>
+        </div>
+      </a>
+      {% endif %}
+
+      {% if section.settings.poster_2_image != blank %}
+      <a class="hero-poster center-poster has-photo right-poster" href="{{ section.settings.poster_2_link | default: hero_link | default: routes.all_products_collection_url }}" data-hero-slide>
+          {{ section.settings.poster_2_image | image_url: width: 1400 | image_tag: alt: '', loading: 'eager', widths: '360, 520, 720, 960, 1200, 1400', sizes: '(max-width: 767px) calc(100vw - 48px), (max-width: 1439px) 28vw, 420px' }}
+        <div class="hero-poster-content">
+          <span class="hero-poster-club">{{ section.settings.poster_2_club | default: section.settings.poster_club }}</span>
+          <h2 class="hero-poster-title">{{ section.settings.poster_2_title | default: section.settings.poster_title }}</h2>
+          <span class="hero-poster-shop-now">{{ section.settings.poster_2_shop_now | default: section.settings.poster_shop_now }}</span>
+          <div class="hero-poster-footer">
+            <span class="hero-poster-footer-note">{{ section.settings.poster_2_footer_left | default: section.settings.poster_footer_left }}</span>
+            <span class="hero-poster-footer-note">{{ section.settings.poster_2_footer_right | default: section.settings.poster_footer_right }}</span>
+          </div>
+        </div>
+      </a>
+      {% endif %}
+
+      {% if section.settings.poster_3_image != blank %}
+      <a class="hero-poster center-poster has-photo" href="{{ section.settings.poster_3_link | default: hero_link | default: routes.all_products_collection_url }}" data-hero-slide>
+          {{ section.settings.poster_3_image | image_url: width: 1400 | image_tag: alt: '', loading: 'eager', widths: '360, 520, 720, 960, 1200, 1400', sizes: '(max-width: 767px) calc(100vw - 48px), (max-width: 1439px) 28vw, 420px' }}
+        <div class="hero-poster-content">
+          <span class="hero-poster-club">{{ section.settings.poster_3_club | default: section.settings.poster_club }}</span>
+          <h2 class="hero-poster-title">{{ section.settings.poster_3_title | default: section.settings.poster_title }}</h2>
+          <span class="hero-poster-shop-now">{{ section.settings.poster_3_shop_now | default: section.settings.poster_shop_now }}</span>
+          <div class="hero-poster-footer">
+            <span class="hero-poster-footer-note">{{ section.settings.poster_3_footer_left | default: section.settings.poster_footer_left }}</span>
+            <span class="hero-poster-footer-note">{{ section.settings.poster_3_footer_right | default: section.settings.poster_footer_right }}</span>
+          </div>
+        </div>
+      </a>
+      {% endif %}
+    </div>
+
+    <div class="swimdays-home-hero__controls" aria-label="Hero poster navigation">
+      <button type="button" class="swimdays-home-hero__control" data-hero-prev aria-label="Previous poster">Prev</button>
+      <button type="button" class="swimdays-home-hero__control" data-hero-next aria-label="Next poster">Next</button>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .swimdays-home-hero {
+    --swimdays-navbar-height: clamp(60px, 7vw, 72px);
+    --swimdays-announcement-height: 2rem;
+    margin: calc(var(--swimdays-announcement-height) * -1) 0 0;
+    width: 100%;
+  }
+
+  .swimdays-home-hero__stage {
+    position: relative;
+    min-height: 100svh;
+    display: grid;
+    place-items: stretch;
+    overflow: hidden;
+    text-align: center;
+    color: #fff;
+    background: linear-gradient(180deg, rgba(13, 39, 45, 0.28), rgba(13, 39, 45, 0.16));
+  }
+
+  .swimdays-home-hero__background-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .swimdays-home-hero__stage::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(14, 38, 44, 0.15);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .swimdays-home-hero__stage::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.12;
+    mix-blend-mode: overlay;
+  }
+
+  .swimdays-home-hero .hero-poster-grid {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    padding: clamp(2rem, 4vw, 4rem) 24px;
+    max-width: min(92vw, 1500px);
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .swimdays-home-hero .hero-poster {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    transition: transform 0.4s cubic-bezier(0.2, 0, 0, 1);
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    flex: 0 1 auto;
+    width: min(100%, 460px);
+    max-width: none;
+    margin: 0 auto;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .swimdays-home-hero .hero-poster img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .swimdays-home-hero .hero-poster.has-photo {
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+  }
+
+  .swimdays-home-hero .hero-poster.has-photo img {
+    transform: none;
+    transform-origin: center center;
+    object-position: center center;
+  }
+
+  .swimdays-home-hero .left-poster img {
+    transform: none;
+    transform-origin: center center;
+    object-position: center center;
+  }
+
+  .swimdays-home-hero .hero-poster.center-poster.has-photo.right-poster img {
+    transform: none;
+    transform-origin: center center;
+    object-position: center center;
+  }
+
+  .swimdays-home-hero .center-poster::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='centerNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23centerNoise)'/%3E%3C/svg%3E");
+    opacity: 0.35;
+    mix-blend-mode: overlay;
+  }
+
+  .swimdays-home-hero .hero-poster-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: clamp(1rem, 2vw, 1.5rem);
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .swimdays-home-hero .hero-poster-club {
+    font-family: "Swimdays Accent", serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-bottom: 0.75rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .swimdays-home-hero .hero-poster-title {
+    font-family: "Swimdays Heading", serif;
+    font-style: normal;
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    font-weight: 400;
+    margin: 0;
+    line-height: 1;
+  }
+
+  .swimdays-home-hero .hero-poster-shop-now {
+    display: inline-block;
+    margin-top: 0.8rem;
+    font-family: "Swimdays Subhead", sans-serif;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  .swimdays-home-hero .hero-poster-footer-note {
+    font-family: "Swimdays Subhead", sans-serif;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .swimdays-home-hero .hero-poster-footer {
+    position: absolute;
+    bottom: clamp(1rem, 2vw, 1.5rem);
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 clamp(1rem, 2vw, 1.5rem);
+    opacity: 0.9;
+  }
+
+  .swimdays-home-hero__controls {
+    position: absolute;
+    left: 50%;
+    bottom: clamp(1rem, 4vw, 2rem);
+    transform: translateX(-50%);
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .swimdays-home-hero__control {
+    appearance: none;
+    border: 1px solid rgba(255, 255, 255, 0.42);
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    font-family: "Swimdays Subhead", sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    line-height: 1;
+    min-height: 2.5rem;
+    min-width: 5rem;
+    padding: 0.8rem 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  @media screen and (max-width: 1535px) {
+    .swimdays-home-hero {
+      --swimdays-hero-section-space: clamp(3rem, 7vw, 4.5rem);
+    }
+
+    .swimdays-home-hero__stage {
+      place-items: center;
+    }
+
+    .swimdays-home-hero .hero-poster-grid {
+      min-height: 100svh;
+      align-content: center;
+      align-items: center;
+      padding-block: var(--swimdays-hero-section-space);
+    }
+  }
+
+  @media screen and (max-width: 1023px) {
+    .swimdays-home-hero__stage {
+      min-height: 100svh;
+    }
+
+    .swimdays-home-hero .hero-poster-grid {
+      display: block;
+      min-height: 100svh;
+      max-width: 100%;
+      padding: var(--swimdays-hero-section-space, clamp(3rem, 7vw, 4.5rem)) 24px;
+    }
+
+    .swimdays-home-hero .hero-poster {
+      position: absolute;
+      inset: 50% auto auto 50%;
+      transform: translate(-50%, -50%) translateX(6%);
+      width: min(calc(100vw - 48px), 620px);
+      opacity: 0;
+      pointer-events: none;
+      transition:
+        opacity 0.6s ease,
+        transform 0.6s cubic-bezier(0.2, 0, 0, 1);
+    }
+
+    .swimdays-home-hero .hero-poster.is-active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .swimdays-home-hero .hero-poster-grid {
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .swimdays-home-hero .hero-poster {
+      margin: 0;
+      max-width: none;
+    }
+
+    .swimdays-home-hero__controls {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 1440px) {
+    .swimdays-home-hero .hero-poster-grid {
+      gap: 56px;
+      max-width: min(92vw, 1640px);
+    }
+
+    .swimdays-home-hero .hero-poster {
+      width: min(100%, 520px);
+    }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  (() => {
+    const initSwimdaysHero = (root = document) => {
+      const heroes = root.querySelectorAll('.swimdays-home-hero');
+
+      heroes.forEach((hero) => {
+        if (hero.dataset.heroInit === 'true') return;
+        hero.dataset.heroInit = 'true';
+
+        const slides = Array.from(hero.querySelectorAll('[data-hero-slide]'));
+        const prevButton = hero.querySelector('[data-hero-prev]');
+        const nextButton = hero.querySelector('[data-hero-next]');
+        const mobileViewport = window.matchMedia('(max-width: 1023px)');
+        let activeIndex = 0;
+        let intervalId = null;
+
+        if (slides.length <= 1) {
+          hero.querySelector('.swimdays-home-hero__controls')?.setAttribute('hidden', 'hidden');
+          return;
+        }
+
+        const applySlideState = () => {
+          if (!mobileViewport.matches) {
+            slides.forEach((slide, index) => {
+              slide.classList.toggle('is-active', index === 0);
+            });
+            return;
+          }
+
+          slides.forEach((slide, index) => {
+            slide.classList.toggle('is-active', index === activeIndex);
+          });
+        };
+
+        const resetAutoplay = () => {
+          if (intervalId) window.clearInterval(intervalId);
+          if (!mobileViewport.matches) return;
+
+          intervalId = window.setInterval(() => {
+            activeIndex = (activeIndex + 1) % slides.length;
+            applySlideState();
+          }, 10000);
+        };
+
+        const goToPrevious = () => {
+          activeIndex = (activeIndex - 1 + slides.length) % slides.length;
+          applySlideState();
+          resetAutoplay();
+        };
+
+        const goToNext = () => {
+          activeIndex = (activeIndex + 1) % slides.length;
+          applySlideState();
+          resetAutoplay();
+        };
+
+        prevButton?.addEventListener('click', goToPrevious);
+        nextButton?.addEventListener('click', goToNext);
+        mobileViewport.addEventListener('change', () => {
+          activeIndex = 0;
+          applySlideState();
+          resetAutoplay();
+        });
+
+        applySlideState();
+        resetAutoplay();
+      });
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => initSwimdaysHero());
+    } else {
+      initSwimdaysHero();
+    }
+
+    document.addEventListener('shopify:section:load', (event) => {
+      initSwimdaysHero(event.target);
+    });
+  })();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Swimdays hero",
+  "tag": "section",
+  "class": "shopify-section--swimdays-home-hero",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "url",
+      "id": "hero_link",
+      "label": "Default hero link"
+    },
+    {
+      "type": "image_picker",
+      "id": "poster_1_image",
+      "label": "Poster 1 image"
+    },
+    {
+      "type": "url",
+      "id": "poster_1_link",
+      "label": "Poster 1 link"
+    },
+    {
+      "type": "text",
+      "id": "poster_1_club",
+      "label": "Poster 1 label",
+      "default": "Cove Collection"
+    },
+    {
+      "type": "text",
+      "id": "poster_1_title",
+      "label": "Poster 1 title",
+      "default": "The Halter Swim Dress"
+    },
+    {
+      "type": "text",
+      "id": "poster_1_shop_now",
+      "label": "Poster 1 CTA",
+      "default": "Shop now"
+    },
+    {
+      "type": "text",
+      "id": "poster_1_footer_left",
+      "label": "Poster 1 footer left",
+      "default": "Swimdays Club"
+    },
+    {
+      "type": "text",
+      "id": "poster_1_footer_right",
+      "label": "Poster 1 footer right",
+      "default": "Summer 2026"
+    },
+    {
+      "type": "image_picker",
+      "id": "poster_2_image",
+      "label": "Poster 2 image"
+    },
+    {
+      "type": "url",
+      "id": "poster_2_link",
+      "label": "Poster 2 link"
+    },
+    {
+      "type": "text",
+      "id": "poster_2_club",
+      "label": "Poster 2 label",
+      "default": "Cove Collection"
+    },
+    {
+      "type": "text",
+      "id": "poster_2_title",
+      "label": "Poster 2 title",
+      "default": "The Halter Swim Dress"
+    },
+    {
+      "type": "text",
+      "id": "poster_2_shop_now",
+      "label": "Poster 2 CTA",
+      "default": "Shop now"
+    },
+    {
+      "type": "text",
+      "id": "poster_2_footer_left",
+      "label": "Poster 2 footer left",
+      "default": "Swimdays Club"
+    },
+    {
+      "type": "text",
+      "id": "poster_2_footer_right",
+      "label": "Poster 2 footer right",
+      "default": "Summer 2026"
+    },
+    {
+      "type": "image_picker",
+      "id": "poster_3_image",
+      "label": "Poster 3 image"
+    },
+    {
+      "type": "url",
+      "id": "poster_3_link",
+      "label": "Poster 3 link"
+    },
+    {
+      "type": "text",
+      "id": "poster_3_club",
+      "label": "Poster 3 label",
+      "default": "Cove Collection"
+    },
+    {
+      "type": "text",
+      "id": "poster_3_title",
+      "label": "Poster 3 title",
+      "default": "The Halter Swim Dress"
+    },
+    {
+      "type": "text",
+      "id": "poster_3_shop_now",
+      "label": "Poster 3 CTA",
+      "default": "Shop now"
+    },
+    {
+      "type": "text",
+      "id": "poster_3_footer_left",
+      "label": "Poster 3 footer left",
+      "default": "Swimdays Club"
+    },
+    {
+      "type": "text",
+      "id": "poster_3_footer_right",
+      "label": "Poster 3 footer right",
+      "default": "Summer 2026"
+    },
+    {
+      "type": "text",
+      "id": "poster_club",
+      "label": "Fallback poster label",
+      "default": "Cove Collection"
+    },
+    {
+      "type": "text",
+      "id": "poster_title",
+      "label": "Fallback poster title",
+      "default": "The Halter Swim Dress"
+    },
+    {
+      "type": "text",
+      "id": "poster_shop_now",
+      "label": "Fallback shop now label",
+      "default": "Shop now"
+    },
+    {
+      "type": "text",
+      "id": "poster_footer_left",
+      "label": "Fallback footer left text",
+      "default": "Swimdays Club"
+    },
+    {
+      "type": "text",
+      "id": "poster_footer_right",
+      "label": "Fallback footer right text",
+      "default": "Summer 2026"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Swimdays hero"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["index"]
+  }
+}
+{% endschema %}

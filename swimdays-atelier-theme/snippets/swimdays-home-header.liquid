@@ -3,9 +3,7 @@
 
   Intended for the custom Swimdays homepage implementation, not the global theme header.
 
-  @param {string} [collections_menu_handle] - Handle of the menu used for the Collections dropdown.
-  @param {object} [our_story_page] - Page object for the Our Story link.
-  @param {object} [swimblogs_blog] - Blog object for the SwimBlogs link.
+  @param {object} [primary_menu] - Menu used for the primary navigation.
   @param {string} [announcement_text_primary] - Primary announcement text.
   @param {string} [announcement_text_secondary] - Secondary announcement text.
   @param {string} [announcement_link_label] - Announcement CTA label.
@@ -13,10 +11,10 @@
 {% enddoc %}
 
 {% liquid
-  assign collections_menu_handle = collections_menu_handle | default: 'swimdays-home-collections'
-  assign collections_menu = linklists[collections_menu_handle]
-  assign our_story_page = our_story_page | default: pages['our-story']
-  assign swimblogs_blog = swimblogs_blog | default: blogs['swimblogs']
+  assign primary_menu = primary_menu
+  if primary_menu == blank
+    assign primary_menu = linklists['main-menu']
+  endif
   assign announcement_text_primary = announcement_text_primary | default: 'Free Worldwide Shipping'
   assign announcement_text_secondary = announcement_text_secondary | default: 'On Orders Over $150'
   assign announcement_link_label = announcement_link_label | default: 'Shop now'
@@ -81,30 +79,42 @@
 
         <nav class="navbar-primary-nav" aria-label="Primary">
           <ul class="navbar-links">
-            <li class="has-dropdown">
-              <a href="{{ routes.all_products_collection_url }}">
-                <span>Collections</span>
-                <svg class="nav-dropdown-caret" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-              <ul class="dropdown-menu">
-                {% if collections_menu != blank and collections_menu.links.size > 0 %}
-                  {% for link in collections_menu.links %}
-                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                  {% endfor %}
-                {% else %}
+            {% if primary_menu != blank and primary_menu.links.size > 0 %}
+              {% for link in primary_menu.links %}
+                <li{% if link.links != blank and link.links.size > 0 %} class="has-dropdown"{% endif %}>
+                  <a href="{{ link.url }}">
+                    <span>{{ link.title }}</span>
+                    {% if link.links != blank and link.links.size > 0 %}
+                      <svg class="nav-dropdown-caret" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    {% endif %}
+                  </a>
+
+                  {% if link.links != blank and link.links.size > 0 %}
+                    <ul class="dropdown-menu">
+                      {% for child_link in link.links %}
+                        <li><a href="{{ child_link.url }}">{{ child_link.title }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  {% endif %}
+                </li>
+              {% endfor %}
+            {% else %}
+              <li><a href="{{ routes.root_url }}">Home</a></li>
+              <li class="has-dropdown">
+                <a href="{{ routes.all_products_collection_url }}">
+                  <span>Collections</span>
+                  <svg class="nav-dropdown-caret" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+                <ul class="dropdown-menu">
                   <li><a href="{{ collections['moss'].url | default: routes.all_products_collection_url }}">Moss</a></li>
                   <li><a href="{{ collections['cove'].url | default: routes.all_products_collection_url }}">Cove</a></li>
                   <li><a href="{{ routes.all_products_collection_url }}">View All</a></li>
-                {% endif %}
-              </ul>
-            </li>
-            {% if our_story_page %}
-              <li><a href="{{ our_story_page.url }}">{{ our_story_page.title }}</a></li>
-            {% endif %}
-            {% if swimblogs_blog %}
-              <li><a href="{{ swimblogs_blog.url }}">SwimBlogs</a></li>
+                </ul>
+              </li>
             {% endif %}
           </ul>
         </nav>
@@ -163,27 +173,35 @@
           </div>
 
           <ul class="mobile-menu-list">
-            <li>
-              <details open>
-                <summary>Collections</summary>
-                <ul class="mobile-submenu">
-                  {% if collections_menu != blank and collections_menu.links.size > 0 %}
-                    {% for link in collections_menu.links %}
-                      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                    {% endfor %}
+            {% if primary_menu != blank and primary_menu.links.size > 0 %}
+              {% for link in primary_menu.links %}
+                <li>
+                  {% if link.links != blank and link.links.size > 0 %}
+                    <details{% if forloop.first %} open{% endif %}>
+                      <summary>{{ link.title }}</summary>
+                      <ul class="mobile-submenu">
+                        {% for child_link in link.links %}
+                          <li><a href="{{ child_link.url }}">{{ child_link.title }}</a></li>
+                        {% endfor %}
+                      </ul>
+                    </details>
                   {% else %}
+                    <a href="{{ link.url }}">{{ link.title }}</a>
+                  {% endif %}
+                </li>
+              {% endfor %}
+            {% else %}
+              <li><a href="{{ routes.root_url }}">Home</a></li>
+              <li>
+                <details open>
+                  <summary>Collections</summary>
+                  <ul class="mobile-submenu">
                     <li><a href="{{ collections['moss'].url | default: routes.all_products_collection_url }}">Moss</a></li>
                     <li><a href="{{ collections['cove'].url | default: routes.all_products_collection_url }}">Cove</a></li>
                     <li><a href="{{ routes.all_products_collection_url }}">View All</a></li>
-                  {% endif %}
-                </ul>
-              </details>
-            </li>
-            {% if our_story_page %}
-              <li><a href="{{ our_story_page.url }}">{{ our_story_page.title }}</a></li>
-            {% endif %}
-            {% if swimblogs_blog %}
-              <li><a href="{{ swimblogs_blog.url }}">SwimBlogs</a></li>
+                  </ul>
+                </details>
+              </li>
             {% endif %}
           </ul>
         </div>

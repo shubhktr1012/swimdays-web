@@ -246,8 +246,9 @@
 
 {% stylesheet %}
   .swimdays-home-shop-all-products {
+    --swimdays-section-space: clamp(3.5rem, 6vw, 5rem);
     background-color: var(--color-background, #f7f6f2);
-    padding: clamp(4rem, 8vw, 6rem) 0;
+    padding: var(--swimdays-section-space) 0;
   }
 
   .swimdays-home-shop-all-products .featured-container {
@@ -497,6 +498,7 @@
       font-size: 0.72rem;
     }
   }
+
 {% endstylesheet %}
 
 {% javascript %}

@@ -32,13 +32,14 @@
 
 {% stylesheet %}
   .swimdays-home-brand-statement {
+    --swimdays-section-space: clamp(3.5rem, 6vw, 5rem);
     background: var(--color-background, #f7f6f2);
     border: 0;
     box-shadow: none;
     display: grid;
     margin: 0;
     overflow: clip;
-    padding: clamp(3rem, 7vw, 6rem) clamp(1rem, 4vw, 2rem);
+    padding: var(--swimdays-section-space) clamp(1rem, 4vw, 2rem);
     place-items: center;
     position: relative;
     text-align: center;
@@ -113,7 +114,7 @@
 
   @media screen and (max-width: 749px) {
     .swimdays-home-brand-statement {
-      padding-inline: 1rem;
+      padding: var(--swimdays-section-space) 1rem;
     }
 
     .swimdays-home-brand-statement__text {
@@ -133,6 +134,7 @@
       max-width: min(60ch, 100%);
     }
   }
+
 {% endstylesheet %}
 
 {% javascript %}
@@ -286,11 +288,17 @@
           scaleX: 1
         }, 0);
 
-        timeline.to(dividerFlower, {
-          duration: 1,
-          ease: 'none',
-          rotation: 180
-        }, 0);
+        ScrollTrigger.create({
+          trigger: section,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+          onUpdate: (self) => {
+            gsap.set(dividerFlower, {
+              rotation: self.progress * 360
+            });
+          }
+        });
       }
     };
 

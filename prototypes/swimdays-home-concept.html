@@ -4081,11 +4081,17 @@
                   ease: "none"
                 }, 0);
 
-                brandTimeline.to(divider.querySelector(".brand-reveal-divider-flower"), {
-                  rotation: 180,
-                  duration: 1,
-                  ease: "none"
-                }, 0);
+                ScrollTrigger.create({
+                  trigger: brandStatement,
+                  start: "top bottom",
+                  end: "bottom top",
+                  scrub: true,
+                  onUpdate: (self) => {
+                    gsap.set(divider.querySelector(".brand-reveal-divider-flower"), {
+                      rotation: self.progress * 360
+                    });
+                  }
+                });
               });
             }
           }

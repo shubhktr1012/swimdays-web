@@ -1,5 +1,11 @@
 {% render 'swimdays-home-fonts' %}
-{% render 'swimdays-home-header' %}
+{% render 'swimdays-home-header',
+  primary_menu: section.settings.primary_menu,
+  announcement_text_primary: section.settings.announcement_text_primary,
+  announcement_text_secondary: section.settings.announcement_text_secondary,
+  announcement_link_label: section.settings.announcement_link_label,
+  announcement_link_url: section.settings.announcement_link_url
+%}
 
 <div class="swimdays-home-header-spacer" aria-hidden="true"></div>
 
@@ -51,7 +57,36 @@
   "tag": "section",
   "class": "shopify-section--swimdays-home-header",
   "limit": 1,
-  "settings": [],
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "primary_menu",
+      "label": "Primary menu"
+    },
+    {
+      "type": "text",
+      "id": "announcement_text_primary",
+      "label": "Announcement primary text",
+      "default": "Free Worldwide Shipping"
+    },
+    {
+      "type": "text",
+      "id": "announcement_text_secondary",
+      "label": "Announcement secondary text",
+      "default": "On Orders Over $150"
+    },
+    {
+      "type": "text",
+      "id": "announcement_link_label",
+      "label": "Announcement link label",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "announcement_link_url",
+      "label": "Announcement link URL"
+    }
+  ],
   "presets": [
     {
       "name": "Swimdays home header"

@@ -9,6 +9,7 @@
  */
 {
   "current": {
+    "logo": "shopify://shop_images/swimdays-logo-black.png",
     "type_body_font": "red_hat_text_n4",
     "type_subheading_font": "newsreader_n2",
     "type_heading_font": "newsreader_n2",
@@ -60,6 +61,35 @@
     "variant_swatch_radius": 0,
     "variant_button_radius": 0,
     "variant_button_width": "default-width-buttons",
+    "sections": {
+      "swimdays-home-header": {
+        "type": "swimdays-home-header",
+        "settings": {
+          "primary_menu": "",
+          "announcement_text_primary": "Free India-Wide Shipping",
+          "announcement_text_secondary": "launch week",
+          "announcement_link_label": "Shop now",
+          "announcement_link_url": ""
+        }
+      },
+      "swimdays-home-footer": {
+        "type": "swimdays-home-footer",
+        "settings": {
+          "logo": "shopify://shop_images/swimdays-logo-black.png",
+          "newsletter_copy": "We believe in simplicity. One beautifully curated email each month with product news, tips, and tailored recommendations. Nothing more. Just the good stuff.",
+          "contact_email": "studioswimdays@gmail.com",
+          "shop_menu": "shop-menu",
+          "support_menu": "support-menu",
+          "brand_menu": "main-menu",
+          "instagram_url": "https://www.instagram.com/swimdays.shop/?hl=en",
+          "facebook_url": "",
+          "youtube_url": "",
+          "tiktok_url": "",
+          "pinterest_url": ""
+        }
+      }
+    },
+    "content_for_index": [],
     "color_schemes": {
       "scheme-1": {
         "settings": {
@@ -97,9 +127,7 @@
           "selected_variant_border_color": "#000000",
           "selected_variant_hover_background_color": "#1a1a1a",
           "selected_variant_hover_text_color": "#ffffff",
-          "selected_variant_hover_border_color": "#1a1a1a",
-          "logo_height": 36,
-          "logo_height_mobile": 28
+          "selected_variant_hover_border_color": "#1a1a1a"
         }
       },
       "scheme-2": {
@@ -138,9 +166,7 @@
           "selected_variant_border_color": "#000000",
           "selected_variant_hover_background_color": "#1a1a1a",
           "selected_variant_hover_text_color": "#ffffff",
-          "selected_variant_hover_border_color": "#1a1a1a",
-          "logo_height": 36,
-          "logo_height_mobile": 28
+          "selected_variant_hover_border_color": "#1a1a1a"
         }
       },
       "scheme-3": {
@@ -179,9 +205,7 @@
           "selected_variant_border_color": "#000000",
           "selected_variant_hover_background_color": "#1a1a1a",
           "selected_variant_hover_text_color": "#ffffff",
-          "selected_variant_hover_border_color": "#1a1a1a",
-          "logo_height": 36,
-          "logo_height_mobile": 28
+          "selected_variant_hover_border_color": "#1a1a1a"
         }
       },
       "scheme-4": {
@@ -220,9 +244,7 @@
           "selected_variant_border_color": "#000000",
           "selected_variant_hover_background_color": "#1a1a1a",
           "selected_variant_hover_text_color": "#ffffff",
-          "selected_variant_hover_border_color": "#1a1a1a",
-          "logo_height": 36,
-          "logo_height_mobile": 28
+          "selected_variant_hover_border_color": "#1a1a1a"
         }
       },
       "scheme-5": {
@@ -261,9 +283,7 @@
           "selected_variant_border_color": "#000000",
           "selected_variant_hover_background_color": "#1a1a1a",
           "selected_variant_hover_text_color": "#ffffff",
-          "selected_variant_hover_border_color": "#1a1a1a",
-          "logo_height": 36,
-          "logo_height_mobile": 28
+          "selected_variant_hover_border_color": "#1a1a1a"
         }
       },
       "scheme-6": {
@@ -302,9 +322,7 @@
           "selected_variant_border_color": "#000000",
           "selected_variant_hover_background_color": "#1a1a1a",
           "selected_variant_hover_text_color": "#ffffff",
-          "selected_variant_hover_border_color": "#1a1a1a",
-          "logo_height": 36,
-          "logo_height_mobile": 28
+          "selected_variant_hover_border_color": "#1a1a1a"
         }
       }
     }

@@ -6,8 +6,42 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "sections": {
+    "hero_iyt6zg": {
+      "type": "swimdays-home-hero",
+      "settings": {
+        "background_image": "shopify://shop_images/mink-mingle-AlEyuIKuSmc-unsplash.jpg",
+        "hero_link": "",
+        "poster_1_image": "shopify://shop_images/WhatsApp_Image_2026-03-13_at_21.01.59.jpg",
+        "poster_1_link": "shopify://products/cove-swim-leggings",
+        "poster_1_club": "Cove Collection",
+        "poster_1_title": "The Swim Legging",
+        "poster_1_shop_now": "Shop now",
+        "poster_1_footer_left": "Swimdays Club",
+        "poster_1_footer_right": "Summer 2026",
+        "poster_2_image": "shopify://shop_images/Screenshot_2026-03-13_at_10.23.13_AM.png",
+        "poster_2_link": "shopify://products/moss-halter-swim-dress",
+        "poster_2_club": "Moss Collection",
+        "poster_2_title": "The Halter Swim Dress",
+        "poster_2_shop_now": "Shop now",
+        "poster_2_footer_left": "Swimdays Club",
+        "poster_2_footer_right": "Summer 2026",
+        "poster_3_image": "shopify://shop_images/5M5A0708_copy.jpg",
+        "poster_3_link": "shopify://products/cove-full-sleeves-bodysuit",
+        "poster_3_club": "Cove Collection",
+        "poster_3_title": "The Full Sleeves Bodysuit",
+        "poster_3_shop_now": "Shop now",
+        "poster_3_footer_left": "Swimdays Club",
+        "poster_3_footer_right": "Summer 2026",
+        "poster_club": "Cove Collection",
+        "poster_title": "The Halter Swim Dress",
+        "poster_shop_now": "Shop now",
+        "poster_footer_left": "Swimdays Club",
+        "poster_footer_right": "Summer 2026"
+      }
+    },
     "swimdays_home_brand_statement": {
       "type": "swimdays-home-brand-statement",
       "settings": {
@@ -22,69 +56,6 @@
         "shop_now_label": "Shop Now"
       }
     },
-    "hero_iyt6zg": {
-      "type": "hero",
-      "blocks": {
-        "text_tzGazA": {
-          "type": "text",
-          "name": "t:names.text",
-          "settings": {
-            "text": "<h1>The Elements <br/>of Style</h1>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "custom",
-            "font": "var(--font-heading--family)",
-            "font_size": "",
-            "line_height": "tight",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "text_tzGazA"
-      ],
-      "settings": {
-        "media_type_1": "image",
-        "media_type_2": "image",
-        "stack_media_on_mobile": false,
-        "custom_mobile_media": false,
-        "media_type_1_mobile": "image",
-        "media_type_2_mobile": "image",
-        "open_in_new_tab": false,
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 16,
-        "section_width": "page-width",
-        "section_height": "full-screen",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-6",
-        "toggle_overlay": true,
-        "overlay_color": "#00000099",
-        "overlay_style": "gradient",
-        "gradient_direction": "to top",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 0,
-        "padding-block-end": 0
-      }
-    },
     "swimdays_home_categories": {
       "type": "swimdays-home-categories",
       "settings": {
@@ -92,13 +63,13 @@
         "heading_accent": "by",
         "heading_suffix": "Category",
         "collection_1": "bodysuits",
-        "badge_style_1": "new-arrival",
+        "badge_style_1": "none",
         "badge_text_1": "New Arrival",
         "collection_2": "halter-swim-dresses",
         "badge_style_2": "none",
         "badge_text_2": "",
         "collection_3": "wrap-tulip-skirts",
-        "badge_style_3": "bestseller",
+        "badge_style_3": "none",
         "badge_text_3": "Bestseller",
         "collection_4": "swim-leggings",
         "badge_style_4": "none",
@@ -115,6 +86,7 @@
           "type": "feature",
           "settings": {
             "number": "01.",
+            "image": "shopify://shop_images/Screenshot_2026-03-13_at_10.23.13_AM.png",
             "title_line_1": "PERFECT",
             "title_line_2": "FIT",
             "subfeature_1": "Coverage\noffering designs",
@@ -127,6 +99,7 @@
           "type": "feature",
           "settings": {
             "number": "02.",
+            "image": "shopify://shop_images/5M5A0353.jpg",
             "title_line_1": "PREMIUM",
             "title_line_2": "FABRIC",
             "subfeature_1": "Thicker fabric\nthat feels rich",
@@ -139,6 +112,7 @@
           "type": "feature",
           "settings": {
             "number": "03.",
+            "image": "shopify://shop_images/Screenshot_2026-03-13_at_10.28.17_AM.png",
             "title_line_1": "ARTISANAL",
             "title_line_2": "",
             "subfeature_1": "Hand-beaded\nembroidery",

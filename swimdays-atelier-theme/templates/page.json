@@ -16,7 +16,7 @@
           "name": "Title",
           "settings": {
             "text": "<h1>{{ closest.page.title }}</h1>",
-            "type_preset": "h2",
+            "type_preset": "h1",
             "width": "100%"
           }
         },
@@ -30,9 +30,9 @@
         "page-content"
       ],
       "settings": {
-        "gap": 32,
-        "padding-block-start": 40,
-        "padding-block-end": 80
+        "gap": 20,
+        "padding-block-start": 56,
+        "padding-block-end": 56
       }
     }
   },
