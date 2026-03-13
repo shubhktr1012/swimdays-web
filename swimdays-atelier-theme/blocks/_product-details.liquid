@@ -51,6 +51,8 @@
   @media screen and (min-width: 750px) {
     .product-details > .group-block {
       height: min-content;
+      width: 100%;
+      align-self: start;
     }
 
     .full-height--desktop {
@@ -59,8 +61,30 @@
       min-height: fit-content;
     }
 
+    .product-details > .group-block > .group-block-content {
+      justify-content: flex-start;
+      align-items: stretch;
+    }
+
     .full-height--desktop .group-block {
       align-self: var(--details-position, 'flex-start');
+    }
+
+    .full-height--desktop .group-block > .group-block-content {
+      justify-content: var(--details-position, 'flex-start');
+    }
+
+    body.swimdays-template-product .product-details.sticky-content--desktop,
+    body.swimdays-template-product .product-details.sticky-content--desktop.full-height--desktop > .group-block {
+      top: var(--swimdays-fixed-header-height, calc(2rem + clamp(60px, 7vw, 72px)));
+    }
+
+    body.swimdays-template-product .product-details.sticky-content--desktop > .group-block {
+      min-height: calc(100svh - var(--swimdays-fixed-header-height, calc(2rem + clamp(60px, 7vw, 72px))) - 1rem);
+    }
+
+    body.swimdays-template-product .product-details.sticky-content--desktop > .group-block > .group-block-content {
+      justify-content: center;
     }
   }
 {% endstylesheet %}

@@ -4,6 +4,14 @@
 <div class="swimdays-home-header-spacer" aria-hidden="true"></div>
 
 {% stylesheet %}
+  body {
+    --swimdays-fixed-header-height: calc(2rem + clamp(60px, 7vw, 72px));
+  }
+
+  body.announcement-hidden {
+    --swimdays-fixed-header-height: clamp(60px, 7vw, 72px);
+  }
+
   .swimdays-home-header-spacer {
     height: 0;
     width: 100%;
@@ -14,9 +22,25 @@
     height: 0;
   }
 
+  body:not(.swimdays-template-index) .swimdays-home-header-spacer {
+    height: calc(2rem + clamp(60px, 7vw, 72px));
+  }
+
+  body:not(.swimdays-template-index).announcement-hidden .swimdays-home-header-spacer {
+    height: clamp(60px, 7vw, 72px);
+  }
+
   @media screen and (max-width: 749px) {
     .swimdays-home-header-spacer {
       height: 0;
+    }
+
+    body:not(.swimdays-template-index) .swimdays-home-header-spacer {
+      height: calc(2rem + clamp(60px, 7vw, 72px));
+    }
+
+    body:not(.swimdays-template-index).announcement-hidden .swimdays-home-header-spacer {
+      height: clamp(60px, 7vw, 72px);
     }
   }
 {% endstylesheet %}
@@ -34,7 +58,7 @@
     }
   ],
   "enabled_on": {
-    "templates": ["index"]
+    "templates": ["index", "page", "collection", "product", "blog", "article", "search", "cart", "customers/login", "customers/register", "customers/account", "list-collections"]
   }
 }
 {% endschema %}

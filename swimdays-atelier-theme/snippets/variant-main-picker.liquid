@@ -6,8 +6,19 @@
 {%- enddoc -%}
 
 {% assign block_settings = block.settings %}
+{% assign size_guide_url = 'https://cdn.shopify.com/s/files/1/0980/5738/8310/files/sizechart.pdf?v=1773399949' %}
 
 {% unless product_resource.has_only_default_variant %}
+  {% liquid
+    assign has_size_option = false
+    for product_option in product_resource.options_with_values
+      assign normalized_option_name = product_option.name | strip | downcase
+      if normalized_option_name contains 'size'
+        assign has_size_option = true
+        break
+      endif
+    endfor
+  %}
   {% liquid
     assign button_background_brightness = section.settings.color_scheme.settings.foreground | color_brightness
     if button_background_brightness < 105
@@ -16,6 +27,12 @@
       assign strikethrough_color_mix = '#fff'
     endif
   %}
+  {% if has_size_option %}
+    <script
+      src="{{ 'dialog.js' | asset_url }}"
+      type="module"
+    ></script>
+  {% endif %}
   <variant-picker
     class="variant-picker spacing-style variant-picker--{{ block_settings.alignment }}"
     style="--color-strikethrough-mix: {{ strikethrough_color_mix }}; {% render 'spacing-style', settings: block_settings %}"
@@ -219,6 +236,56 @@
         {{ product_resource.selected_or_first_available_variant | json }}
       </script>
     </form>
+
+    {% if has_size_option %}
+      <dialog-component class="variant-picker__size-guide">
+        <button
+          type="button"
+          on:click="/showDialog"
+          class="button button-unstyled variant-picker__size-guide-link"
+        >
+          Size guide
+          <span aria-hidden="true">
+            {{ 'icon-external.svg' | inline_asset_content }}
+          </span>
+        </button>
+
+        <dialog
+          ref="dialog"
+          class="variant-picker__size-guide-dialog dialog-modal color-{{ settings.popover_color_scheme }}"
+          scroll-lock
+          aria-labelledby="size-guide-heading-{{ section.id }}-{{ block.id }}"
+        >
+          <div class="variant-picker__size-guide-dialog-inner">
+            <div class="variant-picker__size-guide-dialog-header">
+              <h2
+                id="size-guide-heading-{{ section.id }}-{{ block.id }}"
+                class="variant-picker__size-guide-dialog-title"
+              >
+                Size guide
+              </h2>
+              <button
+                type="button"
+                ref="closeButton"
+                on:click="/closeDialog"
+                class="button button-unstyled close-button variant-picker__size-guide-close"
+                aria-label="{{ 'accessibility.close_dialog' | t }}"
+              >
+                {{ 'icon-close.svg' | inline_asset_content }}
+              </button>
+            </div>
+
+            <div class="variant-picker__size-guide-frame-wrapper">
+              <iframe
+                class="variant-picker__size-guide-frame"
+                src="{{ size_guide_url }}"
+                title="Size guide PDF"
+              ></iframe>
+            </div>
+          </div>
+        </dialog>
+      </dialog-component>
+    {% endif %}
   </variant-picker>
 {% endunless %}
 
@@ -230,6 +297,98 @@
 
   .variant-picker__form {
     width: 100%;
+  }
+
+  .variant-picker__size-guide {
+    margin-top: 0.625rem;
+  }
+
+  .variant-picker__size-guide-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--color-foreground);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
+    font-size: 0.9rem;
+    line-height: 1.3;
+  }
+
+  .variant-picker__size-guide-link.button {
+    min-height: auto;
+  }
+
+  .variant-picker__size-guide-link svg {
+    width: 0.75rem;
+    height: 0.75rem;
+    display: block;
+  }
+
+  .variant-picker__size-guide-link:hover {
+    opacity: 0.75;
+  }
+
+  .variant-picker__size-guide-dialog {
+    width: min(56rem, 94vw);
+    max-width: 94vw;
+    height: min(88dvh, 56rem);
+    max-height: 88dvh;
+    border: var(--style-border-popover);
+    border-radius: var(--style-border-radius-popover);
+    box-shadow: var(--shadow-popover);
+    background: var(--color-background);
+    padding: 0;
+  }
+
+  .variant-picker__size-guide-dialog[open] {
+    animation: modalSlideInTop var(--animation-speed) var(--animation-easing) forwards;
+  }
+
+  .variant-picker__size-guide-dialog.dialog-closing {
+    animation: modalSlideOutTop var(--animation-speed) var(--animation-easing) forwards;
+  }
+
+  .variant-picker__size-guide-dialog-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+  }
+
+  .variant-picker__size-guide-dialog-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1rem 0.75rem;
+    border-bottom: 1px solid rgb(var(--color-border-rgb) / 0.15);
+  }
+
+  .variant-picker__size-guide-dialog-title {
+    margin: 0;
+    font: inherit;
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  .variant-picker__size-guide-close {
+    opacity: 0.8;
+  }
+
+  .variant-picker__size-guide-frame-wrapper {
+    flex: 1;
+    min-height: 0;
+    padding: 0.75rem 1rem 1rem;
+  }
+
+  .variant-picker__size-guide-frame {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 22rem;
+    border: 0;
+    background: transparent;
   }
 
   .variant-picker[data-shopify-visual-preview] {
@@ -302,9 +461,36 @@
     width: 100%;
   }
 
+  .variant-picker--center .variant-picker__size-guide {
+    text-align: center;
+  }
+
   .variant-picker--right,
   .variant-picker--right .variant-option {
     text-align: right;
     justify-content: right;
+  }
+
+  .variant-picker--right .variant-picker__size-guide {
+    text-align: right;
+  }
+
+  @media screen and (max-width: 749px) {
+    .variant-picker__size-guide-dialog {
+      width: 100vw;
+      max-width: 100vw;
+      height: 100dvh;
+      max-height: 100dvh;
+      border-radius: 0;
+      margin: 0 0 0 auto;
+    }
+
+    .variant-picker__size-guide-dialog-header {
+      padding: 1rem 1rem 0.75rem;
+    }
+
+    .variant-picker__size-guide-frame-wrapper {
+      padding: 0.5rem 0.75rem 0.75rem;
+    }
   }
 {% endstylesheet %}

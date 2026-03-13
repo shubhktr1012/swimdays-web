@@ -7,6 +7,14 @@
   assign shop_menu = section.settings.shop_menu
   assign support_menu = section.settings.support_menu
   assign brand_menu = section.settings.brand_menu
+
+  if shop_menu == blank
+    assign shop_menu = linklists['main-menu']
+  endif
+
+  if support_menu == blank
+    assign support_menu = linklists['footer-menu']
+  endif
 %}
 
 <section class="swimdays-home-footer-section" data-testid="swimdays-home-footer">
@@ -530,7 +538,7 @@
     }
   ],
   "enabled_on": {
-    "templates": ["index"]
+    "templates": ["index", "page", "collection", "product", "blog", "article", "search", "cart", "customers/login", "customers/register", "customers/account", "list-collections"]
   }
 }
 {% endschema %}

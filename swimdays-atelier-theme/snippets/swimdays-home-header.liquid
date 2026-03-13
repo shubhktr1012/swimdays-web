@@ -195,7 +195,7 @@
 {% style %}
   .swimdays-home-header {
     --navbar-content: #111111;
-    --bg: #f7f6f2;
+    --bg: var(--color-background, #f7f6f2);
     --surface: #fffdfa;
     --line: rgba(17, 17, 17, 0.1);
     --accent-rose: #a84f77;
@@ -305,6 +305,11 @@
     border-bottom-color: rgba(168, 79, 119, 0.5);
   }
 
+  body:not(.swimdays-template-index) .swimdays-home-header .swimdays-navbar {
+    background: var(--bg);
+    border-bottom-color: rgba(168, 79, 119, 0.5);
+  }
+
   .swimdays-home-header .swimdays-navbar.is-scrolled {
     height: var(--navbar-height-scrolled);
   }
@@ -331,6 +336,7 @@
     width: 100%;
     height: 100%;
     display: block;
+    filter: brightness(0) saturate(100%) invert(42%) sepia(21%) saturate(1514%) hue-rotate(294deg) brightness(86%) contrast(85%);
   }
 
   .swimdays-home-header .navbar-flower-img.top-left {
@@ -347,8 +353,16 @@
     opacity: 1;
   }
 
+  body:not(.swimdays-template-index) .swimdays-home-header .navbar-flower-img {
+    opacity: 1;
+  }
+
   @media (max-width: 1024px) {
     body.announcement-hidden .swimdays-home-header .navbar-flower-img {
+      opacity: 0.5;
+    }
+
+    body:not(.swimdays-template-index) .swimdays-home-header .navbar-flower-img {
       opacity: 0.5;
     }
   }

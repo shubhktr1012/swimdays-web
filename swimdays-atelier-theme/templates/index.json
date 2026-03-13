@@ -8,10 +8,6 @@
  * ------------------------------------------------------------
  */{
   "sections": {
-    "swimdays_home_header": {
-      "type": "swimdays-home-header",
-      "settings": {}
-    },
     "swimdays_home_brand_statement": {
       "type": "swimdays-home-brand-statement",
       "settings": {
@@ -174,23 +170,14 @@
         "view_all_label": "View All",
         "shop_now_label": "Quick Add"
       }
-    },
-    "swimdays_home_footer": {
-      "type": "swimdays-home-footer",
-      "settings": {
-        "newsletter_copy": "We believe in simplicity. One beautifully curated email each month with product news, tips, and tailored recommendations. Nothing more. Just the good stuff.",
-        "contact_email": "studioswimdays@gmail.com"
-      }
     }
   },
   "order": [
-    "swimdays_home_header",
     "hero_iyt6zg",
     "swimdays_home_brand_statement",
     "swimdays_home_collections",
     "swimdays_home_categories",
     "swimdays_home_craft",
-    "swimdays_home_shop_all_products",
-    "swimdays_home_footer"
+    "swimdays_home_shop_all_products"
   ]
 }
