@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ & Contact | Swimdays Prototype</title>
+  <link rel="stylesheet" href="./swimdays-support-pages.css">
+</head>
+<body>
+
+  <!-- ─── ANNOUNCEMENT ─── -->
+  <div class="announcement">
+    <div class="announcement__inner">
+      <p class="announcement__text">
+        <span>Prototype support touchpoint</span>
+        <span class="announcement__dot" aria-hidden="true"></span>
+        <span data-hide-mobile="true">Built from approved content boundaries</span>
+        <a class="announcement__link" href="./swimdays-home-concept.html">Back to home concept <img class="icon" src="../swimdays-theme/assets/icon-arrow.svg" alt=""></a>
+      </p>
+    </div>
+  </div>
+
+  <!-- ─── NAVBAR ─── -->
+  <header class="swimdays-navbar">
+    <div class="navbar-bg-overflow">
+      <img src="../public/flower.svg" alt="" aria-hidden="true" class="navbar-flower-img top-left">
+      <img src="../public/flower.svg" alt="" aria-hidden="true" class="navbar-flower-img bottom-right">
+    </div>
+    <div class="navbar-inner">
+      <div class="navbar-left">
+        <div class="navbar-mobile-actions">
+          <button class="navbar-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" data-menu-toggle>
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M4 7H20" stroke-width="1.6" stroke-linecap="round"></path>
+              <path d="M4 12H20" stroke-width="1.6" stroke-linecap="round"></path>
+              <path d="M9 17H20" stroke-width="1.6" stroke-linecap="round"></path>
+            </svg>
+          </button>
+          <button class="navbar-icon-button" type="button" aria-label="Search">
+            <img class="navbar-icon" src="../swimdays-theme/assets/icon-search.svg" alt="">
+          </button>
+        </div>
+        <nav class="navbar-primary-nav" aria-label="Primary">
+          <ul class="navbar-links">
+            <li class="has-dropdown">
+              <a href="./swimdays-home-concept.html">
+                <span>Collections</span>
+                <svg class="nav-dropdown-caret" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="./swimdays-home-concept.html#collections">Moss &amp; Cove</a></li>
+                <li><a href="./swimdays-home-concept.html#category-section">Categories</a></li>
+                <li><a href="./swimdays-home-concept.html#featured-products">View All</a></li>
+              </ul>
+            </li>
+            <li><a href="./swimdays-home-concept.html#brand-statement">Our Story</a></li>
+            <li><a href="./swimdays-home-concept.html#blog-preview">SwimBlogs</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="navbar-center">
+        <a href="./swimdays-home-concept.html" aria-label="Swimdays home concept">
+          <img class="navbar-logo" src="../swimdays-theme/assets/swimdays_logo.svg" alt="" aria-hidden="true">
+        </a>
+      </div>
+      <div class="navbar-right">
+        <button class="navbar-icon-button desktop-only" type="button" aria-label="Search"><img class="navbar-icon" src="../swimdays-theme/assets/icon-search.svg" alt=""></button>
+        <button class="navbar-icon-button" type="button" aria-label="Account"><img class="navbar-icon" src="../swimdays-theme/assets/icon-account.svg" alt=""></button>
+        <button class="badge-wrapper" type="button" aria-label="Cart with 2 items"><img class="navbar-icon" src="../swimdays-theme/assets/icon-cart.svg" alt=""><span class="icon-badge">2</span></button>
+      </div>
+      <div class="mobile-menu" id="mobile-menu" aria-hidden="true" data-mobile-menu>
+        <div class="mobile-menu-inner">
+          <div class="mobile-menu-header">
+            <p>Menu</p>
+            <button class="mobile-menu-close" type="button" aria-label="Close menu" data-menu-close>&times;</button>
+          </div>
+          <ul class="mobile-menu-list">
+            <li><a href="./swimdays-home-concept.html#collections">Collections</a></li>
+            <li><a href="./swimdays-home-concept.html#brand-statement">Our Story</a></li>
+            <li><a href="./swimdays-home-concept.html#blog-preview">SwimBlogs</a></li>
+            <li><a href="./swimdays-shipping-returns.html">Shipping &amp; Returns</a></li>
+            <li><a href="./swimdays-faq-contact.html">FAQ &amp; Contact</a></li>
+            <li><a href="./swimdays-privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="./swimdays-terms-of-service.html">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ════════════════════ MAIN ════════════════════ -->
+  <main id="MainContent">
+    <div class="support-page__backdrop">
+      <div class="support-main">
+
+    <!-- 1. HERO — Full-bleed, contact-led (Plan Task 3 Step 1) -->
+    <section class="support-hero">
+      <div class="support-hero__inner">
+        <p class="support-hero__eyebrow">Support</p>
+        <h1>FAQ & Contact</h1>
+        <p class="support-hero__intro">Need help with an order, exchange, or delivery question? Reach us directly.</p>
+        <div class="support-hero__actions">
+          <a class="btn btn--primary" href="mailto:studioswimdays@gmail.com">Email Swimdays</a>
+          <a class="btn" href="./swimdays-shipping-returns.html">View Shipping & Returns</a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 2. INQUIRY CARDS — Contained .section (Plan Task 3 Step 1) -->
+    <section class="section">
+      <div class="section__head">
+        <h2 class="section__title">Inquiry Types</h2>
+        <span class="section__badge">Direct Links</span>
+      </div>
+      <div class="support-link-grid">
+        <a class="support-link-card" href="mailto:studioswimdays@gmail.com?subject=Exchange%20Request">
+          <span class="support-link-card__label">
+            <span class="support-link-card__eyebrow">Inquiry type</span>
+            <span class="support-link-card__text">Exchange request</span>
+          </span>
+          <span class="support-link-card__arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="support-link-card" href="mailto:studioswimdays@gmail.com?subject=Damaged%20or%20Incorrect%20Item">
+          <span class="support-link-card__label">
+            <span class="support-link-card__eyebrow">Inquiry type</span>
+            <span class="support-link-card__text">Damaged or incorrect item</span>
+          </span>
+          <span class="support-link-card__arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="support-link-card" href="mailto:studioswimdays@gmail.com?subject=Cancellation%20Request">
+          <span class="support-link-card__label">
+            <span class="support-link-card__eyebrow">Inquiry type</span>
+            <span class="support-link-card__text">Cancellation request</span>
+          </span>
+          <span class="support-link-card__arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="support-link-card" href="./swimdays-shipping-returns.html#shipping">
+          <span class="support-link-card__label">
+            <span class="support-link-card__eyebrow">Need details</span>
+            <span class="support-link-card__text">Shipping help</span>
+          </span>
+          <span class="support-link-card__arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
+
+
+    <!-- 3. SHORT FAQ LAYER — Full-width pale sky band (Plan Task 3 Step 2) -->
+    <section class="faq-band">
+      <div class="faq-band__inner">
+        <div class="faq-band__head">
+          <h2 class="faq-band__title">Frequently Asked Questions</h2>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary><span>Do you offer refunds?</span><img src="../swimdays-theme/assets/icon-plus.svg" alt=""></summary>
+            <div class="faq-answer">
+              <p>No. Swimdays does not offer refunds on swimwear.</p>
+              <a href="./swimdays-shipping-returns.html#returns-exchanges">Read full policy</a>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary><span>What items are non-returnable?</span><img src="../swimdays-theme/assets/icon-plus.svg" alt=""></summary>
+            <div class="faq-answer">
+              <p>Bodysuits, shorts, and leggings are not returnable or exchangeable because of hygiene standards.</p>
+              <a href="./swimdays-shipping-returns.html#returns-exchanges">See eligibility details</a>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary><span>How do I request an exchange?</span><img src="../swimdays-theme/assets/icon-plus.svg" alt=""></summary>
+            <div class="faq-answer">
+              <p>Email Swimdays to raise the concern. Once the request is approved, a one-time exchange pickup can be arranged.</p>
+              <a href="./swimdays-shipping-returns.html#start-request">See the request process</a>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary><span>How fast do orders ship?</span><img src="../swimdays-theme/assets/icon-plus.svg" alt=""></summary>
+            <div class="faq-answer">
+              <p>Orders are dispatched within 1–2 business days after payment confirmation and domestic delivery usually takes another 4–5 business days.</p>
+              <a href="./swimdays-shipping-returns.html#shipping">Read shipping details</a>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary><span>Do you offer express delivery?</span><img src="../swimdays-theme/assets/icon-plus.svg" alt=""></summary>
+            <div class="faq-answer">
+              <p>Yes. Express courier service is available at a flat ₹350.</p>
+              <a href="./swimdays-shipping-returns.html#shipping">Read shipping details</a>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 4. CONTACT FORM + SIDEBAR — Contained .section (Plan Task 3 Step 3) -->
+    <section class="support-layout">
+      <aside class="support-rail" aria-label="Contact details">
+        <div class="support-rail-card">
+          <h2>Primary Contact</h2>
+          <p>At launch, the only confirmed support channel is email. This page keeps that primary path obvious instead of scattering it through multiple sections.</p>
+          <a class="support-inline-link" href="mailto:studioswimdays@gmail.com">studioswimdays@gmail.com</a>
+        </div>
+        <div class="support-rail-card">
+          <h2>Pending Details</h2>
+          <ul>
+            <li>Expected support response time.</li>
+            <li>Whether a phone number, WhatsApp, or social support channel exists.</li>
+            <li>Whether order number guidance should be shown in the contact form intro.</li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="support-stack">
+        <section class="support-form-shell" id="contact-form">
+          <h2>Send Us A Message</h2>
+          <p>This prototype keeps the contact form lightweight so it can mirror the Shopify page cleanly later.</p>
+          <form class="support-form" action="#" method="post">
+            <label>Name <input type="text" name="name" placeholder="Your name"></label>
+            <label>Email <input type="email" name="email" placeholder="you@example.com"></label>
+            <label>Topic <input type="text" name="topic" placeholder="Exchange, damaged item, shipping question"></label>
+            <label>Message <textarea name="message" rows="6" placeholder="Write your question or order concern here."></textarea></label>
+            <button class="btn btn--primary" type="submit">Submit</button>
+          </form>
+        </section>
+      </div>
+    </section>
+
+
+    <!-- 5. BOTTOM CTA — Full-width band -->
+    <section class="support-footer-cta">
+      <div class="support-footer-cta__inner">
+        <h2>Looking for full policy details?</h2>
+        <p>The shipping and returns page has the complete operational rules. This page is for action and direct support.</p>
+        <div class="support-footer-cta__actions">
+          <a class="btn btn--primary" href="./swimdays-shipping-returns.html">Open Shipping & Returns</a>
+          <a class="btn" href="mailto:studioswimdays@gmail.com">Email Swimdays</a>
+        </div>
+      </div>
+    </section>
+      </div>
+    </div>
+  </main>
+
+
+  <footer class="swimdays-footer" id="footer">
+    <div class="footer-bg-overflow" aria-hidden="true">
+      <img src="../public/flower.svg" alt="" class="footer-flower-img top-right">
+      <img src="../public/flower.svg" alt="" class="footer-flower-img bottom-left">
+    </div>
+    <div class="footer-inner-new">
+      <div class="footer-left">
+        <a href="./swimdays-home-concept.html" class="footer-logo-text" aria-label="Swimdays">
+          <img src="../public/Swimdays Logo Retouched.svg" alt="Swimdays" class="footer-logo-img">
+        </a>
+
+        <div class="footer-links-grid">
+          <div class="footer-col">
+            <h4 class="footer-heading">Shop</h4>
+            <ul class="footer-menu">
+              <li><a href="./swimdays-home-concept.html#featured-products">All Swimwear</a></li>
+              <li><a href="./swimdays-home-concept.html#category-section">Bodysuits</a></li>
+              <li><a href="./swimdays-home-concept.html#category-section">Swim Dresses</a></li>
+              <li><a href="./swimdays-home-concept.html#featured-products">Accessories</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-heading">Support</h4>
+            <ul class="footer-menu">
+              <li><a href="./swimdays-faq-contact.html">FAQ &amp; Contact</a></li>
+              <li><a href="./swimdays-shipping-returns.html">Shipping &amp; Returns</a></li>
+              <li><a href="./swimdays-privacy-policy.html">Privacy Policy</a></li>
+              <li><a href="./swimdays-terms-of-service.html">Terms of Service</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-heading">Swimdays</h4>
+            <ul class="footer-menu">
+              <li><a href="./swimdays-home-concept.html#brand-statement">Our Story</a></li>
+              <li><a href="./swimdays-home-concept.html#blog-preview">SwimBlogs</a></li>
+              <li><a href="./swimdays-privacy-policy.html">Privacy Policy</a></li>
+              <li><a href="./swimdays-terms-of-service.html">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-right">
+        <p class="footer-newsletter-text">We believe in simplicity. One beautifully curated email each month with product news, tips, and tailored recommendations. Nothing more. Just the good stuff.</p>
+
+        <form class="footer-newsletter-form-new" action="/contact#contact_form" method="post" id="ContactFooterFaq">
+          <input type="hidden" name="contact[tags]" value="newsletter">
+
+          <div class="footer-input-group-line">
+            <input type="email" name="contact[email]" class="footer-input-line" placeholder="Your email address" required aria-label="Email address" autocomplete="email">
+            <button type="submit" class="footer-btn-text" name="commit">SIGN UP</button>
+          </div>
+
+          <p class="footer-privacy-text">By signing up you are agreeing to our Privacy Policy.</p>
+        </form>
+      </div>
+
+      <div class="footer-bottom-actions">
+        <div class="footer-social-icons">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">YouTube</a>
+          <a href="#">TikTok</a>
+          <a href="#">Pinterest</a>
+        </div>
+        <div class="footer-copyright">
+          <a href="mailto:studioswimdays@gmail.com">studioswimdays@gmail.com</a>
+          <p style="margin: 0;">&copy; 2026 Swimdays. All Rights Reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./swimdays-support-pages.js"></script>
+</body>
+</html>

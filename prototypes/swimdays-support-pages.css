@@ -46,8 +46,8 @@
   --text-xl: clamp(1.7rem, 1.2rem + 2.1vw, 3rem);
   --text-hero: clamp(2.2rem, 1.5rem + 3vw, 4.4rem);
   --announcement-height: 2.0rem;
-  --navbar-height: clamp(68px, 8vw, 80px);
-  --navbar-height-scrolled: clamp(58px, 7vw, 64px);
+  --navbar-height: clamp(60px, 7vw, 72px);
+  --navbar-height-scrolled: clamp(52px, 6vw, 58px);
 }
 
 /* ── Reset ── */
@@ -424,6 +424,17 @@ main { padding: 0 0 var(--space-8); }
 .support-rail { display: grid; gap: var(--space-4); align-content: start; }
 .support-stack { display: grid; gap: var(--space-5); }
 
+.support-page__backdrop {
+  width: 100%;
+  background: var(--bg);
+}
+
+.support-main {
+  width: 100%;
+  display: grid;
+  gap: var(--space-6);
+}
+
 /* Sidebar card */
 .support-rail-card {
   border: 1px solid var(--line); border-radius: var(--radius-md);
@@ -448,6 +459,161 @@ main { padding: 0 0 var(--space-8); }
 }
 .support-section p, .support-section li { color: var(--muted); font-size: var(--text-sm); line-height: 1.55; }
 .support-section ul { padding-left: 1.1rem; }
+
+/* ═══════════════════════════════════════════════════
+   LEGAL LAYOUT
+   ═══════════════════════════════════════════════════ */
+.legal-layout {
+  width: var(--container);
+  margin: 0 auto var(--space-6);
+  display: grid;
+  gap: var(--space-6);
+}
+
+.legal-sidebar {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+
+.legal-note {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: var(--space-4);
+}
+
+.legal-note__eyebrow {
+  margin: 0 0 var(--space-2);
+  font-family: "Swimdays Subhead", sans-serif;
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.legal-note h2 {
+  margin: 0;
+  font-family: "Swimdays Subhead", sans-serif;
+  font-size: var(--text-lg);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.legal-note ul {
+  margin: var(--space-3) 0 0;
+  padding-left: 1.1rem;
+  color: var(--muted);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+.legal-toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.legal-toc a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0.5rem 0.95rem;
+  border-radius: 999px;
+  font-family: "Swimdays Subhead", sans-serif;
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+
+.legal-toc a:hover {
+  transform: translateY(-1px);
+  border-color: var(--accent);
+}
+
+.legal-toc-mobile {
+  width: var(--container);
+  margin: 0 auto var(--space-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.legal-toc-mobile summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  cursor: pointer;
+  padding: 0.95rem 1rem;
+  font-family: "Swimdays Subhead", sans-serif;
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.legal-toc-mobile summary::-webkit-details-marker {
+  display: none;
+}
+
+.legal-toc-mobile .legal-toc {
+  padding: 0 var(--space-3) var(--space-3);
+}
+
+.legal-article {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.legal-section {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: var(--space-6);
+  scroll-margin-top: calc(var(--navbar-height) + var(--announcement-height) + 32px);
+}
+
+.legal-section h2 {
+  margin: 0 0 var(--space-3);
+  font-family: "Swimdays Subhead", sans-serif;
+  font-size: var(--text-lg);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.legal-section p,
+.legal-section li {
+  color: var(--muted);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+.legal-section ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.legal-placeholder {
+  color: rgba(52, 86, 91, 0.72);
+  font-style: italic;
+}
 
 /* Accordion inside sections */
 .support-details {
@@ -526,45 +692,40 @@ main { padding: 0 0 var(--space-8); }
 
 
 /* ═══════════════════════════════════════════════════
-   LEGAL PAGES — sidebar + article layout
+   SIMPLE LEGAL LAYOUT — (Gielly Green Match + Brand Accent)
    ═══════════════════════════════════════════════════ */
-.legal-layout { display: grid; gap: var(--space-6); width: var(--container); margin: 0 auto var(--space-6); }
-.legal-sidebar { display: grid; gap: var(--space-4); align-content: start; }
-.legal-note {
-  border: 1px solid var(--line); border-radius: var(--radius-md);
-  background: var(--surface); box-shadow: var(--shadow); padding: var(--space-4);
+.simple-legal-layout {
+  width: var(--container); max-width: 800px; margin: clamp(4rem, 8vw, 6rem) auto var(--space-8);
+  padding: 0; color: var(--muted);
 }
-.legal-note__eyebrow {
-  font-family: "Swimdays Subhead", sans-serif; font-size: var(--text-xs); font-weight: 500;
-  letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);
+.simple-legal-layout h1 {
+  margin: 0 0 clamp(2.5rem, 5vw, 4rem); font-family: "Swimdays Heading", serif;
+  font-size: clamp(2rem, 3vw, 2.75rem); font-weight: 400; text-transform: uppercase;
+  letter-spacing: 0.05em; color: var(--ink); text-align: center;
 }
-.legal-note h2 { margin: 0; font-family: "Swimdays Subhead", sans-serif; font-size: var(--text-lg); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; }
-.legal-note p { margin: var(--space-3) 0 0; color: var(--muted); font-size: var(--text-sm); line-height: 1.55; }
-.legal-note ul { margin: var(--space-3) 0 0; padding-left: 1.1rem; color: var(--muted); font-size: var(--text-sm); line-height: 1.6; }
-.legal-toc { display: grid; gap: 0.75rem; }
-.legal-toc a {
-  display: inline-flex; align-items: center; justify-content: center;
-  min-height: 38px; padding: 0.5rem 0.95rem; border-radius: 999px;
-  font-family: "Swimdays Subhead", sans-serif; font-size: var(--text-xs); font-weight: 500;
-  letter-spacing: 0.08em; text-decoration: none; text-transform: uppercase;
-  border: 1px solid var(--line); background: var(--surface); color: var(--ink);
-  transition: transform 0.18s ease;
+.simple-legal-layout h2 {
+  margin: clamp(2.5rem, 5vw, 4rem) 0 1.25rem; font-family: "Swimdays Subhead", sans-serif;
+  font-size: clamp(1rem, 1.2vw, 1.15rem); font-weight: 500; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--ink);
 }
-.legal-toc a:hover { transform: translateY(-1px); }
-.legal-article { display: grid; gap: var(--space-5); }
-.legal-section {
-  border: 1px solid var(--line); border-radius: var(--radius-lg);
-  background: var(--surface); box-shadow: var(--shadow);
-  padding: clamp(1.4rem, 1rem + 1vw, 1.9rem);
-  scroll-margin-top: calc(var(--navbar-height) + var(--announcement-height) + 32px);
+.simple-legal-layout p {
+  margin: 0 0 1.5rem; font-family: "Swimdays Body", sans-serif; font-size: var(--text-sm); line-height: 1.7; color: rgba(52, 86, 91, 0.85);
 }
-.legal-section h2 { margin: 0; font-family: "Swimdays Subhead", sans-serif; font-size: var(--text-lg); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; }
-.legal-section p, .legal-section ul { margin-top: var(--space-3); color: var(--muted); font-size: var(--text-sm); line-height: 1.55; }
-.legal-section ul { padding-left: 1.1rem; }
-.legal-placeholder {
-  margin: var(--space-3) 0 0; padding: 1rem 1.05rem;
-  border-left: 3px solid rgba(52, 86, 91, 0.26); background: rgba(232, 240, 238, 0.55);
-  border-radius: var(--radius-md);
+.simple-legal-layout ul {
+  margin: 0 0 1.5rem; padding-left: 1.5rem; font-family: "Swimdays Body", sans-serif; font-size: var(--text-sm); line-height: 1.7; color: rgba(52, 86, 91, 0.85);
+}
+.simple-legal-layout li {
+  margin-bottom: 0.65rem;
+}
+.simple-legal-layout a {
+  color: var(--accent); text-decoration: underline; text-underline-offset: 4px; font-weight: 500;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+.simple-legal-layout a:hover {
+  color: var(--ink); text-decoration-color: var(--ink);
+}
+.simple-legal-layout strong {
+  color: var(--ink); font-weight: 500; font-family: "Swimdays Subhead", sans-serif; letter-spacing: 0.04em;
 }
 
 
@@ -572,39 +733,254 @@ main { padding: 0 0 var(--space-8); }
    FOOTER — Flush, matches concept exactly
    ═══════════════════════════════════════════════════ */
 .swimdays-footer {
-  width: 100%; background: var(--surface); color: var(--ink);
-  padding: clamp(1.5rem, 3vw, 3rem) 0 clamp(0.5rem, 1vw, 1rem);
-  margin-top: var(--space-4); font-family: "Swimdays Body", sans-serif;
-  border-top: 1px solid var(--line);
+  width: 100%;
+  background: var(--bg);
+  color: #34565B;
+  padding: clamp(3rem, 5vw, 6rem) 0 clamp(2rem, 3vw, 4rem);
+  margin-top: 0;
+  font-family: "Swimdays Body", sans-serif;
+  border-top: 1px solid rgba(168, 79, 119, 0.5);
+  position: relative;
+  overflow: hidden;
 }
-.footer-inner { width: var(--container); margin: 0 auto; display: flex; flex-direction: column; }
-.footer-top { display: grid; grid-template-columns: 1fr; gap: 3rem; margin-bottom: 4rem; }
-.footer-col { display: flex; flex-direction: column; }
+
+.footer-bg-overflow {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.footer-flower-img {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  filter: brightness(0) saturate(100%) invert(42%) sepia(21%) saturate(1514%) hue-rotate(294deg) brightness(86%) contrast(85%);
+  opacity: 1;
+}
+
+.footer-flower-img.top-right {
+  bottom: -18px;
+  right: -18px;
+}
+
+.footer-flower-img.bottom-left {
+  bottom: -18px;
+  left: -18px;
+}
+
+.footer-inner-new {
+  width: var(--container);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "newsletter"
+    "left"
+    "bottom";
+  gap: 2.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-left {
+  grid-area: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 4rem;
+}
+
+.footer-logo-text {
+  display: block;
+  width: 100%;
+  max-width: 240px;
+  margin-bottom: 2rem;
+}
+
+.footer-logo-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(26%) sepia(15%) saturate(1094%) hue-rotate(138deg) brightness(95%) contrast(87%);
+}
+
+.footer-links-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(auto, 1fr));
+  gap: 2rem;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+}
+
 .footer-heading {
-  font-family: "Swimdays Subhead", sans-serif; font-size: clamp(0.75rem, 0.8vw, 0.85rem);
-  margin-top: 0; margin-bottom: 1.25rem; text-transform: uppercase; letter-spacing: 0.05em;
+  font-family: "Swimdays Subhead", sans-serif;
+  font-size: clamp(0.7rem, 0.75vw, 0.8rem);
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(52, 86, 91, 0.68);
 }
-.footer-menu { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1.25rem; }
-.footer-menu a { color: var(--ink); text-decoration: none; font-size: clamp(0.75rem, 0.8vw, 0.85rem); font-weight: 400; transition: opacity 0.2s ease; }
-.footer-menu a:hover { opacity: 0.7; }
-.footer-newsletter { display: flex; flex-direction: column; gap: 1rem; }
-.footer-newsletter-title { font-family: "Swimdays Subhead", sans-serif; font-size: clamp(0.75rem, 0.8vw, 0.85rem); font-weight: 500; margin: 0; color: var(--ink); }
-.footer-newsletter-text { font-size: clamp(0.75rem, 0.8vw, 0.85rem); color: var(--ink); margin: 0; opacity: 0.9; }
-.footer-input-group { display: flex; align-items: center; border-bottom: 1px solid var(--line); padding: 0.5rem 0; background: transparent; transition: border-color 0.2s ease; }
-.footer-input-group:focus-within { border-color: var(--ink); }
-.footer-input { flex: 1; background: transparent; border: none; color: var(--ink); font-family: "Swimdays Body", sans-serif; font-size: clamp(0.75rem, 0.8vw, 0.85rem); outline: none; padding: 0.5rem 0; }
-.footer-input::placeholder { color: var(--muted); }
-.footer-btn { background: transparent; color: var(--ink); border: none; font-family: "Swimdays Subhead", sans-serif; font-size: clamp(0.7rem, 0.75vw, 0.8rem); font-weight: 500; padding: 0.5rem 1rem; cursor: pointer; transition: opacity 0.2s ease; }
-.footer-btn:hover { opacity: 0.7; }
-.footer-giant-logo { display: flex; justify-content: center; align-items: center; margin-bottom: 2rem; overflow: hidden; width: 100%; }
-.footer-giant-logo .giant-logo { width: 100%; max-width: 65vw; height: auto; max-height: 12vw; object-fit: contain; }
-.footer-bottom { display: flex; flex-direction: column; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 1.5rem; gap: 1.5rem; }
-.footer-bottom-left { display: flex; align-items: center; gap: 1rem; }
-.footer-bottom-left a { color: var(--ink); text-decoration: none; font-size: clamp(0.7rem, 0.75vw, 0.8rem); }
-.footer-bottom-left p { font-size: clamp(0.7rem, 0.75vw, 0.8rem); margin: 0; }
-.footer-social-text-links { display: flex; gap: 1.5rem; }
-.footer-social-text-links a { color: var(--ink); text-decoration: none; font-size: clamp(0.7rem, 0.75vw, 0.8rem); font-family: "Swimdays Subhead", sans-serif; transition: opacity 0.2s ease; }
-.footer-social-text-links a:hover { opacity: 0.7; }
+
+.footer-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer-menu a {
+  color: #34565B;
+  text-decoration: none;
+  font-size: clamp(0.75rem, 0.8vw, 0.85rem);
+  font-weight: 400;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.footer-menu a:hover {
+  color: #A84F77;
+  opacity: 1;
+}
+
+.footer-right {
+  grid-area: newsletter;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.footer-newsletter-text {
+  font-size: clamp(0.85rem, 0.9vw, 0.95rem);
+  color: #34565B;
+  margin: 0 0 0.85rem 0;
+  line-height: 1.6;
+  max-width: 50ch;
+}
+
+.footer-newsletter-form-new {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.footer-input-line {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(52, 86, 91, 0.24);
+  color: #34565B;
+  font-family: "Swimdays Body", sans-serif;
+  font-size: clamp(0.75rem, 0.8vw, 0.85rem);
+  padding: 0.5rem 0;
+  outline: none;
+  transition: border-color 0.3s ease;
+  width: 100%;
+}
+
+.footer-input-line::placeholder {
+  color: rgba(52, 86, 91, 0.68);
+  opacity: 1;
+}
+
+.footer-input-group-line {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid rgba(52, 86, 91, 0.24);
+  transition: border-color 0.3s ease;
+  padding-bottom: 0.25rem;
+}
+
+.footer-input-group-line:focus-within {
+  border-bottom-color: #A84F77;
+}
+
+.footer-input-group-line .footer-input-line {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.footer-btn-text {
+  background: transparent;
+  color: #34565B;
+  border: none;
+  font-family: "Swimdays Subhead", sans-serif;
+  font-size: clamp(0.65rem, 0.7vw, 0.75rem);
+  font-weight: 600;
+  padding: 0.5rem 0.5rem 0.25rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.2s ease, opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+.footer-btn-text:hover {
+  color: #A84F77;
+  opacity: 1;
+}
+
+.footer-privacy-text {
+  font-size: clamp(0.65rem, 0.7vw, 0.75rem);
+  color: rgba(52, 86, 91, 0.68);
+  margin: 0.25rem 0 0 0;
+}
+
+.footer-bottom-actions {
+  grid-area: bottom;
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.footer-social-icons {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.footer-social-icons a {
+  color: #34565B;
+  text-decoration: none;
+  font-size: clamp(0.7rem, 0.75vw, 0.8rem);
+  font-family: "Swimdays Subhead", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.footer-social-icons a:hover {
+  color: #A84F77;
+  opacity: 1;
+}
+
+.footer-copyright {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: clamp(0.65rem, 0.7vw, 0.75rem);
+  color: rgba(52, 86, 91, 0.68);
+}
+
+.footer-copyright a {
+  color: #34565B;
+  text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.footer-copyright a:hover {
+  color: #A84F77;
+  opacity: 1;
+}
 
 
 /* ═══════════════════════════════════════════════════
@@ -613,21 +989,236 @@ main { padding: 0 0 var(--space-8); }
 @media (max-width: 759px) {
   .announcement__text { letter-spacing: 0.09em; }
   .announcement__text [data-hide-mobile="true"], .announcement__dot { display: none; }
+
+  .support-hero {
+    min-height: auto;
+    padding:
+      calc(var(--navbar-height) + var(--announcement-height) + clamp(2.75rem, 10vw, 4rem))
+      var(--gutter-inline)
+      clamp(2.75rem, 10vw, 4rem);
+  }
+
+  .support-hero__inner {
+    width: min(100%, 36rem);
+  }
+
+  .support-hero h1 {
+    font-size: clamp(1.9rem, 10vw, 3rem);
+  }
+
+  .support-layout {
+    grid-template-areas:
+      "stack"
+      "rail";
+  }
+
+  .support-stack { order: 1; }
+  .support-rail { order: 2; }
+
+  .legal-sidebar {
+    display: none;
+  }
+
+  .legal-toc-mobile {
+    display: block;
+  }
+
+  .legal-section {
+    padding: var(--space-5);
+  }
+
+  .swimdays-footer {
+    padding: 2.5rem 0 2rem;
+  }
+
+  .footer-inner-new {
+    gap: 2.5rem;
+  }
+
+  .footer-left,
+  .footer-right {
+    gap: 1.75rem;
+  }
+
+  .swimdays-footer .footer-right {
+    background: #A84F77;
+    color: #fff;
+    margin: -2.5rem calc(var(--gutter-inline) * -1) 0;
+    padding: 2.5rem var(--gutter-inline) 2rem;
+  }
+
+  .swimdays-footer .footer-right .footer-newsletter-text,
+  .swimdays-footer .footer-right .footer-input-line,
+  .swimdays-footer .footer-right .footer-btn-text {
+    color: #fff;
+  }
+
+  .swimdays-footer .footer-right .footer-input-line,
+  .swimdays-footer .footer-right .footer-input-group-line {
+    border-bottom-color: rgba(255, 255, 255, 0.55);
+  }
+
+  .swimdays-footer .footer-right .footer-input-line::placeholder,
+  .swimdays-footer .footer-right .footer-privacy-text {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .footer-logo-text {
+    max-width: 180px;
+    margin-bottom: 0;
+  }
+
+  .footer-links-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .footer-heading {
+    margin-bottom: 0.9rem;
+  }
+
+  .footer-input-group-line {
+    align-items: end;
+    border-bottom: none;
+    display: grid;
+    gap: 0.875rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding-bottom: 0;
+  }
+
+  .footer-input-group-line .footer-input-line {
+    border-bottom: 1px solid rgba(52, 86, 91, 0.24);
+    padding-bottom: 0.5rem;
+  }
+
+  .footer-input-group-line:focus-within .footer-input-line {
+    border-bottom-color: #A84F77;
+  }
+
+  .footer-btn-text {
+    padding-left: 0;
+    padding-bottom: 0.35rem;
+    padding-right: 0;
+  }
+
+  .footer-newsletter-text {
+    margin-bottom: 0;
+    max-width: none;
+  }
+
+  .footer-social-icons {
+    flex-wrap: wrap;
+    gap: 0.9rem 1.25rem;
+  }
+
+  .footer-copyright {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-flower-img {
+    opacity: 0.45;
+  }
 }
+
 @media (min-width: 720px) {
   .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .support-highlights { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .support-link-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-@media (min-width: 768px) {
-  .footer-top { grid-template-columns: 1fr 1fr 1fr 2.5fr; }
-  .footer-bottom { flex-direction: row; }
+
+@media (min-width: 760px) and (max-width: 959px) {
+  .support-hero {
+    min-height: 48vh;
+    padding:
+      calc(var(--navbar-height) + var(--announcement-height) + clamp(3rem, 7vw, 5rem))
+      var(--gutter-inline)
+      clamp(3rem, 7vw, 5rem);
+  }
+
+  .legal-layout {
+    gap: var(--space-4);
+  }
+
+  .legal-sidebar {
+    position: static;
+    gap: var(--space-3);
+  }
+
+  .legal-note {
+    padding: var(--space-4);
+  }
+
+  .legal-toc {
+    gap: 0.55rem;
+  }
+
+  .legal-toc a {
+    min-height: 34px;
+    padding: 0.45rem 0.82rem;
+  }
+
+  .legal-toc-mobile {
+    display: none;
+  }
 }
+
 @media (min-width: 960px) {
   .support-layout { grid-template-columns: minmax(240px, 0.8fr) minmax(0, 1.7fr); align-items: start; }
   .support-rail { position: sticky; top: calc(var(--navbar-height) + var(--announcement-height) + 32px); }
   .legal-layout { grid-template-columns: minmax(250px, 0.72fr) minmax(0, 1.6fr); align-items: start; }
   .legal-sidebar { position: sticky; top: calc(var(--navbar-height) + var(--announcement-height) + 32px); }
+  .legal-toc-mobile { display: none; }
+
+  .footer-inner-new {
+    grid-template-columns: 1fr 1.2fr;
+    grid-template-areas:
+      "left newsletter"
+      "left bottom";
+    grid-template-rows: auto 1fr;
+    gap: 2.5rem 6rem;
+  }
+
+  .swimdays-footer .footer-right {
+    overflow: visible;
+    padding: 2rem 2.25rem;
+    position: relative;
+    z-index: 0;
+  }
+
+  .swimdays-footer .footer-right::before {
+    content: "";
+    position: absolute;
+    inset: 0 calc(var(--gutter-inline) * -1) 0 0;
+    background: #A84F77;
+    z-index: -1;
+  }
+
+  .swimdays-footer .footer-right .footer-newsletter-text,
+  .swimdays-footer .footer-right .footer-input-line,
+  .swimdays-footer .footer-right .footer-btn-text {
+    color: #fff;
+  }
+
+  .swimdays-footer .footer-right .footer-input-line,
+  .swimdays-footer .footer-right .footer-input-group-line {
+    border-bottom-color: rgba(255, 255, 255, 0.55);
+  }
+
+  .swimdays-footer .footer-right .footer-input-line::placeholder,
+  .swimdays-footer .footer-right .footer-privacy-text {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .swimdays-footer .footer-right .footer-btn-text:hover {
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  .swimdays-footer .footer-right .footer-input-group-line:focus-within,
+  .swimdays-footer .footer-right .footer-input-line:focus {
+    border-bottom-color: #fff;
+  }
 }
 @media (min-width: 1440px) { :root { --gutter-inline: clamp(1.25rem, 2.5vw, 5.5rem); } }
 @media (min-width: 1920px) {

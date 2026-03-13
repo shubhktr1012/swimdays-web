@@ -1,0 +1,40 @@
+{% render 'swimdays-home-fonts' %}
+{% render 'swimdays-home-header' %}
+
+<div class="swimdays-home-header-spacer" aria-hidden="true"></div>
+
+{% stylesheet %}
+  .swimdays-home-header-spacer {
+    height: 0;
+    width: 100%;
+    pointer-events: none;
+  }
+
+  body.announcement-hidden .swimdays-home-header-spacer {
+    height: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .swimdays-home-header-spacer {
+      height: 0;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Swimdays home header",
+  "tag": "section",
+  "class": "shopify-section--swimdays-home-header",
+  "limit": 1,
+  "settings": [],
+  "presets": [
+    {
+      "name": "Swimdays home header"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["index"]
+  }
+}
+{% endschema %}

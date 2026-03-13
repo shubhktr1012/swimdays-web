@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Photoshoot Viewer</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; text-align: center; background: #fafafa; }
+    .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
+    .image-card { border: 1px solid #ddd; padding: 10px; background: white; }
+    .image-card img { width: 100%; height: auto; display: block; }
+    .image-name { font-size: 11px; word-break: break-all; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Local Photoshoot Assets</h1>
+  <div class="gallery" id="gallery"></div>
+  <script>
+    const images = [
+      "5M5A0344.JPG", "5M5A0353.JPG",
+      "WhatsApp Image 2026-02-27 at 13.47.41 (1).jpeg", "WhatsApp Image 2026-02-27 at 13.47.41.jpeg",
+      "WhatsApp Image 2026-02-27 at 13.47.42 (1).jpeg", "WhatsApp Image 2026-02-27 at 13.47.42 (2).jpeg",
+      "WhatsApp Image 2026-02-27 at 13.47.42.jpeg", "WhatsApp Image 2026-02-27 at 13.47.43 (1).jpeg",
+      "WhatsApp Image 2026-02-27 at 13.47.43.jpeg", "WhatsApp Image 2026-02-27 at 13.47.44 (1).jpeg",
+      "WhatsApp Image 2026-02-27 at 13.47.44.jpeg", "WhatsApp Image 2026-03-12 at 10.51.23.jpeg",
+      "WhatsApp Image 2026-03-12 at 12.31.32.jpeg", "WhatsApp Image 2026-03-12 at 12.52.49 (1).jpeg",
+      "WhatsApp Image 2026-03-12 at 12.52.49 (2).jpeg", "WhatsApp Image 2026-03-12 at 12.52.49.jpeg",
+      "WhatsApp Image 2026-03-12 at 13.12.20.jpeg", "WhatsApp Image 2026-03-12 at 13.12.21.jpeg",
+      "WhatsApp Image 2026-03-12 at 13.15.35 (1).jpeg", "WhatsApp Image 2026-03-12 at 13.15.35 (2).jpeg",
+      "WhatsApp Image 2026-03-12 at 13.21.48.jpeg", "WhatsApp Image 2026-03-12 at 13.21.49 (1).jpeg",
+      "WhatsApp Image 2026-03-12 at 13.33.34.jpeg", "WhatsApp Image 2026-03-12 at 13.47.30.jpeg",
+      "WhatsApp Image 2026-03-12 at 13.57.30.jpeg", "WhatsApp Image 2026-03-12 at 13.59.57.jpeg"
+    ];
+    const gallery = document.getElementById('gallery');
+    images.forEach(img => {
+      gallery.innerHTML += `
+        <div class="image-card">
+          <img src="public/photoshoot/${img}" alt="photo">
+          <div class="image-name">${img}</div>
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>

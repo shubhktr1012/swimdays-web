@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swimdays Home Wireframe (Lo-Fi)</title>
+  <style>
+    :root {
+      --bg: #f3f3f3;
+      --surface: #ffffff;
+      --line: #c8c8c8;
+      --text: #222222;
+      --muted: #666666;
+      --container: min(1400px, 94vw);
+      --space-1: clamp(0.5rem, 0.45rem + 0.3vw, 0.8rem);
+      --space-2: clamp(0.9rem, 0.8rem + 0.4vw, 1.2rem);
+      --space-3: clamp(1.3rem, 1.1rem + 0.8vw, 1.9rem);
+      --space-4: clamp(1.8rem, 1.4rem + 1.2vw, 2.8rem);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.4;
+    }
+
+    .announcement {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      min-height: 2.2rem;
+      display: grid;
+      place-items: center;
+      border-bottom: 1px solid var(--line);
+      background: #ebebeb;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
+
+    .navbar {
+      position: sticky;
+      top: 2.2rem;
+      z-index: 9;
+      border-bottom: 1px solid var(--line);
+      background: #f8f8f8;
+    }
+
+    .navbar__inner {
+      width: var(--container);
+      margin: 0 auto;
+      min-height: 4.1rem;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .nav-left,
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .nav-right { justify-content: flex-end; }
+
+    .icon {
+      width: 1.8rem;
+      height: 1.8rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: var(--surface);
+      font-size: 11px;
+    }
+
+    .logo {
+      border: 1px solid var(--line);
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      background: var(--surface);
+    }
+
+    main { padding-bottom: var(--space-4); }
+
+    .section {
+      width: var(--container);
+      margin: var(--space-4) auto 0;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      padding: var(--space-3);
+    }
+
+    .section-head {
+      margin: 0 0 var(--space-2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    .badge {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.16rem 0.5rem;
+      font-size: 11px;
+    }
+
+    .box {
+      border: 1px dashed #b2b2b2;
+      background: #f7f7f7;
+      min-height: 8rem;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: #6a6a6a;
+      font-size: 13px;
+      padding: var(--space-2);
+    }
+
+    .hero {
+      width: 100%;
+      margin-top: 0;
+      min-height: clamp(26rem, 80vh, 46rem);
+      border-left: 0;
+      border-right: 0;
+      border-radius: 0;
+      display: grid;
+      place-items: center;
+      background: #e8e8e8;
+    }
+
+    .hero .box {
+      width: min(900px, 88vw);
+      min-height: 14rem;
+      background: #f2f2f2;
+    }
+
+    .grid-2,
+    .grid-3,
+    .grid-4 {
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    .grid-2 { grid-template-columns: 1fr; }
+    .grid-3 { grid-template-columns: 1fr; }
+    .grid-4 { grid-template-columns: 1fr; }
+
+    .faq-list {
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .faq-item {
+      border: 1px solid var(--line);
+      background: #f7f7f7;
+      min-height: 3.4rem;
+      display: grid;
+      align-items: center;
+      padding: 0.8rem 1rem;
+      color: #555;
+      font-size: 13px;
+    }
+
+    @media (min-width: 760px) {
+      .grid-2 { grid-template-columns: 1fr 1fr; }
+      .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (min-width: 1024px) {
+      .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <div class="announcement">Announcement Bar (Temporary Message)</div>
+
+  <header class="navbar">
+    <div class="navbar__inner">
+      <div class="nav-left">
+        <span class="icon">☰</span>
+        <span class="icon">⌕</span>
+      </div>
+      <div class="logo">Logo</div>
+      <div class="nav-right">
+        <span class="icon">👤</span>
+        <span class="icon">🛒</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section hero">
+      <div class="box">Hero Area (Merged 3-image banner + headline + primary CTA)</div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><span>Brand Statement</span></div>
+      <div class="box">Single high-level brand line</div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><span>About</span><span class="badge">Optional</span></div>
+      <div class="grid-2">
+        <div class="box">Founder / Story Image</div>
+        <div class="box">Who created it + why</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><span>Collections</span></div>
+      <div class="grid-3">
+        <div class="box">Collection 1</div>
+        <div class="box">Collection 2</div>
+        <div class="box">Collection 3</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><span>Craft Close-up</span></div>
+      <div class="grid-2">
+        <div class="box">Macro / Texture Visual</div>
+        <div class="box">Material + Process Notes</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><span>Product Highlights</span></div>
+      <div class="grid-4">
+        <div class="box">Product Card 1</div>
+        <div class="box">Product Card 2</div>
+        <div class="box">Product Card 3</div>
+        <div class="box">Product Card 4</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><span>Blog Previews</span></div>
+      <div class="grid-3">
+        <div class="box">Blog Card 1</div>
+        <div class="box">Blog Card 2</div>
+        <div class="box">Blog Card 3</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><span>Newsletter</span><span class="badge">Optional</span></div>
+      <div class="grid-2">
+        <div class="box">Email Field</div>
+        <div class="box">Subscribe CTA</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><span>FAQs</span></div>
+      <div class="faq-list">
+        <div class="faq-item">FAQ item 1</div>
+        <div class="faq-item">FAQ item 2</div>
+        <div class="faq-item">FAQ item 3</div>
+        <div class="faq-item">FAQ item 4</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><span>Footer</span></div>
+      <div class="grid-4">
+        <div class="box">Logo + Intro</div>
+        <div class="box">Shop Links</div>
+        <div class="box">Support Links</div>
+        <div class="box">Social + Legal</div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

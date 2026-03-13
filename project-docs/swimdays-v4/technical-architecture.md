@@ -27,10 +27,38 @@
 - Target: Gallery, variant controls, add-to-cart. We will inject the "Pairs Best
   With" block using Shopify Search & Discovery app here.
 
-4. **Self Hosted Fonts**
+2. **Typography System**
 
-- File: `snippets/swimdays-fonts.liquid` injected into `theme.liquid`.
-- Dependencies: Aboreto, Poppins, Public Sans.
+- **Display/Headings:** Aboreto (Editorial Serif). Use for large titles, hero
+  banners, and moments requiring a sophisticated, premium feel.
+- **Display/Accents:** Katheriny (Script/Accent). Use sparingly for elegant
+  touches, signature moments, subheadings, or stylistic contrast against the
+  clean sans fonts.
+- **Primary Body/UI Elements:** Poppins (Clean Sans). Use for navigation,
+  buttons, and short UI text requiring high legibility and a modern touch.
+- **Secondary Body/Long Form:** Public Sans (Clean Sans). Use for paragraphs,
+  product descriptions, and dense text areas.
+- **File Implementation:** `snippets/swimdays-fonts.liquid` injected into
+  `theme.liquid`. Dependencies include Aboreto, Katheriny, Poppins, and Public
+  Sans.
+
+3. **Brand Color Palette**
+
+The following colors from the PSD should be applied systematically to maintain
+the brand's calm, premium aesthetic:
+
+- **Deep Ocean (`#34565B`):** Darkest color. Use for primary text, deep
+  backgrounds, and high-contrast UI elements (like primary CTA buttons). Grounds
+  the design.
+- **Old Rose (`#A84F77`):** Primary bold accent. Use sparingly for sale badges,
+  notification dots, or interactions requiring immediate attention without being
+  overly aggressive.
+- **Spring Green (`#B1BD75`):** Secondary calm accent. Good for success states,
+  secondary buttons, or subtle highlight backgrounds.
+- **Sky (`#ADCCCC`):** Soft, cool neutral. Ideal for section backgrounds (e.g.,
+  alternating content blocks) or subtle borders. Provides breathing room.
+- **Blush (`#E2BCC9`):** Soft, warm neutral. Excellent for delicate hover
+  states, light backgrounds behind product images, or secondary text highlights.
 
 ## Data Contract for 12-SKU Import
 
@@ -56,3 +84,16 @@ Ensure these Custom Metafields are defined via Shopify Admin:
 2. `accessibility-auditing`: For checking WGAC compliance on custom liquid or
    theme adjustments.
 3. `seo-analytics`: For generating speed insights post-launch.
+4. `web-design-guidelines`: Use when building or styling UI components to ensure
+   modern, premium aesthetics.
+5. `brand-color-psychology`: Refer to this when deciding which brand color
+   (`Deep Ocean`, `Old Rose`, etc.) to apply to specific UI elements to maintain
+   psychological harmony.
+6. `brainstorming`: Invoke when stuck on a design problem to generate
+   structured, creative lateral thinking ideas.
+7. `multi-agent-brainstorming`: Use to simulate a panel of experts (e.g.,
+   designer, marketer) critiquing new features or flows.
+8. `creative-intelligence`: Boosts creative solutions for abstract problems,
+   particularly useful for unconventional UI/UX patterns.
+9. `marketing-ideas`: Use when planning how to highlight features or structure
+   the Lookbook to drive engagement and sales.

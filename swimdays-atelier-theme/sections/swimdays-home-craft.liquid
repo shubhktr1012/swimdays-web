@@ -1,0 +1,1106 @@
+{% render 'swimdays-home-fonts' %}
+
+<section
+  id="the-craft"
+  class="swimdays-home-craft"
+  data-swimdays-home-craft
+  data-section-id="{{ section.id }}"
+>
+  <div class="craft-sticky-container">
+    <div class="craft-mobile-heading">
+      <img
+        src="{{ 'flower.svg' | asset_url }}"
+        alt=""
+        class="craft-mobile-heading-flower"
+        width="24"
+        height="24"
+        loading="lazy"
+      >
+      <h2 class="craft-mobile-heading-title">{{ section.settings.title }}</h2>
+    </div>
+
+    <div class="craft-copy">
+      <p>{{ section.settings.copy_text }}</p>
+    </div>
+
+    <div class="craft-note">
+      <p>{{ section.settings.note_text }}</p>
+    </div>
+
+    <div class="craft-square">
+      <div class="craft-media" aria-hidden="true">
+        {% for block in section.blocks %}
+          {% liquid
+            assign fallback_asset = blank
+            case forloop.index
+              when 1
+                assign fallback_asset = 'swimdays-craft-01.png'
+              when 2
+                assign fallback_asset = 'swimdays-craft-02.jpg'
+              when 3
+                assign fallback_asset = 'swimdays-craft-03.png'
+            endcase
+          %}
+
+          {% if block.settings.image != blank %}
+            {% if forloop.first %}
+              {{
+                block.settings.image
+                | image_url: width: 1600
+                | image_tag:
+                  class: 'craft-media-image is-active',
+                  alt: '',
+                  widths: '600, 900, 1200, 1600',
+                  sizes: '(max-width: 767px) 0px, (max-width: 1535px) 41vw, 40vw',
+                  loading: 'lazy'
+              }}
+            {% else %}
+              {{
+                block.settings.image
+                | image_url: width: 1600
+                | image_tag:
+                  class: 'craft-media-image',
+                  alt: '',
+                  widths: '600, 900, 1200, 1600',
+                  sizes: '(max-width: 767px) 0px, (max-width: 1535px) 41vw, 40vw',
+                  loading: 'lazy'
+              }}
+            {% endif %}
+          {% else %}
+            <img
+              src="{{ fallback_asset | asset_url }}"
+              alt=""
+              class="craft-media-image{% if forloop.first %} is-active{% endif %}"
+              width="1600"
+              height="1600"
+              loading="lazy"
+            >
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <div class="craft-flower-wrapper">
+        <img
+          src="{{ 'flower.svg' | asset_url }}"
+          alt=""
+          class="craft-flower"
+          width="28"
+          height="28"
+          loading="lazy"
+        >
+      </div>
+
+      <div class="craft-title-wrapper">
+        <h2 class="craft-section-title">{{ section.settings.title }}</h2>
+      </div>
+
+      <div class="craft-number-rail" aria-hidden="true">
+        {% for block in section.blocks %}
+          <span class="craft-number-item">{{ block.settings.number }}</span>
+        {% endfor %}
+      </div>
+
+      <div class="craft-feature-numbers-col" aria-hidden="true">
+        {% for block in section.blocks %}
+          <div class="craft-feature-number">{{ block.settings.number }}</div>
+        {% endfor %}
+      </div>
+
+      {% for block in section.blocks %}
+        {% liquid
+          assign fallback_asset = blank
+          case forloop.index
+            when 1
+              assign fallback_asset = 'swimdays-craft-01.png'
+            when 2
+              assign fallback_asset = 'swimdays-craft-02.jpg'
+            when 3
+              assign fallback_asset = 'swimdays-craft-03.png'
+          endcase
+        %}
+        <div class="craft-feature" {{ block.shopify_attributes }}>
+          <h3 class="craft-feature-name">
+            {% if block.settings.title_line_1 != blank %}
+              <span class="craft-word-overflow"><span class="craft-word">{{ block.settings.title_line_1 }}</span></span>
+            {% endif %}
+            {% if block.settings.title_line_2 != blank %}
+              <span class="craft-word-overflow"><span class="craft-word">{{ block.settings.title_line_2 }}</span></span>
+            {% endif %}
+          </h3>
+
+          <div class="craft-feature-media" aria-hidden="true">
+            {% if block.settings.image != blank %}
+              {{
+                block.settings.image
+                | image_url: width: 1200
+                | image_tag:
+                  class: 'craft-feature-media-image',
+                  alt: '',
+                  widths: '400, 600, 900, 1200',
+                  sizes: '(max-width: 767px) 48vw, 0px',
+                  loading: 'lazy'
+              }}
+            {% else %}
+              <img
+                src="{{ fallback_asset | asset_url }}"
+                alt=""
+                class="craft-feature-media-image"
+                width="1200"
+                height="1200"
+                loading="lazy"
+              >
+            {% endif %}
+          </div>
+
+          <div class="craft-sub-features">
+            {% if block.settings.subfeature_1 != blank %}
+              <div class="craft-sub-feature">
+                <span class="craft-sub-feature-dash">—</span>
+                <span>{{ block.settings.subfeature_1 | newline_to_br }}</span>
+              </div>
+            {% endif %}
+            {% if block.settings.subfeature_2 != blank %}
+              <div class="craft-sub-feature">
+                <span class="craft-sub-feature-dash">—</span>
+                <span>{{ block.settings.subfeature_2 | newline_to_br }}</span>
+              </div>
+            {% endif %}
+            {% if block.settings.subfeature_3 != blank %}
+              <div class="craft-sub-feature">
+                <span class="craft-sub-feature-dash">—</span>
+                <span>{{ block.settings.subfeature_3 | newline_to_br }}</span>
+              </div>
+            {% endif %}
+            {% if block.settings.subfeature_4 != blank %}
+              <div class="craft-sub-feature">
+                <span class="craft-sub-feature-dash">—</span>
+                <span>{{ block.settings.subfeature_4 | newline_to_br }}</span>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .swimdays-home-craft#the-craft {
+    --gutter-inline: clamp(0.85rem, 2.1vw, 4.5rem);
+    --container: calc(100% - (var(--gutter-inline) * 2));
+    --craft-square-left: 45vw;
+    --craft-square-size: 40vw;
+    --craft-edge-gap: calc(100vw - var(--craft-square-left) - var(--craft-square-size));
+    height: 500vh;
+    position: relative;
+    width: 100%;
+  }
+
+  .swimdays-home-craft .craft-sticky-container {
+    align-items: center;
+    display: flex;
+    height: 100svh;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+    width: 100%;
+  }
+
+  .swimdays-home-craft .craft-copy {
+    left: calc(var(--craft-edge-gap) - 2.75rem);
+    position: absolute;
+    top: calc(50% - (var(--craft-square-size) / 2));
+    width: min(28rem, 33vw);
+    z-index: 1;
+  }
+
+  .swimdays-home-craft .craft-copy p {
+    color: #4c483f;
+    font-family: "Swimdays Body", "Public Sans", sans-serif;
+    font-size: clamp(1.08rem, 1rem + 0.24vw, 1.24rem);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .swimdays-home-craft .craft-mobile-heading {
+    display: none;
+  }
+
+  .swimdays-home-craft .craft-note {
+    left: calc(var(--craft-edge-gap) - 2.75rem);
+    position: absolute;
+    top: calc(50% + (var(--craft-square-size) / 2) - 2.2rem);
+    width: min(16rem, 20vw);
+    z-index: 1;
+  }
+
+  .swimdays-home-craft .craft-note p {
+    color: #a84f77;
+    font-family: "Swimdays Accent", cursive;
+    font-size: clamp(1.75rem, 0.96rem + 0.24vw, 1.28rem);
+    line-height: 1.18;
+    margin: 0;
+    overflow: visible;
+    padding: 0.26em 0 0.28em;
+    white-space: nowrap;
+  }
+
+  .swimdays-home-craft .craft-note-word {
+    display: inline-block;
+    overflow: visible;
+    padding: 0.1em 0 0.14em;
+    vertical-align: baseline;
+  }
+
+  .swimdays-home-craft .craft-note-word-inner {
+    display: inline-block;
+    will-change: transform, opacity, clip-path;
+  }
+
+  .swimdays-home-craft .craft-note-gap {
+    display: inline-block;
+    width: 0.28em;
+  }
+
+  .swimdays-home-craft .craft-square {
+    aspect-ratio: 1 / 1;
+    background: transparent;
+    isolation: isolate;
+    margin-left: var(--craft-square-left);
+    position: relative;
+    width: var(--craft-square-size);
+  }
+
+  .swimdays-home-craft .craft-media {
+    inset: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: 0;
+  }
+
+  .swimdays-home-craft .craft-media-image {
+    background: transparent;
+    filter: none;
+    height: 100%;
+    inset: 0;
+    mix-blend-mode: normal;
+    object-fit: cover;
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    will-change: opacity;
+  }
+
+  .swimdays-home-craft .craft-media-image.is-active {
+    opacity: 1;
+  }
+
+  .swimdays-home-craft .craft-square > :not(.craft-media) {
+    z-index: 2;
+  }
+
+  .swimdays-home-craft .craft-flower-wrapper {
+    height: 28px;
+    overflow: hidden;
+    position: absolute;
+    right: calc(100% + 1rem);
+    top: 0;
+    width: 28px;
+  }
+
+  .swimdays-home-craft .craft-flower,
+  .swimdays-home-craft .craft-mobile-heading-flower {
+    display: block;
+    filter: brightness(0) saturate(100%) invert(42%) sepia(21%) saturate(1514%) hue-rotate(294deg) brightness(86%) contrast(85%);
+    height: 100%;
+    width: 100%;
+  }
+
+  .swimdays-home-craft .craft-title-wrapper {
+    overflow: hidden;
+    padding-bottom: 5px;
+    position: absolute;
+    right: calc(100% + 1rem);
+    top: calc(28px + 16px);
+  }
+
+  .swimdays-home-craft .craft-section-title {
+    color: #34565b;
+    display: block;
+    font-family: "Swimdays Heading", serif;
+    font-size: 1.75rem;
+    font-weight: 600;
+    line-height: 1;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .swimdays-home-craft .craft-feature-number {
+    -webkit-background-clip: text;
+    -webkit-text-stroke: 1px rgba(168, 79, 119, 0.78);
+    background: linear-gradient(180deg, rgba(168, 79, 119, 0.92) 0%, rgba(168, 79, 119, 0.24) 100%);
+    background-clip: text;
+    background-position: top;
+    background-size: 100% 200%;
+    color: transparent;
+    font-family: "Swimdays Heading", serif;
+    font-size: clamp(8rem, 12vw, 14rem);
+    font-weight: 400;
+    line-height: 0.8;
+    margin-bottom: 25px;
+  }
+
+  .swimdays-home-craft .craft-number-rail {
+    align-items: center;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 25px;
+    left: 160px;
+    position: absolute;
+    top: 50px;
+    z-index: 1;
+  }
+
+  .swimdays-home-craft .craft-number-item {
+    color: rgba(168, 79, 119, 0.28);
+    font-family: "Swimdays Heading", serif;
+    font-size: 3rem;
+    line-height: 1;
+    transition: color 0.2s ease, opacity 0.2s ease;
+  }
+
+  .swimdays-home-craft .craft-feature-numbers-col {
+    display: none;
+  }
+
+  .swimdays-home-craft .craft-feature {
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  .swimdays-home-craft .craft-feature-media {
+    display: none;
+  }
+
+  .swimdays-home-craft .craft-feature-name {
+    color: #a84f77;
+    display: flex;
+    font-family: "Swimdays Heading", serif;
+    font-size: 9rem;
+    font-weight: normal;
+    gap: 0.25em;
+    left: 5vw;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    z-index: 2;
+  }
+
+  .swimdays-home-craft .craft-word-overflow {
+    display: inline-block;
+    margin-bottom: -20px;
+    overflow: hidden;
+    padding-bottom: 20px;
+  }
+
+  .swimdays-home-craft .craft-word {
+    display: inline-block;
+  }
+
+  .swimdays-home-craft .craft-sub-features {
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    left: 0;
+    padding: 0 3vw;
+    position: absolute;
+    top: 75%;
+    width: 100%;
+    z-index: 2;
+  }
+
+  .swimdays-home-craft .craft-sub-feature {
+    color: #fdfbfb;
+    display: flex;
+    flex-direction: column;
+    font-family: "Swimdays Subhead", "Poppins", sans-serif;
+    font-size: 1.15rem;
+    gap: 10px;
+    letter-spacing: 0.05em;
+  }
+
+  .swimdays-home-craft .craft-sub-feature-dash {
+    color: #a84f77;
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 1535px) and (min-width: 768px) {
+    .swimdays-home-craft#the-craft {
+      --craft-inline-pad: calc(var(--gutter-inline, clamp(0.85rem, 2.1vw, 4.5rem)) + 2.2rem);
+      --craft-square-size: min(41vw, 36rem);
+      --craft-square-left: calc(100vw - var(--craft-inline-pad) - var(--craft-square-size));
+      --craft-edge-gap: calc(100vw - var(--craft-square-left) - var(--craft-square-size));
+    }
+
+    .swimdays-home-craft .craft-copy {
+      left: var(--craft-inline-pad);
+      width: min(17.5rem, 22vw);
+    }
+
+    .swimdays-home-craft .craft-copy p {
+      font-size: clamp(0.82rem, 0.76rem + 0.14vw, 0.94rem);
+      line-height: 1.42;
+    }
+
+    .swimdays-home-craft .craft-note {
+      left: var(--craft-inline-pad);
+      width: min(10.5rem, 14vw);
+    }
+
+    .swimdays-home-craft .craft-note p {
+      font-size: clamp(1.02rem, 0.96rem + 0.18vw, 1.18rem);
+    }
+
+    .swimdays-home-craft .craft-flower-wrapper {
+      height: 22px;
+      width: 22px;
+    }
+
+    .swimdays-home-craft .craft-title-wrapper {
+      top: calc(22px + 10px);
+    }
+
+    .swimdays-home-craft .craft-section-title {
+      font-size: clamp(1rem, 0.92rem + 0.28vw, 1.2rem);
+    }
+
+    .swimdays-home-craft .craft-feature-number {
+      font-size: clamp(4.75rem, 6.8vw, 8rem);
+      margin-bottom: 10px;
+    }
+
+    .swimdays-home-craft .craft-number-rail {
+      gap: 12px;
+      left: 82px;
+      top: 28px;
+    }
+
+    .swimdays-home-craft .craft-number-item {
+      font-size: clamp(1.35rem, 1.15rem + 0.36vw, 1.75rem);
+    }
+
+    .swimdays-home-craft .craft-feature-name {
+      font-size: clamp(2.7rem, 4.15vw, 4.1rem);
+      gap: 0.1em;
+      left: 3.5vw;
+    }
+
+    .swimdays-home-craft .craft-sub-features {
+      bottom: 1.35rem;
+      padding: 0 1.6rem;
+      top: auto;
+    }
+
+    .swimdays-home-craft .craft-sub-feature {
+      font-size: clamp(0.58rem, 0.55rem + 0.08vw, 0.66rem);
+      gap: 4px;
+    }
+
+    .swimdays-home-craft .craft-sub-feature-dash {
+      font-size: 0.72rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .swimdays-home-craft#the-craft {
+      height: auto;
+      padding: clamp(4rem, 8vw, 5.5rem) 0;
+    }
+
+    .swimdays-home-craft .craft-sticky-container {
+      align-items: start;
+      display: grid;
+      gap: clamp(1.5rem, 4vw, 2.25rem);
+      height: auto;
+      overflow: visible;
+      padding-inline: var(--gutter-inline, clamp(0.85rem, 2.1vw, 4.5rem));
+      position: relative;
+      top: auto;
+    }
+
+    .swimdays-home-craft .craft-mobile-heading {
+      align-items: center;
+      display: flex;
+      gap: 0.75rem;
+      order: 1;
+    }
+
+    .swimdays-home-craft .craft-mobile-heading-flower {
+      display: block;
+      flex: 0 0 auto;
+      height: 24px;
+      width: 24px;
+    }
+
+    .swimdays-home-craft .craft-mobile-heading-title {
+      color: #34565b;
+      font-family: "Swimdays Heading", serif;
+      font-size: clamp(1.6rem, 6vw, 2rem);
+      line-height: 1;
+      margin: 0;
+    }
+
+    .swimdays-home-craft .craft-copy,
+    .swimdays-home-craft .craft-note {
+      left: auto;
+      position: relative;
+      top: auto;
+      width: min(100%, 42rem);
+      z-index: 1;
+    }
+
+    .swimdays-home-craft .craft-copy {
+      order: 2;
+    }
+
+    .swimdays-home-craft .craft-note {
+      display: none;
+    }
+
+    .swimdays-home-craft .craft-copy p {
+      font-size: clamp(0.95rem, 3.8vw, 1.08rem);
+      line-height: 1.5;
+    }
+
+    .swimdays-home-craft .craft-square {
+      align-content: start;
+      aspect-ratio: auto;
+      display: grid;
+      gap: 1rem;
+      margin: 0;
+      max-width: none;
+      min-height: 0;
+      order: 3;
+      padding: 0;
+      position: relative;
+      width: 100%;
+    }
+
+    .swimdays-home-craft .craft-media,
+    .swimdays-home-craft .craft-flower-wrapper,
+    .swimdays-home-craft .craft-title-wrapper,
+    .swimdays-home-craft .craft-number-rail,
+    .swimdays-home-craft .craft-feature-numbers-col {
+      display: none !important;
+    }
+
+    .swimdays-home-craft .craft-feature {
+      align-items: start;
+      border-top: 0;
+      column-gap: 0.9rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      height: auto;
+      min-height: 14rem;
+      opacity: 1;
+      padding-top: 0;
+      pointer-events: auto;
+      position: relative;
+      row-gap: 0.45rem;
+      width: auto;
+    }
+
+    .swimdays-home-craft .craft-feature::before {
+      color: #a84f77;
+      font-family: "Swimdays Heading", serif;
+      font-size: 1.35rem;
+      grid-column: 1;
+      grid-row: 1;
+      line-height: 1;
+    }
+
+    .swimdays-home-craft .craft-feature:nth-of-type(1)::before {
+      content: "01.";
+    }
+
+    .swimdays-home-craft .craft-feature:nth-of-type(2)::before {
+      content: "02.";
+    }
+
+    .swimdays-home-craft .craft-feature:nth-of-type(3)::before {
+      content: "03.";
+    }
+
+    .swimdays-home-craft .craft-feature-media {
+      align-self: stretch;
+      border-radius: 14px;
+      display: block;
+      grid-column: 2;
+      grid-row: 1 / span 3;
+      min-height: 14rem;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .swimdays-home-craft .craft-feature-media-image {
+      display: block;
+      height: 100%;
+      min-height: 14rem;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .swimdays-home-craft .craft-feature-name {
+      display: block;
+      font-size: clamp(1.6rem, 7vw, 2.25rem);
+      grid-column: 1;
+      grid-row: 2;
+      left: auto;
+      line-height: 0.92;
+      margin: 0;
+      position: relative;
+      top: auto;
+      transform: none;
+      white-space: normal;
+    }
+
+    .swimdays-home-craft .craft-word-overflow {
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .swimdays-home-craft .craft-sub-features {
+      align-items: start;
+      display: grid;
+      gap: 0.6rem;
+      grid-column: 1;
+      grid-row: 3;
+      grid-template-columns: 1fr;
+      justify-content: stretch;
+      left: auto;
+      margin-top: 0.1rem;
+      padding: 0;
+      position: relative;
+      top: auto;
+      width: auto;
+    }
+
+    .swimdays-home-craft .craft-sub-feature {
+      color: #34565b;
+      font-size: 0.78rem;
+      gap: 0.25rem;
+    }
+
+    .swimdays-home-craft .craft-sub-feature-dash {
+      color: #a84f77;
+    }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  (() => {
+    const loaderKey = '__swimdaysHomeCraftGsapLoader';
+
+    const loadScript = (src) =>
+      new Promise((resolve, reject) => {
+        const existing = document.querySelector(`script[data-swimdays-src="${src}"]`);
+
+        if (existing) {
+          if (existing.dataset.loaded === 'true') {
+            resolve();
+            return;
+          }
+
+          existing.addEventListener('load', () => resolve(), { once: true });
+          existing.addEventListener('error', () => reject(new Error(`Failed to load ${src}`)), { once: true });
+          return;
+        }
+
+        const script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        script.dataset.swimdaysSrc = src;
+        script.addEventListener('load', () => {
+          script.dataset.loaded = 'true';
+          resolve();
+        }, { once: true });
+        script.addEventListener('error', () => reject(new Error(`Failed to load ${src}`)), { once: true });
+        document.head.appendChild(script);
+      });
+
+    const ensureGsap = async () => {
+      if (window.gsap && window.ScrollTrigger) return;
+
+      if (!window[loaderKey]) {
+        window[loaderKey] = (async () => {
+          await loadScript('https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js');
+          await loadScript('https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js');
+        })();
+      }
+
+      await window[loaderKey];
+    };
+
+    const initCraft = async (root = document) => {
+      const sections = root.matches && root.matches('[data-swimdays-home-craft]')
+        ? [root]
+        : Array.from(root.querySelectorAll('[data-swimdays-home-craft]'));
+      if (!sections.length) return;
+
+      await ensureGsap();
+      if (!(window.gsap && window.ScrollTrigger)) return;
+
+      const { gsap, ScrollTrigger } = window;
+      gsap.registerPlugin(ScrollTrigger);
+
+      sections.forEach((section) => {
+        if (section.dataset.swimdaysHomeCraftInit === 'true') return;
+        section.dataset.swimdaysHomeCraftInit = 'true';
+
+        const craftSection = section;
+        const craftMobileHeading = craftSection.querySelector('.craft-mobile-heading');
+        const flower = craftSection.querySelector('.craft-flower');
+        const title = craftSection.querySelector('.craft-section-title');
+        const craftCopy = craftSection.querySelector('.craft-copy');
+        const craftNote = craftSection.querySelector('.craft-note');
+        const craftNoteText = craftNote ? craftNote.querySelector('p') : null;
+        const craftImages = Array.from(craftSection.querySelectorAll('.craft-media-image'));
+        const railNumbers = Array.from(craftSection.querySelectorAll('.craft-number-item'));
+        const features = Array.from(craftSection.querySelectorAll('.craft-feature'));
+        const bigNumbers = Array.from(craftSection.querySelectorAll('.craft-feature-number'));
+        const bigNumbersCol = craftSection.querySelector('.craft-feature-numbers-col');
+
+        if (craftImages.length) {
+          gsap.set(craftImages, { autoAlpha: 0 });
+          gsap.set(craftImages[0], { autoAlpha: 1 });
+        }
+
+        if (craftNoteText && !craftNoteText.dataset.split) {
+          const noteText = (craftNoteText.textContent || '').trim();
+          const noteWords = noteText.split(/\s+/).filter(Boolean);
+
+          craftNoteText.dataset.split = 'true';
+          craftNoteText.setAttribute('aria-label', noteText);
+          craftNoteText.textContent = '';
+
+          noteWords.forEach((word, index) => {
+            const wordWrap = document.createElement('span');
+            wordWrap.className = 'craft-note-word';
+            wordWrap.setAttribute('aria-hidden', 'true');
+
+            const inner = document.createElement('span');
+            inner.className = 'craft-note-word-inner';
+            inner.textContent = word;
+
+            wordWrap.appendChild(inner);
+            craftNoteText.appendChild(wordWrap);
+
+            if (index < noteWords.length - 1) {
+              const gap = document.createElement('span');
+              gap.className = 'craft-note-gap';
+              gap.setAttribute('aria-hidden', 'true');
+              craftNoteText.appendChild(gap);
+            }
+          });
+        }
+
+        const craftNoteWordInners = craftNoteText ? Array.from(craftNoteText.querySelectorAll('.craft-note-word-inner')) : [];
+        const media = gsap.matchMedia();
+        section._swimdaysHomeCraftMedia = media;
+
+        media.add('(min-width: 768px)', () => {
+          const enterTimeline = gsap.timeline({
+            scrollTrigger: {
+              trigger: craftSection,
+              start: 'top 40%',
+              toggleActions: 'play reverse play reverse'
+            }
+          });
+
+          enterTimeline
+            .fromTo(flower, { yPercent: -120 }, { yPercent: 0, duration: 1.2, ease: 'power3.out' }, 0)
+            .fromTo(title, { yPercent: 120 }, { yPercent: 0, duration: 1.2, ease: 'power3.out' }, 0.2)
+            .fromTo(craftCopy, { yPercent: -18, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: 1, ease: 'power3.out' }, 0.6)
+            .set(craftNote, { autoAlpha: 1 }, 0.72)
+            .fromTo(
+              craftNoteWordInners,
+              { clipPath: 'inset(-100% 100% -100% -50%)', xPercent: -6, autoAlpha: 0 },
+              { clipPath: 'inset(-100% -50% -100% -50%)', xPercent: 0, autoAlpha: 1, duration: 0.48, ease: 'power1.out', stagger: 0.085 },
+              0.78
+            );
+
+          const scrubTimeline = gsap.timeline({
+            scrollTrigger: {
+              trigger: craftSection,
+              start: 'top top',
+              end: '+=400%',
+              scrub: true
+            }
+          });
+
+          if (railNumbers.length) {
+            scrubTimeline.set(railNumbers, { color: 'rgba(168, 79, 119, 0.28)' }, 0);
+            scrubTimeline.set(railNumbers[0], { color: '#A84F77' }, 0);
+          }
+
+          features.forEach((feature, index) => {
+            const railNumber = railNumbers[index];
+            const bigNumber = bigNumbers[index];
+            const words = feature.querySelectorAll('.craft-word');
+            const subFeatures = feature.querySelectorAll('.craft-sub-feature');
+            const startTime = index * 1.5;
+
+            if (index > 0 && craftImages[index]) {
+              scrubTimeline.to(craftImages, { autoAlpha: 0, duration: 0.5, ease: 'sine.inOut' }, startTime);
+              scrubTimeline.to(craftImages[index], { autoAlpha: 1, duration: 0.5, ease: 'sine.inOut' }, startTime);
+            }
+
+            scrubTimeline
+              .set(feature, { opacity: 1 }, startTime)
+              .fromTo(words, { yPercent: 120 }, { yPercent: 0, duration: 0.8, stagger: 0.1, ease: 'sine.inOut' }, startTime)
+              .fromTo(subFeatures, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: 'sine.inOut' }, startTime);
+
+            if (bigNumber && bigNumbersCol) {
+              scrubTimeline.to(bigNumbersCol, { y: () => -(bigNumber.offsetTop), duration: 0.8, ease: 'sine.inOut' }, startTime);
+              scrubTimeline.fromTo(bigNumber, { backgroundPosition: 'top' }, { backgroundPosition: 'bottom', duration: 0.6, ease: 'power2.out' }, startTime + 0.2);
+            }
+
+            if (railNumber) {
+              scrubTimeline.to(railNumber, { color: '#A84F77', duration: 0.2, ease: 'none' }, startTime);
+            }
+
+            if (index < features.length - 1) {
+              const exitTime = startTime + 1.2;
+              scrubTimeline
+                .to(words, { yPercent: -120, duration: 0.8, stagger: 0.05, ease: 'sine.inOut' }, exitTime)
+                .to(subFeatures, { opacity: 0, y: -30, duration: 0.8, stagger: 0.05, ease: 'sine.inOut' }, exitTime)
+                .set(feature, { opacity: 0 }, exitTime + 0.8 + 0.05 * words.length);
+
+              if (railNumber) {
+                scrubTimeline.to(railNumber, { color: 'rgba(168, 79, 119, 0.28)', duration: 0.2, ease: 'none' }, exitTime);
+              }
+
+              if (bigNumber) {
+                scrubTimeline.to(bigNumber, { backgroundPosition: 'top', duration: 0.6, ease: 'power2.out' }, exitTime);
+              }
+            }
+          });
+
+          const gapDistance = craftNote.offsetTop - craftCopy.offsetTop - craftCopy.offsetHeight - 24;
+
+          if (gapDistance > 0) {
+            gsap.to(craftCopy, {
+              y: gapDistance,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: craftSection,
+                start: 'bottom 100%',
+                end: `+=${gapDistance}`,
+                scrub: true
+              }
+            });
+          }
+        });
+
+        media.add('(max-width: 767px)', () => {
+          const introTimeline = gsap.timeline({
+            scrollTrigger: {
+              trigger: craftSection,
+              start: 'top 78%',
+              toggleActions: 'play none none reverse'
+            }
+          });
+
+          introTimeline
+            .fromTo(craftMobileHeading, { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.65, ease: 'power2.out' }, 0)
+            .fromTo(craftCopy, { y: 24, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.65, ease: 'power2.out' }, 0.12);
+
+          features.forEach((feature) => {
+            gsap.fromTo(
+              feature,
+              { y: 36, autoAlpha: 0 },
+              {
+                y: 0,
+                autoAlpha: 1,
+                duration: 0.72,
+                ease: 'power2.out',
+                scrollTrigger: {
+                  trigger: feature,
+                  start: 'top 88%',
+                  toggleActions: 'play none none reverse'
+                }
+              }
+            );
+          });
+        });
+      });
+    };
+
+    const destroyCraft = (root) => {
+      const sections = root.matches && root.matches('[data-swimdays-home-craft]')
+        ? [root]
+        : Array.from(root.querySelectorAll ? root.querySelectorAll('[data-swimdays-home-craft]') : []);
+
+      sections.forEach((section) => {
+        if (section._swimdaysHomeCraftMedia) {
+          section._swimdaysHomeCraftMedia.revert();
+          delete section._swimdaysHomeCraftMedia;
+        }
+
+        delete section.dataset.swimdaysHomeCraftInit;
+      });
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => initCraft());
+    } else {
+      initCraft();
+    }
+
+    document.addEventListener('shopify:section:load', (event) => {
+      initCraft(event.target);
+    });
+
+    document.addEventListener('shopify:section:unload', (event) => {
+      destroyCraft(event.target);
+    });
+  })();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Swimdays craft",
+  "tag": "section",
+  "class": "shopify-section--swimdays-home-craft",
+  "limit": 1,
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "The Craft"
+    },
+    {
+      "type": "textarea",
+      "id": "copy_text",
+      "label": "Intro copy",
+      "default": "At Swimdays, every suit begins with a simple intention: to feel beautiful, secure, and easy to wear. We design with movement, fit, and long-lasting comfort in mind, so each piece supports the body naturally and feels just as good after hours in the water as it does the moment you put it on."
+    },
+    {
+      "type": "text",
+      "id": "note_text",
+      "label": "Handwritten note",
+      "default": "Made to move with you."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number",
+          "default": "01."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Feature image"
+        },
+        {
+          "type": "text",
+          "id": "title_line_1",
+          "label": "Title line 1",
+          "default": "PERFECT"
+        },
+        {
+          "type": "text",
+          "id": "title_line_2",
+          "label": "Title line 2",
+          "default": "FIT"
+        },
+        {
+          "type": "textarea",
+          "id": "subfeature_1",
+          "label": "Sub-feature 1",
+          "default": "Coverage\noffering designs"
+        },
+        {
+          "type": "textarea",
+          "id": "subfeature_2",
+          "label": "Sub-feature 2",
+          "default": "Contours To\nYour Body"
+        },
+        {
+          "type": "textarea",
+          "id": "subfeature_3",
+          "label": "Sub-feature 3",
+          "default": "Prevents\nAwkward Digging"
+        },
+        {
+          "type": "textarea",
+          "id": "subfeature_4",
+          "label": "Sub-feature 4",
+          "default": "Eliminates\nRiding Up"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Swimdays craft",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "number": "01.",
+            "title_line_1": "PERFECT",
+            "title_line_2": "FIT",
+            "subfeature_1": "Coverage\noffering designs",
+            "subfeature_2": "Contours To\nYour Body",
+            "subfeature_3": "Prevents\nAwkward Digging",
+            "subfeature_4": "Eliminates\nRiding Up"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "number": "02.",
+            "title_line_1": "PREMIUM",
+            "title_line_2": "FABRIC",
+            "subfeature_1": "Thicker fabric\nthat feels rich",
+            "subfeature_2": "Sun\nProtection",
+            "subfeature_3": "Chlorine &\nSalt Resistant",
+            "subfeature_4": "Quick\nDrying"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "number": "03.",
+            "title_line_1": "ARTISANAL",
+            "title_line_2": "",
+            "subfeature_1": "Hand-beaded\nembroidery",
+            "subfeature_2": "Detailed\ncraft",
+            "subfeature_3": "Meticulously\ncreated",
+            "subfeature_4": "Embellished\npieces"
+          }
+        }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "templates": ["index"]
+  }
+}
+{% endschema %}

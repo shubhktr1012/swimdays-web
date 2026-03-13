@@ -1,6 +1,31 @@
 {
   "version": 1,
   "skills": {
+    "brainstorming": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "computedHash": "5cafa1558b0b6bd4d4c71f23d5567b7fcbbcdb4b0a50b0c5f69a80a3cebaf9b8"
+    },
+    "brand-color-psychology": {
+      "source": "mike-coulbourn/claude-vibes",
+      "sourceType": "github",
+      "computedHash": "c1f02c1417e30a9ed2814657a48aae49dce828b2d865f9a2a8a0ed173d20f731"
+    },
+    "creative-intelligence": {
+      "source": "aj-geddes/claude-code-bmad-skills",
+      "sourceType": "github",
+      "computedHash": "6c57f7013d43505323a97956b3e2a20f5ecdf16a8e5e54a467d5f713202ad5fd"
+    },
+    "marketing-ideas": {
+      "source": "coreyhaines31/marketingskills",
+      "sourceType": "github",
+      "computedHash": "6463f11419704994d58248c398b99c6b097eac24f72f4c86bea1565e435e222e"
+    },
+    "multi-agent-brainstorming": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "computedHash": "f9bf20c30cb024116996fccd00e08fdd0bdc43dcd1fde78f45bd215950ff1ab4"
+    },
     "responsive-design": {
       "source": "wshobson/agents",
       "sourceType": "github",
@@ -25,6 +50,16 @@
       "source": "cevatkerim/skills",
       "sourceType": "github",
       "computedHash": "2f124dcb8d877c676c8b03e741c6406180bebf3176a00440e454d587319931ee"
+    },
+    "web-design-guidelines": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "computedHash": "a6a44d5498f7e8f68289902f3dedfc6f38ae0cee1e96527c80724cf27f727c2a"
+    },
+    "writing-plans": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "computedHash": "8c536ae03ef3ab1fa974c0e50a65d803acddf5d4ee7cac68ab25a39b9e338611"
     }
   }
 }

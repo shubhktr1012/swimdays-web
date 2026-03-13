@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swimdays Hero Variants</title>
+  <style>
+    @font-face {
+      font-family: "Swimdays Heading";
+      src: url("../swimdays-theme/assets/Aboreto-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: "Swimdays Subhead";
+      src: url("../swimdays-theme/assets/Poppins-Medium.ttf") format("truetype");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: "Swimdays Body";
+      src: url("../swimdays-theme/assets/PublicSans-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: "Swimdays Accent";
+      src: url("../swimdays-theme/assets/KatherinySignatureFreeReg-j91M0.otf") format("opentype");
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    :root {
+      --deep-ocean: #34565b;
+      --old-rose: #a84f77;
+      --spring-green: #b1bd75;
+      --sky: #adcccc;
+      --blush: #e2bcc9;
+      --ink: #1d1c1b;
+      --surface: #f8f5ef;
+      --gutter: clamp(1rem, 2.6vw, 4.5rem);
+      --section-space: clamp(2rem, 4vw, 4.4rem);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 5% 0%, rgba(173, 204, 204, 0.25), transparent 30%),
+        radial-gradient(circle at 95% 8%, rgba(226, 188, 201, 0.25), transparent 35%),
+        #f3efe7;
+      font-family: "Swimdays Body", sans-serif;
+      overflow-x: clip;
+    }
+
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 0.6rem var(--gutter);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      background: #33555a;
+      border-bottom: 1px solid rgba(225, 236, 234, 0.24);
+      font-family: "Swimdays Subhead", sans-serif;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #e2bcca;
+    }
+
+    .top-bar a {
+      color: #e2bcca;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(226, 188, 202, 0.62);
+    }
+
+    .top-bar a:hover {
+      color: #f4d3df;
+      border-bottom-color: rgba(244, 211, 223, 0.95);
+    }
+
+    .variant {
+      margin: var(--section-space) var(--gutter);
+      border: 1px solid rgba(52, 86, 91, 0.2);
+      border-radius: 22px;
+      overflow: clip;
+      background: #fefcf8;
+      box-shadow: 0 22px 42px rgba(31, 42, 44, 0.08);
+    }
+
+    .variant__label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.9rem 1.15rem;
+      background: rgba(248, 245, 239, 0.88);
+      border-bottom: 1px solid rgba(52, 86, 91, 0.16);
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      font-size: 0.72rem;
+      font-family: "Swimdays Subhead", sans-serif;
+      color: rgba(29, 28, 27, 0.8);
+    }
+
+    .variant__label span:last-child {
+      color: rgba(29, 28, 27, 0.56);
+    }
+
+    .hero {
+      min-height: clamp(30rem, 74vh, 46rem);
+      position: relative;
+      isolation: isolate;
+    }
+
+    .hero-content {
+      max-width: 64ch;
+      padding: clamp(1.6rem, 4vw, 4rem);
+    }
+
+    .eyebrow {
+      margin: 0;
+      font-size: clamp(0.66rem, 0.6rem + 0.2vw, 0.8rem);
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      font-family: "Swimdays Subhead", sans-serif;
+      color: rgba(29, 28, 27, 0.72);
+    }
+
+    h1 {
+      margin: 0.75rem 0 0.9rem;
+      font-family: "Swimdays Heading", serif;
+      font-weight: 400;
+      font-size: clamp(1.8rem, 1.25rem + 2.2vw, 3.5rem);
+      line-height: 1.18;
+      letter-spacing: 0.01em;
+    }
+
+    .hero-copy {
+      margin: 0;
+      font-size: clamp(0.98rem, 0.93rem + 0.2vw, 1.1rem);
+      line-height: 1.6;
+      color: rgba(29, 28, 27, 0.78);
+      max-width: 48ch;
+    }
+
+    .cta-row {
+      margin-top: 1.45rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    .cta {
+      border: 1px solid rgba(52, 86, 91, 0.3);
+      border-radius: 999px;
+      padding: 0.62rem 1rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      font-size: 0.72rem;
+      font-family: "Swimdays Subhead", sans-serif;
+      color: var(--deep-ocean);
+      background: #fff;
+    }
+
+    .cta--primary {
+      color: #f5f3ed;
+      background: var(--deep-ocean);
+      border-color: var(--deep-ocean);
+    }
+
+    .accent-script {
+      margin: 0.55rem 0 0;
+      font-family: "Swimdays Accent", cursive;
+      color: rgba(52, 86, 91, 0.76);
+      font-size: clamp(1.35rem, 1.05rem + 1.1vw, 2.1rem);
+      letter-spacing: 0.02em;
+    }
+
+    .hero--fullbleed {
+      display: grid;
+      align-items: end;
+      background:
+        linear-gradient(120deg, rgba(22, 39, 43, 0.55), rgba(22, 39, 43, 0.26) 52%, rgba(22, 39, 43, 0.5)),
+        radial-gradient(circle at 76% 26%, rgba(173, 204, 204, 0.35), transparent 40%),
+        radial-gradient(circle at 18% 75%, rgba(177, 189, 117, 0.2), transparent 42%),
+        linear-gradient(145deg, #678086, #8da7ab 55%, #5d7277);
+      color: #fbf9f4;
+    }
+
+    .hero--fullbleed .hero-content {
+      padding-bottom: clamp(2.2rem, 6.2vw, 5rem);
+    }
+
+    .hero--fullbleed .eyebrow,
+    .hero--fullbleed .hero-copy {
+      color: rgba(251, 249, 244, 0.84);
+    }
+
+    .hero--fullbleed .accent-script {
+      color: rgba(226, 188, 201, 0.95);
+    }
+
+    .hero--fullbleed .cta {
+      border-color: rgba(251, 249, 244, 0.4);
+      color: #fbf9f4;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .hero--fullbleed .cta--primary {
+      background: #f6f3ec;
+      color: var(--deep-ocean);
+      border-color: #f6f3ec;
+    }
+
+    .hero--split {
+      display: grid;
+      grid-template-columns: 1fr;
+      background: linear-gradient(180deg, #f5f1e8, #f7f4ee);
+    }
+
+    .split-copy {
+      display: grid;
+      place-content: center;
+      border-bottom: 1px solid rgba(52, 86, 91, 0.16);
+    }
+
+    .split-visual {
+      min-height: 22rem;
+      display: grid;
+      place-items: center;
+      position: relative;
+      background:
+        radial-gradient(circle at 74% 24%, rgba(173, 204, 204, 0.45), transparent 45%),
+        radial-gradient(circle at 15% 85%, rgba(226, 188, 201, 0.35), transparent 35%),
+        #e9e4d8;
+    }
+
+    .split-visual::after {
+      content: "";
+      width: min(230px, 40vw);
+      aspect-ratio: 1 / 1;
+      background: url("../swimdays-theme/assets/swimdays_logo.svg") center / contain no-repeat;
+      opacity: 0.2;
+    }
+
+    .split-visual__hint {
+      position: absolute;
+      inset: auto 1rem 1rem auto;
+      border: 1px solid rgba(52, 86, 91, 0.22);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.75);
+      padding: 0.28rem 0.6rem;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-family: "Swimdays Subhead", sans-serif;
+      color: rgba(29, 28, 27, 0.65);
+    }
+
+    .hero--collage {
+      background: linear-gradient(180deg, #f4efe5, #f8f3ea);
+      padding: clamp(1rem, 2vw, 1.7rem);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .collage-stage {
+      min-height: clamp(24rem, 56vh, 38rem);
+      border-radius: 18px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 12% 15%, rgba(177, 189, 117, 0.42), transparent 40%),
+        radial-gradient(circle at 86% 20%, rgba(173, 204, 204, 0.45), transparent 44%),
+        radial-gradient(circle at 68% 82%, rgba(226, 188, 201, 0.45), transparent 45%),
+        linear-gradient(180deg, #ede5d8, #f3ecdf);
+      border: 1px solid rgba(52, 86, 91, 0.18);
+    }
+
+    .collage-stage::before {
+      content: "";
+      position: absolute;
+      inset: 1rem;
+      border-radius: 14px;
+      border: 1px dashed rgba(52, 86, 91, 0.22);
+      pointer-events: none;
+    }
+
+    .collage-tag {
+      position: absolute;
+      inset: 1rem auto auto 1rem;
+      z-index: 3;
+      border: 1px solid rgba(52, 86, 91, 0.25);
+      border-radius: 999px;
+      padding: 0.25rem 0.65rem;
+      font-size: 0.64rem;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      font-family: "Swimdays Subhead", sans-serif;
+      background: rgba(255, 255, 255, 0.72);
+      color: rgba(29, 28, 27, 0.76);
+    }
+
+    .tile {
+      position: absolute;
+      border-radius: 14px;
+      border: 1px solid rgba(52, 86, 91, 0.2);
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(1px);
+      box-shadow: 0 12px 24px rgba(31, 42, 44, 0.08);
+      overflow: hidden;
+    }
+
+    .tile::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(142deg, rgba(52, 86, 91, 0.26), rgba(52, 86, 91, 0) 58%),
+        radial-gradient(circle at 84% 24%, rgba(226, 188, 201, 0.4), transparent 45%),
+        radial-gradient(circle at 18% 80%, rgba(173, 204, 204, 0.33), transparent 45%),
+        #f5f1e8;
+    }
+
+    .tile::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("../swimdays-theme/assets/swimdays_favicon.svg") center / 26% no-repeat;
+      opacity: 0.14;
+    }
+
+    .tile--a {
+      inset: 14% auto auto 8%;
+      width: clamp(185px, 36vw, 460px);
+      height: clamp(140px, 22vw, 320px);
+      background:
+        linear-gradient(145deg, rgba(52, 86, 91, 0.24), rgba(52, 86, 91, 0) 65%),
+        rgba(255, 255, 255, 0.6);
+      transform: rotate(-2.8deg);
+      z-index: 1;
+    }
+
+    .tile--b {
+      inset: 12% 8% auto auto;
+      width: clamp(124px, 23vw, 280px);
+      height: clamp(170px, 25vw, 360px);
+      background:
+        linear-gradient(130deg, rgba(168, 79, 119, 0.22), rgba(168, 79, 119, 0) 62%),
+        rgba(255, 255, 255, 0.56);
+      transform: rotate(3.2deg);
+      z-index: 2;
+    }
+
+    .tile--c {
+      inset: auto auto 8% 12%;
+      width: clamp(170px, 34vw, 420px);
+      height: clamp(110px, 15vw, 200px);
+      background:
+        linear-gradient(160deg, rgba(173, 204, 204, 0.35), rgba(173, 204, 204, 0) 68%),
+        rgba(255, 255, 255, 0.62);
+      transform: rotate(1.3deg);
+      z-index: 3;
+    }
+
+    .tile--d {
+      inset: auto 8% 12% auto;
+      width: clamp(122px, 22vw, 280px);
+      height: clamp(120px, 17vw, 220px);
+      transform: rotate(-3.6deg);
+      z-index: 4;
+    }
+
+    .tile__caption {
+      position: absolute;
+      inset: auto 0 0 0;
+      z-index: 4;
+      padding: 0.44rem 0.55rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-family: "Swimdays Subhead", sans-serif;
+      color: rgba(29, 28, 27, 0.77);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.88));
+    }
+
+    .collage-note {
+      position: absolute;
+      inset: 44% 8% auto auto;
+      z-index: 5;
+      max-width: 28ch;
+      padding: 0.7rem 0.8rem;
+      border: 1px solid rgba(52, 86, 91, 0.22);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.76);
+      box-shadow: 0 8px 18px rgba(31, 42, 44, 0.08);
+      font-size: 0.68rem;
+      line-height: 1.45;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-family: "Swimdays Subhead", sans-serif;
+      color: rgba(29, 28, 27, 0.68);
+    }
+
+    .collage-copy {
+      border: 1px solid rgba(52, 86, 91, 0.18);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.62);
+    }
+
+    @media (min-width: 900px) {
+      .hero--split {
+        grid-template-columns: 1.06fr 1fr;
+      }
+
+      .split-copy {
+        border-bottom: 0;
+        border-right: 1px solid rgba(52, 86, 91, 0.16);
+      }
+
+      .hero--collage {
+        grid-template-columns: 1.18fr 0.92fr;
+      }
+
+      .collage-stage {
+        min-height: clamp(24rem, 52vh, 37rem);
+      }
+
+      .collage-copy {
+        display: grid;
+        place-content: center;
+      }
+
+      .tile--a {
+        inset: 14% auto auto 9%;
+      }
+
+      .tile--b {
+        inset: 11% 10% auto auto;
+      }
+
+      .tile--c {
+        inset: auto auto 10% 16%;
+      }
+
+      .tile--d {
+        inset: auto 12% 12% auto;
+      }
+
+      .collage-note {
+        inset: 43% 11% auto auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <span>Hero Exploration • 3 Directions</span>
+    <a href="./swimdays-home-wireframe.html">Back to Main Wireframe</a>
+  </div>
+
+  <section class="variant">
+    <div class="variant__label">
+      <span>Option 1 • Full-Bleed Cinematic</span>
+      <span>Safest for native Liquid/Atelier</span>
+    </div>
+    <div class="hero hero--fullbleed">
+      <div class="hero-content">
+        <p class="eyebrow">Spring Resort 2026</p>
+        <h1>For mornings that begin where water meets light.</h1>
+        <p class="hero-copy">Brand mood first, with immediate commerce direction. A single powerful media asset can carry this layout.</p>
+        <p class="accent-script">Swimdays Studio</p>
+        <div class="cta-row">
+          <a class="cta cta--primary" href="#">Shop now</a>
+          <a class="cta" href="#">View Story</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="variant">
+    <div class="variant__label">
+      <span>Option 2 • Split Editorial</span>
+      <span>Best balance of creativity + conversion</span>
+    </div>
+    <div class="hero hero--split">
+      <div class="split-copy hero-content">
+        <p class="eyebrow">Editorial + Shop Intent</p>
+        <h1>Minimal luxury swimwear, framed for modern travel.</h1>
+        <p class="hero-copy">Most controllable layout for Shopify content blocks. Text hierarchy stays clear while visual side remains expressive.</p>
+        <p class="accent-script">Designed in calm, worn with confidence.</p>
+        <div class="cta-row">
+          <a class="cta cta--primary" href="#">Shop now</a>
+          <a class="cta" href="#">Explore Lookbook</a>
+        </div>
+      </div>
+      <div class="split-visual" aria-hidden="true">
+        <span class="split-visual__hint">Media Panel</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="variant">
+    <div class="variant__label">
+      <span>Option 3 • Asymmetric Collage</span>
+      <span>Most custom, but still block-friendly in Liquid</span>
+    </div>
+    <div class="hero hero--collage">
+      <div class="collage-stage" aria-hidden="true">
+        <span class="collage-tag">Campaign Board</span>
+        <div class="tile tile--a"><span class="tile__caption">Main Editorial Frame</span></div>
+        <div class="tile tile--b"><span class="tile__caption">Portrait Layer</span></div>
+        <div class="tile tile--c"><span class="tile__caption">Texture Detail</span></div>
+        <div class="tile tile--d"><span class="tile__caption">Palette Snapshot</span></div>
+        <p class="collage-note">A modular collage that can map to 4 image blocks + 1 note block in a custom section.</p>
+      </div>
+      <div class="collage-copy hero-content">
+        <p class="eyebrow">Creative-first Option</p>
+        <h1>A campaign collage that feels crafted, not templated.</h1>
+        <p class="hero-copy">This pass pushes stronger hierarchy and movement while staying practical: each card can become an image block with optional caption in Liquid.</p>
+        <p class="accent-script">Collection stories, composed like print.</p>
+        <div class="cta-row">
+          <a class="cta cta--primary" href="#">Shop now</a>
+          <a class="cta" href="#">See Details</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
