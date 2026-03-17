@@ -11,3 +11,8 @@ shopify-theme/
 # Shopify CLI
 .shopify-cli/
 .env
+
+# Local Shopify theme backups and pull mirrors
+swimdays-atelier-theme.backup-*/
+swimdays-atelier-theme.remote-pull/
+theme-remote-diff.txt

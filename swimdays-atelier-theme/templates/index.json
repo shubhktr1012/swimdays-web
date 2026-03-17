@@ -14,21 +14,21 @@
       "settings": {
         "background_image": "shopify://shop_images/mink-mingle-AlEyuIKuSmc-unsplash.jpg",
         "hero_link": "",
-        "poster_1_image": "shopify://shop_images/WhatsApp_Image_2026-03-13_at_21.01.59.jpg",
+        "poster_1_image": "shopify://shop_images/WhatsApp_Image_2026-02-27_at_13.47.44_1.jpg",
         "poster_1_link": "shopify://products/cove-swim-leggings",
         "poster_1_club": "Cove Collection",
-        "poster_1_title": "The Swim Legging",
+        "poster_1_title": "The Swim Leggings",
         "poster_1_shop_now": "Shop now",
         "poster_1_footer_left": "Swimdays Club",
         "poster_1_footer_right": "Summer 2026",
-        "poster_2_image": "shopify://shop_images/Screenshot_2026-03-13_at_10.23.13_AM.png",
+        "poster_2_image": "shopify://shop_images/WhatsApp_Image_2026-03-13_at_10.21.32.png",
         "poster_2_link": "shopify://products/moss-halter-swim-dress",
         "poster_2_club": "Moss Collection",
         "poster_2_title": "The Halter Swim Dress",
         "poster_2_shop_now": "Shop now",
         "poster_2_footer_left": "Swimdays Club",
         "poster_2_footer_right": "Summer 2026",
-        "poster_3_image": "shopify://shop_images/5M5A0708_copy.jpg",
+        "poster_3_image": "shopify://shop_images/WhatsApp_Image_2026-03-12_at_13.15.35_2.jpg",
         "poster_3_link": "shopify://products/cove-full-sleeves-bodysuit",
         "poster_3_club": "Cove Collection",
         "poster_3_title": "The Full Sleeves Bodysuit",
@@ -52,7 +52,9 @@
       "type": "swimdays-home-collections",
       "settings": {
         "left_collection": "moss",
+        "left_image": "shopify://shop_images/WhatsApp_Image_2026-02-27_at_13.47.43_1.jpg",
         "right_collection": "cove",
+        "right_image": "shopify://shop_images/WhatsApp_Image_2026-02-27_at_13.47.44_1.jpg",
         "shop_now_label": "Shop Now"
       }
     },
@@ -65,10 +67,10 @@
         "collection_1": "bodysuits",
         "badge_style_1": "none",
         "badge_text_1": "New Arrival",
-        "collection_2": "halter-swim-dresses",
+        "collection_2": "halter-swim-dress",
         "badge_style_2": "none",
         "badge_text_2": "",
-        "collection_3": "wrap-tulip-skirts",
+        "collection_3": "wrao-tulip-skirt",
         "badge_style_3": "none",
         "badge_text_3": "Bestseller",
         "collection_4": "swim-leggings",
@@ -86,7 +88,7 @@
           "type": "feature",
           "settings": {
             "number": "01.",
-            "image": "shopify://shop_images/Screenshot_2026-03-13_at_10.23.13_AM.png",
+            "image": "shopify://shop_images/WhatsApp_Image_2026-03-14_at_10.31.38_da5d1e7d-3ea5-4d66-b77e-c6b70dc7694e.jpg",
             "title_line_1": "PERFECT",
             "title_line_2": "FIT",
             "subfeature_1": "Coverage\noffering designs",
@@ -112,7 +114,7 @@
           "type": "feature",
           "settings": {
             "number": "03.",
-            "image": "shopify://shop_images/Screenshot_2026-03-13_at_10.28.17_AM.png",
+            "image": "shopify://shop_images/IMG-9336.png",
             "title_line_1": "ARTISANAL",
             "title_line_2": "",
             "subfeature_1": "Hand-beaded\nembroidery",
@@ -144,6 +146,319 @@
         "view_all_label": "View All",
         "shop_now_label": "Quick Add"
       }
+    },
+    "section_t4m8BJ": {
+      "type": "section",
+      "blocks": {
+        "image_Fd6UQn": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/blog1.jpg",
+            "link": "",
+            "image_ratio": "landscape",
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "group_7UQqdb": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "custom",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_qzjjXM": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h2>Swimblogs</h2>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h3",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground-heading)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_m4DTj6": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Coming Soon...</p>",
+                "width": "fit-content",
+                "max_width": "narrow",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "button_d9gGaa": {
+              "type": "button",
+              "settings": {
+                "label": "Continue Shopping",
+                "link": "shopify://collections/all",
+                "open_in_new_tab": false,
+                "style_class": "button",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_qzjjXM",
+            "text_m4DTj6",
+            "button_d9gGaa"
+          ]
+        }
+      },
+      "block_order": [
+        "image_Fd6UQn",
+        "group_7UQqdb"
+      ],
+      "disabled": true,
+      "name": "t:names.image_with_text",
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 32,
+        "section_width": "page-width",
+        "section_height": "small",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "featured_blog_posts_gCMjPe": {
+      "type": "featured-blog-posts",
+      "blocks": {
+        "static-blog-title": {
+          "type": "_featured-blog-posts-title",
+          "name": "t:names.title",
+          "static": true,
+          "settings": {
+            "text": "<h3>{{ closest.blog.title }}</h3>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "static-blog-post-card": {
+          "type": "_featured-blog-posts-card",
+          "name": "t:names.blog_card",
+          "static": true,
+          "settings": {
+            "alignment": "left",
+            "gap": 12,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "image": {
+              "type": "_featured-blog-posts-image",
+              "static": true,
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0
+              },
+              "blocks": {}
+            },
+            "title": {
+              "type": "_heading",
+              "name": "t:names.title",
+              "static": true,
+              "settings": {
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "text": "<h4>{{ closest.article.title }}</h4>",
+                "read_only": false,
+                "alignment": "left",
+                "show_alignment": false,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "blog-post-info-text": {
+              "type": "_blog-post-info-text",
+              "name": "t:names.details",
+              "static": true,
+              "settings": {
+                "show_date": true,
+                "show_author": false,
+                "type_preset": "",
+                "alignment": "left",
+                "show_alignment": false,
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              },
+              "blocks": {}
+            },
+            "blog-post-description": {
+              "type": "_blog-post-description",
+              "name": "t:names.excerpt",
+              "static": true,
+              "settings": {
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 8,
+                "padding-block-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": []
+        }
+      },
+      "name": "t:names.blog_posts_carousel",
+      "settings": {
+        "blog": "swimblogs",
+        "layout_type": "grid",
+        "carousel_on_mobile": true,
+        "post_limit": 2,
+        "columns": 1,
+        "mobile_columns": "2",
+        "mobile_card_size": "60cqw",
+        "columns_gap": 8,
+        "rows_gap": 16,
+        "icons_style": "arrow",
+        "icons_shape": "circle",
+        "section_width": "page-width",
+        "gap": 12,
+        "color_scheme": "scheme-3",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
     }
   },
   "order": [
@@ -152,6 +467,8 @@
     "swimdays_home_collections",
     "swimdays_home_categories",
     "swimdays_home_craft",
-    "swimdays_home_shop_all_products"
+    "swimdays_home_shop_all_products",
+    "section_t4m8BJ",
+    "featured_blog_posts_gCMjPe"
   ]
 }

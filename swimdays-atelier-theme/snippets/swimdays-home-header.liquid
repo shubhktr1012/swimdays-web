@@ -15,8 +15,8 @@
   if primary_menu == blank
     assign primary_menu = linklists['main-menu']
   endif
-  assign announcement_text_primary = announcement_text_primary | default: 'Free Worldwide Shipping'
-  assign announcement_text_secondary = announcement_text_secondary | default: 'On Orders Over $150'
+  assign announcement_text_primary = announcement_text_primary | default: 'Free India-Wide Shipping'
+  assign announcement_text_secondary = announcement_text_secondary | default: ''
   assign announcement_link_label = announcement_link_label | default: 'Shop now'
   assign announcement_link_url = announcement_link_url | default: routes.all_products_collection_url
 %}
@@ -122,7 +122,7 @@
 
       <div class="navbar-center">
         <a href="{{ routes.root_url }}" aria-label="Swimdays home">
-          {% if settings.logo != blank %}
+          {% if settings.logo != blank and settings.logo.width != blank %}
             {{ settings.logo | image_url: width: 260 | image_tag: class: 'navbar-logo', alt: shop.name }}
           {% else %}
             <span class="navbar-wordmark">{{ shop.name }}</span>

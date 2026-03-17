@@ -10,6 +10,9 @@
 {
   "current": {
     "logo": "shopify://shop_images/swimdays-logo-black.png",
+    "logo_inverse": "shopify://shop_images/swimdays-logo-white.png",
+    "logo_height_mobile": 24,
+    "favicon": "shopify://shop_images/blue_favicon.png",
     "type_body_font": "red_hat_text_n4",
     "type_subheading_font": "newsreader_n2",
     "type_heading_font": "newsreader_n2",
@@ -46,7 +49,8 @@
     "cart_type": "drawer",
     "cart_price_font": "primary",
     "show_add_discount_code": false,
-    "icon_stroke": "thin",
+    "cart_thumbnail_border": "none",
+    "icon_stroke": "default",
     "input_border_width": 1,
     "inputs_border_radius": 0,
     "popover_border_radius": 0,
@@ -65,7 +69,7 @@
       "swimdays-home-header": {
         "type": "swimdays-home-header",
         "settings": {
-          "primary_menu": "",
+          "primary_menu": "main-menu",
           "announcement_text_primary": "Free India-Wide Shipping",
           "announcement_text_secondary": "",
           "announcement_link_label": "Shop now",

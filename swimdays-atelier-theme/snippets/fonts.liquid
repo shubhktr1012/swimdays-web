@@ -1,42 +1,46 @@
 {% # theme-check-disable %}
-{%- unless settings.type_body_font.system? -%}
+{%- assign body_font = settings.type_body_font -%}
+{%- if body_font != blank and body_font.family != blank and body_font.system? == false -%}
   <link
     rel="preload"
     as="font"
-    href="{{ settings.type_body_font | font_url }}"
+    href="{{ body_font | font_url }}"
     type="font/woff2"
     crossorigin
     fetchpriority="low"
   >
-{%- endunless -%}
-{%- unless settings.type_subheading_font.system? -%}
+{%- endif -%}
+{%- assign subheading_font = settings.type_subheading_font -%}
+{%- if subheading_font != blank and subheading_font.family != blank and subheading_font.system? == false -%}
   <link
     rel="preload"
     as="font"
-    href="{{ settings.type_subheading_font | font_url }}"
+    href="{{ subheading_font | font_url }}"
     type="font/woff2"
     crossorigin
     fetchpriority="low"
   >
-{%- endunless -%}
-{%- unless settings.type_heading_font.system? -%}
+{%- endif -%}
+{%- assign heading_font = settings.type_heading_font -%}
+{%- if heading_font != blank and heading_font.family != blank and heading_font.system? == false -%}
   <link
     rel="preload"
     as="font"
-    href="{{ settings.type_heading_font | font_url }}"
+    href="{{ heading_font | font_url }}"
     type="font/woff2"
     crossorigin
     fetchpriority="low"
   >
-{%- endunless -%}
-{%- unless settings.type_accent_font.system? -%}
+{%- endif -%}
+{%- assign accent_font = settings.type_accent_font -%}
+{%- if accent_font != blank and accent_font.family != blank and accent_font.system? == false -%}
   <link
     rel="preload"
     as="font"
-    href="{{ settings.type_accent_font | font_url }}"
+    href="{{ accent_font | font_url }}"
     type="font/woff2"
     crossorigin
     fetchpriority="low"
   >
-{%- endunless -%}
+{%- endif -%}
 {% # theme-check-enable %}
