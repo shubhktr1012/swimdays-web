@@ -1,4 +1,8 @@
-
+{% liquid
+  assign byline_metafield = article.metafields.custom.byline
+  assign custom_byline = byline_metafield.value | default: byline_metafield | default: 'Team Swimdays'
+  assign custom_byline = custom_byline | strip
+%}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <div class="section color-{{ section.settings.color_scheme }}">
@@ -7,6 +11,7 @@
       spacing-style
       layout-panel-flex
       layout-panel-flex--column
+      blog-post-shell
       section-content-wrapper
       mobile-column
     "
@@ -15,15 +20,50 @@
       {% render 'spacing-style', settings: section.settings %}
     "
   >
-    <header>
+    <header class="blog-post-header">
       {%- content_for 'block', id: 'blog-post-title', type: 'text' %}
       {%- content_for 'block', id: 'blog-post-details', type: '_blog-post-info-text' %}
+
+      {% if custom_byline != blank %}
+        <p class="blog-post-byline">{{ custom_byline }}</p>
+      {% endif %}
     </header>
 
     {%- if article.image -%}
       {%- content_for 'block', id: 'blog-post-image', type: '_blog-post-featured-image' %}
     {%- endif -%}
     {%- content_for 'block', id: 'blog-post-content', type: '_blog-post-content' %}
+
+    {% liquid
+      assign cta_primary_url = section.settings.cta_primary_link | default: collections['moss'].url
+      assign cta_secondary_url = section.settings.cta_secondary_link | default: collections['cove'].url
+    %}
+
+    {% if section.settings.show_soft_cta %}
+      <aside class="blog-post-soft-cta">
+        {% if section.settings.cta_heading != blank %}
+          <h2 class="blog-post-soft-cta__heading">{{ section.settings.cta_heading }}</h2>
+        {% endif %}
+
+        {% if section.settings.cta_body != blank %}
+          <p class="blog-post-soft-cta__body">{{ section.settings.cta_body }}</p>
+        {% endif %}
+
+        <div class="blog-post-soft-cta__actions">
+          {% if section.settings.cta_primary_label != blank %}
+            <a href="{{ cta_primary_url }}" class="blog-post-soft-cta__button blog-post-soft-cta__button--primary">
+              {{ section.settings.cta_primary_label }}
+            </a>
+          {% endif %}
+
+          {% if section.settings.cta_secondary_label != blank %}
+            <a href="{{ cta_secondary_url }}" class="blog-post-soft-cta__button blog-post-soft-cta__button--secondary">
+              {{ section.settings.cta_secondary_label }}
+            </a>
+          {% endif %}
+        </div>
+      </aside>
+    {% endif %}
 
     {% comment %} Dynamic area for @app blocks only, at the bottom {% endcomment %}
     {% content_for 'blocks' %}
@@ -64,6 +104,93 @@
 </script>
 
 {% stylesheet %}
+  .blog-post-shell {
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  .blog-post-shell > .blog-post-header {
+    width: 100%;
+    max-width: min(42rem, calc(100vw - 2rem));
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .blog-post-byline {
+    margin: 0.75rem 0 0;
+    font-size: 0.98rem;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    color: rgb(var(--color-foreground-rgb) / 0.78);
+  }
+
+  .blog-post-shell > .blog-post-featured-image {
+    width: 100%;
+    max-width: min(44rem, calc(100vw - 2rem));
+    margin: 0 auto;
+  }
+
+  .blog-post-shell > .blog-post-content {
+    width: 100%;
+  }
+
+  .blog-post-soft-cta {
+    width: 100%;
+    max-width: min(48rem, calc(100vw - 2rem));
+    margin: clamp(1rem, 2vw, 1.5rem) auto 0;
+    padding: clamp(1.5rem, 3vw, 2.4rem);
+    border: 1px solid rgb(var(--color-foreground-rgb) / 0.12);
+    background: linear-gradient(180deg, rgb(var(--color-background-rgb) / 0.96), rgb(var(--color-background-rgb) / 0.88));
+    text-align: center;
+  }
+
+  .blog-post-soft-cta__heading {
+    margin: 0 0 0.75rem;
+  }
+
+  .blog-post-soft-cta__body {
+    margin: 0 auto 1.4rem;
+    max-width: 34rem;
+    line-height: 1.7;
+    color: rgb(var(--color-foreground-rgb) / 0.78);
+  }
+
+  .blog-post-soft-cta__actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .blog-post-soft-cta__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 9.5rem;
+    padding: 0.9rem 1.35rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .blog-post-soft-cta__button--primary {
+    background: #34565b;
+    color: #f7f6f2;
+  }
+
+  .blog-post-soft-cta__button--primary:hover {
+    background: #284449;
+    color: #f7f6f2;
+  }
+
+  .blog-post-soft-cta__button--secondary {
+    border: 1px solid rgb(var(--color-foreground-rgb) / 0.16);
+    color: var(--color-foreground);
+  }
+
+  .blog-post-soft-cta__button--secondary:hover {
+    border-color: #a84f77;
+    color: #a84f77;
+  }
+
   .blog-post-comments-container {
     width: 100%;
     max-width: var(--normal-content-width);
@@ -177,6 +304,50 @@
       "step": 1,
       "unit": "px",
       "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Bottom call to action"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_soft_cta",
+      "label": "Show soft CTA",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cta_heading",
+      "label": "CTA heading",
+      "default": "Explore the collections"
+    },
+    {
+      "type": "textarea",
+      "id": "cta_body",
+      "label": "CTA body",
+      "default": "Discover the silhouettes, colours, and details that inspired this story."
+    },
+    {
+      "type": "text",
+      "id": "cta_primary_label",
+      "label": "Primary CTA label",
+      "default": "Shop Moss"
+    },
+    {
+      "type": "url",
+      "id": "cta_primary_link",
+      "label": "Primary CTA link"
+    },
+    {
+      "type": "text",
+      "id": "cta_secondary_label",
+      "label": "Secondary CTA label",
+      "default": "Shop Cove"
+    },
+    {
+      "type": "url",
+      "id": "cta_secondary_link",
+      "label": "Secondary CTA link"
     }
   ],
   "presets": []

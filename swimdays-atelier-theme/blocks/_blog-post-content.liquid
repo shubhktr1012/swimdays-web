@@ -1,15 +1,151 @@
 
+{% liquid
+  assign structured_sections_metafield = article.metafields.custom.swimblog_sections
+  assign structured_sections = structured_sections_metafield.value | default: structured_sections_metafield
+%}
 
 <div class="blog-post-content rte">
-  <rte-formatter>
-    {{ article.content }}
-  </rte-formatter>
+  {% if structured_sections != blank %}
+    <div class="blog-post-structured-sections">
+      {% for swimblog_section in structured_sections %}
+        {% liquid
+          assign section_heading_metafield = swimblog_section.heading | default: swimblog_section.subheading
+          assign section_heading = section_heading_metafield.value | default: section_heading_metafield
+          assign section_body_metafield = swimblog_section.body | default: swimblog_section.content
+          assign section_body = section_body_metafield.value | default: section_body_metafield
+          assign section_image_metafield = swimblog_section.image | default: swimblog_section.media
+          assign section_image = section_image_metafield.value | default: section_image_metafield
+        %}
+
+        {% if section_heading != blank or section_body_metafield != blank or section_body != blank or section_image != blank %}
+          <section class="blog-post-structured-section">
+            {% if section_heading != blank %}
+              <h2 class="blog-post-structured-section__heading">{{ section_heading }}</h2>
+            {% endif %}
+
+            {% if section_image != blank %}
+              <figure class="blog-post-structured-section__media">
+                {{
+                  section_image
+                  | image_url: width: 1800
+                  | image_tag:
+                    loading: 'lazy',
+                    class: 'blog-post-structured-section__image',
+                    widths: '480, 720, 960, 1200, 1440, 1800',
+                    sizes: '(min-width: 990px) min(44rem, 100vw - 2rem), calc(100vw - 2rem)'
+                }}
+              </figure>
+            {% endif %}
+
+            {% if section_body_metafield != blank %}
+              <div class="blog-post-structured-section__body rte">
+                {{ section_body_metafield | metafield_tag }}
+              </div>
+            {% elsif section_body != blank %}
+              <div class="blog-post-structured-section__body rte">
+                <p>{{ section_body | newline_to_br }}</p>
+              </div>
+            {% endif %}
+          </section>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <rte-formatter>
+      {{ article.content }}
+    </rte-formatter>
+  {% endif %}
 </div>
 
 {% stylesheet %}
   .blog-post-content {
-    max-width: var(--normal-content-width);
+    max-width: min(42rem, calc(100vw - 2rem));
     margin: 0 auto;
+  }
+
+  .blog-post-content > rte-formatter {
+    display: block;
+  }
+
+  .blog-post-structured-sections {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2rem, 4vw, 3rem);
+  }
+
+  .blog-post-structured-section__heading {
+    margin-top: 0;
+  }
+
+  .blog-post-structured-section__body > :last-child {
+    margin-bottom: 0;
+  }
+
+  .blog-post-content p {
+    margin: 0 0 clamp(1rem, 1.6vw, 1.4rem);
+    line-height: 1.8;
+  }
+
+  .blog-post-content h2,
+  .blog-post-content h3,
+  .blog-post-content h4 {
+    margin: clamp(2rem, 4vw, 3rem) 0 clamp(0.9rem, 1.8vw, 1.2rem);
+    line-height: 1.2;
+  }
+
+  .blog-post-content img,
+  .blog-post-content figure {
+    display: block;
+    width: min(calc(100% + 6rem), 52rem);
+    max-width: calc(100vw - 2rem);
+    margin: clamp(1rem, 2vw, 1.4rem) auto clamp(1.5rem, 2.8vw, 2rem);
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .blog-post-content img {
+    height: auto;
+  }
+
+  .blog-post-content figure img {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    position: static;
+    transform: none;
+  }
+
+  .blog-post-content figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    text-align: center;
+    color: rgb(var(--color-foreground-rgb) / 0.72);
+  }
+
+  .blog-post-content a {
+    color: #a84f77;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.14em;
+  }
+
+  .blog-post-content a:hover {
+    color: #8f3d63;
+  }
+
+  @media screen and (max-width: 749px) {
+    .blog-post-content {
+      max-width: calc(100vw - 2rem);
+    }
+
+    .blog-post-content img,
+    .blog-post-content figure {
+      width: 100%;
+      max-width: 100%;
+      left: auto;
+      transform: none;
+    }
   }
 {% endstylesheet %}
 
