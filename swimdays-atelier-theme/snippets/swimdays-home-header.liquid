@@ -156,12 +156,12 @@
         </a>
 
         <a class="badge-wrapper" href="{{ routes.cart_url }}" aria-label="Cart with {{ cart.item_count }} items">
-          <span class="navbar-icon" aria-hidden="true">
+          <span class="navbar-icon navbar-icon--cart" aria-hidden="true">
             {{ 'icon-cart.svg' | inline_asset_content }}
+            {% if cart.item_count > 0 %}
+              <span class="icon-badge">{{ cart.item_count }}</span>
+            {% endif %}
           </span>
-          {% if cart.item_count > 0 %}
-            <span class="icon-badge">{{ cart.item_count }}</span>
-          {% endif %}
         </a>
       </div>
 
@@ -222,6 +222,8 @@
     --navbar-height: clamp(60px, 7vw, 72px);
     --navbar-height-scrolled: clamp(52px, 6vw, 58px);
     --announcement-height: 2rem;
+    --navbar-safe-zone: 0px;
+    --navbar-flower-edge-offset: -18px;
     position: relative;
     z-index: 40;
   }
@@ -359,12 +361,12 @@
 
   .swimdays-home-header .navbar-flower-img.top-left {
     top: -18px;
-    left: -18px;
+    left: var(--navbar-flower-edge-offset);
   }
 
   .swimdays-home-header .navbar-flower-img.bottom-right {
     bottom: -18px;
-    right: -18px;
+    right: var(--navbar-flower-edge-offset);
   }
 
   body.announcement-hidden .swimdays-home-header .navbar-flower-img {
@@ -388,6 +390,8 @@
   .swimdays-home-header .navbar-inner {
     width: var(--container);
     margin: 0 auto;
+    box-sizing: border-box;
+    padding-inline: var(--navbar-safe-zone);
     height: 100%;
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
@@ -590,6 +594,11 @@
     flex: 0 0 auto;
   }
 
+  .swimdays-home-header .navbar-icon--cart {
+    position: relative;
+    overflow: visible;
+  }
+
   .swimdays-home-header .badge-wrapper {
     position: relative;
     display: flex;
@@ -598,8 +607,8 @@
 
   .swimdays-home-header .icon-badge {
     position: absolute;
-    top: -6px;
-    right: -8px;
+    top: -5px;
+    right: -5px;
     border: 1px solid currentColor;
     color: currentColor;
     font-family: "Swimdays Subhead", sans-serif;
@@ -721,6 +730,13 @@
     font-size: 12px;
     letter-spacing: 1px;
     color: var(--navbar-content);
+  }
+
+  @media screen and (min-width: 960px) and (max-width: 1439px) {
+    .swimdays-home-header {
+      --navbar-safe-zone: clamp(18px, 2vw, 28px);
+      --navbar-flower-edge-offset: -30px;
+    }
   }
 
   @container navbar (min-width: 960px) {
