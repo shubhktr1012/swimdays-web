@@ -85,9 +85,16 @@
       "settings": {
         "content_direction": "column",
         "gap": 40,
-        "color_scheme": "scheme-3",
+        "color_scheme": "scheme-1",
         "padding-block-start": 48,
-        "padding-block-end": 96
+        "padding-block-end": 96,
+        "show_soft_cta": true,
+        "cta_heading": "Explore the collections",
+        "cta_body": "Discover the silhouettes, colours, and details that inspired this story.",
+        "cta_primary_label": "Shop Moss",
+        "cta_primary_link": "",
+        "cta_secondary_label": "Shop Cove",
+        "cta_secondary_link": ""
       }
     }
   },
