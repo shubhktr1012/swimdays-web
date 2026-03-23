@@ -1,0 +1,77 @@
+{%- liquid
+  assign key = key | default: ''
+  assign class = class | default: ''
+  assign alt = alt | default: ''
+  assign sizes = sizes | default: '100vw'
+  assign loading = loading | default: 'lazy'
+  assign fetchpriority = fetchpriority | default: 'auto'
+  assign style = style | default: ''
+
+  assign src = blank
+  assign srcset = blank
+  assign width = blank
+  assign height = blank
+
+  case key
+    when 'home-hero-bg'
+      assign src_960 = 'swimdays-home-hero-bg-960.webp' | asset_url
+      assign src_1440 = 'swimdays-home-hero-bg-1440.webp' | asset_url
+      assign src_1920 = 'swimdays-home-hero-bg-1920.webp' | asset_url
+      assign src = src_1440
+      assign srcset = src_960 | append: ' 960w, ' | append: src_1440 | append: ' 1440w, ' | append: src_1920 | append: ' 1920w'
+      assign width = 1920
+      assign height = 1280
+    when 'home-poster-cove'
+      assign src_480 = 'swimdays-home-poster-cove-480.webp' | asset_url
+      assign src_720 = 'swimdays-home-poster-cove-720.webp' | asset_url
+      assign src_960 = 'swimdays-home-poster-cove-960.webp' | asset_url
+      assign src_1200 = 'swimdays-home-poster-cove-1200.webp' | asset_url
+      assign src = src_960
+      assign srcset = src_480 | append: ' 480w, ' | append: src_720 | append: ' 720w, ' | append: src_960 | append: ' 960w, ' | append: src_1200 | append: ' 1200w'
+      assign width = 1200
+      assign height = 1799
+    when 'home-poster-moss'
+      assign src_480 = 'swimdays-home-poster-moss-480.jpg' | asset_url
+      assign src_720 = 'swimdays-home-poster-moss-720.jpg' | asset_url
+      assign src_960 = 'swimdays-home-poster-moss-960.jpg' | asset_url
+      assign src = src_720
+      assign srcset = src_480 | append: ' 480w, ' | append: src_720 | append: ' 720w, ' | append: src_960 | append: ' 960w'
+      assign width = 960
+      assign height = 1147
+    when 'craft-artisanal'
+      assign src_480 = 'swimdays-craft-artisanal-480.webp' | asset_url
+      assign src_720 = 'swimdays-craft-artisanal-720.webp' | asset_url
+      assign src_960 = 'swimdays-craft-artisanal-960.webp' | asset_url
+      assign src_1200 = 'swimdays-craft-artisanal-1200.webp' | asset_url
+      assign src = src_960
+      assign srcset = src_480 | append: ' 480w, ' | append: src_720 | append: ' 720w, ' | append: src_960 | append: ' 960w, ' | append: src_1200 | append: ' 1200w'
+      assign width = 1200
+      assign height = 1200
+    when 'blog1-feature'
+      assign src_720 = 'swimdays-blog1-feature-720.webp' | asset_url
+      assign src_1100 = 'swimdays-blog1-feature-1100.webp' | asset_url
+      assign src_1400 = 'swimdays-blog1-feature-1400.webp' | asset_url
+      assign src = src_1100
+      assign srcset = src_720 | append: ' 720w, ' | append: src_1100 | append: ' 1100w, ' | append: src_1400 | append: ' 1400w'
+      assign width = 1400
+      assign height = 963
+  endcase
+-%}
+
+{% if src != blank %}
+  <img
+    src="{{ src }}"
+    srcset="{{ srcset }}"
+    sizes="{{ sizes }}"
+    width="{{ width }}"
+    height="{{ height }}"
+    class="{{ class }}"
+    alt="{{ alt | escape }}"
+    loading="{{ loading }}"
+    fetchpriority="{{ fetchpriority }}"
+    decoding="async"
+    {% if style != blank %}
+      style="{{ style }}"
+    {% endif %}
+  >
+{% endif %}

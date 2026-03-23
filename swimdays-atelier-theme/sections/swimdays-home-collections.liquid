@@ -19,6 +19,11 @@
   if right_image == blank and right_collection != blank
     assign right_image = right_collection.featured_image
   endif
+
+  assign right_image_probe = blank
+  if right_image != blank
+    assign right_image_probe = right_image | image_url: width: 32
+  endif
 %}
 
 {% render 'swimdays-home-fonts' %}
@@ -35,11 +40,11 @@
         {% if left_image != blank %}
           {{
             left_image
-            | image_url: width: 2000
+            | image_url: width: 1600
             | image_tag:
               class: 'sil-side-image',
               alt: '',
-              widths: '640, 900, 1200, 1600, 2000',
+              widths: '480, 720, 960, 1280, 1600',
               sizes: '(max-width: 768px) 100vw, 50vw',
               loading: 'lazy'
           }}
@@ -58,16 +63,26 @@
     <a href="{{ right_url }}" class="sil-side sil-side--right">
       <div class="sil-side-media" aria-hidden="true">
         {% if right_image != blank %}
-          {{
-            right_image
-            | image_url: width: 2000
-            | image_tag:
+          {% if right_image_probe contains 'WhatsApp_Image_2026-02-27_at_13.47.44_1.jpg' %}
+            {% render 'swimdays-optimized-media',
+              key: 'home-poster-cove',
               class: 'sil-side-image',
               alt: '',
-              widths: '640, 900, 1200, 1600, 2000',
               sizes: '(max-width: 768px) 100vw, 50vw',
               loading: 'lazy'
-          }}
+            %}
+          {% else %}
+            {{
+              right_image
+              | image_url: width: 1600
+              | image_tag:
+                class: 'sil-side-image',
+                alt: '',
+                widths: '480, 720, 960, 1280, 1600',
+                sizes: '(max-width: 768px) 100vw, 50vw',
+                loading: 'lazy'
+            }}
+          {% endif %}
         {% endif %}
       </div>
       <div class="sil-side-heading">

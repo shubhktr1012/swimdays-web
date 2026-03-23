@@ -180,7 +180,7 @@
                           assign should_render_clear = false
                         endif
 
-                        render 'price-filter', filter: filter, filter_style: block_settings.filter_style, should_render_clear: should_render_clear
+                        render 'price-filter', filter: filter, filter_style: block_settings.filter_style, should_render_clear: should_render_clear, sectionId: section.id, render_context: 'inline'
                       -%}
                     {% else %}
                       {% liquid
@@ -195,7 +195,7 @@
                         else
                           assign should_render_clear = false
                         endif
-                        render 'list-filter', filter: filter, filter_style: block_settings.filter_style, active_value_count: active_value_count, should_render_clear: should_render_clear, show_swatch_label: block_settings.show_swatch_label, sectionId: section.id
+                        render 'list-filter', filter: filter, filter_style: block_settings.filter_style, active_value_count: active_value_count, should_render_clear: should_render_clear, show_swatch_label: block_settings.show_swatch_label, sectionId: section.id, in_drawer: false
                       %}
                   {% endcase %}
                 {%- endfor -%}
@@ -341,6 +341,7 @@
               results: results,
               sort_by: sort_by,
               filter_style: block_settings.filter_style,
+              suffix: 'mobile',
               sort_position: 'mobile',
               should_use_select_on_mobile: should_use_select_on_mobile,
               section_id: section.id
@@ -407,13 +408,16 @@
               class="button facets-drawer__close button-unstyled close-button"
               on:click="dialog-component/closeDialog"
               type="button"
+              aria-label="{{ 'actions.close' | t }}"
             >
               <span
                 class="svg-wrapper svg-wrapper--small"
                 title="{{ 'actions.close' | t }}"
+                aria-hidden="true"
               >
                 {{ 'icon-close.svg' | inline_asset_content }}
               </span>
+              <span class="visually-hidden">{{ 'actions.close' | t }}</span>
             </button>
           </div>
 
@@ -441,7 +445,7 @@
                           assign is_active = true
                         endif
 
-                        render 'price-filter', filter: filter, filter_style: 'vertical', should_render_clear: false
+                        render 'price-filter', filter: filter, filter_style: 'vertical', should_render_clear: false, sectionId: section.id, render_context: 'drawer'
                       -%}
                     {% else %}
                       {% liquid

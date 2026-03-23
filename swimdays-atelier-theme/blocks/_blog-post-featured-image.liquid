@@ -7,6 +7,10 @@
 {% liquid
   assign block_settings = block.settings
   assign image = closest.article.image
+  assign image_probe = blank
+  if image != blank
+    assign image_probe = image | image_url: width: 32
+  endif
 %}
 
 <div
@@ -27,20 +31,32 @@
     {% render 'border-override', settings: block_settings %}
   {%- endcapture -%}
 
-  {{
-    image
-    | image_url: width: 3840
-    | image_tag:
-      width: image.width,
-      widths: '240, 352, 832, 1200, 1600, 1920, 2560, 3840',
-      height: image.height,
+  {% if image_probe contains 'blog1.png' %}
+    {% render 'swimdays-optimized-media',
+      key: 'blog1-feature',
       class: 'blog-post-featured-image__image border-style',
       style: image_border_style,
-      sizes: 'auto, (min-width: 750px) 100vw, 100vw',
+      sizes: '(min-width: 750px) 44rem, calc(100vw - 2rem)',
       loading: 'eager',
       fetchpriority: 'high',
       alt: image.alt
-  }}
+    %}
+  {% else %}
+    {{
+      image
+      | image_url: width: 1400
+      | image_tag:
+        width: image.width,
+        widths: '240, 352, 540, 720, 960, 1200, 1400',
+        height: image.height,
+        class: 'blog-post-featured-image__image border-style',
+        style: image_border_style,
+        sizes: '(min-width: 750px) 44rem, calc(100vw - 2rem)',
+        loading: 'eager',
+        fetchpriority: 'high',
+        alt: image.alt
+    }}
+  {% endif %}
 </div>
 
 {% stylesheet %}

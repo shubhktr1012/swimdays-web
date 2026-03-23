@@ -21,6 +21,8 @@
 >
   {% liquid
     assign default_sort_by = results.default_sort_by
+    assign sorting_scope = suffix | default: sort_position | default: 'default'
+
     for option in results.sort_options
       if option.value == sort_by
         assign status = option.name
@@ -30,14 +32,14 @@
 
   <div class="sorting-filter__container {% if should_use_select_on_mobile %} desktop:hidden {% else %} hidden {% endif %}">
     <label
-      for="sort-select-{{ section_id }}"
+      for="sort-select-{{ section_id }}-{{ sorting_scope }}"
       class="facets__label"
     >
       {{- 'actions.sort' | t -}}
     </label>
     <div class="sorting-filter__select-wrapper">
       <select
-        id="sort-select-{{ section_id }}"
+        id="sort-select-{{ section_id }}-{{ sorting_scope }}"
         name="sort_by"
         class="sorting-filter__select"
         {% if should_use_select_on_mobile == false %}
@@ -76,7 +78,7 @@
   >
     <details
       ref="details"
-      id="Sorting-{{ section_id }}"
+      id="Sorting-{{ section_id }}-{{ sorting_scope }}"
       data-default-sort-by="{{ default_sort_by }}"
       class="facets__panel {% if should_use_select_on_mobile %} mobile:hidden {% endif %}"
       data-auto-close-details="desktop,mobile"
@@ -84,14 +86,13 @@
     >
       <summary
         class="facets__summary"
-        role="button"
         aria-expanded="false"
-        aria-controls="sorting-options-{{ section_id }}"
+        aria-controls="sorting-options-{{ section_id }}-{{ sorting_scope }}"
         ref="summary"
       >
         <span
           class="facets__label"
-          id="sort-label-{{ section_id }}"
+          id="sort-label-{{ section_id }}-{{ sorting_scope }}"
         >
           {{- 'actions.sort' | t -}}
         </span>
@@ -105,43 +106,38 @@
         </span>
       </summary>
       <floating-panel-component
-        id="sorting-options-{{ section_id }}"
+        id="sorting-options-{{ section_id }}-{{ sorting_scope }}"
         class="sorting-filter__options color-{{ settings.popover_color_scheme }}"
-        role="listbox"
-        aria-labelledby="sort-label-{{ section_id }}"
+        aria-labelledby="sort-label-{{ section_id }}-{{ sorting_scope }}"
         ref="listbox"
       >
-        <div class="sorting-filter__options-inner">
+        <div
+          class="sorting-filter__options-inner"
+          aria-labelledby="sort-label-{{ section_id }}-{{ sorting_scope }}"
+        >
           {% for option in results.sort_options %}
             <label
-              for="sort-option-{{ option.value }}-{{ section_id }}"
+              class="sorting-filter__option"
+              for="sort-option-{{ option.value | handleize }}-{{ section_id }}-{{ sorting_scope }}"
             >
-              <div
-                class="sorting-filter__option"
-                role="option"
-                aria-selected="{% if option.value == sort_by %}true{% else %}false{% endif %}"
-                tabindex="{% if option.value == sort_by %}0{% else %}-1{% endif %}"
+              <input
+                type="radio"
+                name="sort_by"
+                id="sort-option-{{ option.value | handleize }}-{{ section_id }}-{{ sorting_scope }}"
+                {% if suffix != blank %}
+                  form="FacetFiltersForm--{{ section_id }}-{{ suffix }}"
+                {% endif %}
+                value="{{ option.value }}"
+                class="sorting-filter__input"
+                data-option-name="{{ option.name }}"
+                {% if option.value == sort_by %}
+                  checked
+                {% endif %}
               >
-                <input
-                  type="radio"
-                  name="sort_by"
-                  id="sort-option-{{ option.value }}-{{ section_id }}"
-                  {% if suffix != blank %}
-                    form="FacetFiltersForm--{{ section_id }}-{{ suffix }}"
-                  {% endif %}
-                  value="{{ option.value }}"
-                  class="sorting-filter__input"
-                  data-option-name="{{ option.name }}"
-                  {% if option.value == sort_by %}
-                    checked
-                  {% endif %}
-                  aria-hidden="true"
-                >
-                <span class="svg-wrapper icon-checkmark sorting-filter__checkmark">
-                  {{- 'icon-checkmark.svg' | inline_asset_content -}}
-                </span>
-                <span class="sorting-filter__label">{{ option.name }}</span>
-              </div>
+              <span class="svg-wrapper icon-checkmark sorting-filter__checkmark">
+                {{- 'icon-checkmark.svg' | inline_asset_content -}}
+              </span>
+              <span class="sorting-filter__label">{{ option.name }}</span>
             </label>
           {% endfor %}
         </div>
@@ -279,10 +275,24 @@
   }
 
   .sorting-filter__input {
-    display: none;
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
 
     &:checked + .sorting-filter__checkmark + .sorting-filter__label {
       font-weight: 500;
+    }
+
+    &:focus-visible + .sorting-filter__checkmark + .sorting-filter__label {
+      text-decoration: underline;
+      text-underline-offset: 0.2em;
     }
   }
 

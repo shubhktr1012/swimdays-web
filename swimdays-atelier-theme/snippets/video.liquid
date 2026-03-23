@@ -37,7 +37,7 @@
   assign media_width_desktop = 100 | divided_by: 2 | append: 'vw'
   assign media_width_mobile = '100vw'
   assign sizes = '(min-width: 750px) ' | append: media_width_desktop | append: ', ' | append: media_width_mobile
-  assign widths = '240, 352, 832, 1200, 1600, 1920, 2560, 3840'
+  assign widths = '240, 352, 540, 720, 960, 1200, 1600, 1920'
 %}
 
 {% if video_from_url %}
@@ -85,6 +85,8 @@
       <iframe
         src="{{ video_src }}"
         class="{{ class }}"
+        width="1600"
+        height="900"
         allow="autoplay; encrypted-media"
         allowfullscreen
         title="{{ video_alt | escape }}"
@@ -140,7 +142,7 @@
       >
         {{
           video_preview_image
-          | image_url: width: 3840
+          | image_url: width: 1920
           | image_tag: widths: widths, sizes: sizes, loading: loading, class: 'deferred-media__poster-image'
         }}
 
@@ -192,7 +194,7 @@
     style="{%- if video_style -%}{{ video_style }} {%- endif -%}--video-placeholder-width: {{ block_settings.custom_width | default: 100 }}%;"
   >
     {% if video_preview_image != blank and video_autoplay == false %}
-      {{ video_preview_image | image_url: width: 3840 | image_tag: widths: widths, sizes: sizes, loading: loading }}
+      {{ video_preview_image | image_url: width: 1920 | image_tag: widths: widths, sizes: sizes, loading: loading }}
     {% else %}
       {{ 'hero-apparel-3' | placeholder_svg_tag }}
     {% endif %}

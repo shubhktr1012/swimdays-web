@@ -1,0 +1,40 @@
+{% liquid
+  assign base_url = request.origin | default: shop.url
+  assign article_url = base_url | append: article.url
+  assign article_description = article.excerpt_or_content | strip_html | strip_newlines | strip | default: article.title
+  assign article_body = article.content | strip_html | strip_newlines | strip
+  assign publisher_logo = settings.logo | default: settings.favicon
+  assign publisher_logo_url = blank
+  assign article_author = author_name | default: article.author | default: shop.name
+
+  if publisher_logo != blank
+    assign publisher_logo_url = publisher_logo | image_url: width: 600 | prepend: 'https:'
+  endif
+%}
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": {{ article_url | append: '#article' | json }},
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": {{ article_url | json }}
+    },
+    "headline": {{ article.title | strip | json }},
+    "description": {{ article_description | truncate: 250 | json }},
+    "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' | json }},
+    "dateModified": {{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%z' | json }},
+    "author": {
+      "@type": "Person",
+      "name": {{ article_author | strip | json }}
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": {{ shop.name | json }}{% if publisher_logo_url != blank %},
+      "logo": {{ publisher_logo_url | json }}{% endif %}
+    },
+    "articleBody": {{ article_body | json }}{% if article.image != blank %},
+    "image": {{ article.image | image_url: width: 1600 | prepend: 'https:' | json }}{% endif %}
+  }
+</script>

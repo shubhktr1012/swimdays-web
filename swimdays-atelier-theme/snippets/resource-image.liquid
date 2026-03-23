@@ -58,6 +58,11 @@
     assign image_resource = image_source
   endif
 
+  assign image_resource_probe = blank
+  if image_resource != blank
+    assign image_resource_probe = image_resource | image_url: width: 32
+  endif
+
   # Calculate aspect ratio
   assign ratio = 1
   case block_settings.image_ratio
@@ -78,7 +83,7 @@
   # Generate responsive image attributes
   assign sizes = '(min-width: 750px) 50vw, 100vw'
   assign lazy_sizes = 'auto, ' | append: sizes
-  assign loading = 'eager'
+  assign loading = 'lazy'
 
   # Layout-aware sizing for resource lists
   if section_settings.layout_type
@@ -92,7 +97,7 @@
     endcase
   endif
 
-  assign widths = '240, 352, 832, 1200, 1600, 1920, 2560, 3840'
+  assign widths = '240, 352, 480, 640, 800, 960, 1200, 1400'
 
   # Generate placeholder info based on content type
   if content_type == 'articles'
@@ -149,11 +154,21 @@
       {% render 'overlay', settings: block_settings %}
     {%- endif -%}
 
-    {{
-      image_resource
-      | image_url: width: 3840
-      | image_tag: widths: widths, class: 'image-block__image', sizes: sizes, loading: loading
-    }}
+    {% if content_type == 'articles' and image_resource_probe contains 'blog1.png' %}
+      {% render 'swimdays-optimized-media',
+        key: 'blog1-feature',
+        class: 'image-block__image',
+        sizes: sizes,
+        loading: loading,
+        alt: ''
+      %}
+    {% else %}
+      {{
+        image_resource
+        | image_url: width: 1400
+        | image_tag: widths: widths, class: 'image-block__image', sizes: sizes, loading: loading
+      }}
+    {% endif %}
   </div>
 {% else %}
   <div

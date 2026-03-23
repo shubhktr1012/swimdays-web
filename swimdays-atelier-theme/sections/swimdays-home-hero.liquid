@@ -1,18 +1,51 @@
 {% liquid
   assign hero_link = section.settings.hero_link
   assign background_image = section.settings.background_image
+  assign background_image_probe = blank
+  assign poster_1_probe = blank
+  assign poster_2_probe = blank
+  if background_image != blank
+    assign background_image_probe = background_image | image_url: width: 32
+  endif
+  if section.settings.poster_1_image != blank
+    assign poster_1_probe = section.settings.poster_1_image | image_url: width: 32
+  endif
+  if section.settings.poster_2_image != blank
+    assign poster_2_probe = section.settings.poster_2_image | image_url: width: 32
+  endif
 %}
 
 <section class="swimdays-home-hero" id="hero">
   <div class="swimdays-home-hero__stage">
     {% if background_image != blank %}
-      {{ background_image | image_url: width: 2400 | image_tag: class: 'swimdays-home-hero__background-image', alt: '', loading: 'eager', fetchpriority: 'high', widths: '900, 1200, 1600, 2000, 2400', sizes: '100vw' }}
+      {% if background_image_probe contains 'mink-mingle-AlEyuIKuSmc-unsplash.jpg' %}
+        {% render 'swimdays-optimized-media',
+          key: 'home-hero-bg',
+          class: 'swimdays-home-hero__background-image',
+          alt: '',
+          loading: 'eager',
+          fetchpriority: 'high',
+          sizes: '100vw'
+        %}
+      {% else %}
+        {{ background_image | image_url: width: 1920 | image_tag: class: 'swimdays-home-hero__background-image', alt: '', loading: 'eager', fetchpriority: 'high', widths: '720, 960, 1280, 1600, 1920', sizes: '100vw' }}
+      {% endif %}
     {% endif %}
 
     <div class="hero-poster-grid" data-hero-grid>
       {% if section.settings.poster_1_image != blank %}
       <a class="hero-poster center-poster has-photo left-poster is-active" href="{{ section.settings.poster_1_link | default: hero_link | default: routes.all_products_collection_url }}" data-hero-slide>
-          {{ section.settings.poster_1_image | image_url: width: 1400 | image_tag: alt: '', loading: 'eager', widths: '360, 520, 720, 960, 1200, 1400', sizes: '(max-width: 767px) calc(100vw - 48px), (max-width: 1439px) 28vw, 420px' }}
+          {% if poster_1_probe contains 'WhatsApp_Image_2026-02-27_at_13.47.44_1.jpg' %}
+            {% render 'swimdays-optimized-media',
+              key: 'home-poster-cove',
+              alt: '',
+              loading: 'eager',
+              fetchpriority: 'high',
+              sizes: '(max-width: 767px) calc(100vw - 48px), (max-width: 1439px) 28vw, 420px'
+            %}
+          {% else %}
+            {{ section.settings.poster_1_image | image_url: width: 1200 | image_tag: alt: '', loading: 'eager', widths: '360, 520, 720, 960, 1200', sizes: '(max-width: 767px) calc(100vw - 48px), (max-width: 1439px) 28vw, 420px' }}
+          {% endif %}
         <div class="hero-poster-content">
           <span class="hero-poster-club">{{ section.settings.poster_1_club | default: section.settings.poster_club }}</span>
           <h2 class="hero-poster-title">{{ section.settings.poster_1_title | default: section.settings.poster_title }}</h2>
@@ -27,7 +60,17 @@
 
       {% if section.settings.poster_2_image != blank %}
       <a class="hero-poster center-poster has-photo right-poster" href="{{ section.settings.poster_2_link | default: hero_link | default: routes.all_products_collection_url }}" data-hero-slide>
-          {{ section.settings.poster_2_image | image_url: width: 1400 | image_tag: alt: '', loading: 'eager', widths: '360, 520, 720, 960, 1200, 1400', sizes: '(max-width: 767px) calc(100vw - 48px), (max-width: 1439px) 28vw, 420px' }}
+          {% if poster_2_probe contains 'WhatsApp_Image_2026-03-13_at_10.21.32.png' %}
+            {% render 'swimdays-optimized-media',
+              key: 'home-poster-moss',
+              alt: '',
+              loading: 'eager',
+              fetchpriority: 'high',
+              sizes: '(max-width: 767px) calc(100vw - 48px), (max-width: 1439px) 28vw, 420px'
+            %}
+          {% else %}
+            {{ section.settings.poster_2_image | image_url: width: 1200 | image_tag: alt: '', loading: 'eager', widths: '360, 520, 720, 960, 1200', sizes: '(max-width: 767px) calc(100vw - 48px), (max-width: 1439px) 28vw, 420px' }}
+          {% endif %}
         <div class="hero-poster-content">
           <span class="hero-poster-club">{{ section.settings.poster_2_club | default: section.settings.poster_club }}</span>
           <h2 class="hero-poster-title">{{ section.settings.poster_2_title | default: section.settings.poster_title }}</h2>
@@ -57,8 +100,14 @@
     </div>
 
     <div class="swimdays-home-hero__controls" aria-label="Hero poster navigation">
-      <button type="button" class="swimdays-home-hero__control" data-hero-prev aria-label="Previous poster">Prev</button>
-      <button type="button" class="swimdays-home-hero__control" data-hero-next aria-label="Next poster">Next</button>
+      <button type="button" class="swimdays-home-hero__control" data-hero-prev>
+        <span aria-hidden="true">Prev</span>
+        <span class="visually-hidden">Previous poster</span>
+      </button>
+      <button type="button" class="swimdays-home-hero__control" data-hero-next>
+        <span aria-hidden="true">Next</span>
+        <span class="visually-hidden">Next poster</span>
+      </button>
     </div>
   </div>
 </section>

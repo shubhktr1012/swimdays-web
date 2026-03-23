@@ -1,0 +1,793 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<audit version="0.0.31">
+<site url="https://shopswimdays.com" crawled="40" date="2026-03-23T07:11:50.683Z"/>
+<score overall="43" grade="F">
+ <cat name="Accessibility" score="70"/>
+ <cat name="Images" score="60"/>
+ <cat name="Performance" score="68"/>
+ <cat name="Security" score="73"/>
+ <cat name="Content" score="76"/>
+ <cat name="Social Media" score="97"/>
+ <cat name="E-E-A-T" score="74"/>
+ <cat name="Links" score="88"/>
+ <cat name="Core SEO" score="95"/>
+ <cat name="Crawlability" score="96"/>
+ <cat name="Internationalization" score="100"/>
+ <cat name="Legal Compliance" score="100"/>
+ <cat name="Local SEO" score="100"/>
+ <cat name="Mobile" score="100"/>
+ <cat name="Structured Data" score="100"/>
+ <cat name="URL Structure" score="100"/>
+</score>
+<summary passed="3634" warnings="836" failed="329"/>
+<issues>
+ <category name="Accessibility" errors="287" warnings="208">
+  <rule id="a11y/button-name" severity="error" status="fail" docs="https://docs.squirrelscan.com/rules/a11y/button-name">
+   1 button(s) without accessible names
+   Pages (24): /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-shorts, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /products/moss-full-sleeves-bodysuit, /products/cove-swim-shorts?variant=47956965851371, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /products/moss-full-sleeves-bodysuit?variant=47956968046827
+   Items (1):
+    - div.shopify-payment-button__button
+  </rule>
+  <rule id="a11y/duplicate-id-aria" severity="error" status="fail" docs="https://docs.squirrelscan.com/rules/a11y/duplicate-id-aria">
+   Rule error: CSS is not defined
+   Pages (40): /, /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-shorts, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /pages/contact, /products/moss-full-sleeves-bodysuit, /pages/partial-payment-policy, /collections/bodysuits, /pages/our-story, /collections/moss, /collections/halter-swim-dress, /collections/swim-leggings, /collections/wrao-tulip-skirt, /collections/swim-shorts, /collections/cove, /blogs/news, /blogs/swimblogs, /collections, /blogs/swimblogs/ultimate-guide-styling-modest-beachwear-india, /collections/all, /products/cove-swim-shorts?variant=47956965851371, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /products/moss-full-sleeves-bodysuit?variant=47956968046827
+  </rule>
+  <rule id="a11y/aria-command-name" severity="error" status="fail" docs="https://docs.squirrelscan.com/rules/a11y/aria-command-name">
+   1 command element(s) without accessible names
+   Pages (24): /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-shorts, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /products/moss-full-sleeves-bodysuit, /products/cove-swim-shorts?variant=47956965851371, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /products/moss-full-sleeves-bodysuit?variant=47956968046827
+   Items (1):
+    - div[role=&quot;button&quot;]
+  </rule>
+  <rule id="a11y/aria-dialog-name" severity="error" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/aria-dialog-name">
+   1 native &lt;dialog&gt;(s) without accessible names; 2 native &lt;dialog&gt;(s) without accessible names
+   Pages (40): /, /pages/contact, /pages/partial-payment-policy, /collections/bodysuits, /pages/our-story, /collections/moss, /collections/halter-swim-dress, /collections/swim-leggings, /collections/wrao-tulip-skirt, /collections/swim-shorts, /collections/cove, /blogs/news, /blogs/swimblogs, /collections, /blogs/swimblogs/ultimate-guide-styling-modest-beachwear-india, /collections/all, /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-shorts, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /products/moss-full-sleeves-bodysuit, /products/cove-swim-shorts?variant=47956965851371, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /products/moss-full-sleeves-bodysuit?variant=47956968046827
+   Items (3):
+    - dialog
+    - dialog
+    - dialog
+  </rule>
+  <rule id="a11y/aria-hidden-focus" severity="error" status="fail" docs="https://docs.squirrelscan.com/rules/a11y/aria-hidden-focus">
+   8 focusable element(s) inside aria-hidden
+   Pages (40): /, /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-shorts, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /pages/contact, /products/moss-full-sleeves-bodysuit, /pages/partial-payment-policy, /collections/bodysuits, /pages/our-story, /collections/moss, /collections/halter-swim-dress, /collections/swim-leggings, /collections/wrao-tulip-skirt, /collections/swim-shorts, /collections/cove, /blogs/news, /blogs/swimblogs, /collections, /blogs/swimblogs/ultimate-guide-styling-modest-beachwear-india, /collections/all, /products/cove-swim-shorts?variant=47956965851371, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /products/moss-full-sleeves-bodysuit?variant=47956968046827
+   Items (8):
+    - button
+    - a
+    - summary
+    - a
+    - a
+    - a
+    - a
+    - a
+  </rule>
+  <rule id="a11y/aria-input-field-name" severity="error" status="fail" docs="https://docs.squirrelscan.com/rules/a11y/aria-input-field-name">
+   1 input field(s) without accessible names
+   Pages (37): /, /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /pages/contact, /products/moss-full-sleeves-bodysuit, /pages/partial-payment-policy, /collections/bodysuits, /pages/our-story, /collections/moss, /collections/halter-swim-dress, /collections/swim-leggings, /collections/wrao-tulip-skirt, /collections/swim-shorts, /collections/cove, /blogs/news, /blogs/swimblogs, /collections, /collections/all, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /products/moss-full-sleeves-bodysuit?variant=47956968046827
+   Items (1):
+    - div[role=&quot;listbox&quot;]
+  </rule>
+  <rule id="a11y/aria-required-children" severity="error" status="fail" docs="https://docs.squirrelscan.com/rules/a11y/aria-required-children">
+   2 element(s) missing required child roles; 4 element(s) missing required child roles
+   Pages (37): /, /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /pages/contact, /products/moss-full-sleeves-bodysuit, /pages/partial-payment-policy, /pages/our-story, /blogs/news, /blogs/swimblogs, /collections, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /products/moss-full-sleeves-bodysuit?variant=47956968046827, /collections/bodysuits, /collections/moss, /collections/halter-swim-dress, /collections/swim-leggings, /collections/wrao-tulip-skirt, /collections/swim-shorts, /collections/cove, /collections/all
+   Items (6):
+    - div[role=&quot;listbox&quot;]: needs child with role=option|group
+    - ul[role=&quot;listbox&quot;]: needs child with role=option|group
+    - div[role=&quot;listbox&quot;]: needs child with role=option|group
+    - ul[role=&quot;listbox&quot;]: needs child with role=option|group
+    - div[role=&quot;radiogroup&quot;]: needs child with role=radio
+    - div[role=&quot;radiogroup&quot;]: needs child with role=radio
+  </rule>
+  <rule id="a11y/aria-required-parent" severity="error" status="fail" docs="https://docs.squirrelscan.com/rules/a11y/aria-required-parent">
+   4 element(s) missing required parent role
+   Pages (37): /, /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /pages/contact, /products/moss-full-sleeves-bodysuit, /pages/partial-payment-policy, /collections/bodysuits, /pages/our-story, /collections/moss, /collections/halter-swim-dress, /collections/swim-leggings, /collections/wrao-tulip-skirt, /collections/swim-shorts, /collections/cove, /blogs/news, /blogs/swimblogs, /collections, /collections/all, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /products/moss-full-sleeves-bodysuit?variant=47956968046827
+   Items (4):
+    - li (implicit role=&quot;listitem&quot;): needs parent with role=list|group
+    - li (implicit role=&quot;listitem&quot;): needs parent with role=list|group
+    - li (implicit role=&quot;listitem&quot;): needs parent with role=list|group
+    - li (implicit role=&quot;listitem&quot;): needs parent with role=list|group
+  </rule>
+  <rule id="a11y/label-content-name-mismatch" severity="error" status="fail" docs="https://docs.squirrelscan.com/rules/a11y/label-content-name-mismatch">
+   2 element(s) where visible text doesn&apos;t match accessible name; 3 element(s) where visible text doesn&apos;t match accessible name; 4 element(s) where visible text doesn&apos;t match accessible name; 6 element(s) where visible text doesn&apos;t match accessible name; 5 element(s) where visible text doesn&apos;t match accessible name
+   Pages (23): /, /products/cove-swim-leggings, /products/cove-swim-leggings?variant=47956966277355, /products/cove-swim-shorts, /products/moss-swim-shorts?variant=47956967063787, /products/cove-wrap-tulip-skirt, /products/moss-wrap-tulip-skirt, /products/moss-swim-leggings, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-leggings?variant=47956967457003, /products/cove-halter-swim-dress, /products/moss-full-sleeves-bodysuit, /products/cove-halter-swim-dress?variant=47956966473963, /products/moss-full-sleeves-bodysuit?variant=47956968046827, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611
+   Items (21):
+    - button: visible=&quot;prev&quot; vs aria-label=&quot;scroll products back&quot;
+    - button: visible=&quot;next&quot; vs aria-label=&quot;scroll products forw&quot;
+    - button: visible=&quot;open image in full s&quot; vs aria-label=&quot;zoom&quot;
+    - button: visible=&quot;open image in full s&quot; vs aria-label=&quot;zoom&quot;
+    - button: visible=&quot;open image in full s&quot; vs aria-label=&quot;zoom&quot;
+    - button: visible=&quot;open image in full s&quot; vs aria-label=&quot;zoom&quot;
+    - button: visible=&quot;open image in full s&quot; vs aria-label=&quot;zoom&quot;
+    - button: visible=&quot;open image in full s&quot; vs aria-label=&quot;zoom&quot;
+    - button: visible=&quot;open image in full s&quot; vs aria-label=&quot;zoom&quot;
+    - button: visible=&quot;open image in full s&quot; vs aria-label=&quot;zoom&quot;
+    - button: visible=&quot;open image in full s&quot; vs aria-label=&quot;zoom&quot;
+    - button: visible=&quot;open image in full s&quot; vs aria-label=&quot;zoom&quot;
+    - button: visible=&quot;open image in full s&quot; vs aria-label=&quot;zoom&quot;
+    - button: visible=&quot;open image in full s&quot; vs aria-label=&quot;zoom&quot;
+    - button: visible=&quot;open image in full s&quot; vs aria-label=&quot;zoom&quot;
+    - button: visible=&quot;open image in full s&quot; vs aria-label=&quot;zoom&quot;
+    - button: visible=&quot;open image in full s&quot; vs aria-label=&quot;zoom&quot;
+    - button: visible=&quot;open image in full s&quot; vs aria-label=&quot;zoom&quot;
+    - button: visible=&quot;open image in full s&quot; vs aria-label=&quot;zoom&quot;
+    - button: visible=&quot;open image in full s&quot; vs aria-label=&quot;zoom&quot;
+    - button: visible=&quot;open image in full s&quot; vs aria-label=&quot;zoom&quot;
+  </rule>
+  <rule id="a11y/list-structure" severity="error" status="fail" docs="https://docs.squirrelscan.com/rules/a11y/list-structure">
+   3 list(s) with invalid child elements
+   Pages (1): /pages/partial-payment-policy
+   Items (3):
+    - ul
+    - ul
+    - ul
+  </rule>
+  <rule id="a11y/aria-labels" severity="error" status="fail" docs="https://docs.squirrelscan.com/rules/a11y/aria-labels">
+   1 button(s) without accessible names
+   Pages (24): /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-shorts, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /products/moss-full-sleeves-bodysuit, /products/cove-swim-shorts?variant=47956965851371, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /products/moss-full-sleeves-bodysuit?variant=47956968046827
+   Items (1):
+    - shopify-payment-button__button
+  </rule>
+  <rule id="a11y/color-contrast" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/color-contrast">
+   2 potential color contrast issue(s)
+   Pages (40): /, /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-shorts, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /pages/contact, /products/moss-full-sleeves-bodysuit, /pages/partial-payment-policy, /collections/bodysuits, /pages/our-story, /collections/moss, /collections/halter-swim-dress, /collections/swim-leggings, /collections/wrao-tulip-skirt, /collections/swim-shorts, /collections/cove, /blogs/news, /blogs/swimblogs, /collections, /blogs/swimblogs/ultimate-guide-styling-modest-beachwear-india, /collections/all, /products/cove-swim-shorts?variant=47956965851371, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /products/moss-full-sleeves-bodysuit?variant=47956968046827
+   Items (2):
+    - White text (verify background): 2 instance(s)
+    - Very light text color: 2 instance(s)
+  </rule>
+  <rule id="a11y/form-field-multiple-labels" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/form-field-multiple-labels">
+   16 input(s) with multiple labels
+   Pages (8): /collections/bodysuits, /collections/moss, /collections/halter-swim-dress, /collections/swim-leggings, /collections/wrao-tulip-skirt, /collections/swim-shorts, /collections/cove, /collections/all
+   Items (16):
+    - sort_by (2 labels)
+    - sort_by (2 labels)
+    - sort_by (2 labels)
+    - sort_by (2 labels)
+    - sort_by (2 labels)
+    - sort_by (2 labels)
+    - sort_by (2 labels)
+    - sort_by (2 labels)
+    - sort_by (2 labels)
+    - sort_by (2 labels)
+    - sort_by (2 labels)
+    - sort_by (2 labels)
+    - sort_by (2 labels)
+    - sort_by (2 labels)
+    - sort_by (2 labels)
+    - sort_by (2 labels)
+  </rule>
+  <rule id="a11y/heading-order" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/heading-order">
+   1 heading level skip(s) detected; 2 heading level skip(s) detected
+   Pages (40): /, /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-shorts, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /products/moss-full-sleeves-bodysuit, /collections/bodysuits, /pages/our-story, /collections/moss, /collections/halter-swim-dress, /collections/swim-leggings, /collections/wrao-tulip-skirt, /collections/swim-shorts, /collections/cove, /collections/all, /products/cove-swim-shorts?variant=47956965851371, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /products/moss-full-sleeves-bodysuit?variant=47956968046827, /pages/contact, /pages/partial-payment-policy, /blogs/news, /blogs/swimblogs, /collections, /blogs/swimblogs/ultimate-guide-styling-modest-beachwear-india
+   Items (3):
+    - H4 after H2
+    - H3 after H1
+    - H4 after H2
+  </rule>
+  <rule id="a11y/identical-links-same-purpose" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/identical-links-same-purpose">
+   1 link text(s) lead to different destinations
+   Pages (40): /, /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-shorts, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /pages/contact, /products/moss-full-sleeves-bodysuit, /pages/partial-payment-policy, /collections/bodysuits, /pages/our-story, /collections/moss, /collections/halter-swim-dress, /collections/swim-leggings, /collections/wrao-tulip-skirt, /collections/swim-shorts, /collections/cove, /blogs/news, /blogs/swimblogs, /collections, /blogs/swimblogs/ultimate-guide-styling-modest-beachwear-india, /collections/all, /products/cove-swim-shorts?variant=47956965851371, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /products/moss-full-sleeves-bodysuit?variant=47956968046827
+   Items (1):
+    - &quot;all products&quot; → 2 different URLs
+  </rule>
+  <rule id="a11y/link-text" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/a11y/link-text">
+   1 link(s) with generic text; 2 link(s) with generic text
+   Pages (40): /, /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-shorts, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /pages/contact, /products/moss-full-sleeves-bodysuit, /pages/partial-payment-policy, /collections/bodysuits, /pages/our-story, /collections/moss, /collections/halter-swim-dress, /collections/swim-leggings, /collections/wrao-tulip-skirt, /collections/swim-shorts, /collections/cove, /blogs/news, /collections, /blogs/swimblogs/ultimate-guide-styling-modest-beachwear-india, /collections/all, /products/cove-swim-shorts?variant=47956965851371, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /products/moss-full-sleeves-bodysuit?variant=47956968046827, /blogs/swimblogs
+   Items (3):
+    - shop now
+    - shop now
+    - read more...
+  </rule>
+ </category>
+ <category name="Performance" errors="1" warnings="442">
+  <rule id="perf/lcp-hints" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/perf/lcp-hints">
+   3 potential LCP image(s) without preload
+   Pages (40): /, /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-shorts, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /pages/contact, /products/moss-full-sleeves-bodysuit, /pages/partial-payment-policy, /collections/bodysuits, /pages/our-story, /collections/moss, /collections/halter-swim-dress, /collections/swim-leggings, /collections/wrao-tulip-skirt, /collections/swim-shorts, /collections/cove, /blogs/news, /blogs/swimblogs, /collections, /blogs/swimblogs/ultimate-guide-styling-modest-beachwear-india, /collections/all, /products/cove-swim-shorts?variant=47956965851371, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /products/moss-full-sleeves-bodysuit?variant=47956968046827
+   Items (33):
+    - //shopswimdays.com/cdn/shop/files/swimdays-logo-black.png?v=1773486066&amp;width=260
+    - //shopswimdays.com/cdn/shop/files/mink-mingle-AlEyuIKuSmc-unsplash.jpg?v=1773484685&amp;width=2400
+    - //shopswimdays.com/cdn/shop/files/WhatsApp_Image_2026-02-27_at_13.47.44_1.jpg?v=1773485044&amp;width=1400
+    - //shopswimdays.com/cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.47.30_1.jpg?v=1773479611&amp;width=2560
+    - //shopswimdays.com/cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.47.30_2.jpg?v=1773479611&amp;width=2560
+    - //shopswimdays.com/cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.27.22.jpg?v=1773479613&amp;width=2560
+    - //shopswimdays.com/cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.27.22_1.jpg?v=1773479613&amp;width=2560
+    - //shopswimdays.com/cdn/shop/files/WhatsApp_Image_2026-03-14_at_10.38.19.jpg?v=1773482064&amp;width=2560
+    - //shopswimdays.com/cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.33.34.jpg?v=1773482064&amp;width=2560
+    - //shopswimdays.com/cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.21.49_1.jpg?v=1773482259&amp;width=2560
+    - //shopswimdays.com/cdn/shop/files/IMG-9344.jpg?v=1773482259&amp;width=2560
+    - //shopswimdays.com/cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.15.35_2.jpg?v=1773479616&amp;width=2560
+    - //shopswimdays.com/cdn/shop/files/IMG-9337.jpg?v=1773481752&amp;width=2560
+    - //shopswimdays.com/cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.12.20.jpg?v=1773492085&amp;width=2560
+    - //shopswimdays.com/cdn/shop/files/IMG-9343.jpg?v=1773492085&amp;width=2560
+    - //shopswimdays.com/cdn/shop/files/IMG-9332.jpg?v=1773481437&amp;width=2560
+    - //shopswimdays.com/cdn/shop/files/WhatsAppImage2026-03-12at12.52.49_1806a962-d0e5-4f31-802a-d26cc896b539.jpg?v=1773481418&amp;width=2560
+    - //shopswimdays.com/cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.57.30_2.jpg?v=1773479617&amp;width=2560
+    - //shopswimdays.com/cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.57.30_1.jpg?v=1773479617&amp;width=2560
+    - //shopswimdays.com/cdn/shop/files/WhatsAppImage2026-03-12at12.41.36.jpg?v=1773479619&amp;width=2560
+    - //shopswimdays.com/cdn/shop/files/WhatsApp_Image_2026-03-12_at_12.41.36_1.jpg?v=1773479619&amp;width=2560
+    - //shopswimdays.com/cdn/shop/files/WhatsAppImage2026-03-12at12.31.32.jpg?v=1773479622&amp;width=2560
+    - //shopswimdays.com/cdn/shop/files/IMG-9334.jpg?v=1773481168&amp;width=2560
+    - //shopswimdays.com/cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.59.57.jpg?v=1773481348&amp;width=2560
+    - //shopswimdays.com/cdn/shop/files/IMG-9335.jpg?v=1773481348&amp;width=2560
+    - //shopswimdays.com/cdn/shop/t/2/assets/flower.svg?v=5809779058710237521773484623
+    - //shopswimdays.com/cdn/shop/files/WhatsAppImage2026-03-12at10.51.23_edfa5a95-a13e-482b-b054-4c2268736899.jpg?v=1773481072&amp;width=2560
+    - //shopswimdays.com/cdn/shop/files/IMG-9331.jpg?v=1773481072&amp;width=2560
+    - //shopswimdays.com/cdn/shop/files/WhatsApp_Image_2026-03-22_at_19.23.47.jpg?v=1774187646&amp;width=1600
+    - //shopswimdays.com/cdn/shop/articles/blog1.png?v=1773749163&amp;width=1100
+    - //shopswimdays.com/cdn/shop/collections/WhatsAppImage2026-03-12at12.31.32.jpg?v=1773491556&amp;width=1920
+    - //shopswimdays.com/cdn/shop/collections/WhatsApp_Image_2026-02-27_at_13.47.44_1.jpg?v=1773485665&amp;width=1920
+    - //shopswimdays.com/cdn/shop/articles/blog1.png?v=1773749163&amp;width=3840
+  </rule>
+  <rule id="perf/cls-hints" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/perf/cls-hints">
+   1 iframe(s) without dimensions
+   Pages (24): /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-shorts, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /products/moss-full-sleeves-bodysuit, /products/cove-swim-shorts?variant=47956965851371, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /products/moss-full-sleeves-bodysuit?variant=47956968046827
+   Items (1):
+    - https://cdn.shopify.com/s/files/1/0980/5738/8310/files/sizechart.pdf?v=1773399949
+  </rule>
+  <rule id="perf/dom-size" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/perf/dom-size">
+   Element with 109 children found; Element with 118 children found; Element with 119 children found; Element with 107 children found; Element with 113 children found; Element with 108 children found; Large DOM (2015 nodes); Element with 112 children found
+   Pages (40): /, /blogs/swimblogs/ultimate-guide-styling-modest-beachwear-india, /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /products/moss-full-sleeves-bodysuit, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /products/moss-full-sleeves-bodysuit?variant=47956968046827, /products/moss-swim-shorts, /products/cove-swim-shorts?variant=47956965851371, /pages/contact, /pages/partial-payment-policy, /pages/our-story, /collections, /collections/bodysuits, /collections/moss, /collections/halter-swim-dress, /collections/swim-leggings, /collections/wrao-tulip-skirt, /collections/swim-shorts, /collections/cove, /blogs/news, /blogs/swimblogs, /collections/all
+  </rule>
+  <rule id="perf/render-blocking" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/perf/render-blocking">
+   26 render-blocking resources; 29 render-blocking resources
+   Pages (40): /, /pages/contact, /pages/partial-payment-policy, /collections/bodysuits, /pages/our-story, /collections/moss, /collections/halter-swim-dress, /collections/swim-leggings, /collections/wrao-tulip-skirt, /collections/swim-shorts, /collections/cove, /blogs/news, /blogs/swimblogs, /collections, /blogs/swimblogs/ultimate-guide-styling-modest-beachwear-india, /collections/all, /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-shorts, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /products/moss-full-sleeves-bodysuit, /products/cove-swim-shorts?variant=47956965851371, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /products/moss-full-sleeves-bodysuit?variant=47956968046827
+   Items (55):
+    - //shopswimdays.com/cdn/shop/t/2/assets/popover-polyfill.js?v=119029313658895111201773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/overflow-list.js?v=46858356770684902511773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/quick-add.js?v=8173316780029216301773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/dialog.js?v=150888536568694194021773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/variant-picker.js?v=177886063604495755331773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/product-card.js?v=28695665944407642501773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/product-form.js?v=87407172394809519131773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/fly-to-cart.js?v=48483246440248933081773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/accordion-custom.js?v=97588419883090888471773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/media.js?v=37825095869491791421773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/product-price.js?v=164492227269745550161773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/product-sku.js?v=121804655373531320511773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/product-title-truncation.js?v=81744426891537421781773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/product-inventory.js?v=81520546963552472391773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/show-more.js?v=94563802205717136101773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/slideshow.js?v=17868446697736367161773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/layered-slideshow.js?v=30135417790894624731773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/anchored-popover.js?v=95953304814728754461773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/floating-panel.js?v=151277338116891310371773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/video-background.js?v=25237992823806706551773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/component-quantity-selector.js?v=67906657287482036641773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/media-gallery.js?v=14624021005636302161773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/rte-formatter.js?v=40306132146590816021773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/volume-pricing.js?v=15442793518842484731773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/price-per-item.js?v=144512917617120124431773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/volume-pricing-info.js?v=94479640769665442661773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/popover-polyfill.js?v=119029313658895111201773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/overflow-list.js?v=46858356770684902511773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/quick-add.js?v=8173316780029216301773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/dialog.js?v=150888536568694194021773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/variant-picker.js?v=177886063604495755331773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/product-card.js?v=28695665944407642501773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/product-form.js?v=87407172394809519131773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/fly-to-cart.js?v=48483246440248933081773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/accordion-custom.js?v=97588419883090888471773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/media.js?v=37825095869491791421773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/product-price.js?v=164492227269745550161773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/product-sku.js?v=121804655373531320511773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/product-title-truncation.js?v=81744426891537421781773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/product-inventory.js?v=81520546963552472391773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/show-more.js?v=94563802205717136101773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/slideshow.js?v=17868446697736367161773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/layered-slideshow.js?v=30135417790894624731773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/anchored-popover.js?v=95953304814728754461773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/floating-panel.js?v=151277338116891310371773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/video-background.js?v=25237992823806706551773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/component-quantity-selector.js?v=67906657287482036641773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/media-gallery.js?v=14624021005636302161773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/rte-formatter.js?v=40306132146590816021773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/volume-pricing.js?v=15442793518842484731773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/price-per-item.js?v=144512917617120124431773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/volume-pricing-info.js?v=94479640769665442661773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/fly-to-cart.js?v=48483246440248933081773480868
+    - //shopswimdays.com/cdn/shop/t/2/assets/sticky-add-to-cart.js?v=48956925339276737091773480868
+    - /cdn/shopifycloud/portable-wallets/latest/portable-wallets.en.js
+  </rule>
+  <rule id="perf/total-byte-weight" severity="warning" status="fail" docs="https://docs.squirrelscan.com/rules/perf/total-byte-weight">
+   Total tracked resources: 31261KB (very heavy)
+  </rule>
+  <rule id="perf/critical-request-chains" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/perf/critical-request-chains">
+   2 critical request chain(s) found; 3 critical request chain(s) found
+   Pages (40): /, /pages/contact, /pages/partial-payment-policy, /collections/bodysuits, /pages/our-story, /collections/moss, /collections/halter-swim-dress, /collections/swim-leggings, /collections/wrao-tulip-skirt, /collections/swim-shorts, /collections/cove, /blogs/news, /blogs/swimblogs, /collections, /blogs/swimblogs/ultimate-guide-styling-modest-beachwear-india, /collections/all, /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-shorts, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /products/moss-full-sleeves-bodysuit, /products/cove-swim-shorts?variant=47956965851371, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /products/moss-full-sleeves-bodysuit?variant=47956968046827
+   Items (5):
+    - CSS: //shopswimdays.com/cdn/shop/t/2/assets/base.css?v=179543140946678485911773480868
+    - CSS: //shopswimdays.com/cdn/shop/t/2/compiled_assets/styles.css?v=126626109533474274671774249599
+    - CSS: //shopswimdays.com/cdn/shop/t/2/assets/base.css?v=179543140946678485911773480868
+    - CSS: https://shopswimdays.com/cdn/shopifycloud/portable-wallets/latest/accelerated-checkout-backwards-compat.css
+    - CSS: //shopswimdays.com/cdn/shop/t/2/compiled_assets/styles.css?v=126626109533474274671774249599
+  </rule>
+  <rule id="perf/duplicate-js" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/perf/duplicate-js">
+   1 library(s) loaded multiple times
+   Pages (24): /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-shorts, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /products/moss-full-sleeves-bodysuit, /products/cove-swim-shorts?variant=47956965851371, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /products/moss-full-sleeves-bodysuit?variant=47956968046827
+   Items (1):
+    - fly-to-cart (2x)
+  </rule>
+  <rule id="perf/inp-hints" severity="info" status="warn" docs="https://docs.squirrelscan.com/rules/perf/inp-hints">
+   28 blocking scripts (consider async/defer); 35 blocking scripts (consider async/defer); 31 blocking scripts (consider async/defer); 29 blocking scripts (consider async/defer)
+   Pages (40): /, /pages/contact, /pages/partial-payment-policy, /pages/our-story, /collections, /blogs/swimblogs/ultimate-guide-styling-modest-beachwear-india, /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-shorts, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /products/moss-full-sleeves-bodysuit, /products/cove-swim-shorts?variant=47956965851371, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /products/moss-full-sleeves-bodysuit?variant=47956968046827, /collections/bodysuits, /collections/moss, /collections/halter-swim-dress, /collections/swim-leggings, /collections/wrao-tulip-skirt, /collections/swim-shorts, /collections/cove, /collections/all, /blogs/news, /blogs/swimblogs
+  </rule>
+  <rule id="perf/lazy-above-fold" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/perf/lazy-above-fold">
+   1 above-fold image(s) with lazy loading
+   Pages (33): /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-shorts, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /products/moss-full-sleeves-bodysuit, /collections/bodysuits, /pages/our-story, /collections/moss, /collections/halter-swim-dress, /collections/swim-leggings, /collections/wrao-tulip-skirt, /collections/swim-shorts, /collections/cove, /collections/all, /products/cove-swim-shorts?variant=47956965851371, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /products/moss-full-sleeves-bodysuit?variant=47956968046827
+   Items (19):
+    - //shopswimdays.com/cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.47.30_1.jpg?v=1773479611&amp;width=120
+    - //shopswimdays.com/cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.27.22.jpg?v=1773479613&amp;width=120
+    - //shopswimdays.com/cdn/shop/files/WhatsApp_Image_2026-03-14_at_10.38.19.jpg?v=1773482064&amp;width=120
+    - //shopswimdays.com/cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.21.49_1.jpg?v=1773482259&amp;width=120
+    - //shopswimdays.com/cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.15.35_2.jpg?v=1773479616&amp;width=120
+    - //shopswimdays.com/cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.12.20.jpg?v=1773492085&amp;width=120
+    - //shopswimdays.com/cdn/shop/files/IMG-9332.jpg?v=1773481437&amp;width=120
+    - //shopswimdays.com/cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.57.30_2.jpg?v=1773479617&amp;width=120
+    - //shopswimdays.com/cdn/shop/files/WhatsAppImage2026-03-12at12.41.36.jpg?v=1773479619&amp;width=120
+    - //shopswimdays.com/cdn/shop/files/WhatsAppImage2026-03-12at12.31.32.jpg?v=1773479622&amp;width=120
+    - //shopswimdays.com/cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.59.57.jpg?v=1773481348&amp;width=120
+    - //shopswimdays.com/cdn/shop/files/WhatsAppImage2026-03-12at10.51.23_edfa5a95-a13e-482b-b054-4c2268736899.jpg?v=1773481072&amp;width=120
+    - //shopswimdays.com/cdn/shop/files/IMG-9343.jpg?v=1773492085&amp;width=2560
+    - //shopswimdays.com/cdn/shop/t/2/assets/flower.svg?v=5809779058710237521773484623
+    - //shopswimdays.com/cdn/shop/files/IMG-9335.jpg?v=1773481348&amp;width=2560
+    - //shopswimdays.com/cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.27.22_1.jpg?v=1773479613&amp;width=2560
+    - //shopswimdays.com/cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.33.34.jpg?v=1773482064&amp;width=2560
+    - //shopswimdays.com/cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.57.30_1.jpg?v=1773479617&amp;width=2560
+    - //shopswimdays.com/cdn/shop/files/IMG-9337.jpg?v=1773481752&amp;width=2560
+  </rule>
+  <rule id="perf/unminified-js" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/perf/unminified-js">
+   7 JavaScript file(s) appear unminified
+   Pages (40): /, /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-shorts, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /pages/contact, /products/moss-full-sleeves-bodysuit, /pages/partial-payment-policy, /collections/bodysuits, /pages/our-story, /collections/moss, /collections/halter-swim-dress, /collections/swim-leggings, /collections/wrao-tulip-skirt, /collections/swim-shorts, /collections/cove, /blogs/news, /blogs/swimblogs, /collections, /blogs/swimblogs/ultimate-guide-styling-modest-beachwear-india, /collections/all, /products/cove-swim-shorts?variant=47956965851371, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /products/moss-full-sleeves-bodysuit?variant=47956968046827
+   Items (5):
+    - inline script (3.0KB, ~2.4KB savings) [reason: high newlines (0.97%), 25 comments, formatted code, excessive whitespace]
+    - inline script (5.7KB, ~2.0KB savings) [reason: high newlines (2.68%), 8 comments, long variable names, formatted code, excessive whitespace]
+    - view-transitions.js (2.3KB, ~0.1KB savings) [reason: long variable names]
+    - popover-polyfill.js (18.9KB, ~0.6KB savings) [reason: long variable names, long function names]
+    - quick-add.js (7.3KB, ~0.2KB savings) [reason: long variable names]
+  </rule>
+  <rule id="perf/cache-headers" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/perf/cache-headers">
+   No caching headers found
+   Pages (40): /, /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-shorts, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /pages/contact, /products/moss-full-sleeves-bodysuit, /pages/partial-payment-policy, /collections/bodysuits, /pages/our-story, /collections/moss, /collections/halter-swim-dress, /collections/swim-leggings, /collections/wrao-tulip-skirt, /collections/swim-shorts, /collections/cove, /blogs/news, /blogs/swimblogs, /collections, /blogs/swimblogs/ultimate-guide-styling-modest-beachwear-india, /collections/all, /products/cove-swim-shorts?variant=47956965851371, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /products/moss-full-sleeves-bodysuit?variant=47956968046827
+  </rule>
+  <rule id="perf/unminified-css" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/perf/unminified-css">
+   2 CSS file(s) appear unminified
+   Pages (40): /, /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-shorts, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /pages/contact, /products/moss-full-sleeves-bodysuit, /pages/partial-payment-policy, /collections/bodysuits, /pages/our-story, /collections/moss, /collections/halter-swim-dress, /collections/swim-leggings, /collections/wrao-tulip-skirt, /collections/swim-shorts, /collections/cove, /blogs/news, /blogs/swimblogs, /collections, /blogs/swimblogs/ultimate-guide-styling-modest-beachwear-india, /collections/all, /products/cove-swim-shorts?variant=47956965851371, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /products/moss-full-sleeves-bodysuit?variant=47956968046827
+   Items (2):
+    - inline style (23.3KB, ~1.4KB savings) [reason: high newlines (2.2%), 43 comments, formatted code blocks]
+    - inline style (21.7KB, ~4.5KB savings) [reason: high newlines (2.0%), 12 comments, excessive whitespace (24.1%)]
+  </rule>
+  <rule id="perf/source-maps" severity="info" status="warn" docs="https://docs.squirrelscan.com/rules/perf/source-maps">
+   10 potential source map(s) detected
+   Pages (40): /, /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-shorts, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /pages/contact, /products/moss-full-sleeves-bodysuit, /pages/partial-payment-policy, /collections/bodysuits, /pages/our-story, /collections/moss, /collections/halter-swim-dress, /collections/swim-leggings, /collections/wrao-tulip-skirt, /collections/swim-shorts, /collections/cove, /blogs/news, /blogs/swimblogs, /collections, /blogs/swimblogs/ultimate-guide-styling-modest-beachwear-india, /collections/all, /products/cove-swim-shorts?variant=47956965851371, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /products/moss-full-sleeves-bodysuit?variant=47956968046827
+   Items (10):
+    - /cdn/shop/t/2/assets/view-transitions.js.map?v=7106414069516106341773480868 (from //shopswimdays.com/cdn/shop/t/2/assets/view-transitions.js?v=7106414069516106341773480868)
+    - /cdn/shop/t/2/assets/popover-polyfill.js.map?v=119029313658895111201773480868 (from //shopswimdays.com/cdn/shop/t/2/assets/popover-polyfill.js?v=119029313658895111201773480868)
+    - /cdn/shop/t/2/assets/overflow-list.js.map?v=46858356770684902511773480868 (from //shopswimdays.com/cdn/shop/t/2/assets/overflow-list.js?v=46858356770684902511773480868)
+    - /cdn/shop/t/2/assets/quick-add.js.map?v=8173316780029216301773480868 (from //shopswimdays.com/cdn/shop/t/2/assets/quick-add.js?v=8173316780029216301773480868)
+    - /cdn/shop/t/2/assets/dialog.js.map?v=150888536568694194021773480868 (from //shopswimdays.com/cdn/shop/t/2/assets/dialog.js?v=150888536568694194021773480868)
+    - /cdn/shop/t/2/assets/variant-picker.js.map?v=177886063604495755331773480868 (from //shopswimdays.com/cdn/shop/t/2/assets/variant-picker.js?v=177886063604495755331773480868)
+    - /cdn/shop/t/2/assets/product-card.js.map?v=28695665944407642501773480868 (from //shopswimdays.com/cdn/shop/t/2/assets/product-card.js?v=28695665944407642501773480868)
+    - /cdn/shop/t/2/assets/product-form.js.map?v=87407172394809519131773480868 (from //shopswimdays.com/cdn/shop/t/2/assets/product-form.js?v=87407172394809519131773480868)
+    - /cdn/shop/t/2/assets/fly-to-cart.js.map?v=48483246440248933081773480868 (from //shopswimdays.com/cdn/shop/t/2/assets/fly-to-cart.js?v=48483246440248933081773480868)
+    - /cdn/shop/t/2/assets/accordion-custom.js.map?v=97588419883090888471773480868 (from //shopswimdays.com/cdn/shop/t/2/assets/accordion-custom.js?v=97588419883090888471773480868)
+  </rule>
+ </category>
+ <category name="Images" errors="41" warnings="80">
+  <rule id="images/image-file-size" severity="error" status="fail" docs="https://docs.squirrelscan.com/rules/images/image-file-size">
+   101 image(s) exceed 100.0 KB
+   Items (101):
+    - /cdn/shop/files/mink-mingle-AlEyuIKuSmc-unsplash.jpg?v=1773484685&amp;width=2400 [sizeBytes: 482866, size: 471.5 KB, status: 200, contentType: image/jpeg] (from: /)
+    - /cdn/shop/files/WhatsApp_Image_2026-02-27_at_13.47.44_1.jpg?v=1773485044&amp;width=1400 [sizeBytes: 186410, size: 182.0 KB, status: 200, contentType: image/jpeg] (from: /)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-13_at_10.21.32.png?v=1773484855&amp;width=1400 [sizeBytes: 1579920, size: 1.5 MB, status: 200, contentType: image/png] (from: /)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.15.35_2.jpg?v=1773479616&amp;width=1400 [sizeBytes: 130917, size: 127.8 KB, status: 200, contentType: image/jpeg] (from: /)
+    - /cdn/shop/files/WhatsApp_Image_2026-02-27_at_13.47.43_1.jpg?v=1773485114&amp;width=2000 [sizeBytes: 671001, size: 655.3 KB, status: 200, contentType: image/jpeg] (from: /)
+    - /cdn/shop/files/WhatsApp_Image_2026-02-27_at_13.47.44_1.jpg?v=1773485044&amp;width=2000 [sizeBytes: 341962, size: 333.9 KB, status: 200, contentType: image/jpeg] (from: /)
+    - /cdn/shop/collections/WhatsAppImage2026-03-12at12.31.32.jpg?v=1773491556&amp;width=900 [sizeBytes: 118517, size: 115.7 KB, status: 200, contentType: image/jpeg] (from: /)
+    - /cdn/shop/collections/IMG-9337.jpg?v=1773485569&amp;width=900 [sizeBytes: 113660, size: 111.0 KB, status: 200, contentType: image/jpeg] (from: /)
+    - /cdn/shop/collections/WhatsApp_Image_2026-03-12_at_13.27.22.jpg?v=1773491678&amp;width=900 [sizeBytes: 113575, size: 110.9 KB, status: 200, contentType: image/jpeg] (from: /)
+    - /cdn/shop/files/5M5A0353.jpg?v=1773486419&amp;width=1600 [sizeBytes: 214884, size: 209.8 KB, status: 200, contentType: image/jpeg] (from: /)
+    - /cdn/shop/files/IMG-9336.png?v=1773486520&amp;width=1600 [sizeBytes: 1029601, size: 1005.5 KB, status: 200, contentType: image/png] (from: /)
+    - /cdn/shop/files/5M5A0353.jpg?v=1773486419&amp;width=1200 [sizeBytes: 119710, size: 116.9 KB, status: 200, contentType: image/jpeg] (from: /)
+    - /cdn/shop/files/IMG-9336.png?v=1773486520&amp;width=1200 [sizeBytes: 1029601, size: 1005.5 KB, status: 200, contentType: image/png] (from: /)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.15.35_2.jpg?v=1773479616&amp;width=1200 [sizeBytes: 167807, size: 163.9 KB, status: 200, contentType: image/jpeg] (from: /)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.21.49_1.jpg?v=1773482259&amp;width=1200 [sizeBytes: 139026, size: 135.8 KB, status: 200, contentType: image/jpeg] (from: /)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.12.20.jpg?v=1773492085&amp;width=1200 [sizeBytes: 133898, size: 130.8 KB, status: 200, contentType: image/jpeg] (from: /)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.27.22.jpg?v=1773479613&amp;width=1200 [sizeBytes: 137840, size: 134.6 KB, status: 200, contentType: image/jpeg] (from: /)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.47.30_1.jpg?v=1773479611&amp;width=1200 [sizeBytes: 169222, size: 165.3 KB, status: 200, contentType: image/jpeg] (from: /)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.59.57.jpg?v=1773481348&amp;width=1200 [sizeBytes: 111378, size: 108.8 KB, status: 200, contentType: image/jpeg] (from: /)
+    - /cdn/shop/files/WhatsAppImage2026-03-12at12.31.32.jpg?v=1773479622&amp;width=1200 [sizeBytes: 175122, size: 171.0 KB, status: 200, contentType: image/jpeg] (from: /)
+    - /cdn/shop/files/WhatsAppImage2026-03-12at12.41.36.jpg?v=1773479619&amp;width=1200 [sizeBytes: 183794, size: 179.5 KB, status: 200, contentType: image/jpeg] (from: /)
+    - /cdn/shop/articles/blog1.png?v=1773749163&amp;width=1920 [sizeBytes: 2520767, size: 2.4 MB, status: 200, contentType: image/png] (from: /)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.47.30_1.jpg?v=1773479611&amp;width=2560 [sizeBytes: 157929, size: 154.2 KB, status: 200, contentType: image/jpeg] (from: /products/cove-swim-shorts, /collections/swim-shorts, /collections/cove, /collections/all, /products/cove-swim-shorts?variant=47956965851371)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.47.30_2.jpg?v=1773479611&amp;width=2560 [sizeBytes: 195775, size: 191.2 KB, status: 200, contentType: image/jpeg] (from: /products/cove-swim-shorts, /collections/swim-shorts, /collections/cove, /collections/all, /products/cove-swim-shorts?variant=47956965851371)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.47.30.jpg?v=1773479611&amp;width=2560 [sizeBytes: 111463, size: 108.9 KB, status: 200, contentType: image/jpeg] (from: /products/cove-swim-shorts, /collections/swim-shorts, /collections/cove, /collections/all, /products/cove-swim-shorts?variant=47956965851371)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.47.30_1.jpg?v=1773479611&amp;width=1024 [sizeBytes: 126511, size: 123.5 KB, status: 200, contentType: image/jpeg] (from: /products/cove-swim-shorts, /products/cove-swim-shorts?variant=47956965851371)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.47.30_2.jpg?v=1773479611&amp;width=1024 [sizeBytes: 142885, size: 139.5 KB, status: 200, contentType: image/jpeg] (from: /products/cove-swim-shorts, /products/cove-swim-shorts?variant=47956965851371)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.47.30.jpg?v=1773479611&amp;width=1024 [sizeBytes: 116346, size: 113.6 KB, status: 200, contentType: image/jpeg] (from: /products/cove-swim-shorts, /products/cove-swim-shorts?variant=47956965851371)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.27.22.jpg?v=1773479613&amp;width=2560 [sizeBytes: 110476, size: 107.9 KB, status: 200, contentType: image/jpeg] (from: /products/cove-swim-leggings, /collections/swim-leggings, /collections/cove, /collections/all, /products/cove-swim-leggings?variant=47956966277355)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.27.22.jpg?v=1773479613&amp;width=1024 [sizeBytes: 109927, size: 107.4 KB, status: 200, contentType: image/jpeg] (from: /products/cove-swim-leggings, /products/cove-swim-leggings?variant=47956966277355)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.33.34_1.jpg?v=1773482064&amp;width=2560 [sizeBytes: 105728, size: 103.3 KB, status: 200, contentType: image/jpeg] (from: /products/cove-wrap-tulip-skirt, /collections/wrao-tulip-skirt, /collections/cove, /collections/all, /products/cove-wrap-tulip-skirt?variant=47956966080747)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.33.34_1.jpg?v=1773482064&amp;width=1024 [sizeBytes: 106246, size: 103.8 KB, status: 200, contentType: image/jpeg] (from: /products/cove-wrap-tulip-skirt, /products/cove-wrap-tulip-skirt?variant=47956966080747)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.33.33.jpg?v=1773482064&amp;width=1024 [sizeBytes: 111965, size: 109.3 KB, status: 200, contentType: image/jpeg] (from: /products/cove-wrap-tulip-skirt, /products/cove-wrap-tulip-skirt?variant=47956966080747)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.21.49_1.jpg?v=1773482259&amp;width=2560 [sizeBytes: 104380, size: 101.9 KB, status: 200, contentType: image/jpeg] (from: /products/cove-halter-swim-dress, /collections/halter-swim-dress, /collections/cove, /collections/all, /products/cove-halter-swim-dress?variant=47956966473963)
+    - /cdn/shop/files/IMG-9344.jpg?v=1773482259&amp;width=2560 [sizeBytes: 115384, size: 112.7 KB, status: 200, contentType: image/jpeg] (from: /products/cove-halter-swim-dress, /collections/halter-swim-dress, /collections/cove, /collections/all, /products/cove-halter-swim-dress?variant=47956966473963)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.21.49_1.jpg?v=1773482259&amp;width=1024 [sizeBytes: 110507, size: 107.9 KB, status: 200, contentType: image/jpeg] (from: /products/cove-halter-swim-dress, /products/cove-halter-swim-dress?variant=47956966473963)
+    - /cdn/shop/files/IMG-9344.jpg?v=1773482259&amp;width=1024 [sizeBytes: 104775, size: 102.3 KB, status: 200, contentType: image/jpeg] (from: /products/cove-halter-swim-dress, /products/cove-halter-swim-dress?variant=47956966473963)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.21.48.jpg?v=1773482259&amp;width=1024 [sizeBytes: 103348, size: 100.9 KB, status: 200, contentType: image/jpeg] (from: /products/cove-halter-swim-dress, /products/cove-halter-swim-dress?variant=47956966473963)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.15.35_2.jpg?v=1773479616&amp;width=2560 [sizeBytes: 130917, size: 127.8 KB, status: 200, contentType: image/jpeg] (from: /products/cove-full-sleeves-bodysuit, /collections/bodysuits, /collections/cove, /collections/all, /products/cove-full-sleeves-bodysuit?variant=47956966867179)
+    - /cdn/shop/files/IMG-9337.jpg?v=1773481752&amp;width=2560 [sizeBytes: 106449, size: 104.0 KB, status: 200, contentType: image/jpeg] (from: /products/cove-full-sleeves-bodysuit, /collections/bodysuits, /collections/cove, /collections/all, /products/cove-full-sleeves-bodysuit?variant=47956966867179)
+    - /cdn/shop/files/IMG-9336.jpg?v=1773481752&amp;width=2560 [sizeBytes: 133348, size: 130.2 KB, status: 200, contentType: image/jpeg] (from: /products/cove-full-sleeves-bodysuit, /collections/bodysuits, /collections/cove, /collections/all, /products/cove-full-sleeves-bodysuit?variant=47956966867179)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.15.35_2.jpg?v=1773479616&amp;width=1024 [sizeBytes: 133286, size: 130.2 KB, status: 200, contentType: image/jpeg] (from: /products/cove-full-sleeves-bodysuit, /products/cove-full-sleeves-bodysuit?variant=47956966867179)
+    - /cdn/shop/files/IMG-9337.jpg?v=1773481752&amp;width=1024 [sizeBytes: 137340, size: 134.1 KB, status: 200, contentType: image/jpeg] (from: /products/cove-full-sleeves-bodysuit, /products/cove-full-sleeves-bodysuit?variant=47956966867179)
+    - /cdn/shop/files/IMG-9336.jpg?v=1773481752&amp;width=1024 [sizeBytes: 136898, size: 133.7 KB, status: 200, contentType: image/jpeg] (from: /products/cove-full-sleeves-bodysuit, /products/cove-full-sleeves-bodysuit?variant=47956966867179)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.12.20.jpg?v=1773492085&amp;width=2560 [sizeBytes: 107315, size: 104.8 KB, status: 200, contentType: image/jpeg] (from: /products/cove-sleeveless-bodysuit, /collections/bodysuits, /collections/cove, /collections/all, /products/cove-sleeveless-bodysuit?variant=47956966670571)
+    - /cdn/shop/files/IMG-9343.jpg?v=1773492085&amp;width=2560 [sizeBytes: 467556, size: 456.6 KB, status: 200, contentType: image/jpeg] (from: /products/cove-sleeveless-bodysuit, /collections/bodysuits, /collections/cove, /collections/all, /products/cove-sleeveless-bodysuit?variant=47956966670571)
+    - /cdn/shop/files/IMG-9342.jpg?v=1773482009&amp;width=2560 [sizeBytes: 219752, size: 214.6 KB, status: 200, contentType: image/jpeg] (from: /products/cove-sleeveless-bodysuit, /collections/bodysuits, /collections/cove, /collections/all, /products/cove-sleeveless-bodysuit?variant=47956966670571)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.12.21.jpg?v=1773482009&amp;width=2560 [sizeBytes: 148094, size: 144.6 KB, status: 200, contentType: image/jpeg] (from: /products/cove-sleeveless-bodysuit, /collections/bodysuits, /collections/cove, /collections/all, /products/cove-sleeveless-bodysuit?variant=47956966670571)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.12.20.jpg?v=1773492085&amp;width=1024 [sizeBytes: 107668, size: 105.1 KB, status: 200, contentType: image/jpeg] (from: /products/cove-sleeveless-bodysuit, /products/cove-sleeveless-bodysuit?variant=47956966670571)
+    - /cdn/shop/files/IMG-9343.jpg?v=1773492085&amp;width=1024 [sizeBytes: 172546, size: 168.5 KB, status: 200, contentType: image/jpeg] (from: /products/cove-sleeveless-bodysuit, /products/cove-sleeveless-bodysuit?variant=47956966670571)
+    - /cdn/shop/files/IMG-9342.jpg?v=1773482009&amp;width=1024 [sizeBytes: 106884, size: 104.4 KB, status: 200, contentType: image/jpeg] (from: /products/cove-sleeveless-bodysuit, /products/cove-sleeveless-bodysuit?variant=47956966670571)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.12.21.jpg?v=1773482009&amp;width=1024 [sizeBytes: 145032, size: 141.6 KB, status: 200, contentType: image/jpeg] (from: /products/cove-sleeveless-bodysuit, /products/cove-sleeveless-bodysuit?variant=47956966670571)
+    - /cdn/shop/files/WhatsAppImage2026-03-12at12.52.49_1806a962-d0e5-4f31-802a-d26cc896b539.jpg?v=1773481418&amp;width=2560 [sizeBytes: 150755, size: 147.2 KB, status: 200, contentType: image/jpeg] (from: /products/moss-wrap-tulip-skirt, /collections/moss, /collections/wrao-tulip-skirt, /collections/all, /products/moss-wrap-tulip-skirt?variant=47956967260395)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_12.52.49_1.jpg?v=1773481418&amp;width=2560 [sizeBytes: 112898, size: 110.3 KB, status: 200, contentType: image/jpeg] (from: /products/moss-wrap-tulip-skirt, /collections/moss, /collections/wrao-tulip-skirt, /collections/all, /products/moss-wrap-tulip-skirt?variant=47956967260395)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_12.53.23.jpg?v=1773481418&amp;width=2560 [sizeBytes: 132042, size: 128.9 KB, status: 200, contentType: image/jpeg] (from: /products/moss-wrap-tulip-skirt, /collections/moss, /collections/wrao-tulip-skirt, /collections/all, /products/moss-wrap-tulip-skirt?variant=47956967260395)
+    - /cdn/shop/files/WhatsAppImage2026-03-12at12.52.49_1806a962-d0e5-4f31-802a-d26cc896b539.jpg?v=1773481418&amp;width=1024 [sizeBytes: 141899, size: 138.6 KB, status: 200, contentType: image/jpeg] (from: /products/moss-wrap-tulip-skirt, /products/moss-wrap-tulip-skirt?variant=47956967260395)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_12.52.49_1.jpg?v=1773481418&amp;width=1024 [sizeBytes: 112116, size: 109.5 KB, status: 200, contentType: image/jpeg] (from: /products/moss-wrap-tulip-skirt, /products/moss-wrap-tulip-skirt?variant=47956967260395)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_12.53.23.jpg?v=1773481418&amp;width=1024 [sizeBytes: 129506, size: 126.5 KB, status: 200, contentType: image/jpeg] (from: /products/moss-wrap-tulip-skirt, /products/moss-wrap-tulip-skirt?variant=47956967260395)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.57.30_2.jpg?v=1773479617&amp;width=2560 [sizeBytes: 145184, size: 141.8 KB, status: 200, contentType: image/jpeg] (from: /products/moss-swim-shorts, /collections/moss, /collections/swim-shorts, /collections/all, /products/moss-swim-shorts?variant=47956967063787)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.57.30_1.jpg?v=1773479617&amp;width=2560 [sizeBytes: 126700, size: 123.7 KB, status: 200, contentType: image/jpeg] (from: /products/moss-swim-shorts, /collections/moss, /collections/swim-shorts, /collections/all, /products/moss-swim-shorts?variant=47956967063787)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.57.30_2.jpg?v=1773479617&amp;width=1024 [sizeBytes: 121889, size: 119.0 KB, status: 200, contentType: image/jpeg] (from: /products/moss-swim-shorts, /products/moss-swim-shorts?variant=47956967063787)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.57.30_1.jpg?v=1773479617&amp;width=1024 [sizeBytes: 109851, size: 107.3 KB, status: 200, contentType: image/jpeg] (from: /products/moss-swim-shorts, /products/moss-swim-shorts?variant=47956967063787)
+    - /cdn/shop/files/WhatsAppImage2026-03-12at12.41.36.jpg?v=1773479619&amp;width=2560 [sizeBytes: 161135, size: 157.4 KB, status: 200, contentType: image/jpeg] (from: /products/moss-swim-leggings, /collections/moss, /collections/swim-leggings, /collections/all, /products/moss-swim-leggings?variant=47956967457003)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_12.41.36_1.jpg?v=1773479619&amp;width=2560 [sizeBytes: 172259, size: 168.2 KB, status: 200, contentType: image/jpeg] (from: /products/moss-swim-leggings, /collections/moss, /collections/swim-leggings, /collections/all, /products/moss-swim-leggings?variant=47956967457003)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_12.52.49_1_21140189-6fe9-4eba-a663-515010df8bec.jpg?v=1773479619&amp;width=2560 [sizeBytes: 112898, size: 110.3 KB, status: 200, contentType: image/jpeg] (from: /products/moss-swim-leggings, /collections/moss, /collections/swim-leggings, /collections/all, /products/moss-swim-leggings?variant=47956967457003)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_12.53.23_e9ab41d7-ba5a-425c-902d-0f1cce56b0af.jpg?v=1773479619&amp;width=2560 [sizeBytes: 132042, size: 128.9 KB, status: 200, contentType: image/jpeg] (from: /products/moss-swim-leggings, /collections/moss, /collections/swim-leggings, /collections/all, /products/moss-swim-leggings?variant=47956967457003)
+    - /cdn/shop/files/WhatsAppImage2026-03-12at12.41.36.jpg?v=1773479619&amp;width=1024 [sizeBytes: 140178, size: 136.9 KB, status: 200, contentType: image/jpeg] (from: /products/moss-swim-leggings, /products/moss-swim-leggings?variant=47956967457003)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_12.41.36_1.jpg?v=1773479619&amp;width=1024 [sizeBytes: 150182, size: 146.7 KB, status: 200, contentType: image/jpeg] (from: /products/moss-swim-leggings, /products/moss-swim-leggings?variant=47956967457003)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_12.52.49_1_21140189-6fe9-4eba-a663-515010df8bec.jpg?v=1773479619&amp;width=1024 [sizeBytes: 112116, size: 109.5 KB, status: 200, contentType: image/jpeg] (from: /products/moss-swim-leggings, /products/moss-swim-leggings?variant=47956967457003)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_12.53.23_e9ab41d7-ba5a-425c-902d-0f1cce56b0af.jpg?v=1773479619&amp;width=1024 [sizeBytes: 129506, size: 126.5 KB, status: 200, contentType: image/jpeg] (from: /products/moss-swim-leggings, /products/moss-swim-leggings?variant=47956967457003)
+    - /cdn/shop/files/WhatsAppImage2026-03-12at12.31.32.jpg?v=1773479622&amp;width=2560 [sizeBytes: 141350, size: 138.0 KB, status: 200, contentType: image/jpeg] (from: /products/moss-sleeveless-bodysuit, /collections/bodysuits, /collections/moss, /collections/all, /products/moss-sleeveless-bodysuit?variant=47956967850219)
+    - /cdn/shop/files/IMG-9334.jpg?v=1773481168&amp;width=2560 [sizeBytes: 134123, size: 131.0 KB, status: 200, contentType: image/jpeg] (from: /products/moss-sleeveless-bodysuit, /collections/bodysuits, /collections/moss, /collections/all, /products/moss-sleeveless-bodysuit?variant=47956967850219)
+    - /cdn/shop/files/IMG-9333.jpg?v=1773481168&amp;width=2560 [sizeBytes: 150822, size: 147.3 KB, status: 200, contentType: image/jpeg] (from: /products/moss-sleeveless-bodysuit, /collections/bodysuits, /collections/moss, /collections/all, /products/moss-sleeveless-bodysuit?variant=47956967850219)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_12.31.32_1.jpg?v=1773481168&amp;width=2560 [sizeBytes: 131696, size: 128.6 KB, status: 200, contentType: image/jpeg] (from: /products/moss-sleeveless-bodysuit, /collections/bodysuits, /collections/moss, /collections/all, /products/moss-sleeveless-bodysuit?variant=47956967850219)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_12.31.32_2.jpg?v=1773481168&amp;width=2560 [sizeBytes: 131706, size: 128.6 KB, status: 200, contentType: image/jpeg] (from: /products/moss-sleeveless-bodysuit, /collections/bodysuits, /collections/moss, /collections/all, /products/moss-sleeveless-bodysuit?variant=47956967850219)
+    - /cdn/shop/files/WhatsAppImage2026-03-12at12.31.32.jpg?v=1773479622&amp;width=1024 [sizeBytes: 135412, size: 132.2 KB, status: 200, contentType: image/jpeg] (from: /products/moss-sleeveless-bodysuit, /products/moss-sleeveless-bodysuit?variant=47956967850219)
+    - /cdn/shop/files/IMG-9334.jpg?v=1773481168&amp;width=1024 [sizeBytes: 128206, size: 125.2 KB, status: 200, contentType: image/jpeg] (from: /products/moss-sleeveless-bodysuit, /products/moss-sleeveless-bodysuit?variant=47956967850219)
+    - /cdn/shop/files/IMG-9333.jpg?v=1773481168&amp;width=1024 [sizeBytes: 141844, size: 138.5 KB, status: 200, contentType: image/jpeg] (from: /products/moss-sleeveless-bodysuit, /products/moss-sleeveless-bodysuit?variant=47956967850219)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_12.31.32_1.jpg?v=1773481168&amp;width=1024 [sizeBytes: 126162, size: 123.2 KB, status: 200, contentType: image/jpeg] (from: /products/moss-sleeveless-bodysuit, /products/moss-sleeveless-bodysuit?variant=47956967850219)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_12.31.32_2.jpg?v=1773481168&amp;width=1024 [sizeBytes: 129977, size: 126.9 KB, status: 200, contentType: image/jpeg] (from: /products/moss-sleeveless-bodysuit, /products/moss-sleeveless-bodysuit?variant=47956967850219)
+    - /cdn/shop/files/IMG-9335.jpg?v=1773481348&amp;width=2560 [sizeBytes: 134056, size: 130.9 KB, status: 200, contentType: image/jpeg] (from: /products/moss-halter-swim-dress, /collections/moss, /collections/halter-swim-dress, /collections/all, /products/moss-halter-swim-dress?variant=47956967653611)
+    - /cdn/shop/files/IMG-9335.jpg?v=1773481348&amp;width=1024 [sizeBytes: 128613, size: 125.6 KB, status: 200, contentType: image/jpeg] (from: /products/moss-halter-swim-dress, /products/moss-halter-swim-dress?variant=47956967653611)
+    - /cdn/shop/files/IMG-9331.jpg?v=1773481072&amp;width=2560 [sizeBytes: 131950, size: 128.9 KB, status: 200, contentType: image/jpeg] (from: /products/moss-full-sleeves-bodysuit, /collections/bodysuits, /collections/moss, /collections/all, /products/moss-full-sleeves-bodysuit?variant=47956968046827)
+    - /cdn/shop/files/990A0C3F-220C-456C-A4D0-994B0772FEDE.jpg?v=1773491898&amp;width=2560 [sizeBytes: 136305, size: 133.1 KB, status: 200, contentType: image/jpeg] (from: /products/moss-full-sleeves-bodysuit, /collections/bodysuits, /collections/moss, /collections/all, /products/moss-full-sleeves-bodysuit?variant=47956968046827)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_12.08.03_1.jpg?v=1773491898&amp;width=2560 [sizeBytes: 126436, size: 123.5 KB, status: 200, contentType: image/jpeg] (from: /products/moss-full-sleeves-bodysuit, /collections/bodysuits, /collections/moss, /collections/all, /products/moss-full-sleeves-bodysuit?variant=47956968046827)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_12.08.03.jpg?v=1773491898&amp;width=2560 [sizeBytes: 129377, size: 126.3 KB, status: 200, contentType: image/jpeg] (from: /products/moss-full-sleeves-bodysuit, /collections/bodysuits, /collections/moss, /collections/all, /products/moss-full-sleeves-bodysuit?variant=47956968046827)
+    - /cdn/shop/files/07E87C2F-60D8-4F13-A2AE-85B4433CFB34.jpg?v=1773491803&amp;width=2560 [sizeBytes: 126809, size: 123.8 KB, status: 200, contentType: image/jpeg] (from: /products/moss-full-sleeves-bodysuit, /products/moss-full-sleeves-bodysuit?variant=47956968046827)
+    - /cdn/shop/files/IMG-9331.jpg?v=1773481072&amp;width=1024 [sizeBytes: 124879, size: 122.0 KB, status: 200, contentType: image/jpeg] (from: /products/moss-full-sleeves-bodysuit, /products/moss-full-sleeves-bodysuit?variant=47956968046827)
+    - /cdn/shop/files/990A0C3F-220C-456C-A4D0-994B0772FEDE.jpg?v=1773491898&amp;width=1024 [sizeBytes: 131520, size: 128.4 KB, status: 200, contentType: image/jpeg] (from: /products/moss-full-sleeves-bodysuit, /products/moss-full-sleeves-bodysuit?variant=47956968046827)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_12.08.03_1.jpg?v=1773491898&amp;width=1024 [sizeBytes: 123820, size: 120.9 KB, status: 200, contentType: image/jpeg] (from: /products/moss-full-sleeves-bodysuit, /products/moss-full-sleeves-bodysuit?variant=47956968046827)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_12.08.03.jpg?v=1773491898&amp;width=1024 [sizeBytes: 128288, size: 125.3 KB, status: 200, contentType: image/jpeg] (from: /products/moss-full-sleeves-bodysuit, /products/moss-full-sleeves-bodysuit?variant=47956968046827)
+    - /cdn/shop/files/07E87C2F-60D8-4F13-A2AE-85B4433CFB34.jpg?v=1773491803&amp;width=1024 [sizeBytes: 126809, size: 123.8 KB, status: 200, contentType: image/jpeg] (from: /products/moss-full-sleeves-bodysuit, /products/moss-full-sleeves-bodysuit?variant=47956968046827)
+    - /cdn/shop/files/WhatsApp_Image_2026-03-22_at_19.23.47.jpg?v=1774187646&amp;width=1600 [sizeBytes: 210319, size: 205.4 KB, status: 200, contentType: image/jpeg] (from: /pages/our-story)
+    - /cdn/shop/articles/blog1.png?v=1773749163&amp;width=1100 [sizeBytes: 904642, size: 883.4 KB, status: 200, contentType: image/png] (from: /blogs/swimblogs)
+    - /cdn/shop/collections/WhatsAppImage2026-03-12at12.31.32.jpg?v=1773491556&amp;width=1920 [sizeBytes: 148094, size: 144.6 KB, status: 200, contentType: image/jpeg] (from: /collections)
+    - /cdn/shop/collections/WhatsApp_Image_2026-02-27_at_13.47.44_1.jpg?v=1773485665&amp;width=1920 [sizeBytes: 318627, size: 311.2 KB, status: 200, contentType: image/jpeg] (from: /collections)
+    - /cdn/shop/collections/WhatsApp_Image_2026-02-27_at_13.47.43_1.jpg?v=1773485254&amp;width=1920 [sizeBytes: 626552, size: 611.9 KB, status: 200, contentType: image/jpeg] (from: /collections)
+    - /cdn/shop/collections/WhatsApp_Image_2026-03-12_at_13.27.22.jpg?v=1773491678&amp;width=1920 [sizeBytes: 161135, size: 157.4 KB, status: 200, contentType: image/jpeg] (from: /collections)
+    - /cdn/shop/collections/WhatsApp_Image_2026-03-12_at_13.57.30_2.jpg?v=1773491710&amp;width=1920 [sizeBytes: 157929, size: 154.2 KB, status: 200, contentType: image/jpeg] (from: /collections)
+    - /cdn/shop/collections/IMG-9337.jpg?v=1773485569&amp;width=1920 [sizeBytes: 106449, size: 104.0 KB, status: 200, contentType: image/jpeg] (from: /collections)
+    - /cdn/shop/articles/blog1.png?v=1773749163&amp;width=3840 [sizeBytes: 2784073, size: 2.7 MB, status: 200, contentType: image/png] (from: /blogs/swimblogs/ultimate-guide-styling-modest-beachwear-india)
+  </rule>
+  <rule id="images/alt-text" severity="warning" status="fail" docs="https://docs.squirrelscan.com/rules/images/alt-text">
+   26 image(s) missing alt text; 6 image(s) missing alt text; 7 image(s) missing alt text
+   Pages (40): /, /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-shorts, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /pages/contact, /products/moss-full-sleeves-bodysuit, /pages/partial-payment-policy, /collections/bodysuits, /collections/moss, /collections/halter-swim-dress, /collections/swim-leggings, /collections/wrao-tulip-skirt, /collections/swim-shorts, /collections/cove, /blogs/news, /blogs/swimblogs, /collections, /blogs/swimblogs/ultimate-guide-styling-modest-beachwear-india, /collections/all, /products/cove-swim-shorts?variant=47956965851371, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /products/moss-full-sleeves-bodysuit?variant=47956968046827, /pages/our-story
+   Items (39):
+    - /cdn/shop/files/mink-mingle-AlEyuIKuSmc-unsplash.jpg?v=1773484685&amp;width=2400
+    - /cdn/shop/files/WhatsApp_Image_2026-02-27_at_13.47.44_1.jpg?v=1773485044&amp;width=1400
+    - /cdn/shop/files/WhatsApp_Image_2026-03-13_at_10.21.32.png?v=1773484855&amp;width=1400
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.15.35_2.jpg?v=1773479616&amp;width=1400
+    - /cdn/shop/t/2/assets/flower.svg?v=5809779058710237521773484623
+    - /cdn/shop/files/WhatsApp_Image_2026-02-27_at_13.47.43_1.jpg?v=1773485114&amp;width=2000
+    - /cdn/shop/files/WhatsApp_Image_2026-02-27_at_13.47.44_1.jpg?v=1773485044&amp;width=2000
+    - /cdn/shop/collections/WhatsAppImage2026-03-12at12.31.32.jpg?v=1773491556&amp;width=900
+    - /cdn/shop/collections/IMG-9333.jpg?v=1773570075&amp;width=900
+    - /cdn/shop/collections/IMG-9337.jpg?v=1773485569&amp;width=900
+    - /cdn/shop/collections/WhatsApp_Image_2026-03-12_at_13.27.22.jpg?v=1773491678&amp;width=900
+    - /cdn/shop/collections/WhatsApp_Image_2026-03-12_at_13.57.30_2.jpg?v=1773491710&amp;width=900
+    - /cdn/shop/t/2/assets/flower.svg?v=5809779058710237521773484623
+    - /cdn/shop/files/WhatsApp_Image_2026-03-14_at_10.31.38_da5d1e7d-3ea5-4d66-b77e-c6b70dc7694e.jpg?v=1773486333&amp;width=1600
+    - /cdn/shop/files/5M5A0353.jpg?v=1773486419&amp;width=1600
+    - /cdn/shop/files/IMG-9336.png?v=1773486520&amp;width=1600
+    - /cdn/shop/t/2/assets/flower.svg?v=5809779058710237521773484623
+    - /cdn/shop/files/WhatsApp_Image_2026-03-14_at_10.31.38_da5d1e7d-3ea5-4d66-b77e-c6b70dc7694e.jpg?v=1773486333&amp;width=1200
+    - /cdn/shop/files/5M5A0353.jpg?v=1773486419&amp;width=1200
+    - /cdn/shop/files/IMG-9336.png?v=1773486520&amp;width=1200
+    - /cdn/shop/t/2/assets/flower.svg?v=5809779058710237521773484623
+    - /cdn/shop/t/2/assets/flower.svg?v=5809779058710237521773484623
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.15.35_2.jpg?v=1773479616&amp;width=500
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.21.49_1.jpg?v=1773482259&amp;width=500
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.12.20.jpg?v=1773492085&amp;width=500
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.27.22.jpg?v=1773479613&amp;width=500
+    - /cdn/shop/t/2/assets/flower.svg?v=5809779058710237521773484623
+    - /cdn/shop/t/2/assets/flower.svg?v=5809779058710237521773484623
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.15.35_2.jpg?v=1773479616&amp;width=500
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.21.49_1.jpg?v=1773482259&amp;width=500
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.12.20.jpg?v=1773492085&amp;width=500
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.27.22.jpg?v=1773479613&amp;width=500
+    - /cdn/shop/t/2/assets/flower.svg?v=5809779058710237521773484623
+    - /cdn/shop/t/2/assets/flower.svg?v=5809779058710237521773484623
+    - /cdn/shop/t/2/assets/flower.svg?v=5809779058710237521773484623
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.15.35_2.jpg?v=1773479616&amp;width=500
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.21.49_1.jpg?v=1773482259&amp;width=500
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.12.20.jpg?v=1773492085&amp;width=500
+    - /cdn/shop/files/WhatsApp_Image_2026-03-12_at_13.27.22.jpg?v=1773479613&amp;width=500
+  </rule>
+  <rule id="images/offscreen-lazy" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/images/offscreen-lazy">
+   3 below-fold image(s) without lazy loading; 8 below-fold image(s) without lazy loading; 6 below-fold image(s) without lazy loading; 10 below-fold image(s) without lazy loading; 14 below-fold image(s) without lazy loading; 12 below-fold image(s) without lazy loading; 1 below-fold image(s) without lazy loading; 2 below-fold image(s) without lazy loading
+   Pages (40): /, /collections/bodysuits, /pages/our-story, /collections/moss, /collections/halter-swim-dress, /collections/swim-leggings, /collections/wrao-tulip-skirt, /collections/swim-shorts, /collections/cove, /collections, /collections/all, /products/cove-swim-shorts, /products/moss-swim-shorts, /products/cove-swim-shorts?variant=47956965851371, /products/moss-swim-shorts?variant=47956967063787, /products/cove-swim-leggings, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt, /products/moss-wrap-tulip-skirt, /products/moss-swim-leggings, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-leggings?variant=47956967457003, /products/cove-halter-swim-dress, /products/moss-full-sleeves-bodysuit, /products/cove-halter-swim-dress?variant=47956966473963, /products/moss-full-sleeves-bodysuit?variant=47956968046827, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /pages/contact, /pages/partial-payment-policy, /blogs/news, /blogs/swimblogs, /blogs/swimblogs/ultimate-guide-styling-modest-beachwear-india
+   Items (82):
+    - flower.svg
+    - flower.svg
+    - swimdays-logo-black.png
+    - WhatsApp_Image_2026-03-12_at_13.47.30_2.jpg
+    - WhatsApp_Image_2026-03-12_at_13.47.30.jpg
+    - WhatsApp_Image_2026-03-12_at_13.47.30_1.jpg
+    - WhatsApp_Image_2026-03-12_at_13.47.30_2.jpg
+    - WhatsApp_Image_2026-03-12_at_13.47.30.jpg
+    - flower.svg
+    - flower.svg
+    - swimdays-logo-black.png
+    - WhatsApp_Image_2026-03-12_at_13.57.30_1.jpg
+    - WhatsApp_Image_2026-03-12_at_13.57.30.jpg
+    - WhatsApp_Image_2026-03-12_at_13.57.30_2.jpg
+    - WhatsApp_Image_2026-03-12_at_13.27.22_1.jpg
+    - WhatsApp_Image_2026-03-12_at_13.27.22.jpg
+    - WhatsApp_Image_2026-03-12_at_13.27.22_1.jpg
+    - flower.svg
+    - flower.svg
+    - swimdays-logo-black.png
+    - WhatsApp_Image_2026-03-12_at_13.33.34.jpg
+    - WhatsApp_Image_2026-03-12_at_13.33.34_1.jpg
+    - WhatsApp_Image_2026-03-12_at_13.33.33.jpg
+    - WhatsApp_Image_2026-03-14_at_10.38.19.jpg
+    - WhatsApp_Image_2026-03-12_at_13.33.34.jpg
+    - WhatsApp_Image_2026-03-12_at_13.33.34_1.jpg
+    - WhatsApp_Image_2026-03-12_at_13.33.33.jpg
+    - flower.svg
+    - flower.svg
+    - swimdays-logo-black.png
+    - WhatsAppImage2026-03-12at12.52.49_1806a962-d0e5-4f31-802a-d26cc896b539.jpg
+    - WhatsApp_Image_2026-03-12_at_12.52.49_1.jpg
+    - WhatsApp_Image_2026-03-12_at_12.53.23.jpg
+    - IMG-9332.jpg
+    - WhatsApp_Image_2026-03-12_at_12.41.36_1.jpg
+    - WhatsApp_Image_2026-03-12_at_12.52.49_1_21140189-6fe9-4eba-a663-515010df8bec.jpg
+    - WhatsApp_Image_2026-03-12_at_12.53.23_e9ab41d7-ba5a-425c-902d-0f1cce56b0af.jpg
+    - WhatsAppImage2026-03-12at12.41.36.jpg
+    - IMG-9344.jpg
+    - WhatsApp_Image_2026-03-14_at_10.31.38.jpg
+    - WhatsApp_Image_2026-03-12_at_13.21.48.jpg
+    - WhatsApp_Image_2026-03-12_at_13.21.49.jpg
+    - IMG-9345.jpg
+    - WhatsApp_Image_2026-03-12_at_13.21.49_1.jpg
+    - IMG-9344.jpg
+    - WhatsApp_Image_2026-03-14_at_10.31.38.jpg
+    - WhatsApp_Image_2026-03-12_at_13.21.48.jpg
+    - WhatsApp_Image_2026-03-12_at_13.21.49.jpg
+    - IMG-9331.jpg
+    - 990A0C3F-220C-456C-A4D0-994B0772FEDE.jpg
+    - WhatsApp_Image_2026-03-12_at_12.08.03_1.jpg
+    - WhatsApp_Image_2026-03-12_at_12.08.03.jpg
+    - 07E87C2F-60D8-4F13-A2AE-85B4433CFB34.jpg
+    - WhatsAppImage2026-03-12at10.51.23_edfa5a95-a13e-482b-b054-4c2268736899.jpg
+    - IMG-9337.jpg
+    - IMG-9336.jpg
+    - WhatsApp_Image_2026-03-12_at_13.15.35.jpg
+    - WhatsApp_Image_2026-03-12_at_13.15.35_1.jpg
+    - WhatsApp_Image_2026-03-12_at_13.15.35_2.jpg
+    - IMG-9337.jpg
+    - IMG-9336.jpg
+    - WhatsApp_Image_2026-03-12_at_13.15.35.jpg
+    - WhatsApp_Image_2026-03-12_at_13.15.35_1.jpg
+    - flower.svg
+    - IMG-9343.jpg
+    - IMG-9342.jpg
+    - WhatsApp_Image_2026-03-12_at_13.12.21.jpg
+    - WhatsApp_Image_2026-03-12_at_13.12.20_1.jpg
+    - WhatsApp_Image_2026-03-12_at_13.12.20.jpg
+    - IMG-9334.jpg
+    - IMG-9333.jpg
+    - WhatsApp_Image_2026-03-12_at_12.31.32_1.jpg
+    - WhatsApp_Image_2026-03-12_at_12.31.32_2.jpg
+    - WhatsAppImage2026-03-12at12.31.32.jpg
+    - IMG-9335.jpg
+    - WhatsApp_Image_2026-03-14_at_10.34.53.jpg
+    - WhatsApp_Image_2026-03-12_at_13.59.57_1.jpg
+    - WhatsApp_Image_2026-03-12_at_13.59.57_2.jpg
+    - WhatsApp_Image_2026-03-12_at_13.59.57.jpg
+    - swimdays-logo-black.png
+    - flower.svg
+    - swimdays-logo-black.png
+  </rule>
+  <rule id="images/svg-inline" severity="info" status="warn" docs="https://docs.squirrelscan.com/rules/images/svg-inline">
+   2 large inline SVG(s) (&gt;4KB each); 4 large inline SVG(s) (&gt;4KB each)
+   Pages (40): /, /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-shorts, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /pages/contact, /products/moss-full-sleeves-bodysuit, /pages/partial-payment-policy, /pages/our-story, /blogs/news, /blogs/swimblogs, /collections, /blogs/swimblogs/ultimate-guide-styling-modest-beachwear-india, /products/cove-swim-shorts?variant=47956965851371, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /products/moss-full-sleeves-bodysuit?variant=47956968046827, /collections/bodysuits, /collections/moss, /collections/halter-swim-dress, /collections/swim-leggings, /collections/wrao-tulip-skirt, /collections/swim-shorts, /collections/cove, /collections/all
+  </rule>
+ </category>
+ <category name="Security" errors="0" warnings="45">
+  <rule id="security/leaked-secrets" severity="error" status="warn" docs="https://docs.squirrelscan.com/rules/security/leaked-secrets">
+   1 potential secret(s) detected (verify manually)
+   Items (1):
+    - Generic Token Assignment: access********************17a&quot; (Found in html (https://shopswimdays.com/products/moss-full-sleeves-bodysuit?variant=47956968046827))
+  </rule>
+  <rule id="security/csp" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/security/csp">
+   CSP has no script-src or default-src directive
+  </rule>
+  <rule id="security/hsts" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/security/hsts">
+   HSTS max-age too short (91 days)
+  </rule>
+  <rule id="security/form-captcha" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/security/form-captcha">
+   1 public form(s) without CAPTCHA; 2 public form(s) without CAPTCHA
+   Pages (40): /, /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-shorts, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /products/moss-full-sleeves-bodysuit, /pages/partial-payment-policy, /collections/bodysuits, /pages/our-story, /collections/moss, /collections/halter-swim-dress, /collections/swim-leggings, /collections/wrao-tulip-skirt, /collections/swim-shorts, /collections/cove, /blogs/news, /blogs/swimblogs, /collections, /blogs/swimblogs/ultimate-guide-styling-modest-beachwear-india, /collections/all, /products/cove-swim-shorts?variant=47956965851371, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /products/moss-full-sleeves-bodysuit?variant=47956968046827, /pages/contact
+   Items (3):
+    - #ContactFooter
+    - #ContactForm-ATDlsenl1cFZ3TGREM__contact_form_UwiCkQ
+    - #ContactFooter
+  </rule>
+  <rule id="security/new-tab" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/security/new-tab">
+   1 external link(s) missing rel=&quot;noopener&quot;
+   Pages (1): /pages/partial-payment-policy
+   Items (1):
+    - https://apps.shopify.com/partialy-partial-payment-cod
+  </rule>
+  <rule id="security/http-to-https" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/security/http-to-https">
+   20 HTTP URL(s) redirect to HTTPS
+   Items (20):
+    - http://shopswimdays.com/ (http://shopswimdays.com/ → https://shopswimdays.com/ (301)) [statusCode: 301, chain: [object Object]]
+    - http://shopswimdays.com/products/cove-swim-shorts (http://shopswimdays.com/products/cove-swim-shorts → https://shopswimdays.com/products/cove-swim-shorts (301)) [statusCode: 301, chain: [object Object]]
+    - http://shopswimdays.com/products/cove-swim-leggings (http://shopswimdays.com/products/cove-swim-leggings → https://shopswimdays.com/products/cove-swim-leggings (301)) [statusCode: 301, chain: [object Object]]
+    - http://shopswimdays.com/products/cove-wrap-tulip-skirt (http://shopswimdays.com/products/cove-wrap-tulip-skirt → https://shopswimdays.com/products/cove-wrap-tulip-skirt (301)) [statusCode: 301, chain: [object Object]]
+    - http://shopswimdays.com/products/cove-halter-swim-dress (http://shopswimdays.com/products/cove-halter-swim-dress → https://shopswimdays.com/products/cove-halter-swim-dress (301)) [statusCode: 301, chain: [object Object]]
+    - http://shopswimdays.com/products/cove-full-sleeves-bodysuit (http://shopswimdays.com/products/cove-full-sleeves-bodysuit → https://shopswimdays.com/products/cove-full-sleeves-bodysuit (301)) [statusCode: 301, chain: [object Object]]
+    - http://shopswimdays.com/products/cove-sleeveless-bodysuit (http://shopswimdays.com/products/cove-sleeveless-bodysuit → https://shopswimdays.com/products/cove-sleeveless-bodysuit (301)) [statusCode: 301, chain: [object Object]]
+    - http://shopswimdays.com/products/moss-wrap-tulip-skirt (http://shopswimdays.com/products/moss-wrap-tulip-skirt → https://shopswimdays.com/products/moss-wrap-tulip-skirt (301)) [statusCode: 301, chain: [object Object]]
+    - http://shopswimdays.com/products/moss-swim-shorts (http://shopswimdays.com/products/moss-swim-shorts → https://shopswimdays.com/products/moss-swim-shorts (301)) [statusCode: 301, chain: [object Object]]
+    - http://shopswimdays.com/products/moss-swim-leggings (http://shopswimdays.com/products/moss-swim-leggings → https://shopswimdays.com/products/moss-swim-leggings (301)) [statusCode: 301, chain: [object Object]]
+    - http://shopswimdays.com/products/moss-sleeveless-bodysuit (http://shopswimdays.com/products/moss-sleeveless-bodysuit → https://shopswimdays.com/products/moss-sleeveless-bodysuit (301)) [statusCode: 301, chain: [object Object]]
+    - http://shopswimdays.com/products/moss-halter-swim-dress (http://shopswimdays.com/products/moss-halter-swim-dress → https://shopswimdays.com/products/moss-halter-swim-dress (301)) [statusCode: 301, chain: [object Object]]
+    - http://shopswimdays.com/pages/contact (http://shopswimdays.com/pages/contact → https://shopswimdays.com/pages/contact (301)) [statusCode: 301, chain: [object Object]]
+    - http://shopswimdays.com/products/moss-full-sleeves-bodysuit (http://shopswimdays.com/products/moss-full-sleeves-bodysuit → https://shopswimdays.com/products/moss-full-sleeves-bodysuit (301)) [statusCode: 301, chain: [object Object]]
+    - http://shopswimdays.com/pages/partial-payment-policy (http://shopswimdays.com/pages/partial-payment-policy → https://shopswimdays.com/pages/partial-payment-policy (301)) [statusCode: 301, chain: [object Object]]
+    - http://shopswimdays.com/collections/bodysuits (http://shopswimdays.com/collections/bodysuits → https://shopswimdays.com/collections/bodysuits (301)) [statusCode: 301, chain: [object Object]]
+    - http://shopswimdays.com/pages/our-story (http://shopswimdays.com/pages/our-story → https://shopswimdays.com/pages/our-story (301)) [statusCode: 301, chain: [object Object]]
+    - http://shopswimdays.com/collections/moss (http://shopswimdays.com/collections/moss → https://shopswimdays.com/collections/moss (301)) [statusCode: 301, chain: [object Object]]
+    - http://shopswimdays.com/collections/halter-swim-dress (http://shopswimdays.com/collections/halter-swim-dress → https://shopswimdays.com/collections/halter-swim-dress (301)) [statusCode: 301, chain: [object Object]]
+    - http://shopswimdays.com/collections/swim-leggings (http://shopswimdays.com/collections/swim-leggings → https://shopswimdays.com/collections/swim-leggings (301)) [statusCode: 301, chain: [object Object]]
+  </rule>
+ </category>
+ <category name="Content" errors="0" warnings="44">
+  <rule id="content/duplicate-title" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/content/duplicate-title">
+   12 duplicate title(s) found across 24 pages
+   Items (12):
+    - cove swim shorts | shorts - swimdays (&quot;cove swim shorts | shorts - swimdays...&quot; (2 pages)) [pageCount: 2] (from: /products/cove-swim-shorts, /products/cove-swim-shorts?variant=47956965851371)
+    - cove swim leggings | leggings - swimdays (&quot;cove swim leggings | leggings - swimdays...&quot; (2 pages)) [pageCount: 2] (from: /products/cove-swim-leggings, /products/cove-swim-leggings?variant=47956966277355)
+    - cove wrap-tulip skirt | skirt - swimdays (&quot;cove wrap-tulip skirt | skirt - swimdays...&quot; (2 pages)) [pageCount: 2] (from: /products/cove-wrap-tulip-skirt, /products/cove-wrap-tulip-skirt?variant=47956966080747)
+    - cove halter swim-dress | dress - swimdays (&quot;cove halter swim-dress | dress - swimday...&quot; (2 pages)) [pageCount: 2] (from: /products/cove-halter-swim-dress, /products/cove-halter-swim-dress?variant=47956966473963)
+    - cove full sleeves bodysuit | bodysuit - swimdays (&quot;cove full sleeves bodysuit | bodysuit - ...&quot; (2 pages)) [pageCount: 2] (from: /products/cove-full-sleeves-bodysuit, /products/cove-full-sleeves-bodysuit?variant=47956966867179)
+    - cove sleeveless bodysuit | bodysuit - swimdays (&quot;cove sleeveless bodysuit | bodysuit - sw...&quot; (2 pages)) [pageCount: 2] (from: /products/cove-sleeveless-bodysuit, /products/cove-sleeveless-bodysuit?variant=47956966670571)
+    - moss wrap-tulip skirt | skirt - swimdays (&quot;moss wrap-tulip skirt | skirt - swimdays...&quot; (2 pages)) [pageCount: 2] (from: /products/moss-wrap-tulip-skirt, /products/moss-wrap-tulip-skirt?variant=47956967260395)
+    - moss swim shorts | shorts - swimdays (&quot;moss swim shorts | shorts - swimdays...&quot; (2 pages)) [pageCount: 2] (from: /products/moss-swim-shorts, /products/moss-swim-shorts?variant=47956967063787)
+    - moss swim leggings | leggings - swimdays (&quot;moss swim leggings | leggings - swimdays...&quot; (2 pages)) [pageCount: 2] (from: /products/moss-swim-leggings, /products/moss-swim-leggings?variant=47956967457003)
+    - moss sleeveless bodysuit | bodysuit - swimdays (&quot;moss sleeveless bodysuit | bodysuit - sw...&quot; (2 pages)) [pageCount: 2] (from: /products/moss-sleeveless-bodysuit, /products/moss-sleeveless-bodysuit?variant=47956967850219)
+    - moss halter swim-dress | dress - swimdays (&quot;moss halter swim-dress | dress - swimday...&quot; (2 pages)) [pageCount: 2] (from: /products/moss-halter-swim-dress, /products/moss-halter-swim-dress?variant=47956967653611)
+    - moss full sleeves bodysuit | bodysuit - swimdays (&quot;moss full sleeves bodysuit | bodysuit - ...&quot; (2 pages)) [pageCount: 2] (from: /products/moss-full-sleeves-bodysuit, /products/moss-full-sleeves-bodysuit?variant=47956968046827)
+  </rule>
+  <rule id="content/duplicate-description" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/content/duplicate-description">
+   13 duplicate description(s) found across 26 pages
+   Items (13):
+    - swimdays creates slow-made, artisanal modest swimwear for th (&quot;swimdays creates slow-made, artisanal mo...&quot; (2 pages)) [pageCount: 2] (from: /, /collections)
+    - mid-waist mini shorts with a snug fit and broad waistband fo (&quot;mid-waist mini shorts with a snug fit an...&quot; (2 pages)) [pageCount: 2] (from: /products/cove-swim-shorts, /products/cove-swim-shorts?variant=47956965851371)
+    - mid-waist, ankle-length leggings with a snug fit that flatte (&quot;mid-waist, ankle-length leggings with a ...&quot; (2 pages)) [pageCount: 2] (from: /products/cove-swim-leggings, /products/cove-swim-leggings?variant=47956966277355)
+    - elegant mini skirt featuring a wrap-around front flap and ad (&quot;elegant mini skirt featuring a wrap-arou...&quot; (2 pages)) [pageCount: 2] (from: /products/cove-wrap-tulip-skirt, /products/cove-wrap-tulip-skirt?variant=47956966080747)
+    - a short halter neck swim dress with a flared silhouette that (&quot;a short halter neck swim dress with a fl...&quot; (2 pages)) [pageCount: 2] (from: /products/cove-halter-swim-dress, /products/cove-halter-swim-dress?variant=47956966473963)
+    - front zip bodysuit with hot-pants style bottoms and full sle (&quot;front zip bodysuit with hot-pants style ...&quot; (2 pages)) [pageCount: 2] (from: /products/cove-full-sleeves-bodysuit, /products/cove-full-sleeves-bodysuit?variant=47956966867179)
+    - cove sleeveless bodysuit features a front zip design with ho (&quot;cove sleeveless bodysuit features a fron...&quot; (2 pages)) [pageCount: 2] (from: /products/cove-sleeveless-bodysuit, /products/cove-sleeveless-bodysuit?variant=47956966670571)
+    - mini skirt featuring a wrap-around front flap and adjustable (&quot;mini skirt featuring a wrap-around front...&quot; (2 pages)) [pageCount: 2] (from: /products/moss-wrap-tulip-skirt, /products/moss-wrap-tulip-skirt?variant=47956967260395)
+    - mid-waist mini shorts with a snug fit and broad waistband fo (&quot;mid-waist mini shorts with a snug fit an...&quot; (2 pages)) [pageCount: 2] (from: /products/moss-swim-shorts, /products/moss-swim-shorts?variant=47956967063787)
+    - moss swim leggings feature a mid-waist, ankle-length cut wit (&quot;moss swim leggings feature a mid-waist, ...&quot; (2 pages)) [pageCount: 2] (from: /products/moss-swim-leggings, /products/moss-swim-leggings?variant=47956967457003)
+    - front zip sleeveless bodysuit with hot-pants style bottoms i (&quot;front zip sleeveless bodysuit with hot-p...&quot; (2 pages)) [pageCount: 2] (from: /products/moss-sleeveless-bodysuit, /products/moss-sleeveless-bodysuit?variant=47956967850219)
+    - a short halter swim-dress in moss with a flattering flared s (&quot;a short halter swim-dress in moss with a...&quot; (2 pages)) [pageCount: 2] (from: /products/moss-halter-swim-dress, /products/moss-halter-swim-dress?variant=47956967653611)
+    - front zip bodysuit with full sleeves and hot-pants style bot (&quot;front zip bodysuit with full sleeves and...&quot; (2 pages)) [pageCount: 2] (from: /products/moss-full-sleeves-bodysuit, /products/moss-full-sleeves-bodysuit?variant=47956968046827)
+  </rule>
+  <rule id="content/keyword-stuffing" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/content/keyword-stuffing">
+   2 word(s) may be overused; 1 word(s) may be overused; 4 word(s) may be overused; 5 word(s) may be overused; 3 word(s) may be overused
+   Pages (38): /, /products/cove-full-sleeves-bodysuit, /products/moss-full-sleeves-bodysuit, /collections/wrao-tulip-skirt, /collections, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/moss-full-sleeves-bodysuit?variant=47956968046827, /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-shorts, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /pages/contact, /pages/partial-payment-policy, /blogs/news, /blogs/swimblogs, /products/cove-swim-shorts?variant=47956965851371, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /collections/bodysuits, /collections/swim-leggings, /collections/cove, /collections/moss, /collections/halter-swim-dress, /collections/all, /collections/swim-shorts
+   Items (22):
+    - cove (&quot;cove&quot; (4.7%)) [count: 20, density: 4.672897196261682]
+    - swim (&quot;swim&quot; (3.7%)) [count: 16, density: 3.7383177570093453]
+    - full (&quot;full&quot; (3.2%)) [count: 11, density: 3.225806451612903]
+    - price (&quot;price&quot; (5.6%)) [count: 16, density: 5.555555555555555]
+    - cove (&quot;cove&quot; (4.9%)) [count: 15, density: 4.88599348534202]
+    - payment (&quot;payment&quot; (3.6%)) [count: 14, density: 3.6269430051813467]
+    - cove (&quot;cove&quot; (6.2%)) [count: 19, density: 6.1688311688311686]
+    - price (&quot;price&quot; (5.2%)) [count: 16, density: 5.194805194805195]
+    - bodysuit (&quot;bodysuit&quot; (5.2%)) [count: 16, density: 5.194805194805195]
+    - moss (&quot;moss&quot; (3.6%)) [count: 11, density: 3.571428571428571]
+    - swim (&quot;swim&quot; (3.9%)) [count: 11, density: 3.9145907473309607]
+    - leggings (&quot;leggings&quot; (3.2%)) [count: 9, density: 3.202846975088968]
+    - moss (&quot;moss&quot; (7.3%)) [count: 24, density: 7.250755287009064]
+    - price (&quot;price&quot; (4.8%)) [count: 16, density: 4.833836858006042]
+    - swim (&quot;swim&quot; (3.9%)) [count: 13, density: 3.927492447129909]
+    - cove (&quot;cove&quot; (3.3%)) [count: 11, density: 3.3232628398791544]
+    - bodysuit (&quot;bodysuit&quot; (3.0%)) [count: 10, density: 3.0211480362537766]
+    - halter (&quot;halter&quot; (3.1%)) [count: 9, density: 3.125]
+    - dress (&quot;dress&quot; (3.1%)) [count: 9, density: 3.125]
+    - cove (&quot;cove&quot; (5.7%)) [count: 16, density: 5.6939501779359425]
+    - price (&quot;price&quot; (5.7%)) [count: 16, density: 5.6939501779359425]
+    - swim (&quot;swim&quot; (3.9%)) [count: 11, density: 3.9145907473309607]
+  </rule>
+  <rule id="content/word-count" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/content/word-count">
+   Thin content: 149 words (min 300); Thin content: 144 words (min 300); Thin content: 180 words (min 300); Thin content: 166 words (min 300)
+   Pages (4): /pages/contact, /blogs/news, /blogs/swimblogs, /collections
+  </rule>
+ </category>
+ <category name="Social Media" errors="0" warnings="9">
+  <rule id="social/og-image-size" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/social/og-image-size">
+   og:image may be too small
+   Pages (9): /products/cove-wrap-tulip-skirt, /products/moss-wrap-tulip-skirt, /products/moss-full-sleeves-bodysuit, /collections/halter-swim-dress, /collections/wrao-tulip-skirt, /collections/all, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-full-sleeves-bodysuit?variant=47956968046827
+  </rule>
+ </category>
+ <category name="E-E-A-T" errors="0" warnings="3">
+  <rule id="eeat/author-byline" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/eeat/author-byline">
+   Only 0% of content pages have author attribution
+  </rule>
+  <rule id="eeat/privacy-policy" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/eeat/privacy-policy">
+   No Privacy Policy page found
+  </rule>
+  <rule id="eeat/content-dates" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/eeat/content-dates">
+   Only 0% of content has datePublished
+  </rule>
+ </category>
+ <category name="Core SEO" errors="0" warnings="2">
+  <rule id="core/meta-title" severity="error" status="warn" docs="https://docs.squirrelscan.com/rules/core/meta-title">
+   Title too long (63 chars, max 60)
+   Pages (1): /blogs/swimblogs/ultimate-guide-styling-modest-beachwear-india
+  </rule>
+  <rule id="core/title-unique" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/core/title-unique">
+   12 duplicate title(s) affecting 24 pages
+   Items (12):
+    - cove swim shorts | shorts - swimdays (&quot;cove swim shorts | shorts - swimdays...&quot; (2 pages)) [pageCount: 2] (from: /products/cove-swim-shorts, /products/cove-swim-shorts?variant=47956965851371)
+    - cove swim leggings | leggings - swimdays (&quot;cove swim leggings | leggings - swimdays...&quot; (2 pages)) [pageCount: 2] (from: /products/cove-swim-leggings, /products/cove-swim-leggings?variant=47956966277355)
+    - cove wrap-tulip skirt | skirt - swimdays (&quot;cove wrap-tulip skirt | skirt - swimdays...&quot; (2 pages)) [pageCount: 2] (from: /products/cove-wrap-tulip-skirt, /products/cove-wrap-tulip-skirt?variant=47956966080747)
+    - cove halter swim-dress | dress - swimdays (&quot;cove halter swim-dress | dress - swimday...&quot; (2 pages)) [pageCount: 2] (from: /products/cove-halter-swim-dress, /products/cove-halter-swim-dress?variant=47956966473963)
+    - cove full sleeves bodysuit | bodysuit - swimdays (&quot;cove full sleeves bodysuit | bodysuit - ...&quot; (2 pages)) [pageCount: 2] (from: /products/cove-full-sleeves-bodysuit, /products/cove-full-sleeves-bodysuit?variant=47956966867179)
+    - cove sleeveless bodysuit | bodysuit - swimdays (&quot;cove sleeveless bodysuit | bodysuit - sw...&quot; (2 pages)) [pageCount: 2] (from: /products/cove-sleeveless-bodysuit, /products/cove-sleeveless-bodysuit?variant=47956966670571)
+    - moss wrap-tulip skirt | skirt - swimdays (&quot;moss wrap-tulip skirt | skirt - swimdays...&quot; (2 pages)) [pageCount: 2] (from: /products/moss-wrap-tulip-skirt, /products/moss-wrap-tulip-skirt?variant=47956967260395)
+    - moss swim shorts | shorts - swimdays (&quot;moss swim shorts | shorts - swimdays...&quot; (2 pages)) [pageCount: 2] (from: /products/moss-swim-shorts, /products/moss-swim-shorts?variant=47956967063787)
+    - moss swim leggings | leggings - swimdays (&quot;moss swim leggings | leggings - swimdays...&quot; (2 pages)) [pageCount: 2] (from: /products/moss-swim-leggings, /products/moss-swim-leggings?variant=47956967457003)
+    - moss sleeveless bodysuit | bodysuit - swimdays (&quot;moss sleeveless bodysuit | bodysuit - sw...&quot; (2 pages)) [pageCount: 2] (from: /products/moss-sleeveless-bodysuit, /products/moss-sleeveless-bodysuit?variant=47956967850219)
+    - moss halter swim-dress | dress - swimdays (&quot;moss halter swim-dress | dress - swimday...&quot; (2 pages)) [pageCount: 2] (from: /products/moss-halter-swim-dress, /products/moss-halter-swim-dress?variant=47956967653611)
+    - moss full sleeves bodysuit | bodysuit - swimdays (&quot;moss full sleeves bodysuit | bodysuit - ...&quot; (2 pages)) [pageCount: 2] (from: /products/moss-full-sleeves-bodysuit, /products/moss-full-sleeves-bodysuit?variant=47956968046827)
+  </rule>
+ </category>
+ <category name="Links" errors="0" warnings="2">
+  <rule id="links/broken-external-links" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/links/broken-external-links">
+   1 broken external link(s): 1 with 406
+   Items (1):
+    - https://shopify.com/81891950827/account?locale=en&amp;region_country=IN (https://shopify.com/81891950827/account?locale=en&amp;region_country=IN (406)) [status: 406] (from: /, /products/cove-swim-shorts, /products/cove-swim-leggings, /products/cove-wrap-tulip-skirt, /products/cove-halter-swim-dress, /products/cove-full-sleeves-bodysuit, /products/cove-sleeveless-bodysuit, /products/moss-wrap-tulip-skirt, /products/moss-swim-shorts, /products/moss-swim-leggings, /products/moss-sleeveless-bodysuit, /products/moss-halter-swim-dress, /pages/contact, /products/moss-full-sleeves-bodysuit, /pages/partial-payment-policy, /collections/bodysuits, /pages/our-story, /collections/moss, /collections/halter-swim-dress, /collections/swim-leggings, /collections/wrao-tulip-skirt, /collections/swim-shorts, /collections/cove, /blogs/news, /blogs/swimblogs, /collections, /blogs/swimblogs/ultimate-guide-styling-modest-beachwear-india, /collections/all, /products/cove-swim-shorts?variant=47956965851371, /products/cove-swim-leggings?variant=47956966277355, /products/cove-wrap-tulip-skirt?variant=47956966080747, /products/cove-halter-swim-dress?variant=47956966473963, /products/cove-full-sleeves-bodysuit?variant=47956966867179, /products/cove-sleeveless-bodysuit?variant=47956966670571, /products/moss-wrap-tulip-skirt?variant=47956967260395, /products/moss-swim-shorts?variant=47956967063787, /products/moss-swim-leggings?variant=47956967457003, /products/moss-sleeveless-bodysuit?variant=47956967850219, /products/moss-halter-swim-dress?variant=47956967653611, /products/moss-full-sleeves-bodysuit?variant=47956968046827)
+  </rule>
+  <rule id="links/orphan-pages" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/links/orphan-pages">
+   3 orphan page(s) with &lt;2 incoming links
+   Items (3):
+    - /pages/contact
+    - /pages/partial-payment-policy
+    - /blogs/news
+  </rule>
+ </category>
+ <category name="Crawlability" errors="0" warnings="1">
+  <rule id="crawl/sitemap-coverage" severity="warning" status="warn" docs="https://docs.squirrelscan.com/rules/crawl/sitemap-coverage">
+   2 indexable page(s) not in sitemap (5%)
+   Items (2):
+    - /collections
+    - /collections/all
+  </rule>
+ </category>
+</issues>
+</audit>

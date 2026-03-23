@@ -4,9 +4,7 @@
   <div
     id="predictive-search-results"
     class="predictive-search-dropdown"
-    role="listbox"
     aria-label="{{ 'content.search_results_label' | t }}"
-    aria-expanded="true"
     data-transition-container
     style="--color-shadow: rgb(var(--color-foreground-rgb) / var(--opacity-10-25));"
   >
@@ -46,7 +44,6 @@
             %}
             <ul
               class="predictive-search-results__list predictive-search-results__wrapper predictive-search-results__wrapper-queries list-unstyled"
-              role="listbox"
               aria-labelledby="predictive-search-queries"
             >
               {%- for resource in predictive_search.resources.queries -%}

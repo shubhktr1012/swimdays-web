@@ -99,9 +99,7 @@
   </div>
 </div>
 
-<script type="application/ld+json">
-  {{ article | structured_data }}
-</script>
+{% render 'swimdays-structured-data-article', article: article, author_name: custom_byline %}
 
 {% stylesheet %}
   .blog-post-shell {

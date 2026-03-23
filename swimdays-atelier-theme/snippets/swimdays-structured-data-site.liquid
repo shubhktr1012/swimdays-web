@@ -1,0 +1,46 @@
+{% liquid
+  assign base_url = request.origin | default: shop.url
+  assign organization_id = base_url | append: '#organization'
+  assign website_id = base_url | append: '#website'
+  assign logo_image = settings.logo | default: settings.favicon
+  assign logo_url = blank
+
+  if logo_image != blank
+    assign logo_url = logo_image | image_url: width: 600 | prepend: 'https:'
+  endif
+
+  assign site_description = shop.description | default: shop.name | strip_html | strip_newlines | strip
+%}
+{% capture search_target %}{{ base_url }}{{ routes.search_url }}?q={search_term_string}{% endcapture %}
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": {{ organization_id | json }},
+    "name": {{ shop.name | json }},
+    "url": {{ base_url | json }}{% if logo_url != blank %},
+    "logo": {{ logo_url | json }}{% endif %}
+  }
+</script>
+
+{% if request.page_type == 'index' %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": {{ website_id | json }},
+      "name": {{ shop.name | json }},
+      "url": {{ base_url | append: '/' | json }},
+      "description": {{ site_description | json }},
+      "publisher": {
+        "@id": {{ organization_id | json }}
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {{ search_target | strip | json }},
+        "query-input": "required name=search_term_string"
+      }
+    }
+  </script>
+{% endif %}

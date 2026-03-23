@@ -32,6 +32,8 @@
         {% for block in section.blocks %}
           {% liquid
             assign fallback_asset = blank
+            assign block_image_probe = blank
+            assign block_media_class = 'craft-media-image'
             case forloop.index
               when 1
                 assign fallback_asset = 'swimdays-craft-01.png'
@@ -40,28 +42,31 @@
               when 3
                 assign fallback_asset = 'swimdays-craft-03.png'
             endcase
+            if block.settings.image != blank
+              assign block_image_probe = block.settings.image | image_url: width: 32
+            endif
+            if forloop.first
+              assign block_media_class = 'craft-media-image is-active'
+            endif
           %}
 
           {% if block.settings.image != blank %}
-            {% if forloop.first %}
-              {{
-                block.settings.image
-                | image_url: width: 1600
-                | image_tag:
-                  class: 'craft-media-image is-active',
-                  alt: '',
-                  widths: '600, 900, 1200, 1600',
-                  sizes: '(max-width: 767px) 0px, (max-width: 1535px) 41vw, 40vw',
-                  loading: 'lazy'
-              }}
+            {% if block_image_probe contains 'IMG-9336.png' %}
+              {% render 'swimdays-optimized-media',
+                key: 'craft-artisanal',
+                class: block_media_class,
+                alt: '',
+                sizes: '(max-width: 767px) 0px, (max-width: 1535px) 41vw, 40vw',
+                loading: 'lazy'
+              %}
             {% else %}
               {{
                 block.settings.image
-                | image_url: width: 1600
+                | image_url: width: 1400
                 | image_tag:
-                  class: 'craft-media-image',
+                  class: block_media_class,
                   alt: '',
-                  widths: '600, 900, 1200, 1600',
+                  widths: '480, 720, 960, 1200, 1400',
                   sizes: '(max-width: 767px) 0px, (max-width: 1535px) 41vw, 40vw',
                   loading: 'lazy'
               }}
@@ -109,6 +114,7 @@
       {% for block in section.blocks %}
         {% liquid
           assign fallback_asset = blank
+          assign block_image_probe = blank
           case forloop.index
             when 1
               assign fallback_asset = 'swimdays-craft-01.png'
@@ -117,6 +123,9 @@
             when 3
               assign fallback_asset = 'swimdays-craft-03.png'
           endcase
+          if block.settings.image != blank
+            assign block_image_probe = block.settings.image | image_url: width: 32
+          endif
         %}
         <div class="craft-feature" {{ block.shopify_attributes }}>
           <h3 class="craft-feature-name">
@@ -130,16 +139,26 @@
 
           <div class="craft-feature-media" aria-hidden="true">
             {% if block.settings.image != blank %}
-              {{
-                block.settings.image
-                | image_url: width: 1200
-                | image_tag:
+              {% if block_image_probe contains 'IMG-9336.png' %}
+                {% render 'swimdays-optimized-media',
+                  key: 'craft-artisanal',
                   class: 'craft-feature-media-image',
                   alt: '',
-                  widths: '400, 600, 900, 1200',
                   sizes: '(max-width: 767px) 48vw, 0px',
                   loading: 'lazy'
-              }}
+                %}
+              {% else %}
+                {{
+                  block.settings.image
+                  | image_url: width: 960
+                  | image_tag:
+                    class: 'craft-feature-media-image',
+                    alt: '',
+                    widths: '320, 480, 720, 960',
+                    sizes: '(max-width: 767px) 48vw, 0px',
+                    loading: 'lazy'
+                }}
+              {% endif %}
             {% else %}
               <img
                 src="{{ fallback_asset | asset_url }}"
