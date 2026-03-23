@@ -1,6 +1,6 @@
 {% liquid
   assign byline_metafield = article.metafields.custom.byline
-  assign custom_byline = byline_metafield.value | default: byline_metafield | default: 'Team Swimdays'
+  assign custom_byline = byline_metafield.value | default: byline_metafield | default: article.author | default: 'Team Swimdays'
   assign custom_byline = custom_byline | strip
 %}
 
