@@ -6,6 +6,8 @@
   assign right_title = right_collection.title | default: 'Cove'
   assign left_title = left_title | replace: ' Collection', '' | replace: ' collection', ''
   assign right_title = right_title | replace: ' Collection', '' | replace: ' collection', ''
+  assign left_title = left_title | replace_first: 'The ', '' | replace_first: 'the ', '' | strip
+  assign right_title = right_title | replace_first: 'The ', '' | replace_first: 'the ', '' | strip
 
   assign left_url = left_collection.url | default: routes.all_products_collection_url
   assign right_url = right_collection.url | default: routes.all_products_collection_url

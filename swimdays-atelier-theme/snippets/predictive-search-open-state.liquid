@@ -1,0 +1,195 @@
+{% doc %}
+  Renders the predictive search drawer open state with featured products and the full catalog.
+
+  @param {string} [products_test_id] - Playwright test id for the full catalog grid
+{% enddoc %}
+
+{% liquid
+  assign featured_title = 'content.featured_products' | t
+  assign catalog_title = 'content.search_results_resource_products' | t
+  assign catalog_collection = collections.all
+  assign featured_collection = settings.empty_state_collection
+  assign featured_collection_title = featured_collection.title | default: featured_title
+%}
+
+<div
+  class="predictive-search-results__inner predictive-search-results__inner--catalog"
+  data-predictive-search-open-state
+>
+  <div class="predictive-search-open-state">
+    <div class="predictive-search-open-state__supporting">
+      <div
+        class="predictive-search-open-state__recently-viewed-host"
+        data-recently-viewed-host
+        data-search-supporting-section
+        hidden
+      ></div>
+
+      {% if featured_collection != blank and featured_collection.products_count > 0 %}
+        <section
+          class="predictive-search-open-state__section predictive-search-open-state__section--featured"
+          data-search-supporting-section
+          data-open-state-section="featured-products"
+        >
+          <div class="predictive-search-open-state__section-header">
+            <h4 class="predictive-search-results__title">
+              {{ featured_collection_title }}
+            </h4>
+          </div>
+
+          <ul
+            class="predictive-search-results__list predictive-search-results__wrapper-products predictive-search-open-state__rail list-unstyled"
+            aria-label="{{ featured_collection_title }}"
+          >
+            {% for product in featured_collection.products limit: 4 %}
+              <li
+                class="predictive-search-results__card predictive-search-results__card--product predictive-search-open-state__card"
+                ref="resultsItems[]"
+                data-search-text="{{ product.title | append: ' ' | append: product.type | append: ' ' | append: product.vendor | strip_html | downcase | escape }}"
+              >
+                {% render 'resource-card',
+                  resource_type: 'product',
+                  resource: product,
+                  image_width: 500,
+                  image_hover: true,
+                  image_aspect_ratio: '4 / 5'
+                %}
+              </li>
+            {% endfor %}
+          </ul>
+        </section>
+      {% endif %}
+    </div>
+
+    <section
+      class="predictive-search-open-state__section predictive-search-open-state__section--catalog"
+      data-open-state-section="all-products"
+    >
+      <div class="predictive-search-open-state__section-header">
+        <h4 class="predictive-search-results__title">
+          {{ catalog_title }}
+        </h4>
+      </div>
+
+      {% paginate catalog_collection.products by 250 %}
+        {% if catalog_collection.products_count > 0 %}
+          <ul
+            class="predictive-search-results__list predictive-search-results__wrapper-products predictive-search-open-state__grid list-unstyled"
+            aria-label="{{ catalog_title }}"
+            data-search-product-grid
+            {% if products_test_id %}
+              data-testid="{{ products_test_id }}"
+            {% endif %}
+          >
+            {% for product in catalog_collection.products %}
+              <li
+                class="predictive-search-results__card predictive-search-results__card--product predictive-search-open-state__card"
+                ref="resultsItems[]"
+                data-search-product-card
+                data-search-text="{{ product.title | append: ' ' | append: product.type | append: ' ' | append: product.vendor | strip_html | downcase | escape }}"
+              >
+                {% render 'resource-card',
+                  resource_type: 'product',
+                  resource: product,
+                  image_width: 500,
+                  image_hover: true,
+                  image_aspect_ratio: '4 / 5'
+                %}
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="predictive-search-results__no-results">
+            {{ 'content.no_products_found' | t }}
+          </p>
+        {% endif %}
+      {% endpaginate %}
+
+      <p
+        class="predictive-search-results__no-results predictive-search-open-state__empty"
+        data-search-empty-message
+        hidden
+      >
+        {{ 'content.no_products_found' | t }}
+      </p>
+    </section>
+  </div>
+</div>
+
+{% stylesheet %}
+  .predictive-search-results__inner--catalog {
+    padding: 0;
+  }
+
+  .predictive-search-open-state {
+    display: grid;
+    gap: var(--padding-xl);
+    padding: var(--padding-lg);
+  }
+
+  .predictive-search-open-state__supporting {
+    display: grid;
+    gap: var(--padding-xl);
+  }
+
+  .predictive-search-open-state__section {
+    display: grid;
+    gap: var(--padding-sm);
+  }
+
+  .predictive-search-open-state__section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--gap-xs);
+  }
+
+  .predictive-search-open-state__rail {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(210px, 78%);
+    gap: var(--gap-sm);
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-block-end: var(--padding-2xs);
+    scrollbar-width: none;
+  }
+
+  .predictive-search-open-state__rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .predictive-search-open-state__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--gap-sm);
+  }
+
+  .predictive-search-open-state__card {
+    min-width: 0;
+  }
+
+  .predictive-search-open-state__recently-viewed-host:empty {
+    display: none;
+  }
+
+  [data-search-supporting-section][hidden],
+  [data-search-product-card][hidden] {
+    display: none !important;
+  }
+
+  .predictive-search-open-state__empty {
+    margin: 0;
+    padding-top: var(--padding-xs);
+  }
+
+  @media screen and (max-width: 749px) {
+    .predictive-search-open-state {
+      padding: var(--padding-sm);
+    }
+
+    .predictive-search-open-state__rail {
+      grid-auto-columns: minmax(190px, 82%);
+    }
+  }
+{% endstylesheet %}

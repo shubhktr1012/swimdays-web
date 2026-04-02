@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "npx serve .",
     "preview": "npx live-server --port=3000",
-    "build": "echo 'No build step required for static site'"
+    "build": "echo 'No build step required for static site'",
+    "pw:check": "node scripts/playwright-check.mjs",
+    "pw:open": "node scripts/playwright-check.mjs --headed"
   },
   "keywords": [
     "swimwear",
@@ -15,5 +17,8 @@
     "e-commerce"
   ],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "playwright": "^1.59.0"
+  }
 }

@@ -51,7 +51,7 @@ class PredictiveSearchComponent extends Component {
     if (dialog) {
       document.addEventListener('keydown', this.#handleKeyboardShortcut, { signal });
       dialog.addEventListener(DialogCloseEvent.eventName, this.#handleDialogClose, { signal });
-      dialog.addEventListener(DialogOpenEvent.eventName, this.#handleDialogOpen, { signal, once: true });
+      dialog.addEventListener(DialogOpenEvent.eventName, this.#handleDialogOpen, { signal });
 
       this.addEventListener('click', this.#handleModalClick, { signal });
     }
@@ -105,9 +105,14 @@ class PredictiveSearchComponent extends Component {
   };
 
   #handleDialogOpen = () => {
+    this.refs.searchInput.focus();
+
     if (!this.#emptyStateLoaded && RecentlyViewed.getProducts().length > 0) {
       this.#loadEmptyState();
+      return;
     }
+
+    this.#restoreOpenState();
   };
 
   #loadEmptyState() {
@@ -132,9 +137,93 @@ class PredictiveSearchComponent extends Component {
         }
         return Array.from(container.querySelectorAll('[ref="resultsItems[]"], .predictive-search-results__card'));
       })
-      .filter((item) => item instanceof HTMLElement);
+      .filter(
+        (item) =>
+          item instanceof HTMLElement &&
+          !item.hidden &&
+          !item.closest('[hidden]')
+      );
 
     return /** @type {HTMLElement[]} */ (allItems);
+  }
+
+  get #openStateCards() {
+    return Array.from(this.querySelectorAll('[data-search-product-card]')).filter((item) => item instanceof HTMLElement);
+  }
+
+  get #supportingSections() {
+    return Array.from(this.querySelectorAll('[data-search-supporting-section]')).filter((item) => item instanceof HTMLElement);
+  }
+
+  get #recentlyViewedHost() {
+    const host = this.querySelector('[data-recently-viewed-host]');
+    return host instanceof HTMLElement ? host : null;
+  }
+
+  get #emptyMessage() {
+    const message = this.querySelector('[data-search-empty-message]');
+    return message instanceof HTMLElement ? message : null;
+  }
+
+  #normalizeText(value = '') {
+    return value
+      .toLowerCase()
+      .replace(/[^\p{L}\p{N}\s-]+/gu, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  #restoreOpenState() {
+    const { searchInput } = this.refs;
+
+    for (const card of this.#openStateCards) {
+      card.hidden = false;
+    }
+
+    for (const section of this.#supportingSections) {
+      if (section === this.#recentlyViewedHost && section.children.length === 0) {
+        section.hidden = true;
+      } else {
+        section.hidden = false;
+      }
+    }
+
+    this.#currentIndex = -1;
+    searchInput.setAttribute('aria-expanded', 'false');
+    this.#emptyMessage?.setAttribute('hidden', '');
+  }
+
+  #filterOpenState(searchTerm) {
+    const cards = this.#openStateCards;
+    if (cards.length === 0) return false;
+
+    const normalizedSearchTerm = this.#normalizeText(searchTerm);
+    const tokens = normalizedSearchTerm.split(' ').filter(Boolean);
+    let matchCount = 0;
+
+    for (const section of this.#supportingSections) {
+      section.hidden = true;
+    }
+
+    for (const card of cards) {
+      const searchText = this.#normalizeText(card.dataset.searchText || '');
+      const isMatch = tokens.every((token) => searchText.includes(token));
+      card.hidden = !isMatch;
+
+      if (isMatch) {
+        matchCount += 1;
+      }
+    }
+
+    this.#currentIndex = -1;
+    this.refs.searchInput.setAttribute('aria-expanded', 'true');
+
+    if (this.#emptyMessage) {
+      this.#emptyMessage.hidden = matchCount !== 0;
+    }
+
+    this.#resetScrollPositions();
+    return true;
   }
 
   /**
@@ -230,9 +319,11 @@ class PredictiveSearchComponent extends Component {
           event.preventDefault();
           this.#currentItem?.querySelector('a')?.click();
         } else {
-          const searchUrl = new URL(Theme.routes.search_url, location.origin);
-          searchUrl.searchParams.set('q', this.refs.searchInput.value);
-          window.location.href = searchUrl.toString();
+          const firstVisibleItem = this.#allResultsItems[0];
+          if (firstVisibleItem) {
+            event.preventDefault();
+            firstVisibleItem.querySelector('a')?.click();
+          }
         }
         break;
       }
@@ -261,6 +352,9 @@ class PredictiveSearchComponent extends Component {
 
       onAnimationEnd(recentlyViewedWrapper, () => {
         recentlyViewedWrapper.remove();
+        if (this.#recentlyViewedHost && this.#recentlyViewedHost.children.length === 0) {
+          this.#recentlyViewedHost.hidden = true;
+        }
       });
     }
   }
@@ -293,7 +387,9 @@ class PredictiveSearchComponent extends Component {
     }
 
     this.#showResetButton();
-    this.#getSearchResults(searchTerm);
+    if (!this.#filterOpenState(searchTerm)) {
+      this.#getSearchResults(searchTerm);
+    }
   }, 200);
 
   /**
@@ -413,14 +509,17 @@ class PredictiveSearchComponent extends Component {
         }
       }
 
-      const collectionElement = parsedEmptySectionMarkup.querySelector('#predictive-search-products');
-      if (!collectionElement) return;
-      collectionElement.prepend(...recentlyViewedProductsHtml.children);
+      const recentlyViewedHost = parsedEmptySectionMarkup.querySelector('[data-recently-viewed-host]');
+      if (!(recentlyViewedHost instanceof HTMLElement)) return;
+
+      recentlyViewedHost.hidden = false;
+      recentlyViewedHost.replaceChildren(...recentlyViewedProductsHtml.children);
     }
 
     if (abortController.signal.aborted) return;
 
     morph(predictiveSearchResults, parsedEmptySectionMarkup);
+    this.#restoreOpenState();
     this.#resetScrollPositions();
   };
 }

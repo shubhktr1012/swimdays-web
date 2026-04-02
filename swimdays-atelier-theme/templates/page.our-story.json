@@ -11,7 +11,32 @@
   "sections": {
     "main": {
       "type": "swimdays-our-story",
-      "settings": {}
+      "settings": {
+        "founders_portrait": "shopify://shop_images/WhatsApp_Image_2026-03-22_at_19.23.47.jpg",
+        "founders_portrait_alt": "Portrait of the Swimdays founders",
+        "hero_eyebrow": "OUR STORY",
+        "hero_title": "Inspired from Sundays",
+        "hero_intro": "For two sisters in India, summer Sundays once meant early-morning pool sessions, hearty breakfasts, and a search for swimwear that never felt quite right.",
+        "story_label": "The Beginning",
+        "story_paragraph_1": "For the two sisters in India, their summer Sundays during childhood meant ‘swim-days’. Early morning pool sessions and plunges, followed by a hearty-brekkie meant the world to us. However, our sunny mornings were often clouded by the stressful bag packing where we barely managed to find ourselves suitable swims.",
+        "story_paragraph_2": "Our manifesto included modest coverage, lovely colours, comfortable fabric and sun protection. Unfortunately, this deal was unavailable across the gigantic Indian market. The horrors followed us through many beach vacations and weekend getaways too!",
+        "story_paragraph_3": "Many years later, on a fine Sunday morning in July, 2024, before leaving home for yet another swim session, we decided to fill the void and create swimwear that would resonate with girls like us who scroll endlessly on their shopping screens, to never find their favourite picks.",
+        "story_paragraph_4": "We share our Sunday swim nostalgia through Swimdays and aim to enhance the beachwear and swimwear experience with inclusivity at the core!",
+        "brand_essence": "With middle-Eastern design aesthetics transcended into the vivid Indian palette, we crafted an ideal and timeless swim-collection. Embracing the magic of colours and beaded embroidery, our bunch includes separates that allows you to curate your very own, bespoke ensemble.",
+        "goal_title": "OUR GOAL",
+        "goal_body": "Our goal is to revive modest fashion for women who aspire style and art, particularly for swim and beachwear. Our separates allow you to synergise an ensemble that best suits your personal style and body type. We are here to offer a range of products that deliver modest coverage, premium quality and flattering fits.",
+        "founders_title": "FOUNDERS' NOTE",
+        "founder_1_name": "Zahabiya",
+        "founder_1_quote": "“Modest swimwear for me is non-conformity to the idea that modest clothing is restrictive, conservative, or boring! I believe it is not merely covering up, it is cherishing the freedom of choice, but fashionably! I don’t wish to fill my swim bag with flimsy, crammed-up and mismatched activewear; I want flattering fits, fabrics and colours that are thoughtfully curated. Now, I wish to offer this for every woman”.",
+        "founder_2_name": "Fatema",
+        "founder_2_quote": "“I believe beach or resort wear was always supposed to evoke a lounging and basking vibe, that’s why we came together to craft a range of artisanal swimwear which is comfortable and has an ease of styling. I like to define my own standards when it comes to fashion trends, without feeling sidetracked or overlooked. Our designs encompass a whole spectrum of modesty, in a fun and creative way”.",
+        "cta_title": "Explore the collections",
+        "cta_body": "Move from the story into the silhouettes, colours, and separates that make up Swimdays.",
+        "cta_primary_label": "Shop Moss",
+        "cta_primary_link": "shopify://collections/moss",
+        "cta_secondary_label": "Shop Cove",
+        "cta_secondary_link": "shopify://collections/cove"
+      }
     }
   },
   "order": [

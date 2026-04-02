@@ -2,9 +2,14 @@
 
 {% liquid
   assign max_items = section.settings.post_limit
+  assign is_swimblogs_home = false
+
+  if request.page_type == 'index' and section.settings.blog != blank and section.settings.blog.handle == 'swimblogs'
+    assign is_swimblogs_home = true
+  endif
 %}
 
-<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div class="section-background color-{{ section.settings.color_scheme }}{% if is_swimblogs_home %} featured-blog-posts__background--swimblogs-home{% endif %}"></div>
 
 <div
   class="
@@ -14,6 +19,7 @@
     section-resource-list
     spacing-style
     gap-style
+    {% if is_swimblogs_home %} featured-blog-posts--swimblogs-home{% endif %}
   "
   style="
     {%- render 'spacing-style', settings: section.settings -%}
@@ -59,6 +65,13 @@
     test_id: 'featured-blog-posts'
   %}
 </div>
+
+{% stylesheet %}
+  .featured-blog-posts__background--swimblogs-home,
+  .featured-blog-posts--swimblogs-home {
+    background-color: #efe7e8;
+  }
+{% endstylesheet %}
 
 {% schema %}
 {

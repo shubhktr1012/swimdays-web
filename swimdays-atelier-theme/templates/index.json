@@ -70,7 +70,7 @@
         "collection_2": "halter-swim-dress",
         "badge_style_2": "none",
         "badge_text_2": "",
-        "collection_3": "wrao-tulip-skirt",
+        "collection_3": "wrap-tulip-skirt",
         "badge_style_3": "none",
         "badge_text_3": "Bestseller",
         "collection_4": "swim-leggings",
@@ -79,6 +79,76 @@
         "collection_5": "swim-shorts",
         "badge_style_5": "none",
         "badge_text_5": ""
+      }
+    },
+    "swimdays_home_instagram": {
+      "type": "swimdays-home-instagram",
+      "blocks": {
+        "insta_post_1": {
+          "type": "post",
+          "settings": {
+            "image": "",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "insta_post_2": {
+          "type": "post",
+          "settings": {
+            "image": "",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "insta_post_3": {
+          "type": "post",
+          "settings": {
+            "image": "",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "insta_post_4": {
+          "type": "post",
+          "settings": {
+            "image": "",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "insta_post_5": {
+          "type": "post",
+          "settings": {
+            "image": "",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "insta_post_6": {
+          "type": "post",
+          "settings": {
+            "image": "",
+            "link": "",
+            "alt_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "insta_post_1",
+        "insta_post_2",
+        "insta_post_3",
+        "insta_post_4",
+        "insta_post_5",
+        "insta_post_6"
+      ],
+      "settings": {
+        "heading_prefix": "Seen on",
+        "heading_accent": "Instagram",
+        "heading_suffix": "",
+        "intro_text": "Add recent @swimdays.shop posts here for a clean, free Instagram look on the homepage.",
+        "instagram_url": "https://www.instagram.com/swimdays.shop/?hl=en",
+        "cta_label": "Follow @swimdays.shop",
+        "open_links_new_tab": true
       }
     },
     "swimdays_home_craft": {
@@ -446,10 +516,10 @@
         "layout_type": "grid",
         "carousel_on_mobile": true,
         "post_limit": 2,
-        "columns": 1,
+        "columns": 2,
         "mobile_columns": "2",
         "mobile_card_size": "60cqw",
-        "columns_gap": 8,
+        "columns_gap": 16,
         "rows_gap": 16,
         "icons_style": "arrow",
         "icons_shape": "circle",
@@ -466,6 +536,7 @@
     "swimdays_home_brand_statement",
     "swimdays_home_collections",
     "swimdays_home_categories",
+    "swimdays_home_instagram",
     "swimdays_home_craft",
     "swimdays_home_shop_all_products",
     "section_t4m8BJ",
