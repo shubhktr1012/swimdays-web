@@ -6,6 +6,11 @@
   assign cta_label = section.settings.cta_label | default: 'Follow @swimdays.shop'
   assign watch_cta_label = section.settings.watch_cta_label | default: 'Watch on Instagram'
   assign instagram_url = section.settings.instagram_url | default: 'https://www.instagram.com/swimdays.shop/?hl=en'
+  assign preview_seconds = section.settings.preview_seconds | default: 6
+  assign show_watch_cta = section.settings.show_watch_cta
+  if show_watch_cta == blank
+    assign show_watch_cta = true
+  endif
 %}
 
 {% render 'swimdays-home-fonts' %}
@@ -35,8 +40,17 @@
           assign tile_media_type = block.settings.media_type | default: 'image'
           assign tile_image = block.settings.image
           assign tile_video = block.settings.video
+          assign tile_video_thumbnail = block.settings.video_thumbnail
           assign tile_link = block.settings.link
           assign tile_alt = block.settings.alt_text | default: 'Swimdays Instagram post'
+          assign watch_cta_text = watch_cta_label | replace: 'Instagram', '' | replace: 'instagram', '' | strip
+          if watch_cta_text == blank
+            assign watch_cta_text = 'Watch on'
+          endif
+
+          if tile_video_thumbnail == blank and tile_video != blank
+            assign tile_video_thumbnail = tile_video.preview_image
+          endif
         %}
 
         <article class="swimdays-home-instagram__tile" {{ block.shopify_attributes }}>
@@ -54,17 +68,41 @@
 
           <div class="swimdays-home-instagram__media">
             {% if tile_media_type == 'video' and tile_video != blank %}
-              {{
-                tile_video
-                | video_tag:
-                  poster: nil,
-                  autoplay: true,
-                  loop: true,
-                  controls: false,
-                  muted: true,
-                  playsinline: true,
-                  class: 'swimdays-home-instagram__asset swimdays-home-instagram__video'
-              }}
+              <div
+                class="swimdays-home-instagram__video-shell"
+                data-swimdays-instagram-preview
+                data-preview-seconds="{{ preview_seconds }}"
+              >
+                {{
+                  tile_video
+                  | video_tag:
+                    poster: nil,
+                    autoplay: false,
+                    loop: false,
+                    controls: false,
+                    muted: true,
+                    playsinline: true,
+                    preload: 'metadata',
+                    class: 'swimdays-home-instagram__asset swimdays-home-instagram__video'
+                }}
+
+                {% if tile_video_thumbnail != blank %}
+                  {{
+                    tile_video_thumbnail
+                    | image_url: width: 900
+                    | image_tag:
+                      class: 'swimdays-home-instagram__thumbnail',
+                      alt: tile_alt,
+                      widths: '280, 360, 480, 640, 900',
+                      sizes: '(max-width: 749px) 50vw, (max-width: 1099px) 33vw, 16vw',
+                      loading: 'lazy'
+                  }}
+                {% else %}
+                  <div class="swimdays-home-instagram__placeholder" aria-hidden="true">
+                    {{ 'image' | placeholder_svg_tag: 'swimdays-home-instagram__placeholder-svg' }}
+                  </div>
+                {% endif %}
+              </div>
             {% elsif tile_image != blank %}
               {{
                 tile_image
@@ -77,25 +115,54 @@
                   loading: 'lazy'
               }}
             {% elsif tile_video != blank %}
-              {{
-                tile_video
-                | video_tag:
-                  poster: nil,
-                  autoplay: true,
-                  loop: true,
-                  controls: false,
-                  muted: true,
-                  playsinline: true,
-                  class: 'swimdays-home-instagram__asset swimdays-home-instagram__video'
-              }}
+              <div
+                class="swimdays-home-instagram__video-shell"
+                data-swimdays-instagram-preview
+                data-preview-seconds="{{ preview_seconds }}"
+              >
+                {{
+                  tile_video
+                  | video_tag:
+                    poster: nil,
+                    autoplay: false,
+                    loop: false,
+                    controls: false,
+                    muted: true,
+                    playsinline: true,
+                    preload: 'metadata',
+                    class: 'swimdays-home-instagram__asset swimdays-home-instagram__video'
+                }}
+
+                {% if tile_video_thumbnail != blank %}
+                  {{
+                    tile_video_thumbnail
+                    | image_url: width: 900
+                    | image_tag:
+                      class: 'swimdays-home-instagram__thumbnail',
+                      alt: tile_alt,
+                      widths: '280, 360, 480, 640, 900',
+                      sizes: '(max-width: 749px) 50vw, (max-width: 1099px) 33vw, 16vw',
+                      loading: 'lazy'
+                  }}
+                {% else %}
+                  <div class="swimdays-home-instagram__placeholder" aria-hidden="true">
+                    {{ 'image' | placeholder_svg_tag: 'swimdays-home-instagram__placeholder-svg' }}
+                  </div>
+                {% endif %}
+              </div>
             {% else %}
               <div class="swimdays-home-instagram__placeholder" aria-hidden="true">
                 {{ 'image' | placeholder_svg_tag: 'swimdays-home-instagram__placeholder-svg' }}
               </div>
             {% endif %}
 
-            {% if tile_link != blank and section.settings.show_watch_cta %}
-              <span class="swimdays-home-instagram__watch-cta">{{ watch_cta_label }}</span>
+            {% if tile_link != blank and show_watch_cta %}
+              <span class="swimdays-home-instagram__watch-cta">
+                <span>{{ watch_cta_text }}</span>
+                <span class="swimdays-home-instagram__ig-icon swimdays-home-instagram__ig-icon--tiny swimdays-home-instagram__ig-icon--mono" aria-hidden="true">
+                  <span class="swimdays-home-instagram__ig-icon-lens"></span>
+                </span>
+              </span>
             {% endif %}
           </div>
 
@@ -116,7 +183,10 @@
             rel="noopener noreferrer"
           {% endif %}
         >
-          {{ cta_label }}
+          <span class="swimdays-home-instagram__ig-icon swimdays-home-instagram__ig-icon--small" aria-hidden="true">
+            <span class="swimdays-home-instagram__ig-icon-lens"></span>
+          </span>
+          <span>{{ cta_label }}</span>
         </a>
       </div>
     {% endif %}
@@ -156,6 +226,64 @@
     letter-spacing: 0;
     margin: 0 0.12em;
     text-transform: none;
+  }
+
+  .swimdays-home-instagram__ig-icon {
+    align-items: center;
+    background:
+      radial-gradient(circle at 32% 110%, #fdf497 0%, #fdf497 9%, #fd5949 46%, #d6249f 68%, #285aeb 100%);
+    border-radius: 0.34em;
+    display: inline-flex;
+    flex: 0 0 auto;
+    height: 1em;
+    justify-content: center;
+    position: relative;
+    width: 1em;
+  }
+
+  .swimdays-home-instagram__ig-icon::before {
+    border: 1.35px solid #fff;
+    border-radius: 0.24em;
+    content: "";
+    inset: 18%;
+    position: absolute;
+  }
+
+  .swimdays-home-instagram__ig-icon-lens {
+    border: 1.35px solid #fff;
+    border-radius: 50%;
+    height: 34%;
+    width: 34%;
+    z-index: 1;
+  }
+
+  .swimdays-home-instagram__ig-icon-lens::before {
+    background: #fff;
+    border-radius: 50%;
+    content: "";
+    height: 18%;
+    position: absolute;
+    right: 22%;
+    top: 22%;
+    width: 18%;
+  }
+
+  .swimdays-home-instagram__ig-icon--title {
+    font-size: 0.74em;
+    margin: 0 0.15em 0 0.08em;
+    transform: translateY(0.04em);
+  }
+
+  .swimdays-home-instagram__ig-icon--small {
+    font-size: 1rem;
+  }
+
+  .swimdays-home-instagram__ig-icon--tiny {
+    font-size: 0.78rem;
+  }
+
+  .swimdays-home-instagram__ig-icon--mono {
+    background: #111;
   }
 
   .swimdays-home-instagram__intro {
@@ -202,12 +330,40 @@
     display: block;
     height: 100%;
     object-fit: cover;
+    pointer-events: none;
     transition: transform 0.35s ease;
     width: 100%;
   }
 
   .swimdays-home-instagram__video {
     background: #000;
+  }
+
+  .swimdays-home-instagram__video-shell {
+    height: 100%;
+    position: relative;
+    width: 100%;
+  }
+
+  .swimdays-home-instagram__video-shell .swimdays-home-instagram__video {
+    inset: 0;
+    position: absolute;
+  }
+
+  .swimdays-home-instagram__thumbnail {
+    display: block;
+    height: 100%;
+    inset: 0;
+    object-fit: cover;
+    pointer-events: none;
+    position: absolute;
+    transition: opacity 0.22s ease;
+    width: 100%;
+    z-index: 2;
+  }
+
+  .swimdays-home-instagram__video-shell.is-previewing .swimdays-home-instagram__thumbnail {
+    opacity: 0;
   }
 
   .swimdays-home-instagram__tile-link:hover .swimdays-home-instagram__asset {
@@ -222,6 +378,7 @@
     bottom: 0.65rem;
     color: #fff;
     display: inline-flex;
+    gap: 0.35rem;
     font-family: "Swimdays Subhead", "Poppins", sans-serif;
     font-size: 0.66rem;
     font-weight: 500;
@@ -232,9 +389,24 @@
     pointer-events: none;
     position: absolute;
     text-transform: uppercase;
-    transform: translateX(-50%);
+    transform: translate(-50%, 6px);
+    transition: opacity 0.22s ease, transform 0.22s ease;
     white-space: nowrap;
     z-index: 3;
+    opacity: 0;
+  }
+
+  .swimdays-home-instagram__tile-link:hover .swimdays-home-instagram__watch-cta,
+  .swimdays-home-instagram__tile-link:focus-visible .swimdays-home-instagram__watch-cta {
+    opacity: 1;
+    transform: translateX(-50%);
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    .swimdays-home-instagram__watch-cta {
+      opacity: 1;
+      transform: translateX(-50%);
+    }
   }
 
   .swimdays-home-instagram__placeholder {
@@ -259,9 +431,10 @@
   .swimdays-home-instagram__cta {
     border-bottom: 1px solid #2e2b26;
     color: #2e2b26;
-    display: inline-block;
+    display: inline-flex;
     font-family: "Swimdays Subhead", "Poppins", sans-serif;
     font-size: clamp(0.75rem, 0.7rem + 0.18vw, 0.86rem);
+    gap: 0.45rem;
     letter-spacing: 0.08em;
     padding-bottom: 0.15rem;
     text-decoration: none;
@@ -283,8 +456,94 @@
     .swimdays-home-instagram__grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+    .swimdays-home-instagram__watch-cta {
+      opacity: 1;
+      transform: translateX(-50%);
+    }
   }
 {% endstylesheet %}
+
+{% javascript %}
+  (() => {
+    const SECTION_SELECTOR = '[data-swimdays-home-instagram]';
+    const PREVIEW_SELECTOR = '[data-swimdays-instagram-preview]';
+    const DESKTOP_HOVER_QUERY = '(hover: hover) and (pointer: fine)';
+
+    const initSection = (scope = document) => {
+      const sectionRoots = scope.matches?.(SECTION_SELECTOR) ? [scope] : scope.querySelectorAll?.(SECTION_SELECTOR);
+      if (!sectionRoots || !sectionRoots.length) return;
+
+      const canHover = window.matchMedia(DESKTOP_HOVER_QUERY).matches;
+
+      sectionRoots.forEach((section) => {
+        section.querySelectorAll(PREVIEW_SELECTOR).forEach((shell) => {
+          if (shell.dataset.previewInit === 'true') return;
+
+          const video = shell.querySelector('video');
+          if (!video) return;
+
+          shell.dataset.previewInit = 'true';
+          video.muted = true;
+          video.playsInline = true;
+
+          let stopTimer = null;
+
+          const clearTimer = () => {
+            if (stopTimer) {
+              window.clearTimeout(stopTimer);
+              stopTimer = null;
+            }
+          };
+
+          const stopPreview = () => {
+            clearTimer();
+            video.pause();
+            try {
+              video.currentTime = 0;
+            } catch (error) {}
+            shell.classList.remove('is-previewing');
+          };
+
+          const startPreview = () => {
+            if (!canHover) return;
+
+            clearTimer();
+            shell.classList.add('is-previewing');
+            try {
+              video.currentTime = 0;
+            } catch (error) {}
+
+            const playPromise = video.play();
+            if (playPromise && typeof playPromise.catch === 'function') {
+              playPromise.catch(() => {});
+            }
+
+            const seconds = Number(shell.dataset.previewSeconds || 6);
+            const durationMs = Math.min(Math.max(seconds, 1), 15) * 1000;
+            stopTimer = window.setTimeout(stopPreview, durationMs);
+          };
+
+          shell.addEventListener('mouseenter', startPreview);
+          shell.addEventListener('mouseleave', stopPreview);
+          shell.addEventListener('focusin', startPreview);
+          shell.addEventListener('focusout', stopPreview);
+          stopPreview();
+        });
+      });
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => initSection(document));
+    } else {
+      initSection(document);
+    }
+
+    document.addEventListener('shopify:section:load', (event) => {
+      if (event.target) initSection(event.target);
+    });
+  })();
+{% endjavascript %}
 
 {% schema %}
 {
@@ -340,7 +599,16 @@
       "type": "text",
       "id": "watch_cta_label",
       "label": "Post tile overlay label",
-      "default": "Watch on Instagram"
+      "default": "Watch on"
+    },
+    {
+      "type": "range",
+      "id": "preview_seconds",
+      "label": "Desktop video preview duration (seconds)",
+      "min": 5,
+      "max": 8,
+      "step": 1,
+      "default": 6
     },
     {
       "type": "checkbox",
@@ -373,6 +641,11 @@
           "type": "video",
           "id": "video",
           "label": "Video"
+        },
+        {
+          "type": "image_picker",
+          "id": "video_thumbnail",
+          "label": "Video thumbnail (shown before hover preview)"
         },
         {
           "type": "url",
