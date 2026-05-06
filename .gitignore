@@ -16,3 +16,7 @@ shopify-theme/
 swimdays-atelier-theme.backup-*/
 swimdays-atelier-theme.remote-pull/
 theme-remote-diff.txt
+
+# Local graph and browser automation artifacts
+graphify-out/
+tmp/playwright/
