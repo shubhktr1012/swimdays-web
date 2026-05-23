@@ -20,3 +20,7 @@ theme-remote-diff.txt
 # Local graph and browser automation artifacts
 graphify-out/
 tmp/playwright/
+
+# Local launch and audit exports
+tmp/sea-spurrey-pink-product-media/
+tmp/swimdays-performance-*.llm.txt
