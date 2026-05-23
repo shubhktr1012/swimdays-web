@@ -23,6 +23,9 @@
   assign block_settings = block.settings
   assign products_count = results_size
   assign sort_by = results.sort_by | default: results.default_sort_by
+  if request.page_type == 'collection' and collection.handle == 'all' and results.sort_by == blank
+    assign sort_by = 'created-descending'
+  endif
   assign filters = filters | default: results.filters
   assign total_active_values = 0
 
@@ -369,6 +372,7 @@
       style="{% render 'spacing-style', settings: block_settings %}"
       scroll-lock
       aria-labelledby="filters-drawer-heading"
+      aria-modal="true"
     >
       {% assign form_component = 'FacetFiltersFormComponent--' | append: section.id | append: '-overflow' %}
       <facets-form-component

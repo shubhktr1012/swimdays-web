@@ -6,6 +6,26 @@
   fetchpriority="low"
 ></script>
 
+{%- liquid
+  assign should_default_all_collection_sort = false
+  if request.page_type == 'collection' and collection.handle == 'all' and collection.sort_by == blank
+    assign should_default_all_collection_sort = true
+  endif
+-%}
+
+{% if should_default_all_collection_sort %}
+  <script>
+    (() => {
+      const url = new URL(window.location.href);
+
+      if (!url.searchParams.has('sort_by')) {
+        url.searchParams.set('sort_by', 'created-descending');
+        window.location.replace(url.toString());
+      }
+    })();
+  </script>
+{% endif %}
+
 {% javascript %}
   const url = new URL(window.location.href);
   if (url.hash) {

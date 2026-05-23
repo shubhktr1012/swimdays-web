@@ -1,10 +1,18 @@
 {% render 'swimdays-home-fonts' %}
 {% render 'swimdays-home-header',
   primary_menu: section.settings.primary_menu,
+  announcement_enabled: section.settings.announcement_enabled,
   announcement_text_primary: section.settings.announcement_text_primary,
   announcement_text_secondary: section.settings.announcement_text_secondary,
   announcement_link_label: section.settings.announcement_link_label,
-  announcement_link_url: section.settings.announcement_link_url
+  announcement_link_url: section.settings.announcement_link_url,
+  launch_announcement_enabled: section.settings.launch_announcement_enabled,
+  launch_announcement_first: section.settings.launch_announcement_first,
+  launch_announcement_label: section.settings.launch_announcement_label,
+  launch_announcement_text: section.settings.launch_announcement_text,
+  launch_announcement_link_label: section.settings.launch_announcement_link_label,
+  launch_announcement_link_url: section.settings.launch_announcement_link_url,
+  launch_announcement_background: section.settings.launch_announcement_background
 %}
 
 <div class="swimdays-home-header-spacer" aria-hidden="true"></div>
@@ -64,6 +72,16 @@
       "label": "Primary menu"
     },
     {
+      "type": "header",
+      "content": "Shipping announcement"
+    },
+    {
+      "type": "checkbox",
+      "id": "announcement_enabled",
+      "label": "Show shipping announcement slide",
+      "default": true
+    },
+    {
       "type": "text",
       "id": "announcement_text_primary",
       "label": "Announcement primary text",
@@ -85,6 +103,51 @@
       "type": "url",
       "id": "announcement_link_url",
       "label": "Announcement link URL"
+    },
+    {
+      "type": "header",
+      "content": "Launch announcement"
+    },
+    {
+      "type": "checkbox",
+      "id": "launch_announcement_enabled",
+      "label": "Show launch announcement slide",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "launch_announcement_first",
+      "label": "Show launch announcement first",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "launch_announcement_label",
+      "label": "Launch label",
+      "default": "New Arrival"
+    },
+    {
+      "type": "text",
+      "id": "launch_announcement_text",
+      "label": "Launch text",
+      "default": "Sea Spurrey in Pink"
+    },
+    {
+      "type": "text",
+      "id": "launch_announcement_link_label",
+      "label": "Launch link label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "launch_announcement_link_url",
+      "label": "Launch link URL"
+    },
+    {
+      "type": "color",
+      "id": "launch_announcement_background",
+      "label": "Launch background",
+      "default": "#CFA7BB"
     }
   ],
   "presets": [

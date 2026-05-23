@@ -42,6 +42,22 @@
         "poster_footer_right": "Summer 2026"
       }
     },
+    "swimdays_launch_hero": {
+      "type": "swimdays-launch-hero",
+      "disabled": true,
+      "settings": {
+        "image": "",
+        "mobile_image": "",
+        "image_alt": "Sea Spurrey full-sleeve padded swim dress in pink",
+        "text_readability": "medium",
+        "text_blur": "soft",
+        "eyebrow": "New Arrival",
+        "heading": "Sea Spurrey in Pink",
+        "copy": "<p>A coastal-inspired skater swim dress with fixed pads, built-in shorts, and a sweet coconut-flower motif.</p>",
+        "cta_label": "Shop Now",
+        "cta_link": ""
+      }
+    },
     "swimdays_home_brand_statement": {
       "type": "swimdays-home-brand-statement",
       "settings": {
@@ -87,67 +103,82 @@
         "insta_post_1": {
           "type": "post",
           "settings": {
-            "image": "",
-            "link": "",
-            "alt_text": ""
-          }
-        },
-        "insta_post_2": {
-          "type": "post",
-          "settings": {
-            "image": "",
-            "link": "",
+            "media_type": "video",
+            "video": "shopify://files/videos/Video-946.mp4",
+            "video_thumbnail": "shopify://shop_images/654024948_844400188671299_298454887162053003_n.jpg",
+            "link": "https://www.instagram.com/p/DV_axjijAa0/?hl=en",
             "alt_text": ""
           }
         },
         "insta_post_3": {
           "type": "post",
           "settings": {
-            "image": "",
-            "link": "",
+            "media_type": "video",
+            "video": "shopify://files/videos/Video-73.mp4",
+            "video_thumbnail": "shopify://shop_images/657600890_1958322908106172_6548084631151592400_n.jpg",
+            "link": "https://www.instagram.com/p/DWbrZV5DAse/?hl=en",
+            "alt_text": ""
+          }
+        },
+        "insta_post_2": {
+          "type": "post",
+          "settings": {
+            "media_type": "video",
+            "video": "shopify://files/videos/AQPopvUKWEiAV_3-71wlYTpz8yKYqZJDuDlVE8EQysVVPj_8WsLpQJPlpZnF4jkL4xpVay1kny7yGB5wXNgik3VvyCXiCwslT-AKFv8.mp4",
+            "video_thumbnail": "shopify://shop_images/705326610_18065417456509876_8588191027501854665_n.jpg",
+            "link": "https://www.instagram.com/p/DYpYdAgsTF7/?hl=en",
             "alt_text": ""
           }
         },
         "insta_post_4": {
           "type": "post",
           "settings": {
-            "image": "",
-            "link": "",
+            "media_type": "video",
+            "video": "shopify://files/videos/Video-415.mp4",
+            "video_thumbnail": "shopify://shop_images/657724853_1231187512513806_3819343070621150536_n.jpg",
+            "link": "https://www.instagram.com/p/DWTyxvJjAhD/?hl=en",
             "alt_text": ""
           }
         },
         "insta_post_5": {
           "type": "post",
           "settings": {
-            "image": "",
-            "link": "",
+            "media_type": "video",
+            "video": "shopify://files/videos/Video-797.mp4",
+            "video_thumbnail": "shopify://shop_images/652719099_18053346977509876_5989304931599353241_n.jpg",
+            "link": "https://www.instagram.com/p/DV81psKjEwN/?hl=en",
             "alt_text": ""
           }
         },
         "insta_post_6": {
           "type": "post",
           "settings": {
-            "image": "",
-            "link": "",
+            "media_type": "video",
+            "video": "shopify://files/videos/Video-773.mp4",
+            "video_thumbnail": "shopify://shop_images/655021879_1924208671533929_4265375016729395001_n.jpg",
+            "link": "https://www.instagram.com/p/DV56uPqjOf3/?hl=en",
             "alt_text": ""
           }
         }
       },
       "block_order": [
         "insta_post_1",
-        "insta_post_2",
         "insta_post_3",
+        "insta_post_2",
         "insta_post_4",
         "insta_post_5",
         "insta_post_6"
       ],
       "settings": {
-        "heading_prefix": "Seen on",
-        "heading_accent": "Instagram",
+        "heading_prefix": "Swimdays in",
+        "heading_accent": "Motion",
         "heading_suffix": "",
-        "intro_text": "Add recent @swimdays.shop posts here for a clean, free Instagram look on the homepage.",
+        "intro_text": "Short moments from our world, straight from Instagram.",
         "instagram_url": "https://www.instagram.com/swimdays.shop/?hl=en",
         "cta_label": "Follow @swimdays.shop",
+        "show_watch_cta": true,
+        "watch_cta_label": "Watch on",
+        "preview_seconds": 6,
         "open_links_new_tab": true
       }
     },
@@ -533,6 +564,7 @@
   },
   "order": [
     "hero_iyt6zg",
+    "swimdays_launch_hero",
     "swimdays_home_brand_statement",
     "swimdays_home_collections",
     "swimdays_home_categories",
