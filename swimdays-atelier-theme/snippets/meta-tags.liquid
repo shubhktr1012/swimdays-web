@@ -21,6 +21,7 @@
   assign og_url = canonical_url | default: request.origin
   assign og_type = 'website'
   assign raw_description = page_description
+  assign curated_description = blank
   assign social_image = page_image
   assign site_social_image_url = request.origin | append: '/cdn/shop/files/mink-mingle-AlEyuIKuSmc-unsplash.jpg?v=1773484685'
   assign social_image_url = blank
@@ -32,7 +33,45 @@
   endif
 
   if raw_description == blank
-    if request.page_type == 'product' and product.description != blank
+    if request.page_type == 'product' and product
+      case product.handle
+        when 'moss-full-sleeves-bodysuit'
+          assign curated_description = 'Front-zip Moss full sleeves bodysuit with hand-beaded jellyfish detail, snug stretch fit and layering options for modest swimwear.'
+        when 'moss-sleeveless-bodysuit'
+          assign curated_description = 'Front-zip Moss sleeveless bodysuit with hand-beaded jellyfish detail, snug stretch fit and easy layering for modest swimwear.'
+        when 'moss-halter-swim-dress'
+          assign curated_description = 'Moss halter swim dress with a flared silhouette, hand-beaded jellyfish detail and optional shorts for sporty, layered coverage.'
+        when 'moss-swim-leggings'
+          assign curated_description = 'Mid-waist Moss swim leggings with a broad waistband, ankle-length fit and flexible stretch for swimming, yoga and pilates.'
+        when 'moss-wrap-tulip-skirt'
+          assign curated_description = 'Moss wrap-tulip skirt with a side bow, adjustable belt and stretch fit for elegant layered coverage over swimwear.'
+        when 'moss-swim-shorts'
+          assign curated_description = 'Mid-waist Moss swim shorts with a broad waistband and snug stretch fit for smooth coverage under swim dresses or on their own.'
+        when 'cove-full-sleeves-bodysuit'
+          assign curated_description = 'Front-zip Cove full sleeves bodysuit with hand-beaded starfish detail, snug stretch fit and layering options for modest swimwear.'
+        when 'cove-sleeveless-bodysuit'
+          assign curated_description = 'Front-zip Cove sleeveless bodysuit with hand-beaded starfish detail, snug stretch fit and easy layering for modest swimwear.'
+        when 'cove-halter-swim-dress'
+          assign curated_description = 'Cove halter swim dress with a flared silhouette, hand-beaded starfish detail and optional shorts for sporty, layered coverage.'
+        when 'cove-swim-leggings'
+          assign curated_description = 'Mid-waist Cove swim leggings with a broad waistband, ankle-length fit and flexible stretch for swimming, yoga and pilates.'
+        when 'cove-wrap-tulip-skirt'
+          assign curated_description = 'Cove wrap-tulip skirt with a side bow, adjustable belt and stretch fit for elegant layered coverage over swimwear.'
+        when 'cove-swim-shorts'
+          assign curated_description = 'Mid-waist Cove swim shorts with a broad waistband and snug stretch fit for smooth coverage under swim dresses or on their own.'
+      endcase
+    elsif request.page_type == 'collection' and collection
+      case collection.handle
+        when 'moss'
+          assign curated_description = 'Explore the Moss collection: hand-beaded jellyfish swimwear, leggings, skirts and shorts designed for elegant layered coverage.'
+        when 'cove'
+          assign curated_description = 'Explore the Cove collection: hand-beaded starfish swimwear, leggings, skirts and shorts designed for elegant layered coverage.'
+      endcase
+    endif
+
+    if curated_description != blank
+      assign raw_description = curated_description
+    elsif request.page_type == 'product' and product.description != blank
       assign raw_description = product.description
     elsif request.page_type == 'collection' and collection
       assign raw_description = collection.title | append: ' from ' | append: shop.name | append: '. ' | append: shop.description

@@ -27,9 +27,12 @@
     on:click="/handleHotspotClick"
     style="anchor-name: --hotspot-trigger-{{ block.id }};"
   ></button>
+
   <dialog
     class="hotspot-dialog"
     ref="dialog"
+    aria-labelledby="hotspot-dialog-heading-{{ block.id }}"
+    aria-modal="false"
   >
     {% if hotspot_product != blank %}
       <a
@@ -40,15 +43,18 @@
       >
       </a>
     {% endif %}
+
     <div class="hotspot-dialog__product">
       {% if hotspot_product.featured_image != blank %}
-        {% render 'image', image: hotspot_product.featured_image, class: 'hotspot-dialog__product-image' %}
+        {% render 'image', image: hotspot_product.featured_image, class: 'hotspot-dialog__product-image', alt: hotspot_product.featured_image.alt | default: hotspot_product.title %}
       {% else %}
         {{ 'product-apparel-1' | placeholder_svg_tag: 'hotspot-dialog__placeholder-product-image' }}
       {% endif %}
+
       <div class="hotspot-dialog__product-content">
         <div class="hotspot-dialog__product-info">
           <h2
+            id="hotspot-dialog-heading-{{ block.id }}"
             class="hotspot-dialog__product-title {{ section.settings.product_title_preset | default: 'h5' }}"
           >
             {{ hotspot_product_title }}
@@ -56,7 +62,7 @@
           <div
             class="hotspot-dialog__product-price {{ section.settings.product_price_preset | default: 'h6' }}"
           >
-            {% render 'price', product_resource: hotspot_product, block: block %}
+            {% render 'price', product_resource: hotspot_product %}
           </div>
         </div>
         {% if hotspot_product != blank %}

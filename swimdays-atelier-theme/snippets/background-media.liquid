@@ -4,6 +4,7 @@
   @param {string} [background_media] - The background media
   @param {object} [background_video] - The background video
   @param {string} [background_video_position] - The background video position
+  @param {boolean} [background_video_loop] - Whether the background video should loop
   @param {object} [background_image] - The background image
   @param {string} [background_image_position] - The background image position
   @param {string} [placeholder] - The placeholder
@@ -17,6 +18,9 @@
 {% if background_media == 'video' %}
   {% liquid
     assign video_classes = 'video-background video-background--' | append: background_video_position
+    unless background_video_loop == false
+      assign background_video_loop = true
+    endunless
   %}
   {%- if background_video != blank -%}
     <video-background-component
@@ -37,7 +41,9 @@
         playsinline
         muted
         autoplay
-        loop
+        {% if background_video_loop %}
+          loop
+        {% endif %}
         ref="videoElement"
       >
         {%- for sourceElement in background_video.sources -%}

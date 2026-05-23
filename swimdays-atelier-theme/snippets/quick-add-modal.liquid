@@ -3,7 +3,16 @@
     class="quick-add-modal dialog-modal color-{{ settings.popover_color_scheme }}"
     ref="dialog"
     scroll-lock
+    aria-labelledby="quick-add-dialog-heading"
+    aria-modal="true"
   >
+    <h2
+      id="quick-add-dialog-heading"
+      class="visually-hidden"
+    >
+      {{ 'actions.add_to_cart' | t }}
+    </h2>
+
     <button
       ref="closeButton"
       on:click="/closeDialog"

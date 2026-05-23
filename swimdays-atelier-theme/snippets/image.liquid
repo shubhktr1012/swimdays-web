@@ -4,6 +4,7 @@
   @param {object} image - image object
   @param {number} [height] - custom image height
   @param {string} [class] - additional classes
+  @param {string} [alt] - Image alt text
   @param {string} [text_fallback] - text to display if image is blank
   @param {boolean} [unset_image_tag] - if true, ignores the image focal point
   @param {string} [style] - additional styles
@@ -13,6 +14,7 @@
 {%- enddoc -%}
 {% if image != blank %}
   {% assign image_height = height | default: image.height %}
+  {% assign image_alt = alt | default: image.alt %}
   {% assign image_height_2x = height | default: image_height | times: 2 %}
   {% assign image_height_3x = height | default: image_height | times: 3 %}
 
@@ -26,7 +28,7 @@
     {% assign style_value = style_value | append: 'object-position: inherit;' %}
   {% endif %}
 
-  {{ image | image_url: height: image_height | image_tag: class: class, srcset: image_srcset, style: style_value }}
+  {{ image | image_url: height: image_height | image_tag: class: class, srcset: image_srcset, style: style_value, alt: image_alt }}
 {% elsif text_fallback %}
   {{ text_fallback }}
 {% endif %}

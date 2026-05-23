@@ -163,6 +163,7 @@
         class="cart-drawer__dialog dialog-modal dialog-drawer color-{{ settings.drawer_color_scheme }}{% if cart.empty? %} cart-drawer--empty{%endif%}"
         data-testid="cart-drawer-dialog"
         aria-labelledby="{% if cart.empty? %}cart-drawer-heading-empty{% else %}cart-drawer-heading{% endif %}"
+        aria-modal="true"
         scroll-lock
         cart-summary-sticky="true"
       >

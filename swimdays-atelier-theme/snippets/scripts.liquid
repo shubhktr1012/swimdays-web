@@ -1,8 +1,6 @@
 {% liquid
   assign is_product_page = false
   assign is_collection_or_search_page = false
-  assign is_cart_page = false
-  assign is_404_page = false
   assign needs_product_experience_scripts = false
 
   if template.name == 'product' or request.page_type == 'product'
@@ -13,15 +11,7 @@
     assign is_collection_or_search_page = true
   endif
 
-  if template.name == 'cart' or request.page_type == 'cart'
-    assign is_cart_page = true
-  endif
-
-  if template.name == '404' or request.page_type == '404'
-    assign is_404_page = true
-  endif
-
-  if is_product_page or is_collection_or_search_page or is_cart_page or is_404_page
+  if is_product_page or is_collection_or_search_page
     assign needs_product_experience_scripts = true
   endif
 %}

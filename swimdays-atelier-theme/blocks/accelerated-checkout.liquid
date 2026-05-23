@@ -25,6 +25,12 @@
 {% endcapture %}
 
 {% if accelerated_checkout_button != blank %}
+  <script
+    src="{{ 'accelerated-checkout-a11y.js' | asset_url }}"
+    type="module"
+    fetchpriority="low"
+  ></script>
+
   <div
     class="accelerated-checkout-block"
     ref="acceleratedCheckoutButtonContainer"

@@ -126,6 +126,9 @@
   <deferred-media
     class="{{ video_class }}"
     style="{{ video_style }}"
+    {% if section_id != blank %}
+      data-section-id="{{ section_id }}"
+    {% endif %}
     {% if video_autoplay %}
       autoplay
     {% endif %}

@@ -48,14 +48,17 @@
   # Determine image source based on content type
   if content_type == 'articles'
     assign image_resource = image_source
+    assign image_alt = image_resource.alt | default: closest.article.title
   elsif content_type == 'collections'
     assign collection = closest.collection
     assign image_resource = collection.image
     if image_resource == blank
       assign image_resource = collection.products.first.featured_image
     endif
+    assign image_alt = image_resource.alt | default: collection.title
   else
     assign image_resource = image_source
+    assign image_alt = image_resource.alt
   endif
 
   assign image_resource_probe = blank
@@ -160,13 +163,13 @@
         class: 'image-block__image',
         sizes: sizes,
         loading: loading,
-        alt: ''
+        alt: image_alt
       %}
     {% else %}
       {{
         image_resource
         | image_url: width: 1400
-        | image_tag: widths: widths, class: 'image-block__image', sizes: sizes, loading: loading
+        | image_tag: widths: widths, class: 'image-block__image', sizes: sizes, loading: loading, alt: image_alt
       }}
     {% endif %}
   </div>
