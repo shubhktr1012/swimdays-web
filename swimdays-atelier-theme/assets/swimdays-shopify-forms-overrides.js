@@ -6,6 +6,8 @@
       --button-text-color: #ffffff !important;
       --forms-accent-color: #A84F77 !important;
       --button-background-color: #A84F77 !important;
+      --forms-discount-code-color: #A84F77 !important;
+      --forms-discount-code-background-color-hover: #F4D7DF !important;
       --forms-heading-font: normal 400 22px Aboreto, serif !important;
       --forms-body-font: normal 400 14px "Public Sans", sans-serif !important;
     }
