@@ -79,6 +79,10 @@
     {%- render 'scripts' -%}
     {%- render 'theme-styles-variables' -%}
     {%- render 'swimdays-fonts' -%}
+    <script
+      src="{{ 'swimdays-shopify-forms-overrides.js' | asset_url }}"
+      defer
+    ></script>
     {%- render 'color-schemes' -%}
 
     {% if request.design_mode %}
