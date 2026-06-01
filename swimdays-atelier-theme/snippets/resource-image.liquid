@@ -157,21 +157,21 @@
       {% render 'overlay', settings: block_settings %}
     {%- endif -%}
 
-    {% if content_type == 'articles' and image_resource_probe contains 'blog1.png' %}
-      {% render 'swimdays-optimized-media',
-        key: 'blog1-feature',
-        class: 'image-block__image',
-        sizes: sizes,
-        loading: loading,
-        alt: image_alt
-      %}
-    {% else %}
-      {{
-        image_resource
-        | image_url: width: 1400
-        | image_tag: widths: widths, class: 'image-block__image', sizes: sizes, loading: loading, alt: image_alt
-      }}
-    {% endif %}
+	    {% if content_type == 'articles' and image_resource_probe contains 'blog1.png' %}
+	      {% render 'swimdays-optimized-media',
+	        key: 'blog1-feature',
+	        class: 'image-block__image',
+	        sizes: sizes,
+	        loading: loading,
+	        alt: image_alt
+	      %}
+	    {% else %}
+	      {{
+	        image_resource
+	        | image_url: width: 1400
+	        | image_tag: widths: widths, class: 'image-block__image', sizes: sizes, loading: loading, alt: image_alt
+	      }}
+	    {% endif %}
   </div>
 {% else %}
   <div

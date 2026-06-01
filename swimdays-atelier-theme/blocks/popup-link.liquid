@@ -20,17 +20,17 @@
     {{- 'icon-external.svg' | inline_asset_content -}}
   </button>
 
-  <dialog
-    ref="dialog"
-    class="popup-link__content dialog-modal color-{{ settings.popover_color_scheme }}{% if block_settings.behavior == 'drawer' %} popup-link__content--drawer dialog-drawer{% endif %}"
-    scroll-lock
-    aria-labelledby="popup-dialog-heading-{{ block.id }}"
-    aria-modal="true"
-  >
-    <h2
-      id="popup-dialog-heading-{{ block.id }}"
-      class="visually-hidden"
-    >
+	  <dialog
+	    ref="dialog"
+	    class="popup-link__content dialog-modal color-{{ settings.popover_color_scheme }}{% if block_settings.behavior == 'drawer' %} popup-link__content--drawer dialog-drawer{% endif %}"
+	    scroll-lock
+	    aria-labelledby="popup-dialog-heading-{{ block.id }}"
+	    aria-modal="true"
+	  >
+	    <h2
+	      id="popup-dialog-heading-{{ block.id }}"
+	      class="visually-hidden"
+	    >
       {{ block_settings.heading }}
     </h2>
     <div class="popup-link__inner">

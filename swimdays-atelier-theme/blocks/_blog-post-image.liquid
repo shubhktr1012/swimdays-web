@@ -20,9 +20,9 @@
     {% if image_probe contains 'blog1.png' %}
       {% capture image_class %}border-style blog-post-card__image blog-post-card__image--{{ block_settings.height }}{% endcapture %}
       {% render 'swimdays-optimized-media',
-        key: 'blog1-feature',
-        class: image_class,
-        alt: image_alt,
+	        key: 'blog1-feature',
+	        class: image_class,
+	        alt: image_alt,
         sizes: '(min-width: 750px) 50vw, 100vw',
         loading: 'eager',
         fetchpriority: 'high',
@@ -43,7 +43,7 @@
         fetchpriority="high"
         width="{{ image.width }}"
         height="{{ image.height }}"
-        alt="{{ image_alt | escape }}"
+	        alt="{{ image_alt | escape }}"
         class="
           border-style
           blog-post-card__image

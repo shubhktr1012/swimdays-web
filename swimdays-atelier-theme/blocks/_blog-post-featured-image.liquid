@@ -6,9 +6,9 @@
 
 {% liquid
   assign block_settings = block.settings
-  assign image = closest.article.image
-  assign image_alt = image.alt | default: closest.article.title
-  assign image_probe = blank
+	  assign image = closest.article.image
+	  assign image_alt = image.alt | default: closest.article.title
+	  assign image_probe = blank
   if image != blank
     assign image_probe = image | image_url: width: 32
   endif
@@ -38,9 +38,9 @@
       class: 'blog-post-featured-image__image border-style',
       style: image_border_style,
       sizes: '(min-width: 750px) 44rem, calc(100vw - 2rem)',
-      loading: 'eager',
-      fetchpriority: 'high',
-      alt: image_alt
+	      loading: 'eager',
+	      fetchpriority: 'high',
+	      alt: image_alt
     %}
   {% else %}
     {{
@@ -53,10 +53,10 @@
         class: 'blog-post-featured-image__image border-style',
         style: image_border_style,
         sizes: '(min-width: 750px) 44rem, calc(100vw - 2rem)',
-        loading: 'eager',
-        fetchpriority: 'high',
-        alt: image_alt
-    }}
+	        loading: 'eager',
+	        fetchpriority: 'high',
+	        alt: image_alt
+	    }}
   {% endif %}
 </div>
 

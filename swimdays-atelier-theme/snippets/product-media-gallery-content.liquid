@@ -368,13 +368,14 @@
                 assign media_loading = 'lazy'
               endif
           -%}
-          {% if block_settings.aspect_ratio != 'adapt' and block_settings.constrain_to_viewport %}
-            <div class="product-media-constraint-wrapper">
-              {%- render 'product-media', media: media, sizes: media_sizes, loading: media_loading, is_main_product_media: forloop.first, selected_product: selected_product -%}
-            </div>
-          {% else %}
-            {%- render 'product-media', media: media, sizes: media_sizes, loading: media_loading, is_main_product_media: forloop.first, selected_product: selected_product -%}
-          {% endif %}
+	          {% if block_settings.aspect_ratio != 'adapt' and block_settings.constrain_to_viewport %}
+	            <div
+	              class="product-media-constraint-wrapper">
+	              {%- render 'product-media', media: media, sizes: media_sizes, loading: media_loading, is_main_product_media: forloop.first, selected_product: selected_product -%}
+	            </div>
+	          {% else %}
+	            {%- render 'product-media', media: media, sizes: media_sizes, loading: media_loading, is_main_product_media: forloop.first, selected_product: selected_product -%}
+	          {% endif %}
         {% endcapture %}
         {% capture class %}
           {{ product_media_container_class }} product-media-container--{{ media.media_type }}{% if block_settings.zoom %} product-media-container--zoomable{% endif %}{% if forloop.index0 == lowest_aspect_ratio_index and block_settings.aspect_ratio == 'adapt' %} product-media-container--tallest{% endif %}
@@ -489,13 +490,13 @@
                 assign media_loading = 'lazy'
               endif
             -%}
-            {% if block_settings.aspect_ratio != 'adapt' and block_settings.constrain_to_viewport %}
-              <div class="product-media-constraint-wrapper">
-                {%- render 'product-media', media: media, sizes: media_sizes, loading: media_loading, is_main_product_media: forloop.first, selected_product: selected_product -%}
-              </div>
-            {% else %}
-              {%- render 'product-media', media: media, sizes: media_sizes, loading: media_loading, is_main_product_media: forloop.first, selected_product: selected_product -%}
-            {% endif %}
+	            {% if block_settings.aspect_ratio != 'adapt' and block_settings.constrain_to_viewport %}
+	              <div class="product-media-constraint-wrapper">
+	                {%- render 'product-media', media: media, sizes: media_sizes, loading: media_loading, is_main_product_media: forloop.first, selected_product: selected_product -%}
+	              </div>
+	            {% else %}
+	              {%- render 'product-media', media: media, sizes: media_sizes, loading: media_loading, is_main_product_media: forloop.first, selected_product: selected_product -%}
+	            {% endif %}
           </li>
         {% endfor %}
       </ul>
@@ -506,22 +507,22 @@
         ref="zoomDialogComponent"
         id="zoom-dialog-{{ block_id }}"
       >
-        <dialog
-          class="dialog-zoomed-gallery__dialog"
-          ref="dialog"
-          on:keydown="/handleKeyDown"
-          scroll-lock
-          aria-labelledby="zoom-dialog-heading-{{ block_id }}"
-          aria-modal="true"
-        >
-          <h2
-            id="zoom-dialog-heading-{{ block_id }}"
-            class="visually-hidden"
-          >
-            {{ selected_product.title }}
-          </h2>
+	      <dialog
+	        class="dialog-zoomed-gallery__dialog"
+	        ref="dialog"
+	        on:keydown="/handleKeyDown"
+	        scroll-lock
+	        aria-labelledby="zoom-dialog-heading-{{ block_id }}"
+	        aria-modal="true"
+	      >
+	        <h2
+	          id="zoom-dialog-heading-{{ block_id }}"
+	          class="visually-hidden"
+	        >
+	          {{ selected_product.title }}
+	        </h2>
 
-          <button
+	        <button
             type="button"
             class="button button-unstyled close-button dialog-zoomed-gallery__close-button"
             aria-label="{{ 'actions.close' | t }}"
@@ -560,15 +561,15 @@
                         assign focal_point_style = 'object-position: ' | append: media.presentation.focal_point | append: ';'
                       endif
                     %}
-                    {{
-                      media.preview_image
-                      | image_url: width: 1024
-                      | image_tag:
-                        loading: 'lazy',
-                        sizes: 'auto, 110, (min-width: 750px) 160',
-                        widths: '240, 352, 832, 1200',
-                        alt: media.alt | default: selected_product.title,
-                        style: focal_point_style
+	                    {{
+	                      media.preview_image
+	                      | image_url: width: 1024
+	                      | image_tag:
+	                        loading: 'lazy',
+	                        sizes: 'auto, 110, (min-width: 750px) 160',
+	                        widths: '240, 352, 832, 1200',
+	                        alt: media.alt | default: selected_product.title,
+	                        style: focal_point_style
                       | escape
                     }}
                   </button>
@@ -589,25 +590,25 @@
                   on:click="/close"
                 {% endif %}
               >
-                {% if media.media_type == 'image' %}
-                  <drag-zoom-wrapper class="product-media__drag-zoom-wrapper">
-                    {%- render 'product-media',
-                      media: media,
-                      sizes: '100vw',
-                      loading: 'lazy',
-                      is_main_product_media: forloop.first,
-                      selected_product: selected_product,
-                      image_ref: 'image'
-                    -%}
-                  </drag-zoom-wrapper>
-                {% else %}
-                  {%- render 'product-media',
-                    media: media,
-                    sizes: '100vw',
-                    loading: 'lazy',
-                    is_main_product_media: forloop.first,
-                    selected_product: selected_product
-                  -%}
+	                {% if media.media_type == 'image' %}
+	                  <drag-zoom-wrapper class="product-media__drag-zoom-wrapper">
+	                    {%- render 'product-media',
+	                      media: media,
+	                      sizes: '100vw',
+	                      loading: 'lazy',
+	                      is_main_product_media: forloop.first,
+	                      selected_product: selected_product,
+	                      image_ref: 'image'
+	                    -%}
+	                  </drag-zoom-wrapper>
+	                {% else %}
+	                  {%- render 'product-media',
+	                    media: media,
+	                    sizes: '100vw',
+	                    loading: 'lazy',
+	                    is_main_product_media: forloop.first,
+	                    selected_product: selected_product
+	                  -%}
                 {% endif %}
               </li>
             {%- endfor -%}

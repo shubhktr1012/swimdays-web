@@ -70,10 +70,18 @@
         "type": "swimdays-home-header",
         "settings": {
           "primary_menu": "main-menu",
+          "announcement_enabled": true,
           "announcement_text_primary": "Free India-Wide Shipping",
           "announcement_text_secondary": "",
           "announcement_link_label": "Shop now",
-          "announcement_link_url": ""
+          "announcement_link_url": "",
+          "launch_announcement_enabled": true,
+          "launch_announcement_first": true,
+          "launch_announcement_label": "New Arrival",
+          "launch_announcement_text": "Sea Spurrey in Pink",
+          "launch_announcement_link_label": "Shop Now",
+          "launch_announcement_link_url": "shopify://products/sea-spurrey-full-sleeves-padded-dress",
+          "launch_announcement_background": "#df84b2"
         }
       },
       "swimdays-home-footer": {

@@ -11,6 +11,7 @@
   "sections": {
     "hero_iyt6zg": {
       "type": "swimdays-home-hero",
+      "disabled": true,
       "settings": {
         "background_image": "shopify://shop_images/mink-mingle-AlEyuIKuSmc-unsplash.jpg",
         "hero_link": "",
@@ -44,10 +45,9 @@
     },
     "swimdays_launch_hero": {
       "type": "swimdays-launch-hero",
-      "disabled": true,
       "settings": {
-        "image": "",
-        "mobile_image": "",
+        "image": "shopify://shop_images/IMG_4989_1.jpg",
+        "mobile_image": "shopify://shop_images/IMG_4960.heic",
         "image_alt": "Sea Spurrey full-sleeve padded swim dress in pink",
         "text_readability": "medium",
         "text_blur": "soft",
@@ -55,7 +55,7 @@
         "heading": "Sea Spurrey in Pink",
         "copy": "<p>A coastal-inspired skater swim dress with fixed pads, built-in shorts, and a sweet coconut-flower motif.</p>",
         "cta_label": "Shop Now",
-        "cta_link": ""
+        "cta_link": "shopify://products/sea-spurrey-full-sleeves-padded-dress"
       }
     },
     "swimdays_home_brand_statement": {
@@ -74,27 +74,17 @@
         "shop_now_label": "Shop Now"
       }
     },
-    "swimdays_home_categories": {
-      "type": "swimdays-home-categories",
+    "swimdays_home_shop_all_products": {
+      "type": "swimdays-home-shop-all-products",
       "settings": {
+        "collection": "all",
+        "featured_product": "sea-spurrey-full-sleeves-padded-dress",
         "heading_prefix": "Shop",
-        "heading_accent": "by",
-        "heading_suffix": "Category",
-        "collection_1": "bodysuits",
-        "badge_style_1": "none",
-        "badge_text_1": "New Arrival",
-        "collection_2": "halter-swim-dress",
-        "badge_style_2": "none",
-        "badge_text_2": "",
-        "collection_3": "wrap-tulip-skirt",
-        "badge_style_3": "none",
-        "badge_text_3": "Bestseller",
-        "collection_4": "swim-leggings",
-        "badge_style_4": "none",
-        "badge_text_4": "",
-        "collection_5": "swim-shorts",
-        "badge_style_5": "none",
-        "badge_text_5": ""
+        "heading_accent": "all",
+        "heading_suffix": "Products",
+        "product_limit": 10,
+        "view_all_label": "View All",
+        "shop_now_label": "Quick Add"
       }
     },
     "swimdays_home_instagram": {
@@ -236,16 +226,27 @@
         "note_text": "Made to move with you."
       }
     },
-    "swimdays_home_shop_all_products": {
-      "type": "swimdays-home-shop-all-products",
+    "swimdays_home_categories": {
+      "type": "swimdays-home-categories",
       "settings": {
-        "collection": "all",
         "heading_prefix": "Shop",
-        "heading_accent": "all",
-        "heading_suffix": "Products",
-        "product_limit": 10,
-        "view_all_label": "View All",
-        "shop_now_label": "Quick Add"
+        "heading_accent": "by",
+        "heading_suffix": "Category",
+        "collection_1": "bodysuits",
+        "badge_style_1": "none",
+        "badge_text_1": "New Arrival",
+        "collection_2": "halter-swim-dress",
+        "badge_style_2": "none",
+        "badge_text_2": "",
+        "collection_3": "wrap-tulip-skirt",
+        "badge_style_3": "none",
+        "badge_text_3": "Bestseller",
+        "collection_4": "swim-leggings",
+        "badge_style_4": "none",
+        "badge_text_4": "",
+        "collection_5": "swim-shorts",
+        "badge_style_5": "none",
+        "badge_text_5": ""
       }
     },
     "section_t4m8BJ": {
@@ -567,10 +568,10 @@
     "swimdays_launch_hero",
     "swimdays_home_brand_statement",
     "swimdays_home_collections",
-    "swimdays_home_categories",
+    "swimdays_home_shop_all_products",
     "swimdays_home_instagram",
     "swimdays_home_craft",
-    "swimdays_home_shop_all_products",
+    "swimdays_home_categories",
     "section_t4m8BJ",
     "featured_blog_posts_gCMjPe"
   ]

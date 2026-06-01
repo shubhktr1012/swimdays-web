@@ -194,11 +194,11 @@ export class Slideshow extends Component {
     const currentSlide = this.slides?.[this.current];
 
     for (const slide of this.refs.slides) {
-      if (slide.hasAttribute('reveal')) {
-        slide.removeAttribute('reveal');
-        slide.setAttribute('aria-hidden', 'true');
-        slide.setAttribute('inert', '');
-      }
+	      if (slide.hasAttribute('reveal')) {
+	        slide.removeAttribute('reveal');
+	        slide.setAttribute('aria-hidden', 'true');
+	        slide.setAttribute('inert', '');
+	      }
     }
 
     // Figure out the raw desired index (could be -1 if user is on first slide and clicks prev)
@@ -211,11 +211,11 @@ export class Slideshow extends Component {
         if (!requestedSlide || !this.slides) return;
 
         // Force the slide to be revealed if it is hidden
-        if (requestedSlide.hasAttribute('hidden')) {
-          requestedSlide.setAttribute('reveal', '');
-          requestedSlide.setAttribute('aria-hidden', 'false');
-          requestedSlide.removeAttribute('inert');
-        }
+	        if (requestedSlide.hasAttribute('hidden')) {
+	          requestedSlide.setAttribute('reveal', '');
+	          requestedSlide.setAttribute('aria-hidden', 'false');
+	          requestedSlide.removeAttribute('inert');
+	        }
 
         return this.slides.indexOf(requestedSlide);
       }
@@ -294,8 +294,8 @@ export class Slideshow extends Component {
 
     const previousIndex = this.current;
 
-    slide.setAttribute('aria-hidden', 'false');
-    slide.removeAttribute('inert');
+	    slide.setAttribute('aria-hidden', 'false');
+	    slide.removeAttribute('inert');
 
     if (this.#scroll) {
       this.#scroll.to(slide, { instant });
@@ -534,10 +534,10 @@ export class Slideshow extends Component {
       }
     }
 
-    if (this.refs.slides?.[0]) {
-      this.refs.slides[0].setAttribute('aria-hidden', 'false');
-      this.refs.slides[0].removeAttribute('inert');
-    }
+	    if (this.refs.slides?.[0]) {
+	      this.refs.slides[0].setAttribute('aria-hidden', 'false');
+	      this.refs.slides[0].removeAttribute('inert');
+	    }
   }
 
   /**
@@ -932,11 +932,11 @@ export class Slideshow extends Component {
     // Batch writes to the DOM
     scheduler.schedule(() => {
       // Update aria-hidden based on visibility
-      slides.forEach((slide) => {
-        const isVisible = visibleSlides.includes(slide);
-        slide.setAttribute('aria-hidden', `${!isVisible}`);
-        slide.toggleAttribute('inert', !isVisible);
-      });
+	      slides.forEach((slide) => {
+	        const isVisible = visibleSlides.includes(slide);
+	        slide.setAttribute('aria-hidden', `${!isVisible}`);
+	        slide.toggleAttribute('inert', !isVisible);
+	      });
     });
 
     return visibleSlides.length;

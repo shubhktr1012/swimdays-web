@@ -114,12 +114,12 @@ export class AnnouncementBar extends Component {
       relativeIndex += (this.refs.slides ?? []).length;
     }
 
-    this.refs.slides?.forEach((slide, index) => {
-      const isHidden = index !== relativeIndex;
-      slide.setAttribute('aria-hidden', `${isHidden}`);
-      slide.toggleAttribute('inert', isHidden);
-    });
-  }
+	    this.refs.slides?.forEach((slide, index) => {
+	      const isHidden = index !== relativeIndex;
+	      slide.setAttribute('aria-hidden', `${isHidden}`);
+	      slide.toggleAttribute('inert', isHidden);
+	    });
+	  }
 
   /**
    * Pause the slideshow when the page is hidden.
