@@ -17,7 +17,8 @@
 >
 
 {%- liquid
-  assign title_core = page_title | default: shop.name
+  assign raw_page_title = page_title | strip
+  assign title_core = raw_page_title | default: shop.name
   assign og_url = canonical_url | default: request.origin
   assign og_type = 'website'
   assign raw_description = page_description
@@ -85,22 +86,35 @@
   endif
 
   if request.page_type == 'product' and product
-    assign title_core = product.title
-    assign product_title_suffix = product.type | default: 'Modest Swimwear'
+    assign default_product_title = product.title | strip
 
-    if request.query_string contains 'variant=' and product.selected_or_first_available_variant.title != 'Default Title'
-      assign title_core = title_core | append: ' ' | append: product.selected_or_first_available_variant.title
+    if raw_page_title == blank or raw_page_title == default_product_title
+      assign title_core = product.title
+      assign product_title_suffix = product.type | default: 'Modest Swimwear'
+
+      if request.query_string contains 'variant=' and product.selected_or_first_available_variant.title != 'Default Title'
+        assign title_core = title_core | append: ' ' | append: product.selected_or_first_available_variant.title
+      endif
+
+      assign title_core = title_core | append: ' | ' | append: product_title_suffix
+    else
+      assign title_core = raw_page_title
     endif
 
-    assign title_core = title_core | append: ' | ' | append: product_title_suffix
     if social_image == blank
       assign social_image = product.selected_or_first_available_variant.featured_media.preview_image | default: product.featured_media.preview_image | default: product.images.first
     endif
   elsif request.page_type == 'collection' and collection
-    if collection.handle == 'all'
-      assign title_core = 'Shop All | Modest Swimwear'
+    assign default_collection_title = collection.title | strip
+
+    if raw_page_title == blank or raw_page_title == default_collection_title
+      if collection.handle == 'all'
+        assign title_core = 'Shop All | Modest Swimwear'
+      else
+        assign title_core = collection.title | append: ' | Modest Swimwear'
+      endif
     else
-      assign title_core = collection.title | append: ' | Modest Swimwear'
+      assign title_core = raw_page_title
     endif
 
     if social_image == blank
