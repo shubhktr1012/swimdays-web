@@ -87,6 +87,22 @@
         "shop_now_label": "Quick Add"
       }
     },
+    "swimdays_home_testimonials": {
+      "type": "swimdays-home-testimonials",
+      "blocks": {},
+      "block_order": [],
+      "settings": {
+        "heading_prefix": "Loved by",
+        "heading_accent": "Swimdays",
+        "heading_suffix": "women",
+        "intro_text": "Real notes from customers who choose coverage, movement, and craft in the same swimwear.",
+        "autoplay_speed": 14,
+        "background_color": "#F7F3F0",
+        "card_color": "#FFFAF8",
+        "text_color": "#263D3D",
+        "accent_color": "#CFA7BB"
+      }
+    },
     "swimdays_home_instagram": {
       "type": "swimdays-home-instagram",
       "blocks": {
@@ -174,6 +190,7 @@
     },
     "swimdays_home_craft": {
       "type": "swimdays-home-craft",
+      "disabled": true,
       "blocks": {
         "feature_1": {
           "type": "feature",
@@ -567,12 +584,13 @@
     "hero_iyt6zg",
     "swimdays_launch_hero",
     "swimdays_home_brand_statement",
-    "swimdays_home_collections",
     "swimdays_home_shop_all_products",
+    "swimdays_home_collections",
+    "swimdays_home_testimonials",
     "swimdays_home_instagram",
-    "swimdays_home_craft",
     "swimdays_home_categories",
-    "section_t4m8BJ",
-    "featured_blog_posts_gCMjPe"
+    "featured_blog_posts_gCMjPe",
+    "swimdays_home_craft",
+    "section_t4m8BJ"
   ]
 }

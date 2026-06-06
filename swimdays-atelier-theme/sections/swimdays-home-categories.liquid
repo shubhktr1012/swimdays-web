@@ -11,11 +11,11 @@
   assign label_4 = category_4.title | default: 'Swim Leggings'
   assign label_5 = category_5.title | default: 'Swim Shorts'
 
-  assign category_image_1 = category_1.image
-  assign category_image_2 = category_2.image
-  assign category_image_3 = category_3.image
-  assign category_image_4 = category_4.image
-  assign category_image_5 = category_5.image
+  assign category_image_1 = category_1.image | default: category_1.products.first.featured_image
+  assign category_image_2 = category_2.image | default: category_2.products.first.featured_image
+  assign category_image_3 = category_3.image | default: category_3.products.first.featured_image
+  assign category_image_4 = category_4.image | default: category_4.products.first.featured_image
+  assign category_image_5 = category_5.image | default: category_5.products.first.featured_image
 %}
 
 <section

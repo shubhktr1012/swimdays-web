@@ -1,0 +1,1377 @@
+{% liquid
+  assign heading_prefix = section.settings.heading_prefix | default: 'Loved by'
+  assign heading_accent = section.settings.heading_accent | default: 'Swimdays'
+  assign heading_suffix = section.settings.heading_suffix | default: 'women'
+  assign intro_text = section.settings.intro_text
+  assign has_testimonials = false
+
+  for block in section.blocks
+    assign block_quote = block.settings.quote | strip
+    assign block_name = block.settings.customer_name | strip
+    assign block_location = block.settings.location | strip
+    assign block_date = block.settings.testimonial_date | strip
+    assign is_old_placeholder = false
+    assign has_block_content = false
+
+    if block_quote == 'Add a short customer quote here.' and block_name == 'Customer name' and block.settings.image == blank and block.settings.product == blank and block_location == blank and block_date == blank
+      assign is_old_placeholder = true
+    endif
+
+    if block.settings.quote != blank or block.settings.image != blank or block.settings.product != blank
+      assign has_block_content = true
+    endif
+
+    if is_old_placeholder == false and has_block_content
+      assign has_testimonials = true
+      break
+    endif
+  endfor
+%}
+
+{% if has_testimonials %}
+  {% render 'swimdays-home-fonts' %}
+
+  <section
+    id="swimdays-home-testimonials-{{ section.id }}"
+    class="swimdays-home-testimonials"
+    data-swimdays-home-testimonials
+    data-autoplay-speed="{{ section.settings.autoplay_speed }}"
+    data-section-id="{{ section.id }}"
+    style="
+      --swimdays-testimonials-bg: {{ section.settings.background_color }};
+      --swimdays-testimonials-card: {{ section.settings.card_color }};
+      --swimdays-testimonials-text: {{ section.settings.text_color }};
+      --swimdays-testimonials-accent: {{ section.settings.accent_color }};
+    "
+  >
+    <div class="swimdays-home-testimonials__inner">
+      <header class="swimdays-home-testimonials__head">
+        <h2 class="swimdays-home-testimonials__title">
+          {{ heading_prefix | escape }}
+          <span class="swimdays-home-testimonials__accent">{{ heading_accent | escape }}</span>
+          {{ heading_suffix | escape }}
+        </h2>
+
+        {% if intro_text != blank %}
+          <p class="swimdays-home-testimonials__intro">{{ intro_text | escape }}</p>
+        {% endif %}
+      </header>
+
+      <div class="swimdays-home-testimonials__viewport" aria-label="Customer testimonials" data-testimonials-viewport>
+        <div class="swimdays-home-testimonials__rail" data-testimonials-rail>
+          {% for block in section.blocks %}
+            {% liquid
+              assign quote = block.settings.quote
+              assign image = block.settings.image
+              assign image_alt = block.settings.image_alt
+              assign customer_name = block.settings.customer_name
+              assign product_reference = block.settings.product
+              assign location = block.settings.location
+              assign testimonial_date = block.settings.testimonial_date
+              assign is_old_placeholder = false
+              assign has_block_content = false
+
+              if quote == 'Add a short customer quote here.' and customer_name == 'Customer name' and image == blank and product_reference == blank and location == blank and testimonial_date == blank
+                assign is_old_placeholder = true
+              endif
+
+              if quote != blank or image != blank or product_reference != blank
+                assign has_block_content = true
+              endif
+
+              if image_alt == blank
+                assign image_alt = customer_name | default: product_reference.title | default: 'Swimdays customer photo'
+              endif
+            %}
+
+            {% if is_old_placeholder == false and has_block_content %}
+              <article
+                class="swimdays-home-testimonials__card"
+                data-testimonial-card
+                data-testimonial-date="{{ testimonial_date | escape }}"
+                data-testimonial-index="{{ forloop.index0 }}"
+                {{ block.shopify_attributes }}
+              >
+                <div class="swimdays-home-testimonials__card-shell">
+                  <span class="swimdays-home-testimonials__quote-mark" aria-hidden="true">“</span>
+
+                  <div class="swimdays-home-testimonials__copy">
+                    <span class="swimdays-home-testimonials__eyebrow">
+                      <svg class="swimdays-home-testimonials__verified-icon" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 0C2.23858 0 0 2.23858 0 5C0 7.76142 2.23858 10 5 10C7.76142 10 10 7.76142 10 5C10 2.23858 7.76142 0 5 0ZM7.35355 4.35355L4.85355 6.85355C4.65829 7.04882 4.34171 7.04882 4.14645 6.85355L2.64645 5.35355C2.45118 5.15829 2.45118 4.84171 2.64645 4.64645C2.84171 4.45118 3.15829 4.45118 3.35355 4.64645L4.5 5.79289L6.64645 3.64645C6.84171 3.45118 7.15829 3.45118 7.35355 3.64645C7.54882 3.84171 7.54882 4.15829 7.35355 4.35355Z" fill="currentColor"/>
+                      </svg>
+                      Verified Customer Note
+                    </span>
+
+                    {% if quote != blank %}
+                      <blockquote class="swimdays-home-testimonials__quote">
+                        <p>{{ quote | escape | newline_to_br }}</p>
+                      </blockquote>
+                    {% endif %}
+                  </div>
+
+                  <footer class="swimdays-home-testimonials__footer">
+                    {% if image != blank %}
+                      <div class="swimdays-home-testimonials__media-wrap">
+                        <button
+                          type="button"
+                          class="swimdays-home-testimonials__media swimdays-home-testimonials__media-button"
+                          data-testimonial-lightbox-trigger
+                          data-testimonial-lightbox-src="{{ image | image_url: width: 1800 }}"
+                          data-testimonial-lightbox-alt="{{ image_alt | escape }}"
+                          data-testimonial-lightbox-caption="{% if product_reference != blank %}{{ product_reference.title | escape }}{% elsif customer_name != blank %}Photo from {{ customer_name | escape }}{% else %}Swimdays customer photo{% endif %}"
+                          aria-label="Expand testimonial photo{% if customer_name != blank %} from {{ customer_name | escape }}{% endif %}"
+                        >
+                          {{
+                            image
+                            | image_url: width: 600
+                            | image_tag:
+                              class: 'swimdays-home-testimonials__image',
+                              alt: image_alt,
+                              loading: 'lazy',
+                              widths: '180, 240, 320, 480, 600',
+                              sizes: '100px'
+                          }}
+                          <span class="swimdays-home-testimonials__expand-cue" aria-hidden="true">Expand</span>
+                        </button>
+                      </div>
+                    {% endif %}
+
+                    {% if product_reference != blank %}
+                      <a
+                        class="swimdays-home-testimonials__product-strip{% if image == blank %} swimdays-home-testimonials__product-strip--fallback{% endif %}"
+                        href="{{ product_reference.url }}"
+                        aria-label="View {{ product_reference.title | escape }}"
+                      >
+                        {{ product_reference.title | escape }}
+                      </a>
+                    {% endif %}
+
+                    <div class="swimdays-home-testimonials__meta">
+                      {% if customer_name != blank %}
+                        <cite class="swimdays-home-testimonials__name">{{ customer_name | escape }}</cite>
+                      {% endif %}
+
+                      {% if location != blank or testimonial_date != blank %}
+                        <span class="swimdays-home-testimonials__details">
+                          {% if location != blank %}
+                            <span>{{ location | escape }}</span>
+                          {% endif %}
+
+                          {% if location != blank and testimonial_date != blank %}
+                            <span aria-hidden="true">·</span>
+                          {% endif %}
+
+                          {% if testimonial_date != blank %}
+                            <time datetime="{{ testimonial_date | escape }}">{{ testimonial_date | escape }}</time>
+                          {% endif %}
+                        </span>
+                      {% endif %}
+                    </div>
+
+                    {% if image == blank %}
+                      <div class="swimdays-home-testimonials__avatar-fallback" aria-hidden="true">
+                        <span>{{ customer_name | default: 'S' | slice: 0 | upcase }}</span>
+                      </div>
+                    {% endif %}
+                  </footer>
+                </div>
+              </article>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="swimdays-home-testimonials__lightbox" data-testimonial-lightbox hidden>
+      <button
+        type="button"
+        class="swimdays-home-testimonials__lightbox-backdrop"
+        data-testimonial-lightbox-close
+        aria-label="Close expanded testimonial photo"
+      ></button>
+
+      <div
+        class="swimdays-home-testimonials__lightbox-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Expanded testimonial photo"
+      >
+        <button
+          type="button"
+          class="swimdays-home-testimonials__lightbox-close"
+          data-testimonial-lightbox-close
+          aria-label="Close expanded testimonial photo"
+        >
+          &times;
+        </button>
+
+        <figure class="swimdays-home-testimonials__lightbox-frame">
+          <img class="swimdays-home-testimonials__lightbox-image" data-testimonial-lightbox-image width="1200" height="1600" alt="">
+          <figcaption class="swimdays-home-testimonials__lightbox-caption" data-testimonial-lightbox-caption></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% stylesheet %}
+  .swimdays-home-testimonials {
+    --swimdays-testimonials-edge: clamp(1rem, 4vw, 6rem);
+    --swimdays-testimonials-gap: clamp(1rem, 2.4vw, 4rem);
+    background: var(--swimdays-testimonials-bg, #f7f3f0);
+    color: var(--swimdays-testimonials-text, #263d3d);
+    margin: 0;
+    overflow: clip;
+    padding: clamp(3.5rem, 7vw, 7rem) var(--swimdays-testimonials-edge);
+    position: relative;
+  }
+
+  .swimdays-home-testimonials__inner {
+    margin: 0 auto;
+    max-width: none;
+    width: 100%;
+  }
+
+  .swimdays-home-testimonials__head {
+    align-items: end;
+    display: grid;
+    gap: clamp(1rem, 2vw, 1.5rem);
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.42fr);
+    margin: 0 0 clamp(1.75rem, 4vw, 3rem);
+  }
+
+  .swimdays-home-testimonials__title {
+    color: var(--swimdays-testimonials-text, #263d3d);
+    font-family: "Swimdays Heading", Georgia, serif;
+    font-size: clamp(2.1rem, 4.5vw, 5.5rem);
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 0.98;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  .swimdays-home-testimonials__accent {
+    color: var(--swimdays-testimonials-accent, #cfa7bb);
+    display: inline-block;
+    font-family: "Swimdays Accent", cursive;
+    font-size: 1.25em;
+    line-height: 0.72;
+    text-transform: none;
+  }
+
+  .swimdays-home-testimonials__intro {
+    color: color-mix(in srgb, var(--swimdays-testimonials-text, #263d3d) 78%, transparent);
+    font-family: "Swimdays Body", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+    line-height: 1.65;
+    margin: 0;
+    max-width: 34rem;
+  }
+
+  .swimdays-home-testimonials__viewport {
+    margin-inline: calc(var(--swimdays-testimonials-edge) * -1);
+    overflow-x: auto;
+    padding-inline: var(--swimdays-testimonials-edge);
+    scroll-padding-inline: var(--swimdays-testimonials-edge);
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    padding-block: clamp(1.5rem, 2.5vw, 2.75rem);
+  }
+
+  .swimdays-home-testimonials__viewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  .swimdays-home-testimonials__rail {
+    display: flex;
+    gap: var(--swimdays-testimonials-gap);
+    width: max-content;
+  }
+
+  .swimdays-home-testimonials__card {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 100%),
+      repeating-linear-gradient(45deg, rgba(38, 61, 61, 0.01) 0px, rgba(38, 61, 61, 0.01) 1px, transparent 1px, transparent 3px),
+      repeating-linear-gradient(-45deg, rgba(38, 61, 61, 0.01) 0px, rgba(38, 61, 61, 0.01) 1px, transparent 1px, transparent 3px),
+      var(--swimdays-testimonials-card, #fffaf8);
+    border: 1px solid color-mix(in srgb, var(--swimdays-testimonials-accent, #cfa7bb) 25%, transparent);
+    border-radius: 8px;
+    box-shadow:
+      0 4px 20px -2px rgba(38, 61, 61, 0.04),
+      0 2px 6px -1px rgba(38, 61, 61, 0.02);
+    flex: 0 0 clamp(22rem, 30vw, 38rem);
+    min-width: 0;
+    overflow: hidden;
+    position: relative;
+    scroll-snap-align: start;
+    transform: translateY(var(--testimonial-wave-y, 0px));
+    transition: box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .swimdays-home-testimonials__card::before {
+    background: linear-gradient(90deg, transparent, var(--swimdays-testimonials-accent, #cfa7bb) 15%, var(--swimdays-testimonials-accent, #cfa7bb) 85%, transparent);
+    content: "";
+    display: block;
+    height: 4px;
+    inset: 0 0 auto;
+    position: absolute;
+    z-index: 2;
+  }
+
+  .swimdays-home-testimonials__card-shell {
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.35rem, 2vw, 1.9rem);
+    height: 100%;
+    min-height: clamp(20rem, 26vw, 26rem);
+    padding: clamp(1.5rem, 2.2vw, 2.25rem);
+    position: relative;
+    text-decoration: none;
+    transform-origin: center;
+    transition: transform 0.28s ease;
+  }
+
+  .swimdays-home-testimonials__card:has(:focus-visible) {
+    border-color: var(--swimdays-testimonials-accent, #cfa7bb);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--swimdays-testimonials-accent, #cfa7bb) 25%, transparent);
+  }
+
+  .swimdays-home-testimonials__quote-mark {
+    color: var(--swimdays-testimonials-accent, #cfa7bb);
+    font-family: "Swimdays Heading", Georgia, serif;
+    font-size: 7.5rem;
+    line-height: 1;
+    opacity: 0.12;
+    pointer-events: none;
+    position: absolute;
+    right: 1.5rem;
+    top: 0.8rem;
+    user-select: none;
+    z-index: 0;
+  }
+
+  .swimdays-home-testimonials__media-wrap {
+    flex: 0 0 var(--testimonial-photo-w, 8rem);
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-self: end;
+    position: relative;
+    width: var(--testimonial-photo-w, 8rem);
+    z-index: 2;
+  }
+
+  .swimdays-home-testimonials__media {
+    appearance: none;
+    background: #ffffff;
+    border: 1px solid rgba(38, 61, 61, 0.08);
+    box-shadow: 0 4px 12px rgba(38, 61, 61, 0.08);
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 var(--testimonial-photo-w, 8rem);
+    height: var(--testimonial-photo-h, 10rem);
+    margin: 0;
+    padding: 7px 7px 24px;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: var(--testimonial-photo-w, 8rem);
+  }
+
+  .swimdays-home-testimonials__media-button {
+    cursor: zoom-in;
+  }
+
+  .swimdays-home-testimonials__media-button:focus-visible {
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--swimdays-testimonials-accent, #cfa7bb) 45%, transparent), 0 8px 20px rgba(38, 61, 61, 0.12);
+    outline: 2px solid var(--swimdays-testimonials-accent, #cfa7bb);
+    outline-offset: 4px;
+  }
+
+  .swimdays-home-testimonials__card:nth-child(even) .swimdays-home-testimonials__media {
+    transform: rotate(-3deg);
+  }
+
+  .swimdays-home-testimonials__card:nth-child(odd) .swimdays-home-testimonials__media {
+    transform: rotate(2deg);
+  }
+
+  .swimdays-home-testimonials__image {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .swimdays-home-testimonials__expand-cue {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(38, 61, 61, 0.08);
+    bottom: 6px;
+    color: var(--swimdays-testimonials-text, #263d3d);
+    display: inline-flex;
+    font-family: "Swimdays Subhead", "Poppins", sans-serif;
+    font-size: 0.52rem;
+    justify-content: center;
+    left: 8px;
+    letter-spacing: 0.12em;
+    line-height: 1;
+    padding: 0.28rem 0.38rem;
+    position: absolute;
+    right: 8px;
+    text-transform: uppercase;
+  }
+
+  .swimdays-home-testimonials__product-strip {
+    align-items: center;
+    background: var(--swimdays-testimonials-accent, #cfa7bb);
+    border: 1px solid color-mix(in srgb, var(--swimdays-testimonials-accent, #cfa7bb) 72%, #ffffff);
+    box-shadow: 0 10px 24px rgba(38, 61, 61, 0.12);
+    color: var(--swimdays-testimonials-text, #263d3d);
+    align-self: start;
+    display: flex;
+    font-family: "Swimdays Subhead", "Poppins", sans-serif;
+    font-size: clamp(0.58rem, 0.75vw, 0.68rem);
+    font-weight: 500;
+    grid-column: 2;
+    grid-row: 1;
+    justify-content: flex-start;
+    letter-spacing: 0.1em;
+    line-height: 1.25;
+    margin-left: -0.45rem;
+    max-width: 100%;
+    min-height: auto;
+    overflow: visible;
+    overflow-wrap: anywhere;
+    padding: 0.46rem 0.65rem 0.46rem 0.95rem;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    white-space: normal;
+    width: fit-content;
+    z-index: 6;
+  }
+
+  .swimdays-home-testimonials__product-strip::before {
+    background: var(--swimdays-testimonials-accent, #cfa7bb);
+    border-bottom: 1px solid color-mix(in srgb, var(--swimdays-testimonials-accent, #cfa7bb) 72%, #ffffff);
+    border-left: 1px solid color-mix(in srgb, var(--swimdays-testimonials-accent, #cfa7bb) 72%, #ffffff);
+    content: "";
+    height: 0.65rem;
+    left: -0.38rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    width: 0.65rem;
+  }
+
+  .swimdays-home-testimonials__product-strip::after {
+    background: color-mix(in srgb, #ffffff 55%, var(--swimdays-testimonials-accent, #cfa7bb));
+    border-radius: 50%;
+    box-shadow: inset 0 1px 2px rgba(38, 61, 61, 0.16);
+    content: "";
+    height: 0.35rem;
+    left: 0.36rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0.35rem;
+  }
+
+  .swimdays-home-testimonials__product-strip--fallback {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    margin-bottom: auto;
+    margin-left: 0;
+    max-width: 100%;
+    position: static;
+    width: fit-content;
+  }
+
+  .swimdays-home-testimonials__product-strip--fallback::before,
+  .swimdays-home-testimonials__product-strip--fallback::after {
+    display: none;
+  }
+
+  .swimdays-home-testimonials__product-strip:hover,
+  .swimdays-home-testimonials__product-strip:focus-visible {
+    background: color-mix(in srgb, var(--swimdays-testimonials-accent, #cfa7bb) 88%, #ffffff);
+    box-shadow: 0 10px 24px rgba(38, 61, 61, 0.14);
+    color: var(--swimdays-testimonials-text, #263d3d);
+    transform: translateY(-1px);
+  }
+
+  .swimdays-home-testimonials__product-strip:focus-visible {
+    outline: 2px solid var(--swimdays-testimonials-text, #263d3d);
+    outline-offset: 3px;
+  }
+
+  .swimdays-home-testimonials__avatar-fallback {
+    align-items: center;
+    background: color-mix(in srgb, var(--swimdays-testimonials-accent, #cfa7bb) 15%, #ffffff);
+    border: 1px solid color-mix(in srgb, var(--swimdays-testimonials-accent, #cfa7bb) 40%, transparent);
+    border-radius: 50%;
+    box-shadow: inset 0 2px 4px rgba(38, 61, 61, 0.04), 0 2px 6px rgba(38, 61, 61, 0.03);
+    color: var(--swimdays-testimonials-text, #263d3d);
+    display: flex;
+    font-family: "Swimdays Heading", Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    height: 46px;
+    justify-content: center;
+    width: 46px;
+    flex: 0 0 46px;
+    margin-left: auto;
+  }
+
+  .swimdays-home-testimonials__copy {
+    display: grid;
+    gap: clamp(0.95rem, 1.5vw, 1.2rem);
+    position: relative;
+    z-index: 1;
+  }
+
+  .swimdays-home-testimonials__eyebrow {
+    align-items: center;
+    color: color-mix(in srgb, var(--swimdays-testimonials-text, #263d3d) 65%, transparent);
+    display: inline-flex;
+    font-family: "Swimdays Subhead", "Poppins", sans-serif;
+    font-size: 0.68rem;
+    font-weight: 500;
+    gap: 0.35rem;
+    letter-spacing: 0.15em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .swimdays-home-testimonials__verified-icon {
+    color: var(--swimdays-testimonials-accent, #cfa7bb);
+    flex-shrink: 0;
+  }
+
+  .swimdays-home-testimonials__card-shell:hover .swimdays-home-testimonials__media-button {
+    transform: rotate(0deg) scale(1.05);
+    box-shadow: 0 8px 20px rgba(38, 61, 61, 0.12);
+  }
+
+  .swimdays-home-testimonials__quote {
+    margin: 0;
+  }
+
+  .swimdays-home-testimonials__quote p {
+    color: var(--swimdays-testimonials-text, #263d3d);
+    font-family: "Swimdays Heading", Georgia, serif;
+    font-size: clamp(1.22rem, 1.8vw, 1.6rem);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .swimdays-home-testimonials__footer {
+    align-items: stretch;
+    border-top: 1px solid color-mix(in srgb, var(--swimdays-testimonials-accent, #cfa7bb) 18%, transparent);
+    --testimonial-photo-w: clamp(7.35rem, 8.3vw, 8.8rem);
+    --testimonial-photo-h: calc(var(--testimonial-photo-w) * 1.24);
+    display: grid;
+    column-gap: clamp(1.35rem, 2.4vw, 2rem);
+    row-gap: clamp(0.8rem, 1.4vw, 1.05rem);
+    grid-template-columns: var(--testimonial-photo-w) minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+    margin-top: auto;
+    padding-top: clamp(1.2rem, 2.2vw, 1.65rem);
+    position: relative;
+    z-index: 1;
+  }
+
+  .swimdays-home-testimonials__meta {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    gap: 0.36rem;
+    flex-grow: 1;
+    grid-column: 2;
+    grid-row: 2;
+    justify-content: flex-end;
+    min-height: calc(var(--testimonial-photo-h, 10rem) - 2.5rem);
+    min-width: 0;
+    padding-block: 0.2rem 0.38rem;
+  }
+
+  .swimdays-home-testimonials__name,
+  .swimdays-home-testimonials__details {
+    font-style: normal;
+  }
+
+  .swimdays-home-testimonials__name {
+    color: var(--swimdays-testimonials-text, #263d3d);
+    font-family: "Swimdays Subhead", "Poppins", sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.14em;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+
+  .swimdays-home-testimonials__details {
+    color: color-mix(in srgb, var(--swimdays-testimonials-text, #263d3d) 60%, transparent);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    font-family: "Swimdays Body", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+  .swimdays-home-testimonials__card:hover {
+    border-color: color-mix(in srgb, var(--swimdays-testimonials-accent, #cfa7bb) 50%, transparent);
+    box-shadow: 0 12px 30px rgba(38, 61, 61, 0.08);
+  }
+
+  .swimdays-home-testimonials__card:hover .swimdays-home-testimonials__card-shell {
+    transform: scale(1.01);
+  }
+
+  .swimdays-home-testimonials__lightbox[hidden] {
+    display: none;
+  }
+
+  .swimdays-home-testimonials__lightbox {
+    align-items: center;
+    display: grid;
+    inset: 0;
+    justify-items: center;
+    padding: clamp(1rem, 3vw, 2rem);
+    position: fixed;
+    z-index: 1000;
+  }
+
+  .swimdays-home-testimonials__lightbox-backdrop {
+    appearance: none;
+    background: rgba(24, 35, 35, 0.54);
+    border: 0;
+    cursor: zoom-out;
+    inset: 0;
+    padding: 0;
+    position: absolute;
+  }
+
+  .swimdays-home-testimonials__lightbox-dialog {
+    max-height: min(86vh, 52rem);
+    max-width: min(88vw, 42rem);
+    position: relative;
+    width: max-content;
+    z-index: 1;
+  }
+
+  .swimdays-home-testimonials__lightbox-close {
+    align-items: center;
+    appearance: none;
+    background: #fffaf8;
+    border: 1px solid rgba(38, 61, 61, 0.14);
+    border-radius: 50%;
+    box-shadow: 0 8px 20px rgba(24, 35, 35, 0.18);
+    color: var(--swimdays-testimonials-text, #263d3d);
+    cursor: pointer;
+    display: flex;
+    font-size: 1.6rem;
+    height: 2.75rem;
+    justify-content: center;
+    line-height: 1;
+    position: absolute;
+    right: -1rem;
+    top: -1rem;
+    width: 2.75rem;
+    z-index: 2;
+  }
+
+  .swimdays-home-testimonials__lightbox-close:focus-visible {
+    outline: 2px solid var(--swimdays-testimonials-accent, #cfa7bb);
+    outline-offset: 3px;
+  }
+
+  .swimdays-home-testimonials__lightbox-frame {
+    background: #ffffff;
+    border: 1px solid rgba(38, 61, 61, 0.12);
+    box-shadow: 0 22px 70px rgba(24, 35, 35, 0.28);
+    margin: 0;
+    padding: clamp(0.55rem, 1.5vw, 0.85rem) clamp(0.55rem, 1.5vw, 0.85rem) clamp(2.2rem, 4vw, 3rem);
+    position: relative;
+    transform: rotate(-1.25deg);
+  }
+
+  .swimdays-home-testimonials__lightbox-image {
+    display: block;
+    height: auto;
+    max-height: min(76vh, 46rem);
+    max-width: min(82vw, 38rem);
+    object-fit: contain;
+    width: auto;
+  }
+
+  .swimdays-home-testimonials__lightbox-caption {
+    bottom: 0.8rem;
+    color: var(--swimdays-testimonials-text, #263d3d);
+    font-family: "Swimdays Subhead", "Poppins", sans-serif;
+    font-size: clamp(0.72rem, 1.5vw, 0.86rem);
+    left: clamp(0.8rem, 2vw, 1rem);
+    letter-spacing: 0.12em;
+    line-height: 1.2;
+    position: absolute;
+    right: clamp(0.8rem, 2vw, 1rem);
+    text-transform: uppercase;
+  }
+
+  html.swimdays-testimonials-lightbox-open {
+    overflow: hidden;
+  }
+
+  @media screen and (min-width: 1600px) {
+    .swimdays-home-testimonials__head {
+      grid-template-columns: minmax(0, 1fr) minmax(24rem, 0.34fr);
+    }
+
+    .swimdays-home-testimonials__intro {
+      max-width: 38rem;
+    }
+  }
+
+  @media screen and (max-width: 989px) {
+    .swimdays-home-testimonials__head {
+      align-items: start;
+      grid-template-columns: 1fr;
+    }
+
+    .swimdays-home-testimonials__card {
+      flex: 0 0 min(68vw, 32rem);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .swimdays-home-testimonials {
+      --swimdays-testimonials-edge: clamp(1rem, 5vw, 1.5rem);
+      --swimdays-testimonials-gap: clamp(0.9rem, 4vw, 1.25rem);
+      padding-block: clamp(3rem, 12vw, 4.5rem);
+    }
+
+    .swimdays-home-testimonials__title {
+      font-size: clamp(1.9rem, 10vw, 3.25rem);
+      line-height: 1.05;
+    }
+
+    .swimdays-home-testimonials__intro {
+      font-size: 0.95rem;
+    }
+
+    .swimdays-home-testimonials__card {
+      flex-basis: min(86vw, 23rem);
+    }
+
+    .swimdays-home-testimonials__card-shell {
+      gap: 1.25rem;
+      min-height: 22rem;
+      padding: clamp(1.2rem, 5vw, 1.55rem);
+    }
+
+    .swimdays-home-testimonials__quote p {
+      font-size: clamp(1.08rem, 4.8vw, 1.28rem);
+      line-height: 1.45;
+    }
+
+    .swimdays-home-testimonials__footer {
+      align-items: stretch;
+      --testimonial-photo-w: 5.35rem;
+      --testimonial-photo-h: 6.7rem;
+      column-gap: 0.85rem;
+      row-gap: 0.65rem;
+      padding-top: 1rem;
+    }
+
+    .swimdays-home-testimonials__media-wrap {
+      flex-basis: var(--testimonial-photo-w);
+      width: var(--testimonial-photo-w);
+    }
+
+    .swimdays-home-testimonials__media {
+      flex-basis: var(--testimonial-photo-w);
+      height: var(--testimonial-photo-h);
+      padding: 5px 5px 20px;
+      width: var(--testimonial-photo-w);
+    }
+
+    .swimdays-home-testimonials__expand-cue {
+      display: none;
+    }
+
+    .swimdays-home-testimonials__meta {
+      min-height: var(--testimonial-photo-h);
+    }
+
+    .swimdays-home-testimonials__product-strip {
+      font-size: 0.5rem;
+      margin-left: -0.32rem;
+      max-width: 100%;
+      padding: 0.34rem 0.48rem 0.34rem 0.78rem;
+    }
+
+    .swimdays-home-testimonials__card:hover {
+      box-shadow: 0 6px 18px rgba(38, 61, 61, 0.05);
+    }
+  }
+
+  @media screen and (max-width: 390px) {
+    .swimdays-home-testimonials__card {
+      flex-basis: 88vw;
+    }
+
+    .swimdays-home-testimonials__footer {
+      display: grid;
+      --testimonial-photo-w: 4.85rem;
+      --testimonial-photo-h: 6.2rem;
+      grid-template-columns: var(--testimonial-photo-w) minmax(0, 1fr);
+    }
+
+    .swimdays-home-testimonials__media-wrap {
+      flex-basis: var(--testimonial-photo-w);
+      width: var(--testimonial-photo-w);
+    }
+
+    .swimdays-home-testimonials__media {
+      flex-basis: var(--testimonial-photo-w);
+      height: var(--testimonial-photo-h);
+      width: var(--testimonial-photo-w);
+    }
+
+    .swimdays-home-testimonials__meta {
+      min-height: var(--testimonial-photo-h);
+    }
+
+    .swimdays-home-testimonials__product-strip {
+      max-width: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .swimdays-home-testimonials__image,
+    .swimdays-home-testimonials__media,
+    .swimdays-home-testimonials__card-shell,
+    .swimdays-home-testimonials__card {
+      transition: none;
+    }
+
+    .swimdays-home-testimonials__card,
+    .swimdays-home-testimonials__card:hover {
+      --testimonial-wave-y: 0px;
+    }
+
+    .swimdays-home-testimonials__card:hover .swimdays-home-testimonials__card-shell {
+      transform: none;
+    }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  (() => {
+    const SECTION_SELECTOR = '[data-swimdays-home-testimonials]';
+    const VIEWPORT_SELECTOR = '[data-testimonials-viewport]';
+    const RAIL_SELECTOR = '[data-testimonials-rail]';
+    const CARD_SELECTOR = '[data-testimonial-card]';
+    const LIGHTBOX_SELECTOR = '[data-testimonial-lightbox]';
+    const LIGHTBOX_TRIGGER_SELECTOR = '[data-testimonial-lightbox-trigger]';
+    const LIGHTBOX_CLOSE_SELECTOR = '[data-testimonial-lightbox-close]';
+    const LIGHTBOX_IMAGE_SELECTOR = '[data-testimonial-lightbox-image]';
+    const LIGHTBOX_CAPTION_SELECTOR = '[data-testimonial-lightbox-caption]';
+    const LIGHTBOX_OPEN_CLASS = 'swimdays-testimonials-lightbox-open';
+
+    const parseDateValue = (card) => {
+      const rawDate = card.dataset.testimonialDate || '';
+      const parsedDate = Date.parse(rawDate);
+
+      if (Number.isNaN(parsedDate)) return 0;
+
+      return parsedDate;
+    };
+
+    const getFocusableElements = (container) => {
+      return Array.from(
+        container.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')
+      ).filter((element) => element.offsetParent !== null);
+    };
+
+    const prepareRail = (rail, viewport) => {
+      const cards = Array.from(rail.querySelectorAll(`${CARD_SELECTOR}:not([data-testimonial-clone])`));
+
+      cards
+        .sort((firstCard, secondCard) => {
+          const dateDiff = parseDateValue(secondCard) - parseDateValue(firstCard);
+
+          if (dateDiff !== 0) return dateDiff;
+
+          const firstIndex = Number(firstCard.dataset.testimonialIndex || 0);
+          const secondIndex = Number(secondCard.dataset.testimonialIndex || 0);
+
+          return firstIndex - secondIndex;
+        })
+        .forEach((card) => rail.appendChild(card));
+
+      rail.querySelectorAll('[data-testimonial-clone]').forEach((clone) => clone.remove());
+
+      if (cards.length < 2) return 0;
+
+      const loopPoint = rail.scrollWidth;
+      let clonePasses = 0;
+
+      while (rail.scrollWidth < loopPoint + viewport.clientWidth && clonePasses < 6) {
+        for (const card of cards) {
+          const clone = card.cloneNode(true);
+          Array.from(clone.attributes).forEach((attribute) => {
+            if (attribute.name.startsWith('data-shopify')) {
+              clone.removeAttribute(attribute.name);
+            }
+          });
+          clone.dataset.testimonialClone = 'true';
+          clone.setAttribute('aria-hidden', 'true');
+
+          clone.querySelectorAll('a, button, input, select, textarea').forEach((element) => {
+            element.setAttribute('tabindex', '-1');
+          });
+
+          rail.appendChild(clone);
+        }
+
+        clonePasses += 1;
+      }
+
+      return loopPoint;
+    };
+
+    const getRailGap = (rail) => {
+      const styles = window.getComputedStyle(rail);
+      const gap = parseFloat(styles.columnGap || styles.gap || '0');
+
+      if (Number.isNaN(gap)) return 0;
+
+      return gap;
+    };
+
+    const initTestimonials = (root = document) => {
+      const sections = root.querySelectorAll(SECTION_SELECTOR);
+
+      for (const section of sections) {
+        if (section.dataset.testimonialsInitialized === 'true') continue;
+
+        const viewport = section.querySelector(VIEWPORT_SELECTOR);
+        const rail = section.querySelector(RAIL_SELECTOR);
+        const lightbox = section.querySelector(LIGHTBOX_SELECTOR);
+
+        if (!(viewport && rail)) continue;
+
+        section.dataset.testimonialsInitialized = 'true';
+
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const speed = Math.max(0, Number(section.dataset.autoplaySpeed || 14));
+        const pauseReasons = new Set();
+        const state = {
+          activeTrigger: null,
+          frame: null,
+          lastTimestamp: 0,
+          loopPoint: prepareRail(rail, viewport),
+          paused: reducedMotion.matches || speed === 0,
+          position: viewport.scrollLeft,
+        };
+
+        const canScroll = () => state.loopPoint > 0 && viewport.scrollWidth > viewport.clientWidth + 2;
+
+        const updatePausedState = () => {
+          state.paused = pauseReasons.size > 0 || reducedMotion.matches || speed === 0;
+        };
+
+        const pauseFor = (reason) => {
+          pauseReasons.add(reason);
+          updatePausedState();
+        };
+
+        const resumeFor = (reason) => {
+          pauseReasons.delete(reason);
+          updatePausedState();
+        };
+
+        const clearWave = () => {
+          rail.querySelectorAll(CARD_SELECTOR).forEach((card) => {
+            card.style.setProperty('--testimonial-wave-y', '0px');
+          });
+        };
+
+        const updateWave = () => {
+          const cards = Array.from(rail.querySelectorAll(CARD_SELECTOR));
+
+          if (reducedMotion.matches || cards.length === 0) {
+            clearWave();
+            return;
+          }
+
+          const firstCard = cards[0];
+          const firstRect = firstCard.getBoundingClientRect();
+          const stride = firstRect.width + getRailGap(rail);
+
+          if (stride <= 0) {
+            clearWave();
+            return;
+          }
+
+          const viewportRect = viewport.getBoundingClientRect();
+          const amplitude = viewport.clientWidth < 750 ? 7 : 16;
+
+          cards.forEach((card) => {
+            const rect = card.getBoundingClientRect();
+            const positionInSlots = (rect.left - viewportRect.left) / stride;
+            const offset = Math.cos(positionInSlots * Math.PI) * -amplitude;
+
+            card.style.setProperty('--testimonial-wave-y', `${offset.toFixed(2)}px`);
+          });
+        };
+
+        const tick = (timestamp) => {
+          if (!state.lastTimestamp) state.lastTimestamp = timestamp;
+
+          const delta = timestamp - state.lastTimestamp;
+          state.lastTimestamp = timestamp;
+
+          if (!state.paused && canScroll()) {
+            state.position += (speed * delta) / 1000;
+
+            if (state.position >= state.loopPoint) {
+              state.position -= state.loopPoint;
+            }
+
+            viewport.scrollLeft = state.position;
+          } else {
+            state.position = viewport.scrollLeft;
+          }
+
+          updateWave();
+
+          state.frame = window.requestAnimationFrame(tick);
+        };
+
+        const handleReducedMotion = () => {
+          updatePausedState();
+          updateWave();
+        };
+        const pausePointer = () => pauseFor('pointer');
+        const resumePointer = () => {
+          state.position = viewport.scrollLeft;
+          resumeFor('pointer');
+        };
+        const pauseFocus = () => pauseFor('focus');
+        const resumeFocus = (event) => {
+          if (event.relatedTarget && viewport.contains(event.relatedTarget)) return;
+
+          state.position = viewport.scrollLeft;
+          resumeFor('focus');
+        };
+        const handleScroll = () => {
+          if (state.paused) {
+            state.position = viewport.scrollLeft;
+          }
+
+          updateWave();
+        };
+        const handleResize = () => {
+          state.position = viewport.scrollLeft;
+          state.loopPoint = prepareRail(rail, viewport);
+          updateWave();
+        };
+        const closeLightbox = () => {
+          if (!lightbox || lightbox.hidden) return;
+
+          const image = lightbox.querySelector(LIGHTBOX_IMAGE_SELECTOR);
+          const caption = lightbox.querySelector(LIGHTBOX_CAPTION_SELECTOR);
+          const trigger = state.activeTrigger;
+
+          lightbox.hidden = true;
+          lightbox.removeAttribute('data-open');
+          document.documentElement.classList.remove(LIGHTBOX_OPEN_CLASS);
+          resumeFor('lightbox');
+
+          if (image) {
+            image.removeAttribute('src');
+            image.alt = '';
+          }
+
+          if (caption) {
+            caption.textContent = '';
+          }
+
+          state.activeTrigger = null;
+
+          if (trigger && document.contains(trigger)) {
+            trigger.focus({ preventScroll: true });
+          }
+        };
+        const openLightbox = (trigger) => {
+          if (!lightbox || !trigger) return;
+
+          const image = lightbox.querySelector(LIGHTBOX_IMAGE_SELECTOR);
+          const caption = lightbox.querySelector(LIGHTBOX_CAPTION_SELECTOR);
+          const closeButton = lightbox.querySelector(LIGHTBOX_CLOSE_SELECTOR);
+          const src = trigger.dataset.testimonialLightboxSrc;
+
+          if (!(image && src)) return;
+
+          state.activeTrigger = trigger;
+          image.src = src;
+          image.alt = trigger.dataset.testimonialLightboxAlt || '';
+
+          if (caption) {
+            caption.textContent = trigger.dataset.testimonialLightboxCaption || '';
+          }
+
+          lightbox.hidden = false;
+          lightbox.setAttribute('data-open', 'true');
+          document.documentElement.classList.add(LIGHTBOX_OPEN_CLASS);
+          pauseFor('lightbox');
+
+          if (closeButton) {
+            closeButton.focus({ preventScroll: true });
+          }
+        };
+        const handleSectionClick = (event) => {
+          const closeTrigger = event.target.closest(LIGHTBOX_CLOSE_SELECTOR);
+
+          if (closeTrigger && lightbox && lightbox.contains(closeTrigger)) {
+            closeLightbox();
+            return;
+          }
+
+          const lightboxTrigger = event.target.closest(LIGHTBOX_TRIGGER_SELECTOR);
+
+          if (lightboxTrigger && section.contains(lightboxTrigger)) {
+            event.preventDefault();
+            openLightbox(lightboxTrigger);
+          }
+        };
+        const handleKeydown = (event) => {
+          if (!lightbox || lightbox.hidden) return;
+
+          if (event.key === 'Escape') {
+            event.preventDefault();
+            closeLightbox();
+            return;
+          }
+
+          if (event.key !== 'Tab') return;
+
+          const focusableElements = getFocusableElements(lightbox);
+
+          if (focusableElements.length === 0) return;
+
+          const firstElement = focusableElements[0];
+          const lastElement = focusableElements[focusableElements.length - 1];
+
+          if (event.shiftKey && document.activeElement === firstElement) {
+            event.preventDefault();
+            lastElement.focus();
+          } else if (!event.shiftKey && document.activeElement === lastElement) {
+            event.preventDefault();
+            firstElement.focus();
+          }
+        };
+
+        viewport.addEventListener('pointerenter', pausePointer);
+        viewport.addEventListener('pointerleave', resumePointer);
+        viewport.addEventListener('focusin', pauseFocus);
+        viewport.addEventListener('focusout', resumeFocus);
+        viewport.addEventListener('scroll', handleScroll, { passive: true });
+        section.addEventListener('click', handleSectionClick);
+        document.addEventListener('keydown', handleKeydown);
+        window.addEventListener('resize', handleResize);
+        reducedMotion.addEventListener('change', handleReducedMotion);
+
+        updateWave();
+        state.frame = window.requestAnimationFrame(tick);
+        section._swimdaysTestimonialsCleanup = () => {
+          closeLightbox();
+          if (state.frame) window.cancelAnimationFrame(state.frame);
+          viewport.removeEventListener('pointerenter', pausePointer);
+          viewport.removeEventListener('pointerleave', resumePointer);
+          viewport.removeEventListener('focusin', pauseFocus);
+          viewport.removeEventListener('focusout', resumeFocus);
+          viewport.removeEventListener('scroll', handleScroll);
+          section.removeEventListener('click', handleSectionClick);
+          document.removeEventListener('keydown', handleKeydown);
+          window.removeEventListener('resize', handleResize);
+          reducedMotion.removeEventListener('change', handleReducedMotion);
+          rail.querySelectorAll('[data-testimonial-clone]').forEach((clone) => clone.remove());
+          delete section.dataset.testimonialsInitialized;
+        };
+      }
+    };
+
+    const cleanupTestimonials = (section) => {
+      if (section && section._swimdaysTestimonialsCleanup) {
+        section._swimdaysTestimonialsCleanup();
+        delete section._swimdaysTestimonialsCleanup;
+      }
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => initTestimonials());
+    } else {
+      initTestimonials();
+    }
+
+    document.addEventListener('shopify:section:load', (event) => initTestimonials(event.target));
+    document.addEventListener('shopify:section:unload', (event) => cleanupTestimonials(event.target));
+  })();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Swimdays testimonials",
+  "tag": "section",
+  "class": "shopify-section--swimdays-home-testimonials",
+  "enabled_on": {
+    "templates": ["index"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading_prefix",
+      "label": "Heading prefix",
+      "default": "Loved by"
+    },
+    {
+      "type": "text",
+      "id": "heading_accent",
+      "label": "Heading accent",
+      "default": "Swimdays"
+    },
+    {
+      "type": "text",
+      "id": "heading_suffix",
+      "label": "Heading suffix",
+      "default": "women"
+    },
+    {
+      "type": "textarea",
+      "id": "intro_text",
+      "label": "Intro text",
+      "default": "Real notes from customers who choose coverage, movement, and craft in the same swimwear."
+    },
+    {
+      "type": "header",
+      "content": "Motion"
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "Running speed",
+      "min": 0,
+      "max": 36,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#F7F3F0"
+    },
+    {
+      "type": "color",
+      "id": "card_color",
+      "label": "Card background",
+      "default": "#FFFAF8"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#263D3D"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent",
+      "default": "#CFA7BB"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Photo"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Photo alt text"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product in photo"
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "placeholder": "Add the customer quote."
+        },
+        {
+          "type": "text",
+          "id": "customer_name",
+          "label": "Customer name",
+          "placeholder": "Customer name"
+        },
+        {
+          "type": "text",
+          "id": "location",
+          "label": "Location",
+          "placeholder": "Location"
+        },
+        {
+          "type": "text",
+          "id": "testimonial_date",
+          "label": "Date (YYYY-MM-DD)",
+          "placeholder": "2026-06-04"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 24,
+  "presets": [
+    {
+      "name": "Swimdays testimonials",
+      "blocks": [
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
