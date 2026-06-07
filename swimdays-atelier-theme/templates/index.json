@@ -89,8 +89,6 @@
     },
     "swimdays_home_testimonials": {
       "type": "swimdays-home-testimonials",
-      "blocks": {},
-      "block_order": [],
       "settings": {
         "heading_prefix": "Loved by",
         "heading_accent": "Swimdays",
@@ -190,7 +188,6 @@
     },
     "swimdays_home_craft": {
       "type": "swimdays-home-craft",
-      "disabled": true,
       "blocks": {
         "feature_1": {
           "type": "feature",
@@ -237,6 +234,7 @@
         "feature_2",
         "feature_3"
       ],
+      "disabled": true,
       "settings": {
         "title": "The Craft",
         "copy_text": "At Swimdays, every suit begins with a simple intention: to feel beautiful, secure, and easy to wear. We design with movement, fit, and long-lasting comfort in mind, so each piece supports the body naturally and feels just as good after hours in the water as it does the moment you put it on.",

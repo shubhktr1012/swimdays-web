@@ -68,8 +68,13 @@
               assign product_reference = block.settings.product
               assign location = block.settings.location
               assign testimonial_date = block.settings.testimonial_date
+              assign has_customer_details = false
               assign is_old_placeholder = false
               assign has_block_content = false
+
+              if location != blank or testimonial_date != blank
+                assign has_customer_details = true
+              endif
 
               if quote == 'Add a short customer quote here.' and customer_name == 'Customer name' and image == blank and product_reference == blank and location == blank and testimonial_date == blank
                 assign is_old_placeholder = true
@@ -110,7 +115,7 @@
                     {% endif %}
                   </div>
 
-                  <footer class="swimdays-home-testimonials__footer">
+                  <footer class="swimdays-home-testimonials__footer{% unless has_customer_details %} swimdays-home-testimonials__footer--compact{% endunless %}">
                     {% if image != blank %}
                       <div class="swimdays-home-testimonials__media-wrap">
                         <button
@@ -602,6 +607,26 @@
     padding-block: 0.2rem 0.38rem;
   }
 
+  .swimdays-home-testimonials__footer--compact {
+    align-items: end;
+    grid-template-columns: var(--testimonial-photo-w) minmax(0, max-content);
+    grid-template-rows: auto auto;
+    justify-content: start;
+  }
+
+  .swimdays-home-testimonials__footer--compact .swimdays-home-testimonials__product-strip {
+    max-width: min(18rem, 100%);
+  }
+
+  .swimdays-home-testimonials__footer--compact .swimdays-home-testimonials__meta {
+    align-self: end;
+    gap: 0;
+    justify-content: end;
+    min-height: 0;
+    width: max-content;
+    max-width: min(18rem, 100%);
+  }
+
   .swimdays-home-testimonials__name,
   .swimdays-home-testimonials__details {
     font-style: normal;
@@ -810,6 +835,11 @@
       min-height: var(--testimonial-photo-h);
     }
 
+    .swimdays-home-testimonials__footer--compact .swimdays-home-testimonials__meta {
+      min-height: 0;
+      width: auto;
+    }
+
     .swimdays-home-testimonials__product-strip {
       font-size: 0.5rem;
       margin-left: -0.32rem;
@@ -847,6 +877,10 @@
 
     .swimdays-home-testimonials__meta {
       min-height: var(--testimonial-photo-h);
+    }
+
+    .swimdays-home-testimonials__footer--compact .swimdays-home-testimonials__meta {
+      min-height: 0;
     }
 
     .swimdays-home-testimonials__product-strip {
