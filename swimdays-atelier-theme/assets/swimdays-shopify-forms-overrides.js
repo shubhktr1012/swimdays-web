@@ -1,6 +1,7 @@
 (() => {
   const FORM_HOST_ID = 'app-embed-container-1012386';
   const STYLE_ID = 'swimdays-shopify-forms-overrides';
+  const CLICKTHROUGH_BOUND_KEY = 'swimdaysFormsClickthroughBound';
   const STYLE_CONTENT = `
     :host {
       --button-text-color: #ffffff !important;
@@ -39,6 +40,44 @@
     }
   `;
 
+  const getEmailField = (root) => {
+    return root.querySelector('[data-testid="field-email"], input[inputmode="email"], input[type="email"], #email');
+  };
+
+  const isInteractiveTarget = (target) => {
+    return Boolean(
+      target.closest('a, button, input, textarea, select, label, [role="button"], shop-lead-capture')
+    );
+  };
+
+  const focusEmailField = (root) => {
+    const emailField = getEmailField(root);
+
+    if (!emailField) return;
+
+    emailField.focus({ preventScroll: true });
+    emailField.scrollIntoView({ block: 'center', inline: 'nearest', behavior: 'smooth' });
+  };
+
+  const bindPopupClickthrough = (root) => {
+    if (root[CLICKTHROUGH_BOUND_KEY]) return;
+
+    root[CLICKTHROUGH_BOUND_KEY] = true;
+    root.addEventListener('click', (event) => {
+      const target = event.target;
+
+      if (!(target instanceof Element) || isInteractiveTarget(target)) return;
+
+      const formContainer = target.closest(
+        'form, h2, p, [class*="formHeader"], [class*="textHeading"], [class*="textBody"], [class*="gridItemContent"]'
+      );
+
+      if (!formContainer || !getEmailField(root)) return;
+
+      focusEmailField(root);
+    });
+  };
+
   const applyFormOverrides = () => {
     const host = document.getElementById(FORM_HOST_ID);
     const root = host?.shadowRoot;
@@ -61,6 +100,8 @@
     if (style !== root.lastElementChild) {
       root.appendChild(style);
     }
+
+    bindPopupClickthrough(root);
   };
 
   applyFormOverrides();
