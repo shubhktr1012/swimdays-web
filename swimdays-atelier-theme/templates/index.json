@@ -64,16 +64,6 @@
         "statement_text": "Swimdays creates slow-made swimwear where modesty, movement, and craft belong in the same silhouette."
       }
     },
-    "swimdays_home_collections": {
-      "type": "swimdays-home-collections",
-      "settings": {
-        "left_collection": "moss",
-        "left_image": "shopify://shop_images/WhatsApp_Image_2026-02-27_at_13.47.43_1.jpg",
-        "right_collection": "cove",
-        "right_image": "shopify://shop_images/WhatsApp_Image_2026-02-27_at_13.47.44_1.jpg",
-        "shop_now_label": "Shop Now"
-      }
-    },
     "swimdays_home_shop_all_products": {
       "type": "swimdays-home-shop-all-products",
       "settings": {
@@ -87,18 +77,163 @@
         "shop_now_label": "Quick Add"
       }
     },
+    "swimdays_home_collections": {
+      "type": "swimdays-home-collections",
+      "settings": {
+        "left_collection": "moss",
+        "left_image": "shopify://shop_images/WhatsApp_Image_2026-02-27_at_13.47.43_1.jpg",
+        "right_collection": "cove",
+        "right_image": "shopify://shop_images/WhatsApp_Image_2026-02-27_at_13.47.44_1.jpg",
+        "shop_now_label": "Shop Now"
+      }
+    },
     "swimdays_home_testimonials": {
       "type": "swimdays-home-testimonials",
+      "blocks": {
+        "testimonial_pGzMKB": {
+          "type": "testimonial",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-06-06_at_14.33.05.jpg",
+            "image_alt": "",
+            "product": "",
+            "quote": "I received this swimsuit and it's exactly how I wanted it to be. The fit is perfect and the quality feels really good. I genuinely love the fabric so much and I do consider myself repurchasing from your brand. I'll send a picture soon as I get a chance to wear it. I really loved it. ❤️",
+            "customer_name": "Avni Surana",
+            "location": "",
+            "testimonial_date": ""
+          }
+        },
+        "testimonial_AiDH3T": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-06-06_at_14.57.12.jpg",
+            "image_alt": "",
+            "product": "moss-halter-swim-dress",
+            "quote": "OMG, the dress is super cute! Love the colour on me. The length was slightly longer for me, so I got it altered. The rest was perfect. 💕",
+            "customer_name": "Yashna Jaisinghani",
+            "location": "",
+            "testimonial_date": ""
+          }
+        },
+        "testimonial_QCtJYy": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-06-06_at_15.01.50.jpg",
+            "image_alt": "",
+            "product": "cove-halter-swim-dress",
+            "quote": "Looked so cute! I expected pads in the dress, but besides that, everything was great. Loving the new collection with pads. :)",
+            "customer_name": "Kanishka Tripathi",
+            "location": "",
+            "testimonial_date": ""
+          }
+        },
+        "testimonial_yRPa3x": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-06-06_at_14.52.39.jpg",
+            "image_alt": "",
+            "product": "cove-halter-swim-dress",
+            "quote": "Thank you, dear, for the costumes. They’re very unique, and I loved them. The fit was perfect. 💕",
+            "customer_name": "Sneha Jaisinghani",
+            "location": "",
+            "testimonial_date": ""
+          }
+        },
+        "testimonial_EYhMzi": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-06-06_at_14.11.44.jpg",
+            "image_alt": "",
+            "product": "moss-swim-leggings",
+            "quote": "Loved the fabric and the fit. Gave me the desired coverage! Thanks 💕",
+            "customer_name": "Fatema Malik",
+            "location": "",
+            "testimonial_date": ""
+          }
+        },
+        "testimonial_BKMCUx": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-06-06_at_14.47.30.jpg",
+            "image_alt": "",
+            "product": "cove-sleeveless-bodysuit",
+            "quote": "I genuinely loved it so much, the blue on blue bead work is my favourite.",
+            "customer_name": "Aditi Jaisinghani",
+            "location": "",
+            "testimonial_date": ""
+          }
+        },
+        "testimonial_Px83Cf": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-06-06_at_14.07.20.jpg",
+            "image_alt": "",
+            "product": "cove-wrap-tulip-skirt",
+            "quote": "Hey,\nLoved your swimwear! It was very comfortable the whole day. ❤️",
+            "customer_name": "Tanvi Priyesh",
+            "location": "",
+            "testimonial_date": ""
+          }
+        },
+        "testimonial_d8kzkC": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/b51707d0-beb8-40a0-8c5b-e6761d3c6cf9.png",
+            "image_alt": "",
+            "product": "cove-halter-swim-dress",
+            "quote": "The fit was perfect, and I wore it to a sundowner party. Awaiting more colours in future collections.",
+            "customer_name": "Sakina Engineerwala",
+            "location": "",
+            "testimonial_date": ""
+          }
+        },
+        "testimonial_kHJmiE": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-06-06_at_14.45.36.jpg",
+            "image_alt": "",
+            "product": "moss-full-sleeves-bodysuit",
+            "quote": "It’s really so cute. Loved the jellyfish embroidery, and the fit was perfect. I even went surfing in these.",
+            "customer_name": "Aayushi Kabra",
+            "location": "",
+            "testimonial_date": ""
+          }
+        },
+        "testimonial_YKqMRm": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-06-06_at_14.43.47_0120be8f-b0d7-4bb9-9420-940bd077f253.jpg",
+            "image_alt": "",
+            "product": "cove-full-sleeves-bodysuit",
+            "quote": "Heyy, loved the swims 🩷. Finally wore it today; I was saving it for the best day.",
+            "customer_name": "Priyal Navandar",
+            "location": "",
+            "testimonial_date": ""
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_pGzMKB",
+        "testimonial_AiDH3T",
+        "testimonial_QCtJYy",
+        "testimonial_yRPa3x",
+        "testimonial_EYhMzi",
+        "testimonial_BKMCUx",
+        "testimonial_Px83Cf",
+        "testimonial_d8kzkC",
+        "testimonial_kHJmiE",
+        "testimonial_YKqMRm"
+      ],
       "settings": {
-        "heading_prefix": "Loved by",
-        "heading_accent": "Swimdays",
-        "heading_suffix": "women",
-        "intro_text": "Real notes from customers who choose coverage, movement, and craft in the same swimwear.",
+        "heading_prefix": "What our",
+        "heading_accent": "Customers",
+        "heading_suffix": "say",
+        "intro_text": "Real customer reviews and honest feedback from women sharing their experience with our swimwear's fit, premium quality, and coverage.",
         "autoplay_speed": 14,
-        "background_color": "#F7F3F0",
-        "card_color": "#FFFAF8",
-        "text_color": "#263D3D",
-        "accent_color": "#CFA7BB"
+        "background_color": "#f7f3f0",
+        "card_color": "#fffaf8",
+        "text_color": "#263d3d",
+        "accent_color": "#e293ba"
       }
     },
     "swimdays_home_instagram": {
@@ -186,6 +321,171 @@
         "open_links_new_tab": true
       }
     },
+    "swimdays_home_categories": {
+      "type": "swimdays-home-categories",
+      "settings": {
+        "heading_prefix": "Shop",
+        "heading_accent": "by",
+        "heading_suffix": "Category",
+        "collection_1": "bodysuits",
+        "badge_style_1": "none",
+        "badge_text_1": "New Arrival",
+        "collection_2": "halter-swim-dress",
+        "badge_style_2": "none",
+        "badge_text_2": "",
+        "collection_3": "wrap-tulip-skirt",
+        "badge_style_3": "none",
+        "badge_text_3": "Bestseller",
+        "collection_4": "swim-leggings",
+        "badge_style_4": "none",
+        "badge_text_4": "",
+        "collection_5": "swim-shorts",
+        "badge_style_5": "none",
+        "badge_text_5": ""
+      }
+    },
+    "featured_blog_posts_gCMjPe": {
+      "type": "featured-blog-posts",
+      "blocks": {
+        "static-blog-title": {
+          "type": "_featured-blog-posts-title",
+          "name": "t:names.title",
+          "static": true,
+          "settings": {
+            "text": "<h3>{{ closest.blog.title }}</h3>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "static-blog-post-card": {
+          "type": "_featured-blog-posts-card",
+          "name": "t:names.blog_card",
+          "static": true,
+          "settings": {
+            "alignment": "left",
+            "gap": 12,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "image": {
+              "type": "_featured-blog-posts-image",
+              "static": true,
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0
+              },
+              "blocks": {}
+            },
+            "title": {
+              "type": "_heading",
+              "name": "t:names.title",
+              "static": true,
+              "settings": {
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "text": "<h4>{{ closest.article.title }}</h4>",
+                "read_only": false,
+                "alignment": "left",
+                "show_alignment": false,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "blog-post-info-text": {
+              "type": "_blog-post-info-text",
+              "name": "t:names.details",
+              "static": true,
+              "settings": {
+                "show_date": true,
+                "show_author": false,
+                "type_preset": "",
+                "alignment": "left",
+                "show_alignment": false,
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              },
+              "blocks": {}
+            },
+            "blog-post-description": {
+              "type": "_blog-post-description",
+              "name": "t:names.excerpt",
+              "static": true,
+              "settings": {
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 8,
+                "padding-block-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": []
+        }
+      },
+      "name": "t:names.blog_posts_carousel",
+      "settings": {
+        "blog": "swimblogs",
+        "layout_type": "grid",
+        "carousel_on_mobile": true,
+        "post_limit": 4,
+        "columns": 2,
+        "mobile_columns": "2",
+        "mobile_card_size": "60cqw",
+        "columns_gap": 16,
+        "rows_gap": 16,
+        "icons_style": "arrow",
+        "icons_shape": "circle",
+        "section_width": "page-width",
+        "gap": 12,
+        "color_scheme": "scheme-3",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
     "swimdays_home_craft": {
       "type": "swimdays-home-craft",
       "blocks": {
@@ -239,29 +539,6 @@
         "title": "The Craft",
         "copy_text": "At Swimdays, every suit begins with a simple intention: to feel beautiful, secure, and easy to wear. We design with movement, fit, and long-lasting comfort in mind, so each piece supports the body naturally and feels just as good after hours in the water as it does the moment you put it on.",
         "note_text": "Made to move with you."
-      }
-    },
-    "swimdays_home_categories": {
-      "type": "swimdays-home-categories",
-      "settings": {
-        "heading_prefix": "Shop",
-        "heading_accent": "by",
-        "heading_suffix": "Category",
-        "collection_1": "bodysuits",
-        "badge_style_1": "none",
-        "badge_text_1": "New Arrival",
-        "collection_2": "halter-swim-dress",
-        "badge_style_2": "none",
-        "badge_text_2": "",
-        "collection_3": "wrap-tulip-skirt",
-        "badge_style_3": "none",
-        "badge_text_3": "Bestseller",
-        "collection_4": "swim-leggings",
-        "badge_style_4": "none",
-        "badge_text_4": "",
-        "collection_5": "swim-shorts",
-        "badge_style_5": "none",
-        "badge_text_5": ""
       }
     },
     "section_t4m8BJ": {
@@ -433,148 +710,6 @@
         "gradient_direction": "to top",
         "padding-block-start": 40,
         "padding-block-end": 40
-      }
-    },
-    "featured_blog_posts_gCMjPe": {
-      "type": "featured-blog-posts",
-      "blocks": {
-        "static-blog-title": {
-          "type": "_featured-blog-posts-title",
-          "name": "t:names.title",
-          "static": true,
-          "settings": {
-            "text": "<h3>{{ closest.blog.title }}</h3>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "static-blog-post-card": {
-          "type": "_featured-blog-posts-card",
-          "name": "t:names.blog_card",
-          "static": true,
-          "settings": {
-            "alignment": "left",
-            "gap": 12,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "image": {
-              "type": "_featured-blog-posts-image",
-              "static": true,
-              "settings": {
-                "image_ratio": "adapt",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0
-              },
-              "blocks": {}
-            },
-            "title": {
-              "type": "_heading",
-              "name": "t:names.title",
-              "static": true,
-              "settings": {
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "text": "<h4>{{ closest.article.title }}</h4>",
-                "read_only": false,
-                "alignment": "left",
-                "show_alignment": false,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "blog-post-info-text": {
-              "type": "_blog-post-info-text",
-              "name": "t:names.details",
-              "static": true,
-              "settings": {
-                "show_date": true,
-                "show_author": false,
-                "type_preset": "",
-                "alignment": "left",
-                "show_alignment": false,
-                "padding-block-start": 0,
-                "padding-block-end": 0
-              },
-              "blocks": {}
-            },
-            "blog-post-description": {
-              "type": "_blog-post-description",
-              "name": "t:names.excerpt",
-              "static": true,
-              "settings": {
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "padding-block-start": 8,
-                "padding-block-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": []
-        }
-      },
-      "name": "t:names.blog_posts_carousel",
-      "settings": {
-        "blog": "swimblogs",
-        "layout_type": "grid",
-        "carousel_on_mobile": true,
-        "post_limit": 2,
-        "columns": 2,
-        "mobile_columns": "2",
-        "mobile_card_size": "60cqw",
-        "columns_gap": 16,
-        "rows_gap": 16,
-        "icons_style": "arrow",
-        "icons_shape": "circle",
-        "section_width": "page-width",
-        "gap": 12,
-        "color_scheme": "scheme-3",
-        "padding-block-start": 48,
-        "padding-block-end": 48
       }
     }
   },
