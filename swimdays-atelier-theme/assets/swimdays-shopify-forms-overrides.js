@@ -44,6 +44,12 @@
     return root.querySelector('[data-testid="field-email"], input[inputmode="email"], input[type="email"], #email');
   };
 
+  const getCloseButton = (root) => {
+    return root.querySelector(
+      'button[aria-label="Close modal"], button[aria-label="Close"], button[aria-label*="close" i], button[class*="formCloseButton"]'
+    );
+  };
+
   const isInteractiveTarget = (target) => {
     return Boolean(
       target.closest('a, button, input, textarea, select, label, [role="button"], shop-lead-capture')
@@ -67,6 +73,18 @@
       const target = event.target;
 
       if (!(target instanceof Element) || isInteractiveTarget(target)) return;
+
+      const closeButton = getCloseButton(root);
+      const isInsidePopup = target.closest(
+        'form, [role="dialog"], [class*="formContainer"], [class*="gridItemContent"], [class*="formHeader"], [class*="modalContent"]'
+      );
+
+      if (closeButton && !isInsidePopup) {
+        event.preventDefault();
+        event.stopPropagation();
+        closeButton.click();
+        return;
+      }
 
       const formContainer = target.closest(
         'form, h2, p, [class*="formHeader"], [class*="textHeading"], [class*="textBody"], [class*="gridItemContent"]'
