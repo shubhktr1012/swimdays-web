@@ -68,11 +68,11 @@
               {% if featured_product.featured_image != blank %}
                 {{
                   featured_product.featured_image
-                  | image_url: width: 1200
+                  | image_url: width: 800
                   | image_tag:
                     class: 'swimdays-product-card__image swimdays-product-card__image--primary',
                     alt: featured_product.featured_image.alt | default: featured_product.title,
-                    widths: '360, 480, 640, 900, 1200',
+                    widths: '280, 360, 480, 640, 800',
                     sizes: '(max-width: 639px) 82vw, (max-width: 1023px) 42vw, 20vw',
                     loading: 'lazy'
                 }}
@@ -131,11 +131,11 @@
                 {% if product.featured_image != blank %}
                   {{
                     product.featured_image
-                    | image_url: width: 1200
+                    | image_url: width: 800
                     | image_tag:
                       class: 'swimdays-product-card__image swimdays-product-card__image--primary',
                       alt: product.featured_image.alt | default: product.title,
-                      widths: '360, 480, 640, 900, 1200',
+                      widths: '280, 360, 480, 640, 800',
                       sizes: '(max-width: 639px) 82vw, (max-width: 1023px) 42vw, 20vw',
                       loading: 'lazy'
                   }}
@@ -191,11 +191,11 @@
                   {% if product.featured_image != blank %}
                     {{
                       product.featured_image
-                      | image_url: width: 1200
+                      | image_url: width: 800
                       | image_tag:
                         class: 'swimdays-product-card__image swimdays-product-card__image--primary',
                         alt: product.featured_image.alt | default: product.title,
-                        widths: '360, 480, 640, 900, 1200',
+                        widths: '280, 360, 480, 640, 800',
                         sizes: '(max-width: 639px) 82vw, (max-width: 1023px) 42vw, 20vw',
                         loading: 'lazy'
                     }}
@@ -250,11 +250,11 @@
                   {% if product.featured_image != blank %}
                     {{
                       product.featured_image
-                      | image_url: width: 1200
+                      | image_url: width: 800
                       | image_tag:
                         class: 'swimdays-product-card__image swimdays-product-card__image--primary',
                         alt: product.featured_image.alt | default: product.title,
-                        widths: '360, 480, 640, 900, 1200',
+                        widths: '280, 360, 480, 640, 800',
                         sizes: '(max-width: 639px) 82vw, (max-width: 1023px) 42vw, 20vw',
                         loading: 'lazy'
                     }}

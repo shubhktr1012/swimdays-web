@@ -42,11 +42,11 @@
         {% if left_image != blank %}
           {{
             left_image
-            | image_url: width: 1600
+            | image_url: width: 1200
             | image_tag:
               class: 'sil-side-image',
               alt: '',
-              widths: '480, 720, 960, 1280, 1600',
+              widths: '360, 480, 720, 960, 1200',
               sizes: '(max-width: 768px) 100vw, 50vw',
               loading: 'lazy'
           }}
@@ -76,11 +76,11 @@
           {% else %}
             {{
               right_image
-              | image_url: width: 1600
+              | image_url: width: 1200
               | image_tag:
                 class: 'sil-side-image',
                 alt: '',
-                widths: '480, 720, 960, 1280, 1600',
+                widths: '360, 480, 720, 960, 1200',
                 sizes: '(max-width: 768px) 100vw, 50vw',
                 loading: 'lazy'
             }}
@@ -344,6 +344,28 @@
       await window[loaderKey];
     };
 
+    const whenNearViewport = (elements, callback) => {
+      const targets = Array.from(elements);
+      if (!targets.length) return;
+
+      if (!('IntersectionObserver' in window)) {
+        callback();
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            observer.disconnect();
+            callback();
+          }
+        },
+        { rootMargin: '240px 0px', threshold: 0.01 }
+      );
+
+      targets.forEach((el) => observer.observe(el));
+    };
+
     const initCollections = async (root = document) => {
       const sections = root.querySelectorAll('[data-swimdays-home-collections]');
       if (!sections.length) return;
@@ -417,14 +439,19 @@
       }
     };
 
+    const bootCollections = (root = document) => {
+      const sections = root.querySelectorAll('[data-swimdays-home-collections]');
+      whenNearViewport(sections, () => initCollections(root));
+    };
+
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => initCollections());
+      document.addEventListener('DOMContentLoaded', () => bootCollections());
     } else {
-      initCollections();
+      bootCollections();
     }
 
     document.addEventListener('shopify:section:load', (event) => {
-      initCollections(event.target);
+      bootCollections(event.target);
     });
 
     document.addEventListener('shopify:section:unload', (event) => {

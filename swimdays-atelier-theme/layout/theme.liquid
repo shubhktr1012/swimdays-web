@@ -15,30 +15,26 @@
         assign favicon_url = 'swimdays-favicon-square.png' | asset_url
       endif
     %}
-    {% if settings.logo != blank %}
+    {% if settings.logo != blank and template.name != 'index' %}
       <link
         rel="preload"
         as="image"
         href="{{ settings.logo | image_url: width: 260 }}"
-        fetchpriority="high"
+        fetchpriority="low"
       >
     {% endif %}
     {% if request.page_type == 'product' and product and product.featured_media.preview_image != blank %}
       <link
         rel="preload"
         as="image"
-        href="{{ product.featured_media.preview_image | image_url: width: 1440 }}"
+        href="{{ product.featured_media.preview_image | image_url: width: 900 }}"
         fetchpriority="high"
       >
     {% endif %}
-    {% if template.name == 'index' %}
-      <link
-        rel="preload"
-        as="image"
-        href="{{ 'swimdays-home-hero-bg-1440.webp' | asset_url }}"
-        fetchpriority="high"
-      >
-    {% endif %}
+    {% comment %}
+      Homepage LCP is the launch-hero image (fetchpriority=high on the img itself).
+      Do not preload the outdated swimdays-home-hero-bg asset or compete with logo.
+    {% endcomment %}
     {% if request.page_type == 'article' and article and article.image != blank %}
       {% assign article_image_probe = article.image | image_url: width: 32 %}
       {% if article_image_probe contains 'blog1.png' %}
@@ -79,6 +75,7 @@
     {%- render 'scripts' -%}
     {%- render 'theme-styles-variables' -%}
     {%- render 'swimdays-fonts' -%}
+    {%- render 'swimdays-home-rhythm' -%}
     <script
       src="{{ 'swimdays-shopify-forms-overrides.js' | asset_url }}"
       defer

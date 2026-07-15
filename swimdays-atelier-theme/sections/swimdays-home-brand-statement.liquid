@@ -208,6 +208,28 @@
       return Array.from(element.querySelectorAll('.swimdays-home-brand-statement__word'));
     };
 
+    const whenNearViewport = (elements, callback) => {
+      const targets = Array.from(elements);
+      if (!targets.length) return;
+
+      if (!('IntersectionObserver' in window)) {
+        callback();
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            observer.disconnect();
+            callback();
+          }
+        },
+        { rootMargin: '200px 0px', threshold: 0.01 }
+      );
+
+      targets.forEach((el) => observer.observe(el));
+    };
+
     const initBrandStatement = async (root = document) => {
       const sections = root.querySelectorAll('[data-swimdays-brand-statement]');
       if (!sections.length) return;
@@ -302,14 +324,19 @@
       }
     };
 
+    const bootBrandStatement = (root = document) => {
+      const sections = root.querySelectorAll('[data-swimdays-brand-statement]');
+      whenNearViewport(sections, () => initBrandStatement(root));
+    };
+
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => initBrandStatement());
+      document.addEventListener('DOMContentLoaded', () => bootBrandStatement());
     } else {
-      initBrandStatement();
+      bootBrandStatement();
     }
 
     document.addEventListener('shopify:section:load', (event) => {
-      initBrandStatement(event.target);
+      bootBrandStatement(event.target);
     });
   })();
 {% endjavascript %}

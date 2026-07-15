@@ -122,19 +122,19 @@
                           type="button"
                           class="swimdays-home-testimonials__media swimdays-home-testimonials__media-button"
                           data-testimonial-lightbox-trigger
-                          data-testimonial-lightbox-src="{{ image | image_url: width: 1800 }}"
+                          data-testimonial-lightbox-src="{{ image | image_url: width: 1200 }}"
                           data-testimonial-lightbox-alt="{{ image_alt | escape }}"
                           data-testimonial-lightbox-caption="{% if product_reference != blank %}{{ product_reference.title | escape }}{% elsif customer_name != blank %}Photo from {{ customer_name | escape }}{% else %}Swimdays customer photo{% endif %}"
                           aria-label="Expand testimonial photo{% if customer_name != blank %} from {{ customer_name | escape }}{% endif %}"
                         >
                           {{
                             image
-                            | image_url: width: 600
+                            | image_url: width: 320
                             | image_tag:
                               class: 'swimdays-home-testimonials__image',
                               alt: image_alt,
                               loading: 'lazy',
-                              widths: '180, 240, 320, 480, 600',
+                              widths: '100, 160, 240, 320',
                               sizes: '100px'
                           }}
                           <span class="swimdays-home-testimonials__expand-cue" aria-hidden="true">Expand</span>
@@ -249,7 +249,7 @@
   .swimdays-home-testimonials__title {
     color: var(--swimdays-testimonials-text, #263d3d);
     font-family: "Swimdays Heading", Georgia, serif;
-    font-size: clamp(2.1rem, 4.5vw, 5.5rem);
+    font-size: clamp(2.1rem, 4.5vw, 4.5rem);
     font-weight: 400;
     letter-spacing: 0;
     line-height: 0.98;
@@ -347,9 +347,9 @@
   .swimdays-home-testimonials__quote-mark {
     color: var(--swimdays-testimonials-accent, #cfa7bb);
     font-family: "Swimdays Heading", Georgia, serif;
-    font-size: 7.5rem;
+    font-size: 5.5rem;
     line-height: 1;
-    opacity: 0.12;
+    opacity: 0.07;
     pointer-events: none;
     position: absolute;
     right: 1.5rem;
@@ -431,9 +431,9 @@
 
   .swimdays-home-testimonials__product-strip {
     align-items: center;
-    background: var(--swimdays-testimonials-accent, #cfa7bb);
-    border: 1px solid color-mix(in srgb, var(--swimdays-testimonials-accent, #cfa7bb) 72%, #ffffff);
-    box-shadow: 0 10px 24px rgba(38, 61, 61, 0.12);
+    background: color-mix(in srgb, var(--swimdays-testimonials-accent, #cfa7bb) 42%, #fffaf8);
+    border: 1px solid color-mix(in srgb, var(--swimdays-testimonials-accent, #cfa7bb) 38%, #ffffff);
+    box-shadow: 0 2px 8px rgba(38, 61, 61, 0.05);
     color: var(--swimdays-testimonials-text, #263d3d);
     align-self: start;
     display: flex;
@@ -462,9 +462,9 @@
   }
 
   .swimdays-home-testimonials__product-strip::before {
-    background: var(--swimdays-testimonials-accent, #cfa7bb);
-    border-bottom: 1px solid color-mix(in srgb, var(--swimdays-testimonials-accent, #cfa7bb) 72%, #ffffff);
-    border-left: 1px solid color-mix(in srgb, var(--swimdays-testimonials-accent, #cfa7bb) 72%, #ffffff);
+    background: color-mix(in srgb, var(--swimdays-testimonials-accent, #cfa7bb) 42%, #fffaf8);
+    border-bottom: 1px solid color-mix(in srgb, var(--swimdays-testimonials-accent, #cfa7bb) 38%, #ffffff);
+    border-left: 1px solid color-mix(in srgb, var(--swimdays-testimonials-accent, #cfa7bb) 38%, #ffffff);
     content: "";
     height: 0.65rem;
     left: -0.38rem;
@@ -504,8 +504,8 @@
 
   .swimdays-home-testimonials__product-strip:hover,
   .swimdays-home-testimonials__product-strip:focus-visible {
-    background: color-mix(in srgb, var(--swimdays-testimonials-accent, #cfa7bb) 88%, #ffffff);
-    box-shadow: 0 10px 24px rgba(38, 61, 61, 0.14);
+    background: color-mix(in srgb, var(--swimdays-testimonials-accent, #cfa7bb) 58%, #ffffff);
+    box-shadow: 0 4px 12px rgba(38, 61, 61, 0.08);
     color: var(--swimdays-testimonials-text, #263d3d);
     transform: translateY(-1px);
   }
@@ -542,10 +542,10 @@
 
   .swimdays-home-testimonials__eyebrow {
     align-items: center;
-    color: color-mix(in srgb, var(--swimdays-testimonials-text, #263d3d) 65%, transparent);
+    color: color-mix(in srgb, var(--swimdays-testimonials-text, #263d3d) 48%, transparent);
     display: inline-flex;
     font-family: "Swimdays Subhead", "Poppins", sans-serif;
-    font-size: 0.68rem;
+    font-size: 0.62rem;
     font-weight: 500;
     gap: 0.35rem;
     letter-spacing: 0.15em;
@@ -569,11 +569,11 @@
 
   .swimdays-home-testimonials__quote p {
     color: var(--swimdays-testimonials-text, #263d3d);
-    font-family: "Swimdays Heading", Georgia, serif;
-    font-size: clamp(1.22rem, 1.8vw, 1.6rem);
-    font-weight: 300;
-    letter-spacing: -0.01em;
-    line-height: 1.5;
+    font-family: "Swimdays Body", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: clamp(1.05rem, 1.35vw, 1.25rem);
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.55;
     margin: 0;
   }
 
@@ -635,8 +635,8 @@
   .swimdays-home-testimonials__name {
     color: var(--swimdays-testimonials-text, #263d3d);
     font-family: "Swimdays Subhead", "Poppins", sans-serif;
-    font-size: 0.82rem;
-    letter-spacing: 0.14em;
+    font-size: 0.95rem;
+    letter-spacing: 0.09em;
     line-height: 1.3;
     text-transform: uppercase;
   }
@@ -802,8 +802,8 @@
     }
 
     .swimdays-home-testimonials__quote p {
-      font-size: clamp(1.08rem, 4.8vw, 1.28rem);
-      line-height: 1.45;
+      font-size: clamp(1rem, 3.8vw, 1.12rem);
+      line-height: 1.55;
     }
 
     .swimdays-home-testimonials__footer {

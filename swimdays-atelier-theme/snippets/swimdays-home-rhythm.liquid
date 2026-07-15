@@ -1,0 +1,26 @@
+{% doc %}
+  Shared homepage section rhythm so journal, shop-all, collections, and neighbors
+  sit on one vertical / gutter system.
+{% enddoc %}
+
+{% if template.name == 'index' %}
+  {% style %}
+    body.swimdays-template-index {
+      --swimdays-section-space: clamp(3.5rem, 6vw, 5rem);
+      --swimdays-gutter: clamp(1rem, 2.4vw, 1.5rem);
+      --gutter-inline: var(--swimdays-gutter);
+    }
+
+    body.swimdays-template-index .shopify-section--swimdays-home-testimonials .swimdays-home-testimonials,
+    body.swimdays-template-index .shopify-section--swimdays-home-instagram .swimdays-home-instagram,
+    body.swimdays-template-index .shopify-section--swimdays-home-categories .swimdays-home-categories,
+    body.swimdays-template-index .shopify-section--swimdays-home-shop-all-products .swimdays-home-shop-all-products {
+      --swimdays-section-space: clamp(3.5rem, 6vw, 5rem);
+    }
+
+    body.swimdays-template-index .shopify-section--swimdays-home-testimonials .swimdays-home-testimonials {
+      --swimdays-testimonials-edge: var(--swimdays-gutter, clamp(1rem, 2.4vw, 1.5rem));
+      padding-block: var(--swimdays-section-space, clamp(3.5rem, 6vw, 5rem));
+    }
+  {% endstyle %}
+{% endif %}
