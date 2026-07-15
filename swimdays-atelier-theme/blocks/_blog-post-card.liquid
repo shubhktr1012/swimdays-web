@@ -1,19 +1,20 @@
-
-
 {%- assign block_settings = block.settings -%}
 
 <div
-  class="blog-post-card"
+  class="blog-post-card swimdays-blog-card"
   style="--text-align: {{ block_settings.alignment }}"
 >
   {% if article.image %}
     {% content_for 'block', id: 'image', type: '_blog-post-image', article: article %}
+  {% else %}
+    <div class="swimdays-blog-card__media swimdays-blog-card__media--empty" aria-hidden="true"></div>
   {% endif %}
 
-  <div class="blog-post-card__content">
+  <div class="blog-post-card__content swimdays-blog-card__content">
     <a
       href="{{ article.url }}"
       data-testid="blog-post-link"
+      class="swimdays-blog-card__title-link"
     >
       {%- content_for 'block', id: 'heading', type: '_heading', text: article.title -%}
     </a>
@@ -30,7 +31,10 @@
 </div>
 
 {% stylesheet %}
-  .blog-post-card {
+  .swimdays-blog-card {
+    --swimdays-blog-ocean: #34565b;
+    --swimdays-blog-rose: #a84f77;
+    --swimdays-blog-cream: #faf6f1;
     display: flex;
     flex-direction: column;
     text-align: var(--text-align);
@@ -39,55 +43,128 @@
     background: transparent;
   }
 
-  .blog-post-card__content {
-    padding-block-start: clamp(0.9rem, 1.8vw, 1.25rem);
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  .swimdays-blog-card__media--empty {
+    aspect-ratio: 3 / 2;
+    background: linear-gradient(
+      145deg,
+      color-mix(in srgb, #b1bd75 32%, var(--swimdays-blog-cream)),
+      color-mix(in srgb, var(--swimdays-blog-rose) 24%, var(--swimdays-blog-cream))
+    );
+    border: 1px solid color-mix(in srgb, var(--swimdays-blog-ocean) 20%, transparent);
+    box-shadow:
+      inset 0 0 0 1px color-mix(in srgb, var(--swimdays-blog-cream) 55%, transparent),
+      0 10px 28px color-mix(in srgb, var(--swimdays-blog-ocean) 12%, transparent);
+    width: 100%;
   }
 
   .blog-post-item .blog-post-card__image-container,
-  .blog-post-item .blog-post-card__content {
-    width: 100%;
-  }
-
-  .blog-post-item .blog-post-card__image-container {
-    aspect-ratio: 16 / 10;
+  .swimdays-blog-card .blog-post-card__image-container {
+    /* Match uploaded journal imagery (mostly ~3:2 landscape) */
+    aspect-ratio: 3 / 2;
+    background: color-mix(in srgb, var(--swimdays-blog-rose) 12%, var(--swimdays-blog-cream));
+    border: 1px solid color-mix(in srgb, var(--swimdays-blog-ocean) 20%, transparent);
+    box-shadow:
+      inset 0 0 0 1px color-mix(in srgb, var(--swimdays-blog-cream) 55%, transparent),
+      0 10px 28px color-mix(in srgb, var(--swimdays-blog-ocean) 12%, transparent);
     overflow: hidden;
-    background: rgb(var(--color-foreground-rgb) / 0.04);
-  }
-
-  .blog-post-item .blog-post-card__image-container img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
   }
 
-  .blog-post-card__content a {
+  .blog-post-item .blog-post-card__image-container img,
+  .swimdays-blog-card .blog-post-card__image-container img,
+  .swimdays-blog-card .blog-post-card__image {
     display: block;
-    text-wrap: pretty;
+    height: 100% !important;
+    max-height: none;
+    object-fit: cover;
+    object-position: center center;
+    transition: transform 0.55s ease;
+    width: 100%;
+    /* Override Atelier fixed px heights so 3:2 crop wins */
+    --blog-post-card-img-height: 100%;
+    --blog-post-card-scale: 1;
+  }
+
+  .swimdays-blog-card:hover .blog-post-card__image-container img,
+  .swimdays-blog-card:focus-within .blog-post-card__image-container img {
+    transform: scale(1.04);
+  }
+
+  .swimdays-blog-card__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    padding-block-start: clamp(0.85rem, 1.6vw, 1.15rem);
+  }
+
+  .swimdays-blog-card__title-link {
+    display: block;
     text-decoration: none;
-    padding-block-start: 0;
+    text-wrap: pretty;
   }
 
-  .blog-post-card__content a:hover,
-  .blog-post-card__content a:hover [style*='--color: var(--color-primary)'] {
-    color: var(--color-primary-hover);
+  .swimdays-blog-card__content :is(h3, h4, .h4, .text-block) {
+    color: var(--swimdays-blog-ocean);
+    font-family: "Swimdays Heading", Aboreto, Georgia, serif;
+    font-size: clamp(1.05rem, 1.4vw, 1.28rem);
+    font-weight: 400;
+    line-height: 1.3;
+    margin: 0;
   }
 
-  .blog-post-card__content a:hover [style*='--color: var(--color-foreground-heading)'] {
-    color: rgb(var(--color-foreground-heading-rgb) / var(--opacity-subdued-text));
+  .swimdays-blog-card__title-link:hover :is(h3, h4, .h4, .text-block),
+  .swimdays-blog-card__title-link:focus-visible :is(h3, h4, .h4, .text-block) {
+    color: var(--swimdays-blog-rose);
   }
 
-  .blog-post-card__content a:hover [style*='--color: var(--color-foreground)'] {
-    color: rgb(var(--color-foreground-rgb) / var(--opacity-subdued-text));
+  .swimdays-blog-card__content .blog-post-info-text,
+  .swimdays-blog-card__content [class*='blog-post-info'] {
+    color: var(--swimdays-blog-rose);
+    font-family: "Swimdays Subhead", "Public Sans", sans-serif;
+    font-size: 0.64rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
   }
 
-  .blog-post-card .spacing-style {
+  .swimdays-blog-card__content .blog-post-card__content-text,
+  .swimdays-blog-card__content .rte {
+    color: color-mix(in srgb, var(--swimdays-blog-ocean) 80%, #000);
+    font-family: "Swimdays Body", "Public Sans", sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .swimdays-blog-card__content .blog-post-card__content-text a {
+    color: var(--swimdays-blog-rose);
+    font-family: "Swimdays Subhead", "Public Sans", sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .swimdays-blog-card__content .blog-post-card__content-text a:hover,
+  .swimdays-blog-card__content .blog-post-card__content-text a:focus-visible {
+    color: var(--swimdays-blog-ocean);
+  }
+
+  .swimdays-blog-card .spacing-style {
     --padding-block-start: 0px;
     --padding-block-end: 0px;
     --padding-inline-start: 0px;
     --padding-inline-end: 0px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .blog-post-item .blog-post-card__image-container img,
+    .swimdays-blog-card .blog-post-card__image-container img {
+      transition: none;
+    }
+
+    .swimdays-blog-card:hover .blog-post-card__image-container img,
+    .swimdays-blog-card:focus-within .blog-post-card__image-container img {
+      transform: none;
+    }
   }
 {% endstylesheet %}
 

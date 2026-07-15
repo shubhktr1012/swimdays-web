@@ -1,10 +1,12 @@
-
-
 <script
   src="{{ 'blog-posts-list.js' | asset_url }}"
   type="module"
   fetchpriority="low"
 ></script>
+
+{% liquid
+  assign featured_article = blog.articles.first
+%}
 
 <blog-posts-list section-id="{{ section.id }}">
   <div class="section-background color-{{ section.settings.color_scheme }}"></div>
@@ -13,66 +15,240 @@
       section
       color-{{ section.settings.color_scheme }}
       blog-posts
+      swimdays-blog-index
       spacing-style
       size-style
     "
     data-testid="blog-posts"
     style="{% render 'spacing-style', settings: section.settings %}"
   >
-    {% content_for 'blocks' %}
+    <header class="swimdays-blog-index__intro">
+      <p class="swimdays-blog-index__eyebrow">Journal</p>
+      {% content_for 'blocks' %}
+    </header>
 
-    <div
-      ref="grid"
-      class="blog-posts-container"
-    >
-      {% for article in blog.articles %}
-        <div
-          class="blog-post-item"
-          data-testid="blog-post-item"
-        >
-          {% content_for 'block', id: 'static-blog-post-card', type: '_blog-post-card', article: article %}
-        </div>
-      {% endfor %}
-    </div>
+    {% if featured_article != blank %}
+      <article class="swimdays-blog-featured">
+        <a class="swimdays-blog-featured__link" href="{{ featured_article.url }}">
+          <div class="swimdays-blog-featured__media">
+            {% if featured_article.image != blank %}
+              {{
+                featured_article.image
+                | image_url: width: 1600
+                | image_tag:
+                  class: 'swimdays-blog-featured__image',
+                  alt: featured_article.image.alt | default: featured_article.title,
+                  widths: '480, 720, 960, 1200, 1600',
+                  sizes: '(max-width: 899px) 100vw, 54vw',
+                  loading: 'eager',
+                  fetchpriority: 'high'
+              }}
+            {% else %}
+              <div class="swimdays-blog-featured__placeholder" aria-hidden="true"></div>
+            {% endif %}
+          </div>
+          <div class="swimdays-blog-featured__content">
+            <p class="swimdays-blog-featured__meta">
+              {{ featured_article.published_at | time_tag: format: 'date' }}
+            </p>
+            <h2 class="swimdays-blog-featured__title">{{ featured_article.title }}</h2>
+            {% if featured_article.excerpt != blank or featured_article.content != blank %}
+              <p class="swimdays-blog-featured__excerpt">
+                {{ featured_article.excerpt | default: featured_article.content | strip_html | truncatewords: 36 }}
+              </p>
+            {% endif %}
+            <span class="swimdays-blog-featured__read">
+              Read
+              <span aria-hidden="true">→</span>
+            </span>
+          </div>
+        </a>
+      </article>
+    {% endif %}
+
+    {% if blog.articles_count > 1 %}
+      <div
+        ref="grid"
+        class="blog-posts-container swimdays-blog-index__grid"
+      >
+        {% for article in blog.articles %}
+          {% if forloop.first %}
+            {% continue %}
+          {% endif %}
+
+          <div
+            class="blog-post-item"
+            data-testid="blog-post-item"
+          >
+            {% content_for 'block', id: 'static-blog-post-card', type: '_blog-post-card', article: article %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
   </div>
 </blog-posts-list>
 
 {% stylesheet %}
-  /**
-   * Blog posts page layout
-   */
-  .blog-posts {
+  .swimdays-blog-index {
+    --swimdays-blog-cream: #faf6f1;
+    --swimdays-blog-ocean: #34565b;
+    --swimdays-blog-rose: #a84f77;
+    --swimdays-blog-ink: #2e2b26;
     --page-content-width: min(72rem, calc(100vw - (var(--page-margin) * 2)));
     --page-width: calc(var(--page-content-width) + (var(--page-margin) * 2));
-    --columns-gap: clamp(1rem, 2.2vw, 2rem);
-    --rows-gap: clamp(2rem, 4vw, 3rem);
+    --columns-gap: clamp(1.1rem, 2.2vw, 1.75rem);
+    --rows-gap: clamp(2rem, 4vw, 2.75rem);
+    background: var(--swimdays-blog-cream);
+    color: var(--swimdays-blog-ink);
   }
 
-  .blog-posts-container {
+  .swimdays-blog-index.section {
+    row-gap: clamp(2rem, 4vw, 3rem);
+  }
+
+  .swimdays-blog-index__intro {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    max-width: 40rem;
+  }
+
+  .swimdays-blog-index__eyebrow {
+    color: var(--swimdays-blog-rose);
+    font-family: "Swimdays Subhead", "Public Sans", sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  .swimdays-blog-index__intro :is(h1, h2, .h2, .text-block) {
+    color: var(--swimdays-blog-ocean);
+    font-family: "Swimdays Heading", Aboreto, Georgia, serif;
+    font-weight: 400;
+  }
+
+  .swimdays-blog-featured {
+    width: 100%;
+  }
+
+  .swimdays-blog-featured__link {
+    color: inherit;
     display: grid;
+    gap: clamp(1.25rem, 3vw, 2.5rem);
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    text-decoration: none;
+  }
+
+  .swimdays-blog-featured__media {
+    /* Featured blog art is landscape (~3:2 / 16:9) */
+    aspect-ratio: 3 / 2;
+    background: color-mix(in srgb, var(--swimdays-blog-rose) 14%, var(--swimdays-blog-cream));
+    border: 1px solid color-mix(in srgb, var(--swimdays-blog-ocean) 20%, transparent);
+    box-shadow:
+      inset 0 0 0 1px color-mix(in srgb, var(--swimdays-blog-cream) 55%, transparent),
+      0 10px 28px color-mix(in srgb, var(--swimdays-blog-ocean) 12%, transparent);
+    overflow: hidden;
+  }
+
+  .swimdays-blog-featured__image,
+  .swimdays-blog-featured__placeholder {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.55s ease;
+    width: 100%;
+  }
+
+  .swimdays-blog-featured__placeholder {
+    background: linear-gradient(
+      145deg,
+      color-mix(in srgb, #b1bd75 30%, var(--swimdays-blog-cream)),
+      color-mix(in srgb, var(--swimdays-blog-rose) 24%, var(--swimdays-blog-cream))
+    );
+  }
+
+  .swimdays-blog-featured__link:hover .swimdays-blog-featured__image,
+  .swimdays-blog-featured__link:focus-visible .swimdays-blog-featured__image {
+    transform: scale(1.035);
+  }
+
+  .swimdays-blog-featured__content {
+    align-content: center;
+    display: grid;
+    gap: 0.85rem;
+    padding-block: 0.35rem;
+  }
+
+  .swimdays-blog-featured__meta {
+    color: var(--swimdays-blog-rose);
+    font-family: "Swimdays Subhead", "Public Sans", sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  .swimdays-blog-featured__title {
+    color: var(--swimdays-blog-ocean);
+    font-family: "Swimdays Heading", Aboreto, Georgia, serif;
+    font-size: clamp(1.7rem, 3.2vw, 2.6rem);
+    font-weight: 400;
+    line-height: 1.18;
+    margin: 0;
+  }
+
+  .swimdays-blog-featured__excerpt {
+    color: color-mix(in srgb, var(--swimdays-blog-ocean) 82%, #000);
+    font-family: "Swimdays Body", "Public Sans", sans-serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 34rem;
+  }
+
+  .swimdays-blog-featured__read {
+    color: var(--swimdays-blog-rose);
+    font-family: "Swimdays Subhead", "Public Sans", sans-serif;
+    font-size: 0.74rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .swimdays-blog-index__grid.blog-posts-container {
+    align-items: start;
+    display: grid;
+    gap: var(--rows-gap) var(--columns-gap);
     grid-template-columns: repeat(2, minmax(0, 1fr));
     width: 100%;
-    gap: var(--rows-gap) var(--columns-gap);
-    align-items: start;
   }
 
-  /**
-   * When there's no image, the blog post item has a border.
-   */
-  .blog-post-item {
-    border: 1px solid rgb(var(--color-foreground-rgb) / var(--opacity-20));
+  .swimdays-blog-index .blog-post-item {
+    background: transparent;
+    border: 0;
     padding: 0;
-    background: rgb(var(--color-background-rgb) / 0.88);
   }
 
-  .blog-post-item:has(.blog-post-card__image-container) {
-    border: none;
-    padding: 0;
+  @media screen and (max-width: 899px) {
+    .swimdays-blog-featured__link {
+      grid-template-columns: minmax(0, 1fr);
+    }
   }
 
   @media screen and (max-width: 749px) {
-    .blog-posts-container {
+    .swimdays-blog-index__grid.blog-posts-container {
       grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .swimdays-blog-featured__image {
+      transition: none;
+    }
+
+    .swimdays-blog-featured__link:hover .swimdays-blog-featured__image,
+    .swimdays-blog-featured__link:focus-visible .swimdays-blog-featured__image {
+      transform: none;
     }
   }
 {% endstylesheet %}
@@ -134,7 +310,7 @@
       "max": 100,
       "step": 1,
       "unit": "px",
-      "default": 0
+      "default": 48
     },
     {
       "type": "range",
@@ -144,7 +320,7 @@
       "max": 100,
       "step": 1,
       "unit": "px",
-      "default": 0
+      "default": 48
     }
   ]
 }

@@ -1,75 +1,348 @@
-
-
 {% liquid
   assign max_items = section.settings.post_limit
   assign is_swimblogs_home = false
+  assign journal_blog = section.settings.blog
 
-  if request.page_type == 'index' and section.settings.blog != blank and section.settings.blog.handle == 'swimblogs'
+  if request.page_type == 'index' and journal_blog != blank and journal_blog.handle == 'swimblogs'
     assign is_swimblogs_home = true
+  endif
+
+  if is_swimblogs_home
+    assign journal_limit = max_items | at_most: 3
   endif
 %}
 
-<div class="section-background color-{{ section.settings.color_scheme }}{% if is_swimblogs_home %} featured-blog-posts__background--swimblogs-home{% endif %}"></div>
+{% if is_swimblogs_home %}
+  <div
+    class="swimdays-journal"
+    data-swimdays-journal
+    aria-labelledby="swimdays-journal-heading-{{ section.id }}"
+  >
+    <div class="swimdays-journal__inner">
+      <header class="swimdays-journal__head">
+        <div class="swimdays-journal__titles">
+          <p class="swimdays-journal__eyebrow">Swimdays</p>
+          <h2 class="swimdays-journal__heading" id="swimdays-journal-heading-{{ section.id }}">
+            From the Journal
+          </h2>
+        </div>
+        <a class="swimdays-journal__view-all" href="{{ journal_blog.url }}">
+          View all
+          <span aria-hidden="true">→</span>
+        </a>
+      </header>
 
-<div
-  class="
-    section
-    section--{{ section.settings.section_width }}
-    color-{{ section.settings.color_scheme }}
-    section-resource-list
-    spacing-style
-    gap-style
-    {% if is_swimblogs_home %} featured-blog-posts--swimblogs-home{% endif %}
-  "
-  style="
-    {%- render 'spacing-style', settings: section.settings -%}
-    {%- render 'gap-style', value: section.settings.gap -%}
-  "
->
-  {% content_for 'block', id: 'static-blog-title', type: '_featured-blog-posts-title' %}
+      {% if journal_blog.articles_count > 0 %}
+        <div class="swimdays-journal__grid">
+          {% for article in journal_blog.articles limit: journal_limit %}
+            <article class="swimdays-journal-card">
+              <a class="swimdays-journal-card__link" href="{{ article.url }}">
+                <div class="swimdays-journal-card__media">
+                  {% if article.image != blank %}
+                    {{
+                      article.image
+                      | image_url: width: 900
+                      | image_tag:
+                        class: 'swimdays-journal-card__image',
+                        alt: article.image.alt | default: article.title,
+                        widths: '320, 480, 640, 800, 900',
+                        sizes: '(max-width: 749px) 78vw, (max-width: 1023px) 44vw, 30vw',
+                        loading: 'lazy'
+                    }}
+                  {% else %}
+                    <div class="swimdays-journal-card__placeholder" aria-hidden="true"></div>
+                  {% endif %}
+                </div>
 
-  {% if section.settings.blog != blank and section.settings.blog.articles_count > 0 %}
-    {% paginate section.settings.blog.articles by max_items %}
-      {% assign section_articles = section.settings.blog.articles %}
-    {% endpaginate %}
-  {% else %}
-    {% assign section_articles = '' %}
-    {% for i in (1..max_items) %}
-      {% assign section_articles = section_articles | append: ', ' %}
-    {% endfor %}
-    {% assign section_articles = section_articles | split: ',' %}
-  {% endif %}
+                <div class="swimdays-journal-card__body">
+                  {% if article.tags.size > 0 %}
+                    <p class="swimdays-journal-card__tag">{{ article.tags.first }}</p>
+                  {% endif %}
+                  <h3 class="swimdays-journal-card__title">{{ article.title }}</h3>
+                  <span class="swimdays-journal-card__read">
+                    Read
+                    <span aria-hidden="true">→</span>
+                  </span>
+                </div>
+              </a>
+            </article>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="swimdays-journal__empty">Add posts to the Swimblogs journal to feature them here.</p>
+      {% endif %}
+    </div>
+  </div>
+{% else %}
+  <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 
-  {% capture list_items %}
-    {% for article in section_articles limit: max_items %}
-      <div class="resource-list__item">
-        {% content_for 'block', id: 'static-blog-post-card', type: '_featured-blog-posts-card', article: article, closest.article: article %}
-      </div>
-      {% unless forloop.last %}
-        <!--@list/split-->
-      {% endunless %}
-    {% endfor %}
-  {% endcapture %}
+  <div
+    class="
+      section
+      section--{{ section.settings.section_width }}
+      color-{{ section.settings.color_scheme }}
+      section-resource-list
+      spacing-style
+      gap-style
+    "
+    style="
+      {%- render 'spacing-style', settings: section.settings -%}
+      {%- render 'gap-style', value: section.settings.gap -%}
+    "
+  >
+    {% content_for 'block', id: 'static-blog-title', type: '_featured-blog-posts-title' %}
 
-  {% liquid
-    assign list_items_array = list_items | strip | split: '<!--@list/split-->'
-  %}
+    {% if section.settings.blog != blank and section.settings.blog.articles_count > 0 %}
+      {% paginate section.settings.blog.articles by max_items %}
+        {% assign section_articles = section.settings.blog.articles %}
+      {% endpaginate %}
+    {% else %}
+      {% assign section_articles = '' %}
+      {% for i in (1..max_items) %}
+        {% assign section_articles = section_articles | append: ', ' %}
+      {% endfor %}
+      {% assign section_articles = section_articles | split: ',' %}
+    {% endif %}
 
-  {% render 'resource-list',
-    list_items: list_items,
-    list_items_array: list_items_array,
-    settings: section.settings,
-    carousel_ref: 'featuredBlog',
-    slide_count: max_items,
-    content_type: 'articles',
-    test_id: 'featured-blog-posts'
-  %}
-</div>
+    {% capture list_items %}
+      {% for article in section_articles limit: max_items %}
+        <div class="resource-list__item">
+          {% content_for 'block', id: 'static-blog-post-card', type: '_featured-blog-posts-card', article: article, closest.article: article %}
+        </div>
+        {% unless forloop.last %}
+          <!--@list/split-->
+        {% endunless %}
+      {% endfor %}
+    {% endcapture %}
+
+    {% liquid
+      assign list_items_array = list_items | strip | split: '<!--@list/split-->'
+    %}
+
+    {% render 'resource-list',
+      list_items: list_items,
+      list_items_array: list_items_array,
+      settings: section.settings,
+      carousel_ref: 'featuredBlog',
+      slide_count: max_items,
+      content_type: 'articles',
+      test_id: 'featured-blog-posts'
+    %}
+  </div>
+{% endif %}
 
 {% stylesheet %}
-  .featured-blog-posts__background--swimblogs-home,
-  .featured-blog-posts--swimblogs-home {
-    background-color: #efe7e8;
+  .swimdays-journal {
+    --swimdays-journal-cream: #faf6f1;
+    --swimdays-journal-rose-wash: #f0e6e9;
+    --swimdays-journal-ocean: #34565b;
+    --swimdays-journal-rose: #a84f77;
+    --swimdays-journal-ink: #2e2b26;
+    background:
+      linear-gradient(180deg, var(--swimdays-journal-rose-wash) 0%, var(--swimdays-journal-cream) 38%, var(--swimdays-journal-cream) 100%);
+    color: var(--swimdays-journal-ink);
+    padding-block: var(--swimdays-section-space, clamp(3.5rem, 6vw, 5rem));
+  }
+
+  .swimdays-journal__inner {
+    margin: 0 auto;
+    max-width: min(100% - (var(--swimdays-gutter, 1rem) * 2), 88rem);
+    padding-inline: 0;
+    width: calc(100% - (var(--swimdays-gutter, clamp(1rem, 2.4vw, 1.5rem)) * 2));
+  }
+
+  .swimdays-journal__head {
+    align-items: flex-end;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+  }
+
+  .swimdays-journal__eyebrow {
+    color: var(--swimdays-journal-rose);
+    font-family: "Swimdays Subhead", "Public Sans", sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    margin: 0 0 0.45rem;
+    text-transform: uppercase;
+  }
+
+  .swimdays-journal__heading {
+    color: var(--swimdays-journal-ocean);
+    font-family: "Swimdays Heading", Aboreto, Georgia, serif;
+    font-size: clamp(1.55rem, 2.6vw, 2.35rem);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    line-height: 1.15;
+    margin: 0;
+  }
+
+  .swimdays-journal__view-all {
+    color: var(--swimdays-journal-ocean);
+    font-family: "Swimdays Subhead", "Public Sans", sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .swimdays-journal__view-all:hover,
+  .swimdays-journal__view-all:focus-visible {
+    color: var(--swimdays-journal-rose);
+  }
+
+  .swimdays-journal__grid {
+    display: grid;
+    gap: clamp(1.1rem, 2vw, 1.6rem);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .swimdays-journal-card {
+    min-width: 0;
+  }
+
+  .swimdays-journal-card__link {
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    height: 100%;
+    text-decoration: none;
+  }
+
+  .swimdays-journal-card__media {
+    /* Blog thumbs are landscape (~3:2 / 16:9); portrait crops them badly */
+    aspect-ratio: 3 / 2;
+    background: color-mix(in srgb, var(--swimdays-journal-rose) 12%, var(--swimdays-journal-cream));
+    border: 1px solid color-mix(in srgb, var(--swimdays-journal-ocean) 20%, transparent);
+    box-shadow:
+      inset 0 0 0 1px color-mix(in srgb, var(--swimdays-journal-cream) 55%, transparent),
+      0 10px 28px color-mix(in srgb, var(--swimdays-journal-ocean) 12%, transparent);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .swimdays-journal-card__image,
+  .swimdays-journal-card__placeholder {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.55s ease;
+    width: 100%;
+  }
+
+  .swimdays-journal-card__placeholder {
+    background: linear-gradient(
+      145deg,
+      color-mix(in srgb, #b1bd75 35%, var(--swimdays-journal-cream)),
+      color-mix(in srgb, var(--swimdays-journal-rose) 28%, var(--swimdays-journal-cream))
+    );
+  }
+
+  .swimdays-journal-card__link:hover .swimdays-journal-card__image,
+  .swimdays-journal-card__link:focus-visible .swimdays-journal-card__image {
+    transform: scale(1.04);
+  }
+
+  .swimdays-journal-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .swimdays-journal-card__tag {
+    color: var(--swimdays-journal-rose);
+    font-family: "Swimdays Subhead", "Public Sans", sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  .swimdays-journal-card__title {
+    color: var(--swimdays-journal-ocean);
+    font-family: "Swimdays Heading", Aboreto, Georgia, serif;
+    font-size: clamp(1.05rem, 1.35vw, 1.3rem);
+    font-weight: 400;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .swimdays-journal-card__read {
+    color: var(--swimdays-journal-rose);
+    font-family: "Swimdays Subhead", "Public Sans", sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    margin-top: 0.2rem;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+
+  .swimdays-journal-card__link:hover .swimdays-journal-card__read,
+  .swimdays-journal-card__link:focus-visible .swimdays-journal-card__read {
+    color: var(--swimdays-journal-ocean);
+  }
+
+  .swimdays-journal__empty {
+    color: color-mix(in srgb, var(--swimdays-journal-ocean) 78%, #000);
+    font-family: "Swimdays Body", "Public Sans", sans-serif;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 1023px) {
+    .swimdays-journal__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .swimdays-journal-card:nth-child(3) {
+      grid-column: 1 / -1;
+      max-width: 28rem;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .swimdays-journal__inner {
+      width: calc(100% - (var(--swimdays-gutter, 1rem) * 2));
+    }
+
+    .swimdays-journal__grid {
+      -webkit-overflow-scrolling: touch;
+      display: flex;
+      gap: 0.85rem;
+      grid-template-columns: none;
+      overflow-x: auto;
+      padding-bottom: 0.35rem;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+
+    .swimdays-journal__grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    .swimdays-journal-card {
+      flex: 0 0 min(78vw, 18.5rem);
+      scroll-snap-align: start;
+    }
+
+    .swimdays-journal-card:nth-child(3) {
+      grid-column: auto;
+      max-width: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .swimdays-journal-card__image {
+      transition: none;
+    }
+
+    .swimdays-journal-card__link:hover .swimdays-journal-card__image,
+    .swimdays-journal-card__link:focus-visible .swimdays-journal-card__image {
+      transform: none;
+    }
   }
 {% endstylesheet %}
 

@@ -21,7 +21,7 @@
             "max_width": "narrow",
             "alignment": "left",
             "type_preset": "h2",
-            "font": "var(--font-primary--family)",
+            "font": "var(--font-heading--family)",
             "font_size": "",
             "line_height": "normal",
             "letter_spacing": "normal",
@@ -31,8 +31,8 @@
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
-            "padding-block-start": 48,
-            "padding-block-end": 48,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
@@ -86,7 +86,7 @@
               "name": "t:names.details",
               "static": true,
               "settings": {
-                "show_date": false,
+                "show_date": true,
                 "show_author": false,
                 "type_preset": "",
                 "alignment": "left",
@@ -121,9 +121,9 @@
         "title"
       ],
       "settings": {
-        "color_scheme": "",
-        "padding-block-start": 0,
-        "padding-block-end": 48
+        "color_scheme": "scheme-1",
+        "padding-block-start": 48,
+        "padding-block-end": 72
       }
     }
   },

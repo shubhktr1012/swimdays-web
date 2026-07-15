@@ -102,8 +102,15 @@
 {% render 'swimdays-structured-data-article', article: article, author_name: custom_byline %}
 
 {% stylesheet %}
+  .section-wrapper:has(.blog-post-shell) {
+    background: #faf6f1;
+  }
+
   .blog-post-shell {
-    gap: clamp(1.5rem, 3vw, 2.5rem);
+    --swimdays-article-ocean: #34565b;
+    --swimdays-article-rose: #a84f77;
+    --swimdays-article-cream: #faf6f1;
+    gap: clamp(1.75rem, 3.5vw, 2.75rem);
   }
 
   .blog-post-shell > .blog-post-header {
@@ -113,18 +120,43 @@
     text-align: center;
   }
 
+  .blog-post-shell > .blog-post-header :is(h1, .h1, .h2, .text-block) {
+    color: var(--swimdays-article-ocean);
+    font-family: "Swimdays Heading", Aboreto, Georgia, serif;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 1.15;
+  }
+
+  .blog-post-shell > .blog-post-header .blog-post-info-text,
+  .blog-post-shell > .blog-post-header [class*='blog-post-info'] {
+    color: var(--swimdays-article-rose);
+    font-family: "Swimdays Subhead", "Public Sans", sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
   .blog-post-byline {
     margin: 0.75rem 0 0;
+    font-family: "Swimdays Body", "Public Sans", sans-serif;
     font-size: 0.98rem;
     line-height: 1.5;
     letter-spacing: 0.02em;
-    color: rgb(var(--color-foreground-rgb) / 0.78);
+    color: color-mix(in srgb, var(--swimdays-article-ocean) 78%, #000);
   }
 
   .blog-post-shell > .blog-post-featured-image {
     width: 100%;
-    max-width: min(44rem, calc(100vw - 2rem));
+    max-width: min(48rem, calc(100vw - 2rem));
     margin: 0 auto;
+  }
+
+  .blog-post-shell > .blog-post-featured-image .blog-post-featured-image__image,
+  .blog-post-shell > .blog-post-featured-image .border-style {
+    border: 0 !important;
+    border-radius: 0;
+    box-shadow: none;
   }
 
   .blog-post-shell > .blog-post-content {
@@ -133,23 +165,32 @@
 
   .blog-post-soft-cta {
     width: 100%;
-    max-width: min(48rem, calc(100vw - 2rem));
-    margin: clamp(1rem, 2vw, 1.5rem) auto 0;
-    padding: clamp(1.5rem, 3vw, 2.4rem);
-    border: 1px solid rgb(var(--color-foreground-rgb) / 0.12);
-    background: linear-gradient(180deg, rgb(var(--color-background-rgb) / 0.96), rgb(var(--color-background-rgb) / 0.88));
+    max-width: min(42rem, calc(100vw - 2rem));
+    margin: clamp(1.75rem, 3.5vw, 2.75rem) auto 0;
+    padding: clamp(1.75rem, 3.2vw, 2.6rem);
+    border: 1px solid color-mix(in srgb, var(--swimdays-article-rose) 28%, transparent);
+    background:
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--swimdays-article-rose) 10%, var(--swimdays-article-cream)),
+        var(--swimdays-article-cream)
+      );
     text-align: center;
   }
 
   .blog-post-soft-cta__heading {
     margin: 0 0 0.75rem;
+    color: var(--swimdays-article-ocean);
+    font-family: "Swimdays Heading", Aboreto, Georgia, serif;
+    font-weight: 400;
   }
 
   .blog-post-soft-cta__body {
-    margin: 0 auto 1.4rem;
+    margin: 0 auto 1.5rem;
     max-width: 34rem;
+    font-family: "Swimdays Body", "Public Sans", sans-serif;
     line-height: 1.7;
-    color: rgb(var(--color-foreground-rgb) / 0.78);
+    color: color-mix(in srgb, var(--swimdays-article-ocean) 80%, #000);
   }
 
   .blog-post-soft-cta__actions {
@@ -165,23 +206,27 @@
     justify-content: center;
     min-width: 9.5rem;
     padding: 0.9rem 1.35rem;
+    font-family: "Swimdays Subhead", "Public Sans", sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
     text-decoration: none;
+    text-transform: uppercase;
     transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   }
 
   .blog-post-soft-cta__button--primary {
     background: #34565b;
-    color: #f7f6f2;
+    color: #faf6f1;
   }
 
   .blog-post-soft-cta__button--primary:hover {
     background: #284449;
-    color: #f7f6f2;
+    color: #faf6f1;
   }
 
   .blog-post-soft-cta__button--secondary {
-    border: 1px solid rgb(var(--color-foreground-rgb) / 0.16);
-    color: var(--color-foreground);
+    border: 1px solid color-mix(in srgb, var(--swimdays-article-ocean) 35%, transparent);
+    color: var(--swimdays-article-ocean);
   }
 
   .blog-post-soft-cta__button--secondary:hover {

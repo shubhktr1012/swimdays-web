@@ -103,6 +103,8 @@
 
 {% stylesheet %}
   .featured-blog-posts-card {
+    --swimdays-blog-ocean: #34565b;
+    --swimdays-blog-rose: #a84f77;
     text-align: var(--text-align);
   }
 
@@ -112,6 +114,12 @@
 
   .resource-list--grid .resource-list__item {
     min-width: 0;
+  }
+
+  .featured-blog-posts-card .featured-blog-posts-card__image,
+  .featured-blog-posts-card .blog-placeholder-svg {
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
   }
 
   /* Editorial layout */
@@ -125,7 +133,7 @@
     .resource-list:not(.hidden--desktop) .blog-post-card--flexible-aspect-ratio {
       .featured-blog-posts-card__image,
       .blog-placeholder-svg {
-        aspect-ratio: unset;
+        aspect-ratio: 3 / 2;
       }
     }
   }
@@ -146,6 +154,18 @@
 
   .featured-blog-posts-card__content h4 {
     margin: 0;
+    color: var(--swimdays-blog-ocean);
+    font-family: "Swimdays Heading", Aboreto, Georgia, serif;
+    font-weight: 400;
+  }
+
+  .featured-blog-posts-card__content .blog-post-info-text,
+  .featured-blog-posts-card__content [class*='blog-post-info'] {
+    color: var(--swimdays-blog-rose);
+    font-family: "Swimdays Subhead", "Public Sans", sans-serif;
+    font-size: 0.64rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
   }
 {% endstylesheet %}
 
