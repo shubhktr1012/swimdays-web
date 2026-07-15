@@ -1,0 +1,237 @@
+{% liquid
+  assign eyebrow_text = section.settings.eyebrow_text | default: 'As seen in' | strip
+  assign has_logos = false
+
+  for block in section.blocks
+    if block.settings.logo != blank or block.settings.logo_asset != blank
+      assign has_logos = true
+      break
+    endif
+  endfor
+%}
+
+{% if has_logos %}
+  {% render 'swimdays-home-fonts' %}
+
+  <section
+    id="swimdays-home-press-{{ section.id }}"
+    class="swimdays-home-press"
+    data-swimdays-home-press
+    data-section-id="{{ section.id }}"
+    aria-label="{{ eyebrow_text | escape }}"
+  >
+    <div class="swimdays-home-press__inner">
+      {% if eyebrow_text != blank %}
+        <p class="swimdays-home-press__eyebrow">{{ eyebrow_text }}</p>
+      {% endif %}
+
+      <ul class="swimdays-home-press__logos">
+        {% for block in section.blocks %}
+          {% liquid
+            assign logo_image = block.settings.logo
+            assign logo_asset = block.settings.logo_asset | strip
+            assign logo_link = block.settings.link
+            assign logo_alt = block.settings.alt_text | strip
+            assign logo_src = blank
+            assign logo_width = 120
+            assign logo_height = 43
+
+            if logo_image != blank
+              assign logo_src = logo_image | image_url: width: 360
+              if logo_image.aspect_ratio != blank and logo_image.aspect_ratio > 0
+                assign logo_height = 120 | divided_by: logo_image.aspect_ratio | round
+              endif
+            elsif logo_asset != blank
+              assign logo_src = logo_asset | asset_url
+              if logo_asset == 'logo-the-word.png'
+                assign logo_width = 156
+                assign logo_height = 40
+              elsif logo_asset == 'logo-elle.svg'
+                assign logo_width = 120
+                assign logo_height = 43
+              endif
+            endif
+
+            if logo_alt == blank
+              assign logo_alt = 'Press logo'
+            endif
+          %}
+
+          {% if logo_src != blank %}
+            <li class="swimdays-home-press__item" {{ block.shopify_attributes }}>
+              {% if logo_link != blank %}
+                <a
+                  class="swimdays-home-press__link"
+                  href="{{ logo_link }}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="{{ logo_alt | escape }}"
+                >
+                  <img
+                    class="swimdays-home-press__logo"
+                    src="{{ logo_src }}"
+                    alt=""
+                    width="{{ logo_width }}"
+                    height="{{ logo_height }}"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </a>
+              {% else %}
+                <img
+                  class="swimdays-home-press__logo"
+                  src="{{ logo_src }}"
+                  alt="{{ logo_alt | escape }}"
+                  width="{{ logo_width }}"
+                  height="{{ logo_height }}"
+                  loading="lazy"
+                  decoding="async"
+                >
+              {% endif %}
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+{% endif %}
+
+{% stylesheet %}
+  .swimdays-home-press {
+    background: var(--color-background, #faf6f1);
+    border: 0;
+    box-shadow: none;
+    margin: 0;
+    padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1rem, 4vw, 2rem);
+    width: 100%;
+  }
+
+  .swimdays-home-press__inner {
+    align-items: center;
+    display: grid;
+    gap: clamp(0.75rem, 1.5vw, 1rem);
+    justify-items: center;
+    margin: 0 auto;
+    max-width: min(100%, 1600px);
+    text-align: center;
+  }
+
+  .swimdays-home-press__eyebrow {
+    color: #34565b;
+    font-family: "Swimdays Body", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: clamp(0.6875rem, 0.62rem + 0.2vw, 0.75rem);
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    line-height: 1.2;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  .swimdays-home-press__logos {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(1.25rem, 3vw, 2.5rem);
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .swimdays-home-press__item {
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+
+  .swimdays-home-press__link {
+    display: inline-flex;
+    line-height: 0;
+    text-decoration: none;
+  }
+
+  .swimdays-home-press__link:focus-visible {
+    outline: 2px solid #34565b;
+    outline-offset: 4px;
+  }
+
+  .swimdays-home-press__logo {
+    display: block;
+    filter: brightness(0) saturate(100%) invert(28%) sepia(14%) saturate(987%) hue-rotate(142deg) brightness(94%) contrast(88%);
+    height: clamp(1.375rem, 1.1rem + 1vw, 2.25rem);
+    object-fit: contain;
+    opacity: 0.92;
+    width: auto;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Swimdays press",
+  "tag": "section",
+  "class": "shopify-section--swimdays-home-press",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow text",
+      "default": "As seen in"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Press logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo image",
+          "info": "Upload a logo, or leave blank and use a theme asset filename below."
+        },
+        {
+          "type": "text",
+          "id": "logo_asset",
+          "label": "Theme asset filename",
+          "info": "e.g. logo-elle.svg — used when no image is uploaded"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (optional)"
+        },
+        {
+          "type": "text",
+          "id": "alt_text",
+          "label": "Alt text",
+          "default": "Press logo"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Swimdays press",
+      "blocks": [
+        {
+          "type": "logo",
+          "settings": {
+            "logo_asset": "logo-elle.svg",
+            "alt_text": "ELLE"
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "logo_asset": "logo-the-word.png",
+            "alt_text": "The Word"
+          }
+        }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "templates": ["index"]
+  }
+}
+{% endschema %}
