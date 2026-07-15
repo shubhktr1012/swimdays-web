@@ -15,10 +15,15 @@
   if support_menu == blank
     assign support_menu = linklists['footer-menu']
   endif
+
+  assign privacy_url = blank
+  if shop.privacy_policy != blank
+    assign privacy_url = shop.privacy_policy.url
+  endif
 %}
 
 <section class="swimdays-home-footer-section" data-testid="swimdays-home-footer">
-  <footer class="swimdays-home-footer">
+  <div class="swimdays-home-footer">
     <div class="swimdays-home-footer__decor" aria-hidden="true">
       <img src="{{ 'flower.svg' | asset_url }}" alt="" class="swimdays-home-footer__flower swimdays-home-footer__flower--bottom-right" width="64" height="64">
       <img src="{{ 'flower.svg' | asset_url }}" alt="" class="swimdays-home-footer__flower swimdays-home-footer__flower--bottom-left" width="64" height="64">
@@ -26,12 +31,30 @@
 
     <div class="swimdays-home-footer__inner">
       <div class="swimdays-home-footer__newsletter">
+        {% if section.settings.newsletter_heading != blank %}
+          <h2 class="swimdays-home-footer__newsletter-heading">
+            {{ section.settings.newsletter_heading }}
+          </h2>
+        {% endif %}
+
         <p class="swimdays-home-footer__newsletter-copy">
           {{ section.settings.newsletter_copy }}
         </p>
 
         {% form 'customer', class: 'swimdays-home-footer__form', id: 'ContactFooter' %}
           <input type="hidden" name="contact[tags]" value="newsletter">
+
+          {% if form.posted_successfully? %}
+            <p class="swimdays-home-footer__form-status" role="status" tabindex="-1">
+              Thanks — you are on the list.
+            </p>
+          {% endif %}
+
+          {% if form.errors %}
+            <p class="swimdays-home-footer__form-status swimdays-home-footer__form-status--error" role="alert">
+              {{ form.errors | default_errors }}
+            </p>
+          {% endif %}
 
           <div class="swimdays-home-footer__input-group">
             <input
@@ -47,7 +70,12 @@
           </div>
 
           <p class="swimdays-home-footer__privacy">
-            By signing up you are agreeing to our Privacy Policy.
+            By signing up you are agreeing to our
+            {% if privacy_url != blank %}
+              <a href="{{ privacy_url }}">Privacy Policy</a>.
+            {% else %}
+              Privacy Policy.
+            {% endif %}
           </p>
         {% endform %}
       </div>
@@ -55,11 +83,15 @@
       <div class="swimdays-home-footer__brand">
         <a href="{{ routes.root_url }}" class="swimdays-home-footer__logo-link" aria-label="{{ shop.name }}">
           {% if logo_image != blank %}
-            {{ logo_image | image_url: width: 320 | image_tag: class: 'swimdays-home-footer__logo', alt: shop.name }}
+            {{ logo_image | image_url: width: 320 | image_tag: class: 'swimdays-home-footer__logo', alt: '' }}
           {% else %}
-            <span class="swimdays-home-footer__wordmark">{{ shop.name }}</span>
+            <span class="swimdays-home-footer__wordmark" aria-hidden="true">{{ shop.name }}</span>
           {% endif %}
         </a>
+
+        {% if section.settings.tagline != blank %}
+          <p class="swimdays-home-footer__tagline">{{ section.settings.tagline }}</p>
+        {% endif %}
 
         <div class="swimdays-home-footer__menus">
           <div class="swimdays-home-footer__menu-column">
@@ -100,7 +132,17 @@
       <div class="swimdays-home-footer__bottom">
         <div class="swimdays-home-footer__socials">
           {% if section.settings.instagram_url != blank %}
-            <a href="{{ section.settings.instagram_url }}">Instagram</a>
+            <a
+              href="{{ section.settings.instagram_url }}"
+              class="swimdays-home-footer__social-icon"
+              aria-label="Instagram"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span class="swimdays-home-footer__social-glyph" aria-hidden="true">
+                {{ 'icon-instagram.svg' | inline_asset_content }}
+              </span>
+            </a>
           {% endif %}
           {% if section.settings.facebook_url != blank %}
             <a href="{{ section.settings.facebook_url }}">Facebook</a>
@@ -117,6 +159,9 @@
         </div>
 
         <div class="swimdays-home-footer__meta">
+          {% if section.settings.craft_line != blank %}
+            <span class="swimdays-home-footer__craft">{{ section.settings.craft_line }}</span>
+          {% endif %}
           {% if section.settings.contact_email != blank %}
             <a href="mailto:{{ section.settings.contact_email }}">{{ section.settings.contact_email }}</a>
           {% endif %}
@@ -124,14 +169,15 @@
         </div>
       </div>
     </div>
-  </footer>
+  </div>
 </section>
 
 {% stylesheet %}
   .swimdays-home-footer-section {
     --swimdays-section-space: clamp(3.5rem, 6vw, 5rem);
-    --swimdays-footer-bg: var(--color-background, #f7f6f2);
+    --swimdays-footer-bg: #faf6f1;
     --swimdays-footer-ink: #34565b;
+    --swimdays-footer-mute: #4a686c;
     --swimdays-footer-rose: #a84f77;
     --swimdays-footer-rose-soft: rgba(168, 79, 119, 0.72);
     --swimdays-footer-line: rgba(168, 79, 119, 0.5);
@@ -151,6 +197,17 @@
     width: 100%;
   }
 
+  .swimdays-home-footer::before {
+    background:
+      radial-gradient(ellipse 60% 50% at 0% 100%, rgba(52, 86, 91, 0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 45% 40% at 100% 100%, rgba(168, 79, 119, 0.05) 0%, transparent 72%);
+    content: '';
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    z-index: 0;
+  }
+
   .swimdays-home-footer__decor {
     inset: 0;
     overflow: hidden;
@@ -162,7 +219,7 @@
   .swimdays-home-footer__flower {
     filter: brightness(0) saturate(100%) invert(42%) sepia(21%) saturate(1514%) hue-rotate(294deg) brightness(86%) contrast(85%);
     height: 64px;
-    opacity: 1;
+    opacity: 0.4;
     position: absolute;
     width: 64px;
   }
@@ -202,15 +259,26 @@
   }
 
   .swimdays-home-footer__newsletter::before {
-    background: var(--swimdays-footer-rose);
+    background: linear-gradient(135deg, var(--swimdays-footer-rose) 0%, #b5577f 100%);
     content: '';
     inset: 0;
     position: absolute;
     z-index: -1;
   }
 
-  .swimdays-home-footer__newsletter-copy {
+  .swimdays-home-footer__newsletter-heading {
     color: #fff;
+    font-family: "Swimdays Heading", Georgia, serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 1.15;
+    margin: 0 0 0.6rem;
+  }
+
+  .swimdays-home-footer__newsletter-copy {
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 0.95rem;
     line-height: 1.6;
     margin: 0 0 0.85rem;
     max-width: none;
@@ -221,6 +289,17 @@
     flex-direction: column;
     gap: 1rem;
     margin: 0;
+  }
+
+  .swimdays-home-footer__form-status {
+    color: #fff;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  .swimdays-home-footer__form-status--error {
+    color: #fff7f0;
   }
 
   .swimdays-home-footer__input-group {
@@ -284,6 +363,7 @@
   .swimdays-home-footer__button {
     background: transparent;
     border: none;
+    border-radius: 0.15rem;
     color: #fff;
     cursor: pointer;
     font-family: "Swimdays Subhead", sans-serif;
@@ -295,10 +375,26 @@
     white-space: nowrap;
   }
 
+  .swimdays-home-footer__button:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+  }
+
   .swimdays-home-footer__privacy {
-    color: rgba(255, 255, 255, 0.8);
+    color: #fff;
     font-size: 0.75rem;
     margin: 0.25rem 0 0;
+  }
+
+  .swimdays-home-footer__privacy a {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+
+  .swimdays-home-footer__privacy a:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
   }
 
   .swimdays-home-footer__brand {
@@ -315,6 +411,12 @@
     width: 100%;
   }
 
+  .swimdays-home-footer__logo-link:focus-visible {
+    border-radius: 0.15rem;
+    outline: 2px solid var(--swimdays-footer-rose);
+    outline-offset: 3px;
+  }
+
   .swimdays-home-footer__logo {
     filter: brightness(0) saturate(100%) invert(26%) sepia(15%) saturate(1094%) hue-rotate(138deg) brightness(95%) contrast(87%);
     height: auto;
@@ -328,18 +430,23 @@
     font-size: 1.5rem;
   }
 
+  .swimdays-home-footer__tagline {
+    color: var(--swimdays-footer-mute);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0.6rem 0 0;
+    max-width: 26ch;
+  }
+
   .swimdays-home-footer__menus {
     display: grid;
     gap: 1.5rem 1.25rem;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .swimdays-home-footer__menu-column:last-child {
-    grid-column: 1 / -1;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 1.5rem;
   }
 
   .swimdays-home-footer__heading {
-    color: rgba(52, 86, 91, 0.68);
+    color: var(--swimdays-footer-mute);
     font-family: "Swimdays Subhead", sans-serif;
     font-size: 0.8rem;
     letter-spacing: 0.08em;
@@ -370,11 +477,22 @@
     color: var(--swimdays-footer-rose);
   }
 
+  .swimdays-home-footer__menu a:focus-visible,
+  .swimdays-home-footer__socials a:focus-visible,
+  .swimdays-home-footer__meta a:focus-visible {
+    border-radius: 0.15rem;
+    color: var(--swimdays-footer-rose);
+    outline: 2px solid var(--swimdays-footer-rose);
+    outline-offset: 3px;
+  }
+
   .swimdays-home-footer__bottom {
+    border-top: 1px solid var(--swimdays-footer-line);
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
     grid-area: bottom;
+    padding-top: 1.5rem;
   }
 
   .swimdays-home-footer__socials {
@@ -391,11 +509,44 @@
     text-transform: uppercase;
   }
 
+  .swimdays-home-footer__social-icon {
+    align-items: center;
+    color: var(--swimdays-footer-ink);
+    display: inline-flex;
+    line-height: 0;
+    text-transform: none;
+  }
+
+  .swimdays-home-footer__social-glyph {
+    display: block;
+    height: 1.35rem;
+    width: 1.35rem;
+  }
+
+  .swimdays-home-footer__social-glyph svg {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+
+  .swimdays-home-footer__social-icon:hover,
+  .swimdays-home-footer__social-icon:focus-visible {
+    color: var(--swimdays-footer-rose);
+  }
+
   .swimdays-home-footer__meta {
-    color: rgba(52, 86, 91, 0.68);
+    align-items: flex-start;
+    color: var(--swimdays-footer-mute);
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+  }
+
+  .swimdays-home-footer__craft {
+    color: var(--swimdays-footer-ink);
+    font-family: "Swimdays Heading", Georgia, serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
   }
 
   .swimdays-home-footer__meta p {
@@ -409,12 +560,14 @@
     }
 
     .swimdays-home-footer__menus {
+      gap: 1.5rem;
       grid-template-columns: 1fr;
-      gap: 1.25rem;
     }
+  }
 
-    .swimdays-home-footer__menu-column:last-child {
-      grid-column: auto;
+  @media screen and (min-width: 640px) and (max-width: 959px) {
+    .swimdays-home-footer__menus {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 
@@ -440,10 +593,6 @@
     .swimdays-home-footer__menus {
       gap: 2rem;
       grid-template-columns: repeat(3, minmax(auto, 1fr));
-    }
-
-    .swimdays-home-footer__menu-column:last-child {
-      grid-column: auto;
     }
 
     .swimdays-home-footer__newsletter {
@@ -493,10 +642,28 @@
       "label": "Logo"
     },
     {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Newsletter heading",
+      "default": "Join the current"
+    },
+    {
       "type": "textarea",
       "id": "newsletter_copy",
       "label": "Newsletter copy",
       "default": "We believe in simplicity. One beautifully curated email each month with product news, tips, and tailored recommendations. Nothing more. Just the good stuff."
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Brand tagline",
+      "default": "Effortless elegance for sunlit days"
+    },
+    {
+      "type": "text",
+      "id": "craft_line",
+      "label": "Craft line",
+      "default": "Handcrafted in India"
     },
     {
       "type": "text",
