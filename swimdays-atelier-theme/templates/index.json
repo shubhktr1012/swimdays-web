@@ -45,17 +45,52 @@
     },
     "swimdays_launch_hero": {
       "type": "swimdays-launch-hero",
+      "blocks": {
+        "slide_island_days": {
+          "type": "slide",
+          "settings": {
+            "fallback_asset": "island-days-hero-lndscp.jpg",
+            "fallback_asset_mobile": "island-days-hero-mobile.jpg",
+            "image_alt": "Two models holding Island Days canvas beach totes with beaded jellyfish and starfish motifs",
+            "subject_layout": "single",
+            "nav_tone": "dark",
+            "desktop_position": "center 55%",
+            "mobile_position": "center center",
+            "text_readability": "strong",
+            "text_blur": "medium",
+            "eyebrow": "New Arrival",
+            "heading": "Island Days",
+            "offer_line": "",
+            "copy": "<p>Canvas beach totes with hand-beaded sea motifs and a drawstring close. Light enough for sandy days, sturdy enough for everyday errands.</p>",
+            "cta_label": "Explore the totes",
+            "cta_link": "#island-days"
+          }
+        },
+        "slide_sea_spurrey": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/IMG_4989_1.jpg",
+            "mobile_image": "shopify://shop_images/IMG_4989_1.jpg",
+            "image_alt": "Sea Spurrey full-sleeve padded swim dress in pink",
+            "desktop_position": "70% center",
+            "mobile_position": "55% 42%",
+            "text_readability": "medium",
+            "text_blur": "medium",
+            "eyebrow": "",
+            "heading": "Sea Spurrey in Pink",
+            "copy": "<p>A coastal-inspired skater swim dress with fixed pads, built-in shorts, and a sweet coconut-flower motif.</p>",
+            "cta_label": "Shop Now",
+            "cta_link": "shopify://products/sea-spurrey-full-sleeves-padded-dress"
+          }
+        }
+      },
+      "block_order": [
+        "slide_island_days",
+        "slide_sea_spurrey"
+      ],
       "settings": {
-        "image": "shopify://shop_images/IMG_4989_1.jpg",
-        "mobile_image": "shopify://shop_images/IMG_4989_1.jpg",
-        "image_alt": "Sea Spurrey full-sleeve padded swim dress in pink",
-        "text_readability": "medium",
-        "text_blur": "medium",
-        "eyebrow": "New Arrival",
-        "heading": "Sea Spurrey in Pink",
-        "copy": "<p>A coastal-inspired skater swim dress with fixed pads, built-in shorts, and a sweet coconut-flower motif.</p>",
-        "cta_label": "Shop Now",
-        "cta_link": "shopify://products/sea-spurrey-full-sleeves-padded-dress"
+        "carousel_label": "Featured",
+        "autoplay_ms": 6500
       }
     },
     "swimdays_home_press": {
@@ -92,10 +127,57 @@
         "statement_text": "Swimdays creates slow-made swimwear where modesty, movement, and craft belong in the same silhouette."
       }
     },
+    "swimdays_home_island_days": {
+      "type": "swimdays-home-island-days",
+      "blocks": {
+        "tote_blue_sea": {
+          "type": "tote",
+          "settings": {
+            "colour_name": "Blue Sea Star",
+            "colour_hex": "#295252",
+            "cutout_asset": "island-days-tote-blue-sea-cutout.png",
+            "product": "island-days-blue-sea-star-tote"
+          }
+        },
+        "tote_fire": {
+          "type": "tote",
+          "settings": {
+            "colour_name": "Fire Jellyfish",
+            "colour_hex": "#63020f",
+            "cutout_asset": "island-days-tote-fire-cutout.png",
+            "product": "island-days-fire-jellyfish-tote"
+          }
+        },
+        "tote_tender_coconut": {
+          "type": "tote",
+          "settings": {
+            "colour_name": "Tender Coconut",
+            "colour_hex": "#eab1b2",
+            "cutout_asset": "island-days-tote-tender-coconut-cutout.png",
+            "product": "island-days-tender-coconut-tote"
+          }
+        }
+      },
+      "block_order": [
+        "tote_blue_sea",
+        "tote_fire",
+        "tote_tender_coconut"
+      ],
+      "settings": {
+        "eyebrow": "New collection",
+        "heading": "Island Days",
+        "copy": "Blue Sea Star, Fire Jellyfish, and Tender Coconut. Three lightweight companions for SPF, sandy sandals, and wet towels.",
+        "collection": "island-days",
+        "cta_label": "Shop Island Days",
+        "cta_link": "shopify://collections/island-days",
+        "shop_colour_label": "Shop this colour",
+        "interval_ms": 4500
+      }
+    },
     "swimdays_home_shop_all_products": {
       "type": "swimdays-home-shop-all-products",
       "settings": {
-        "collection": "all",
+        "collection": "moss",
         "featured_product": "sea-spurrey-full-sleeves-padded-dress",
         "heading_prefix": "Shop",
         "heading_accent": "all",
@@ -746,6 +828,7 @@
     "swimdays_launch_hero",
     "swimdays_home_press",
     "swimdays_home_brand_statement",
+    "swimdays_home_island_days",
     "swimdays_home_shop_all_products",
     "swimdays_home_collections",
     "swimdays_home_testimonials",

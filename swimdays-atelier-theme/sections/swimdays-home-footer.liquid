@@ -165,6 +165,10 @@
           {% if section.settings.contact_email != blank %}
             <a href="mailto:{{ section.settings.contact_email }}">{{ section.settings.contact_email }}</a>
           {% endif %}
+          {% if section.settings.contact_phone != blank %}
+            {% assign phone_tel = section.settings.contact_phone | remove: ' ' | remove: '-' %}
+            <a href="tel:{{ phone_tel }}">{{ section.settings.contact_phone }}</a>
+          {% endif %}
           <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All Rights Reserved.</p>
         </div>
       </div>
@@ -669,7 +673,13 @@
       "type": "text",
       "id": "contact_email",
       "label": "Contact email",
-      "default": "studioswimdays@gmail.com"
+      "default": "info@shopswimdays.com"
+    },
+    {
+      "type": "text",
+      "id": "contact_phone",
+      "label": "Contact phone",
+      "default": "+91 8120254039"
     },
     {
       "type": "link_list",

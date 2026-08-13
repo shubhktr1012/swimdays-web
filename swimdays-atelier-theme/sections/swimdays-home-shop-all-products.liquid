@@ -104,9 +104,22 @@
           {% endif %}
 
           {% liquid
+            assign product_tags_string = product.tags | join: ', ' | downcase
+            assign product_type_down = product.type | downcase
+            assign is_bag = false
+
+            if product_tags_string contains 'bags' or product_tags_string contains 'island-days' or product_type_down == 'bags' or product_type_down == 'bag' or product_type_down == 'tote'
+              assign is_bag = true
+            endif
+          %}
+
+          {% if is_bag %}
+            {% continue %}
+          {% endif %}
+
+          {% liquid
             assign badge_label = blank
             assign badge_class = blank
-            assign product_tags_string = product.tags | join: ', ' | downcase
 
             if product_tags_string contains 'bestseller'
               assign badge_label = 'Bestseller'
@@ -118,7 +131,6 @@
               assign badge_label = 'Limited Edition'
               assign badge_class = 'swimdays-product-card__badge--limited'
             endif
-
           %}
 
           <article class="swimdays-product-card">

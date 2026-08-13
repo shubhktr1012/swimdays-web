@@ -15,7 +15,12 @@
   @param {string} [launch_announcement_text] - Launch announcement text.
   @param {string} [launch_announcement_link_label] - Launch announcement CTA label.
   @param {string} [launch_announcement_link_url] - Launch announcement CTA URL.
-  @param {string} [launch_announcement_background] - Launch announcement background color.
+  @param {boolean} [offer_announcement_enabled] - Whether to show the multi-buy offer slide.
+  @param {string} [offer_announcement_label] - Offer announcement label.
+  @param {string} [offer_announcement_text] - Offer announcement text.
+  @param {string} [offer_announcement_link_label] - Offer announcement CTA label.
+  @param {string} [offer_announcement_link_url] - Offer announcement CTA URL.
+  @param {string} [launch_announcement_background] - Announcement bar background color (applied to all slides).
 {% enddoc %}
 
 {% liquid
@@ -37,37 +42,87 @@
     assign launch_announcement_first = true
   endif
   assign launch_announcement_label = launch_announcement_label | default: 'New Arrival'
-  assign launch_announcement_text = launch_announcement_text | default: 'Sea Spurrey in Pink'
+  assign launch_announcement_text = launch_announcement_text | default: 'Island Days beach totes'
   assign launch_announcement_link_label = launch_announcement_link_label | default: 'Shop Now'
-  assign launch_announcement_link_url = launch_announcement_link_url | default: routes.all_products_collection_url
-  assign launch_announcement_background = launch_announcement_background | default: '#CFA7BB'
-  assign first_announcement_variant = 'shipping'
-  if launch_announcement_enabled and launch_announcement_first
-    assign first_announcement_variant = 'launch'
-  elsif announcement_enabled
-    assign first_announcement_variant = 'shipping'
-  elsif launch_announcement_enabled
-    assign first_announcement_variant = 'launch'
+  assign launch_announcement_link_url = launch_announcement_link_url | default: '/collections/island-days'
+  assign launch_announcement_background = launch_announcement_background | default: '#df84b2'
+  if offer_announcement_enabled == nil
+    assign offer_announcement_enabled = false
+  endif
+  assign offer_announcement_label = offer_announcement_label | default: 'Offer'
+  assign offer_announcement_text = offer_announcement_text | default: 'Buy 2 get 15% · Buy 3 get 20%'
+  assign offer_announcement_link_label = offer_announcement_link_label | default: 'Shop Now'
+  assign offer_announcement_link_url = offer_announcement_link_url | default: routes.all_products_collection_url
+  assign announcement_slide_count = 0
+  if offer_announcement_enabled
+    assign announcement_slide_count = announcement_slide_count | plus: 1
+  endif
+  if launch_announcement_enabled
+    assign announcement_slide_count = announcement_slide_count | plus: 1
+  endif
+  if announcement_enabled
+    assign announcement_slide_count = announcement_slide_count | plus: 1
   endif
   if launch_announcement_first
-    assign announcement_slide_order = 'launch,shipping' | split: ','
+    assign announcement_slide_order = 'offer,launch,shipping' | split: ','
   else
-    assign announcement_slide_order = 'shipping,launch' | split: ','
+    assign announcement_slide_order = 'offer,shipping,launch' | split: ','
   endif
 %}
 
 <div class="swimdays-home-header">
   <div
-    class="announcement{% if first_announcement_variant == 'launch' %} is-launch{% endif %}"
+    class="announcement"
     data-swimdays-announcement-carousel
   >
     <div class="announcement__inner">
+      {% if announcement_slide_count > 1 %}
+        <button
+          type="button"
+          class="announcement__nav announcement__nav--prev"
+          data-announcement-prev
+          aria-label="Previous announcement"
+        >
+          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M7.5 2.5L4 6l3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      {% endif %}
+
       <div class="announcement__track" aria-live="polite">
         {% liquid
           assign rendered_announcement_slides = 0
         %}
 
         {% for announcement_slide_type in announcement_slide_order %}
+          {% if announcement_slide_type == 'offer' and offer_announcement_enabled %}
+            <p
+              class="announcement__text announcement__slide{% if rendered_announcement_slides == 0 %} is-active{% endif %}"
+              data-announcement-slide
+              data-announcement-variant="offer"
+              {% unless rendered_announcement_slides == 0 %}
+                aria-hidden="true"
+                inert
+              {% endunless %}
+            >
+              <span>{{ offer_announcement_label }}</span>
+              <span class="announcement__dot" aria-hidden="true"></span>
+              <span>{{ offer_announcement_text }}</span>
+              <span class="announcement__dot" aria-hidden="true"></span>
+              <a class="announcement__link" href="{{ offer_announcement_link_url }}">
+                {{ offer_announcement_link_label }}
+                <span class="icon" aria-hidden="true">
+                  <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.5 6h7M6.5 3.5L9 6l-2.5 2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </a>
+            </p>
+            {% liquid
+              assign rendered_announcement_slides = rendered_announcement_slides | plus: 1
+            %}
+          {% endif %}
+
           {% if announcement_slide_type == 'launch' and launch_announcement_enabled %}
             <p
               class="announcement__text announcement__slide{% if rendered_announcement_slides == 0 %} is-active{% endif %}"
@@ -131,6 +186,19 @@
           {% endif %}
         {% endfor %}
       </div>
+
+      {% if announcement_slide_count > 1 %}
+        <button
+          type="button"
+          class="announcement__nav announcement__nav--next"
+          data-announcement-next
+          aria-label="Next announcement"
+        >
+          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M4.5 2.5L8 6l-3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      {% endif %}
     </div>
   </div>
 
@@ -338,6 +406,11 @@
     --navbar-content: #111111;
   }
 
+  /* Light hero slide: black nav chrome until solid scrolled header takes over */
+  body.swimdays-hero-nav-dark:not(.announcement-hidden) .swimdays-home-header {
+    --navbar-content: #111111;
+  }
+
   .swimdays-home-header .announcement {
     position: sticky;
     top: 0;
@@ -345,9 +418,9 @@
     width: 100%;
     z-index: 30;
     height: var(--announcement-height);
-    --announcement-bg: var(--accent-rose);
+    --announcement-bg: var(--launch-pink);
     --announcement-fg: #ffffff;
-    --announcement-border: rgba(225, 236, 234, 0.24);
+    --announcement-border: rgba(255, 255, 255, 0.22);
     --announcement-link-border: rgba(255, 255, 255, 0.35);
     --announcement-link-border-hover: rgba(255, 255, 255, 0.6);
     --announcement-dot: rgba(255, 255, 255, 0.55);
@@ -358,19 +431,8 @@
     place-items: center;
     padding: 0 var(--space-3);
     transition:
-      background-color 0.45s ease,
-      color 0.3s ease,
       transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
       opacity 0.28s ease;
-  }
-
-  .swimdays-home-header .announcement.is-launch {
-    --announcement-bg: var(--launch-pink);
-    --announcement-fg: #21191d;
-    --announcement-border: rgba(33, 25, 29, 0.12);
-    --announcement-link-border: rgba(33, 25, 29, 0.3);
-    --announcement-link-border-hover: rgba(33, 25, 29, 0.55);
-    --announcement-dot: rgba(33, 25, 29, 0.45);
   }
 
   .swimdays-home-header .announcement__inner {
@@ -378,13 +440,48 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 0.35rem;
   }
 
   .swimdays-home-header .announcement__track {
     width: 100%;
+    min-width: 0;
     min-height: var(--announcement-height);
     display: grid;
+    overflow: hidden;
     place-items: center;
+  }
+
+  .swimdays-home-header .announcement__nav {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    color: var(--announcement-fg);
+    cursor: pointer;
+    display: inline-flex;
+    flex: 0 0 auto;
+    height: 1.5rem;
+    justify-content: center;
+    opacity: 0.7;
+    padding: 0;
+    transition: opacity 0.2s ease;
+    width: 1.5rem;
+  }
+
+  .swimdays-home-header .announcement__nav:hover,
+  .swimdays-home-header .announcement__nav:focus-visible {
+    opacity: 1;
+  }
+
+  .swimdays-home-header .announcement__nav:focus-visible {
+    outline: 1px solid rgba(255, 255, 255, 0.7);
+    outline-offset: 2px;
+  }
+
+  .swimdays-home-header .announcement__nav svg {
+    display: block;
+    height: 0.75rem;
+    width: 0.75rem;
   }
 
   .swimdays-home-header .announcement__text {
@@ -406,15 +503,31 @@
 
   .swimdays-home-header .announcement__slide {
     opacity: 0;
+    pointer-events: none;
+    transform: translateY(0.55rem);
+    transition:
+      opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+      transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+      visibility 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     visibility: hidden;
-    transform: translateY(3px);
-    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
   }
 
   .swimdays-home-header .announcement__slide.is-active {
     opacity: 1;
-    visibility: visible;
+    pointer-events: auto;
     transform: translateY(0);
+    visibility: visible;
+  }
+
+  .swimdays-home-header .announcement__slide.is-leaving {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-0.55rem);
+    visibility: hidden;
+  }
+
+  .swimdays-home-header .announcement__slide.is-instant {
+    transition: none !important;
   }
 
   .swimdays-home-header .announcement__dot {
@@ -604,7 +717,8 @@
   }
 
   body.announcement-hidden .swimdays-home-header .navbar-logo,
-  body:not(.swimdays-template-index) .swimdays-home-header .navbar-logo {
+  body:not(.swimdays-template-index) .swimdays-home-header .navbar-logo,
+  body.swimdays-hero-nav-dark:not(.announcement-hidden) .swimdays-home-header .navbar-logo {
     filter: none;
   }
 
@@ -1023,21 +1137,46 @@
 
           announcementCarousel.dataset.announcementInit = 'true';
 
+          const prevBtn = announcementCarousel.querySelector('[data-announcement-prev]');
+          const nextBtn = announcementCarousel.querySelector('[data-announcement-next]');
           let currentIndex = 0;
           let intervalId;
 
-          const setSlide = (nextIndex) => {
-            currentIndex = ((nextIndex % slides.length) + slides.length) % slides.length;
+          const setSlide = (nextIndex, { animate = true } = {}) => {
+            const previousIndex = currentIndex;
+            const resolvedIndex = ((nextIndex % slides.length) + slides.length) % slides.length;
+
+            if (resolvedIndex === previousIndex && animate) return;
+
+            currentIndex = resolvedIndex;
 
             slides.forEach((slide, index) => {
               const isActive = index === currentIndex;
-              slide.classList.toggle('is-active', isActive);
+              const isLeaving = animate && index === previousIndex;
+
+              if (isLeaving) {
+                // Add leaving before removing active so the exit goes up, not down.
+                slide.classList.add('is-leaving');
+                slide.classList.remove('is-active', 'is-instant');
+
+                const clearLeaving = (event) => {
+                  if (event.propertyName !== 'transform' && event.propertyName !== 'opacity') return;
+                  slide.removeEventListener('transitionend', clearLeaving);
+                  slide.classList.add('is-instant');
+                  slide.classList.remove('is-leaving');
+                  void slide.offsetWidth;
+                  slide.classList.remove('is-instant');
+                };
+                slide.addEventListener('transitionend', clearLeaving);
+              } else if (isActive) {
+                slide.classList.remove('is-leaving', 'is-instant');
+                slide.classList.add('is-active');
+              } else {
+                slide.classList.remove('is-active', 'is-leaving', 'is-instant');
+              }
+
               slide.setAttribute('aria-hidden', String(!isActive));
               slide.toggleAttribute('inert', !isActive);
-
-              if (isActive) {
-                announcementCarousel.classList.toggle('is-launch', slide.dataset.announcementVariant === 'launch');
-              }
             });
           };
 
@@ -1055,6 +1194,14 @@
             }, 9000);
           };
 
+          const goTo = (nextIndex) => {
+            setSlide(nextIndex);
+            startCarousel();
+          };
+
+          prevBtn?.addEventListener('click', () => goTo(currentIndex - 1));
+          nextBtn?.addEventListener('click', () => goTo(currentIndex + 1));
+
           announcementCarousel.addEventListener('mouseenter', stopCarousel);
           announcementCarousel.addEventListener('mouseleave', startCarousel);
           announcementCarousel.addEventListener('focusin', stopCarousel);
@@ -1068,7 +1215,7 @@
             }
           });
 
-          setSlide(0);
+          setSlide(0, { animate: false });
           startCarousel();
         };
 

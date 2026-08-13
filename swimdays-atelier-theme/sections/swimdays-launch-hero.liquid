@@ -1,146 +1,313 @@
 {% liquid
-  assign desktop_image = section.settings.image
-  assign mobile_image = section.settings.mobile_image
-
-  if desktop_image == blank
-    assign desktop_image = mobile_image
-  endif
-
-  if mobile_image == blank
-    assign mobile_image = desktop_image
-  endif
-
-  assign hero_alt = section.settings.image_alt | default: section.settings.heading | default: shop.name
-  case section.settings.text_readability
-    when 'strong'
-      assign overlay_opacity = 0.78
-      assign mobile_overlay_opacity = 0.78
-    when 'soft'
-      assign overlay_opacity = 0.48
-      assign mobile_overlay_opacity = 0.54
-    else
-      assign overlay_opacity = 0.62
-      assign mobile_overlay_opacity = 0.66
-  endcase
-
-  case section.settings.text_blur
-    when 'medium'
-      assign text_blur = '12px'
-      assign text_blur_opacity = 0.28
-    when 'soft'
-      assign text_blur = '7px'
-      assign text_blur_opacity = 0.18
-    else
-      assign text_blur = '0px'
-      assign text_blur_opacity = 0
-  endcase
-
-  assign grade_opacity = 0.22
+  assign autoplay_ms = section.settings.autoplay_ms | default: 6500
+  assign slide_count = section.blocks.size
 %}
+
+<script src="{{ 'swimdays-launch-hero-slider.js' | asset_url }}" defer></script>
+{% if section.blocks.first.settings.nav_tone == 'dark' %}
+  <script>
+    document.body.classList.add('swimdays-hero-nav-dark');
+  </script>
+{% endif %}
 
 <section
   class="swimdays-launch-hero"
   id="launch-hero"
-  style="
-    --swimdays-launch-overlay-opacity: {{ overlay_opacity }};
-    --swimdays-launch-mobile-overlay-opacity: {{ mobile_overlay_opacity }};
-    --swimdays-launch-grade-opacity: {{ grade_opacity }};
-    --swimdays-launch-text-blur: {{ text_blur }};
-    --swimdays-launch-text-blur-opacity: {{ text_blur_opacity }};
-    --swimdays-launch-desktop-ratio: 4 / 3;
-    --swimdays-launch-desktop-position: 70% center;
-    --swimdays-launch-mobile-position: 55% 42%;
-  "
+  data-swimdays-launch-hero
+  data-autoplay-ms="{{ autoplay_ms }}"
+  data-active-slide="0"
+  style="--autoplay-ms: {{ autoplay_ms }}ms;"
+  aria-roledescription="carousel"
+  aria-label="{{ section.settings.carousel_label | default: 'New arrivals' }}"
 >
-  <div class="swimdays-launch-hero__viewport">
-    {% if desktop_image != blank %}
-      <picture class="swimdays-launch-hero__media">
-        {% if mobile_image != blank %}
-          <source
-            media="(max-width: 749px)"
-            srcset="
-              {{ mobile_image | image_url: width: 750 }} 750w,
-              {{ mobile_image | image_url: width: 1000 }} 1000w,
-              {{ mobile_image | image_url: width: 1200 }} 1200w
-            "
-            sizes="100vw"
-          >
-        {% endif %}
-        <source
-          media="(min-width: 750px)"
-          srcset="
-            {{ desktop_image | image_url: width: 960 }} 960w,
-            {{ desktop_image | image_url: width: 1280 }} 1280w,
-            {{ desktop_image | image_url: width: 1600 }} 1600w,
-            {{ desktop_image | image_url: width: 1920 }} 1920w
-          "
-          sizes="100vw"
-        >
-        {{
-          desktop_image
-          | image_url: width: 1600
-          | image_tag:
-            class: 'swimdays-launch-hero__image',
-            alt: hero_alt,
-            width: desktop_image.width,
-            height: desktop_image.height,
-            loading: 'eager',
-            fetchpriority: 'high',
-            sizes: '100vw',
-            widths: '750, 960, 1200, 1600, 1920'
-        }}
-      </picture>
-    {% endif %}
+  <div class="swimdays-launch-hero__track" data-launch-hero-track data-active-index="0">
+    {% for block in section.blocks %}
+      {% liquid
+        assign desktop_image = block.settings.image
+        assign mobile_image = block.settings.mobile_image
 
-    <div class="swimdays-launch-hero__grade" aria-hidden="true"></div>
-    <div class="swimdays-launch-hero__shade" aria-hidden="true"></div>
+        if desktop_image == blank
+          assign desktop_image = mobile_image
+        endif
 
-    <div class="swimdays-launch-hero__content">
-      <div class="swimdays-launch-hero__panel">
-        {% if section.settings.eyebrow != blank %}
-          <p class="swimdays-launch-hero__eyebrow">{{ section.settings.eyebrow }}</p>
-        {% endif %}
+        if mobile_image == blank
+          assign mobile_image = desktop_image
+        endif
 
-        {% if section.settings.heading != blank %}
-          <h1 class="swimdays-launch-hero__heading">{{ section.settings.heading }}</h1>
-        {% endif %}
+        assign hero_alt = block.settings.image_alt | default: block.settings.heading | default: shop.name
+        assign fallback_asset = block.settings.fallback_asset
+        assign fallback_asset_mobile = block.settings.fallback_asset_mobile
+        if fallback_asset_mobile == blank
+          assign fallback_asset_mobile = fallback_asset
+        endif
+        assign is_first = false
+        if forloop.first
+          assign is_first = true
+        endif
 
-        {% if section.settings.copy != blank %}
-          <div class="swimdays-launch-hero__copy">
-            {{ section.settings.copy }}
-          </div>
-        {% endif %}
+        case block.settings.text_readability
+          when 'strong'
+            assign overlay_opacity = 0.78
+            assign mobile_overlay_opacity = 0.78
+          when 'soft'
+            assign overlay_opacity = 0.48
+            assign mobile_overlay_opacity = 0.54
+          else
+            assign overlay_opacity = 0.62
+            assign mobile_overlay_opacity = 0.66
+        endcase
 
-        {% if section.settings.cta_label != blank %}
-          {% if section.settings.cta_link != blank %}
-            <a class="swimdays-launch-hero__button" href="{{ section.settings.cta_link }}">
-              {{ section.settings.cta_label }}
-            </a>
-          {% else %}
-            <span class="swimdays-launch-hero__button swimdays-launch-hero__button--disabled" aria-disabled="true">
-              {{ section.settings.cta_label }}
-            </span>
+        case block.settings.text_blur
+          when 'medium'
+            assign text_blur = '12px'
+            assign text_blur_opacity = 0.28
+          when 'soft'
+            assign text_blur = '7px'
+            assign text_blur_opacity = 0.18
+          else
+            assign text_blur = '0px'
+            assign text_blur_opacity = 0
+        endcase
+
+        assign grade_opacity = 0.22
+        assign desktop_position = block.settings.desktop_position | default: '70% center'
+        assign mobile_position = block.settings.mobile_position | default: '55% 42%'
+        assign subject_layout = block.settings.subject_layout | default: 'single'
+        assign nav_tone = block.settings.nav_tone | default: 'light'
+      %}
+
+      <div
+        class="swimdays-launch-hero__slide{% if subject_layout == 'group' %} swimdays-launch-hero__slide--group{% endif %}{% if is_first %} is-active{% endif %}"
+        data-launch-hero-slide
+        data-slide-index="{{ forloop.index0 }}"
+        data-nav-tone="{{ nav_tone }}"
+        {{ block.shopify_attributes }}
+        role="group"
+        aria-roledescription="slide"
+        aria-label="{{ forloop.index }} of {{ slide_count }}"
+        aria-hidden="{% if is_first %}false{% else %}true{% endif %}"
+        {% unless is_first %}inert{% endunless %}
+        style="
+          --swimdays-launch-overlay-opacity: {{ overlay_opacity }};
+          --swimdays-launch-mobile-overlay-opacity: {{ mobile_overlay_opacity }};
+          --swimdays-launch-grade-opacity: {{ grade_opacity }};
+          --swimdays-launch-text-blur: {{ text_blur }};
+          --swimdays-launch-text-blur-opacity: {{ text_blur_opacity }};
+          --swimdays-launch-desktop-ratio: 4 / 3;
+          --swimdays-launch-desktop-position: {{ desktop_position }};
+          --swimdays-launch-mobile-position: {{ mobile_position }};
+        "
+      >
+        <div class="swimdays-launch-hero__viewport">
+          {% if desktop_image != blank %}
+            <picture class="swimdays-launch-hero__media">
+              {% if mobile_image != blank %}
+                <source
+                  media="(max-width: 749px)"
+                  srcset="
+                    {{ mobile_image | image_url: width: 750 }} 750w,
+                    {{ mobile_image | image_url: width: 1000 }} 1000w,
+                    {{ mobile_image | image_url: width: 1200 }} 1200w
+                  "
+                  sizes="100vw"
+                >
+              {% endif %}
+              <source
+                media="(min-width: 750px)"
+                srcset="
+                  {{ desktop_image | image_url: width: 960 }} 960w,
+                  {{ desktop_image | image_url: width: 1280 }} 1280w,
+                  {{ desktop_image | image_url: width: 1600 }} 1600w,
+                  {{ desktop_image | image_url: width: 1920 }} 1920w
+                "
+                sizes="100vw"
+              >
+              {% if is_first %}
+                {{
+                  desktop_image
+                  | image_url: width: 1600
+                  | image_tag:
+                    class: 'swimdays-launch-hero__image',
+                    alt: hero_alt,
+                    width: desktop_image.width,
+                    height: desktop_image.height,
+                    loading: 'eager',
+                    fetchpriority: 'high',
+                    sizes: '100vw',
+                    widths: '750, 960, 1200, 1600, 1920'
+                }}
+              {% else %}
+                {{
+                  desktop_image
+                  | image_url: width: 1600
+                  | image_tag:
+                    class: 'swimdays-launch-hero__image',
+                    alt: hero_alt,
+                    width: desktop_image.width,
+                    height: desktop_image.height,
+                    loading: 'lazy',
+                    sizes: '100vw',
+                    widths: '750, 960, 1200, 1600, 1920'
+                }}
+              {% endif %}
+            </picture>
+          {% elsif fallback_asset != blank %}
+            <picture class="swimdays-launch-hero__media">
+              {% if fallback_asset_mobile != blank %}
+                <source
+                  media="(max-width: 749px)"
+                  srcset="{{ fallback_asset_mobile | asset_url }}"
+                >
+              {% endif %}
+              <source
+                media="(min-width: 750px)"
+                srcset="{{ fallback_asset | asset_url }}"
+              >
+              <img
+                class="swimdays-launch-hero__image"
+                src="{{ fallback_asset | asset_url }}"
+                alt="{{ hero_alt | escape }}"
+                width="984"
+                height="597"
+                {% if is_first %}
+                  loading="eager"
+                  fetchpriority="high"
+                {% else %}
+                  loading="lazy"
+                {% endif %}
+              >
+            </picture>
           {% endif %}
-        {% endif %}
+
+          <div class="swimdays-launch-hero__grade" aria-hidden="true"></div>
+          <div class="swimdays-launch-hero__shade" aria-hidden="true"></div>
+
+          <div class="swimdays-launch-hero__content">
+            <div class="swimdays-launch-hero__panel">
+              {% if block.settings.eyebrow != blank %}
+                <p class="swimdays-launch-hero__eyebrow">{{ block.settings.eyebrow }}</p>
+              {% endif %}
+
+              {% if block.settings.heading != blank %}
+                {% if is_first %}
+                  <h1 class="swimdays-launch-hero__heading" data-launch-hero-heading>
+                    {{ block.settings.heading }}
+                  </h1>
+                {% else %}
+                  <p class="swimdays-launch-hero__heading" data-launch-hero-heading aria-hidden="true">
+                    {{ block.settings.heading }}
+                  </p>
+                {% endif %}
+              {% endif %}
+
+              {% if block.settings.offer_line != blank %}
+                <p class="swimdays-launch-hero__offer">{{ block.settings.offer_line }}</p>
+              {% endif %}
+
+              {% if block.settings.copy != blank %}
+                <div class="swimdays-launch-hero__copy">
+                  {{ block.settings.copy }}
+                </div>
+              {% endif %}
+
+              {% if block.settings.cta_label != blank %}
+                {% if block.settings.cta_link != blank %}
+                  <a class="swimdays-launch-hero__button" href="{{ block.settings.cta_link }}">
+                    {{ block.settings.cta_label }}
+                  </a>
+                {% else %}
+                  <span class="swimdays-launch-hero__button swimdays-launch-hero__button--disabled" aria-disabled="true">
+                    {{ block.settings.cta_label }}
+                  </span>
+                {% endif %}
+              {% endif %}
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    {% endfor %}
   </div>
+
+  {% if slide_count > 1 %}
+    <div class="swimdays-launch-hero__controls">
+      <button
+        type="button"
+        class="swimdays-launch-hero__arrow swimdays-launch-hero__arrow--prev"
+        data-launch-hero-prev
+        aria-label="Previous slide"
+      >
+        <span aria-hidden="true">‹</span>
+      </button>
+
+      <div class="swimdays-launch-hero__pills" role="tablist" aria-label="Slide indicators">
+        {% for block in section.blocks %}
+          <button
+            type="button"
+            class="swimdays-launch-hero__pill{% if forloop.first %} is-active{% endif %}"
+            data-launch-hero-dot
+            aria-label="Go to slide {{ forloop.index }}"
+            aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
+          >
+            <span class="swimdays-launch-hero__pill-fill" aria-hidden="true"></span>
+          </button>
+        {% endfor %}
+      </div>
+
+      <button
+        type="button"
+        class="swimdays-launch-hero__arrow swimdays-launch-hero__arrow--next"
+        data-launch-hero-next
+        aria-label="Next slide"
+      >
+        <span aria-hidden="true">›</span>
+      </button>
+    </div>
+  {% endif %}
 </section>
 
 {% style %}
   .swimdays-launch-hero {
     --swimdays-announcement-height: 2rem;
     --swimdays-launch-side: clamp(1.5rem, 6vw, 6rem);
+    --swimdays-ocean: #34565b;
+    --swimdays-cream: #faf6f1;
+    position: relative;
     margin: calc(var(--swimdays-announcement-height) * -1) 0 0;
     max-width: 100%;
     width: 100%;
     overflow-x: hidden;
     overflow-x: clip;
+    touch-action: pan-y;
   }
 
   .swimdays-launch-hero,
   .swimdays-launch-hero * {
     box-sizing: border-box;
+  }
+
+  .swimdays-launch-hero__track {
+    position: relative;
+    width: 100%;
+  }
+
+  .swimdays-launch-hero__slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 0.85s cubic-bezier(0.25, 1, 0.5, 1),
+      visibility 0.85s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 0;
+  }
+
+  .swimdays-launch-hero__slide.is-active {
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    z-index: 1;
   }
 
   .swimdays-launch-hero__viewport {
@@ -252,8 +419,8 @@
     letter-spacing: 0;
     line-height: 1;
     text-transform: none;
-    color: #f7c1cd;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    color: #fff0f2;
+    text-shadow: 0 2px 12px rgba(24, 30, 18, 0.35);
   }
 
   .swimdays-launch-hero__heading {
@@ -269,9 +436,22 @@
     overflow-wrap: break-word;
   }
 
+  .swimdays-launch-hero__offer {
+    margin: clamp(0.75rem, 1.4vw, 1.1rem) 0 0;
+    max-width: 33rem;
+    font-family: "Swimdays Subhead", sans-serif;
+    font-size: clamp(0.72rem, 1vw, 0.82rem);
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    line-height: 1.35;
+    text-transform: uppercase;
+    color: rgba(255, 240, 243, 0.92);
+    text-shadow: 0 2px 10px rgba(24, 30, 18, 0.3);
+  }
+
   .swimdays-launch-hero__copy {
     max-width: 33rem;
-    margin-top: clamp(1rem, 2vw, 1.5rem);
+    margin-top: clamp(0.85rem, 1.6vw, 1.25rem);
     font-family: "Swimdays Subhead", sans-serif;
     font-size: clamp(1rem, 1.3vw, 1.35rem);
     line-height: 1.65;
@@ -355,12 +535,128 @@
     outline-offset: 4px;
   }
 
+  .swimdays-launch-hero__controls {
+    position: absolute;
+    z-index: 4;
+    left: 50%;
+    bottom: clamp(1rem, 2.5vw, 1.75rem);
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    pointer-events: none;
+  }
+
+  .swimdays-launch-hero__arrow,
+  .swimdays-launch-hero__pill {
+    pointer-events: auto;
+  }
+
+  .swimdays-launch-hero__arrow {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    margin: 0;
+    padding: 0;
+    border: 1px solid rgba(250, 246, 241, 0.55);
+    border-radius: 999px;
+    background: rgba(52, 86, 91, 0.42);
+    color: var(--swimdays-cream);
+    font-size: 1.35rem;
+    line-height: 1;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition:
+      background 0.25s ease,
+      border-color 0.25s ease;
+  }
+
+  .swimdays-launch-hero__arrow:hover {
+    background: rgba(52, 86, 91, 0.72);
+    border-color: rgba(250, 246, 241, 0.9);
+  }
+
+  .swimdays-launch-hero__arrow:focus-visible {
+    outline: 2px solid var(--swimdays-cream);
+    outline-offset: 3px;
+  }
+
+  .swimdays-launch-hero__pills {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .swimdays-launch-hero__pill {
+    position: relative;
+    width: 1.75rem;
+    height: 0.2rem;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(250, 246, 241, 0.4);
+    cursor: pointer;
+    transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  /* Larger tap target without changing the visual bar. */
+  .swimdays-launch-hero__pill::before {
+    content: "";
+    position: absolute;
+    inset: -0.65rem -0.15rem;
+  }
+
+  .swimdays-launch-hero__pill.is-active {
+    width: 3rem;
+  }
+
+  .swimdays-launch-hero__pill-fill {
+    display: block;
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+    background: var(--swimdays-cream);
+    transform: scaleX(0);
+    transform-origin: left center;
+    overflow: hidden;
+  }
+
+  .swimdays-launch-hero__pill.is-active.is-progressing .swimdays-launch-hero__pill-fill {
+    animation: swimdays-launch-hero-pill-fill var(--autoplay-ms, 6500ms) linear forwards;
+  }
+
+  .swimdays-launch-hero__pill.is-active.is-paused .swimdays-launch-hero__pill-fill {
+    animation-play-state: paused;
+  }
+
+  .swimdays-launch-hero__pill:focus-visible {
+    outline: 2px solid var(--swimdays-cream);
+    outline-offset: 4px;
+  }
+
+  @keyframes swimdays-launch-hero-pill-fill {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
   @media screen and (min-width: 990px) {
     .swimdays-launch-hero__content {
       transform: translateY(-2%);
     }
-  }
 
+    .swimdays-launch-hero__arrow {
+      display: inline-flex;
+    }
+  }
 
   @media screen and (max-width: 1023px) and (min-width: 750px) {
     .swimdays-launch-hero__content {
@@ -413,7 +709,7 @@
 
     .swimdays-launch-hero__content {
       width: min(100% - (var(--swimdays-launch-side) * 2), 24rem);
-      padding-bottom: var(--swimdays-launch-bottom);
+      padding-bottom: calc(var(--swimdays-launch-bottom) + 1.5rem);
       justify-content: end;
     }
 
@@ -429,9 +725,15 @@
       overflow-wrap: break-word;
     }
 
+    .swimdays-launch-hero__offer {
+      margin-top: 0.7rem;
+      font-size: clamp(0.68rem, 2.8vw, 0.76rem);
+      letter-spacing: 0.14em;
+    }
+
     .swimdays-launch-hero__copy {
       max-width: 23rem;
-      margin-top: 0.85rem;
+      margin-top: 0.75rem;
       font-size: clamp(0.84rem, 3.4vw, 0.98rem);
       line-height: 1.55;
     }
@@ -453,11 +755,76 @@
       backdrop-filter: blur(10px) saturate(0.98);
       -webkit-backdrop-filter: blur(10px) saturate(0.98);
     }
+
+    .swimdays-launch-hero__controls {
+      bottom: clamp(0.85rem, 3svh, 1.25rem);
+    }
+  }
+
+  /* Group / landscape slide: on mobile, stack the full photo above a brand text
+     panel so both subjects stay in frame instead of being cropped by a tall crop. */
+  @media screen and (max-width: 749px) {
+    .swimdays-launch-hero__slide--group .swimdays-launch-hero__viewport,
+    .swimdays-launch-hero__slide--group .swimdays-launch-hero__content {
+      min-height: 0;
+    }
+
+    .swimdays-launch-hero__slide--group .swimdays-launch-hero__viewport {
+      aspect-ratio: auto;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      background: #16383a;
+    }
+
+    .swimdays-launch-hero__slide--group .swimdays-launch-hero__media {
+      position: relative;
+      inset: auto;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 6 / 5;
+      flex: none;
+    }
+
+    .swimdays-launch-hero__slide--group .swimdays-launch-hero__image {
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    .swimdays-launch-hero__slide--group .swimdays-launch-hero__grade,
+    .swimdays-launch-hero__slide--group .swimdays-launch-hero__shade {
+      display: none;
+    }
+
+    .swimdays-launch-hero__slide--group .swimdays-launch-hero__content {
+      position: relative;
+      width: auto;
+      margin: 0;
+      padding: clamp(1.5rem, 6vw, 2.25rem) var(--swimdays-launch-side)
+        calc(var(--swimdays-launch-bottom) + 0.5rem);
+      justify-content: flex-start;
+    }
+
+    .swimdays-launch-hero__slide--group .swimdays-launch-hero__panel {
+      padding: 0;
+    }
+
+    .swimdays-launch-hero__slide--group .swimdays-launch-hero__panel::before {
+      display: none;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .swimdays-launch-hero__button {
+    .swimdays-launch-hero__button,
+    .swimdays-launch-hero__slide,
+    .swimdays-launch-hero__pill,
+    .swimdays-launch-hero__arrow {
       transition: none;
+    }
+
+    .swimdays-launch-hero__pill.is-active .swimdays-launch-hero__pill-fill {
+      animation: none;
+      transform: scaleX(1);
     }
   }
 {% endstyle %}
@@ -467,108 +834,171 @@
   "name": "Launch hero",
   "tag": "section",
   "class": "shopify-section--swimdays-launch-hero",
+  "max_blocks": 4,
   "settings": [
     {
-      "type": "header",
-      "content": "Images"
-    },
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Desktop image"
-    },
-    {
-      "type": "image_picker",
-      "id": "mobile_image",
-      "label": "Mobile image"
-    },
-    {
       "type": "text",
-      "id": "image_alt",
-      "label": "Image alt text",
-      "default": "Sea Spurrey full-sleeve padded swim dress in pink"
+      "id": "carousel_label",
+      "label": "Carousel label",
+      "default": "New arrivals"
     },
     {
-      "type": "header",
-      "content": "Readability"
-    },
+      "type": "range",
+      "id": "autoplay_ms",
+      "label": "Autoplay interval (ms)",
+      "min": 4000,
+      "max": 9000,
+      "step": 500,
+      "default": 6500
+    }
+  ],
+  "blocks": [
     {
-      "type": "select",
-      "id": "text_readability",
-      "label": "Text readability",
-      "default": "medium",
-      "options": [
+      "type": "slide",
+      "name": "Campaign slide",
+      "settings": [
         {
-          "value": "soft",
-          "label": "Soft"
+          "type": "header",
+          "content": "Images"
         },
         {
-          "value": "medium",
-          "label": "Medium"
+          "type": "image_picker",
+          "id": "image",
+          "label": "Desktop image"
         },
         {
-          "value": "strong",
-          "label": "Strong"
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile image"
+        },
+        {
+          "type": "text",
+          "id": "fallback_asset",
+          "label": "Theme asset fallback filename",
+          "info": "Used when no Shopify image is set (e.g. island-days-hero-lndscp.jpg)"
+        },
+        {
+          "type": "text",
+          "id": "fallback_asset_mobile",
+          "label": "Theme asset mobile fallback filename",
+          "info": "Optional portrait/mobile asset when using theme fallbacks (e.g. island-days-hero-mobile.jpg)"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Image alt text",
+          "default": "Campaign hero"
+        },
+        {
+          "type": "text",
+          "id": "desktop_position",
+          "label": "Desktop object-position",
+          "default": "70% center"
+        },
+        {
+          "type": "text",
+          "id": "mobile_position",
+          "label": "Mobile object-position",
+          "default": "55% 42%"
+        },
+        {
+          "type": "select",
+          "id": "subject_layout",
+          "label": "Subject layout",
+          "info": "Group = wide/landscape shot with subjects across the frame. On mobile the photo shows in a full band with text below so nothing is cropped out.",
+          "default": "single",
+          "options": [
+            { "value": "single", "label": "Single subject (full-bleed overlay)" },
+            { "value": "group", "label": "Group / landscape (stacked on mobile)" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "nav_tone",
+          "label": "Navbar tone over this slide",
+          "info": "Dark = black logo and nav chrome for light hero images. Light = white chrome for dark photos.",
+          "default": "light",
+          "options": [
+            { "value": "light", "label": "Light (white nav)" },
+            { "value": "dark", "label": "Dark (black nav)" }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "Readability"
+        },
+        {
+          "type": "select",
+          "id": "text_readability",
+          "label": "Text readability",
+          "default": "medium",
+          "options": [
+            { "value": "soft", "label": "Soft" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "strong", "label": "Strong" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "text_blur",
+          "label": "Text blur",
+          "default": "soft",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "soft", "label": "Soft" },
+            { "value": "medium", "label": "Medium" }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Eyebrow",
+          "default": "New Arrival"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Island Days"
+        },
+        {
+          "type": "text",
+          "id": "offer_line",
+          "label": "Offer line",
+          "info": "Optional. Shown under the heading in a simple sans style (not the script eyebrow)."
+        },
+        {
+          "type": "richtext",
+          "id": "copy",
+          "label": "Copy",
+          "default": "<p>Soft canvas. Motifs beaded by hand. Made for the days you pack light and stay late.</p>"
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": "CTA label",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "cta_link",
+          "label": "CTA link"
         }
       ]
-    },
-    {
-      "type": "select",
-      "id": "text_blur",
-      "label": "Text blur",
-      "default": "soft",
-      "options": [
-        {
-          "value": "none",
-          "label": "None"
-        },
-        {
-          "value": "soft",
-          "label": "Soft"
-        },
-        {
-          "value": "medium",
-          "label": "Medium"
-        }
-      ]
-    },
-    {
-      "type": "header",
-      "content": "Content"
-    },
-    {
-      "type": "text",
-      "id": "eyebrow",
-      "label": "Eyebrow",
-      "default": "New Arrival"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Sea Spurrey in Pink"
-    },
-    {
-      "type": "richtext",
-      "id": "copy",
-      "label": "Copy",
-      "default": "<p>A coastal-inspired skater swim dress with fixed pads, built-in shorts, and a sweet coconut-flower motif.</p>"
-    },
-    {
-      "type": "text",
-      "id": "cta_label",
-      "label": "CTA label",
-      "default": "Shop Now"
-    },
-    {
-      "type": "url",
-      "id": "cta_link",
-      "label": "CTA link"
     }
   ],
   "presets": [
     {
-      "name": "Launch hero"
+      "name": "Launch hero",
+      "blocks": [
+        {
+          "type": "slide"
+        }
+      ]
     }
   ],
   "enabled_on": {

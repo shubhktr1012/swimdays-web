@@ -1,0 +1,711 @@
+{% liquid
+  assign eyebrow = section.settings.eyebrow | default: 'New collection'
+  assign heading = section.settings.heading | default: 'Island Days'
+  assign copy = section.settings.copy | default: 'Blue Sea Star, Fire Jellyfish, and Tender Coconut. Three lightweight companions for SPF, sandy sandals, and wet towels.'
+  assign cta_label = section.settings.cta_label | default: 'Shop Island Days'
+  assign cta_link = section.settings.cta_link
+  assign collection = section.settings.collection
+  assign interval_ms = section.settings.interval_ms | default: 4500
+  assign shop_colour_label = section.settings.shop_colour_label | default: 'Shop this colour'
+
+  if cta_link == blank and collection != blank
+    assign cta_link = collection.url
+  endif
+
+  if cta_link == blank
+    assign cta_link = '/collections/island-days'
+  endif
+%}
+
+{% render 'swimdays-home-fonts' %}
+<script src="{{ 'swimdays-island-days-morpher.js' | asset_url }}" defer></script>
+
+<section
+  id="island-days"
+  class="swimdays-home-island-days"
+  data-section-id="{{ section.id }}"
+  data-mobile-variant="peek"
+>
+  <div class="swimdays-home-island-days__shell">
+    <header class="swimdays-home-island-days__intro">
+      {% if eyebrow != blank %}
+        <p class="swimdays-home-island-days__eyebrow">{{ eyebrow }}</p>
+      {% endif %}
+
+      {% if heading != blank %}
+        <h2 class="swimdays-home-island-days__heading">{{ heading }}</h2>
+      {% endif %}
+
+      {% if copy != blank %}
+        <p class="swimdays-home-island-days__copy">{{ copy }}</p>
+      {% endif %}
+    </header>
+
+    <div
+      class="swimdays-home-island-days__gallery"
+      data-island-days-morpher
+      data-interval-ms="{{ interval_ms }}"
+    >
+      <div class="swimdays-home-island-days__stage" data-morpher-stage aria-live="polite">
+        {% for block in section.blocks %}
+          {% liquid
+            assign colour_name = block.settings.colour_name
+            assign colour_hex = block.settings.colour_hex | default: '#34565b'
+            assign product = block.settings.product
+            assign cutout = block.settings.cutout
+            assign cutout_asset = block.settings.cutout_asset
+            assign product_url = blank
+            assign product_title = colour_name
+
+            if product != blank
+              assign product_url = product.url
+              if colour_name == blank
+                assign colour_name = product.title
+              endif
+              assign product_title = product.title
+            endif
+
+            if colour_name == blank
+              assign colour_name = 'Colour ' | append: forloop.index
+            endif
+          %}
+
+          <article
+            class="swimdays-home-island-days__card{% if forloop.first %} is-active{% endif %}"
+            data-morpher-layer
+            data-colour-name="{{ colour_name | escape }}"
+            data-product-url="{{ product_url }}"
+            style="--tote-colour: {{ colour_hex }}; --tote-index: {{ forloop.index0 }};"
+            {{ block.shopify_attributes }}
+          >
+            {% if product_url != blank %}
+              <a class="swimdays-home-island-days__card-link" href="{{ product_url }}" data-morpher-card-link>
+            {% else %}
+              <div class="swimdays-home-island-days__card-link swimdays-home-island-days__card-link--static">
+            {% endif %}
+              <div class="swimdays-home-island-days__panel-bg" aria-hidden="true"></div>
+              <div class="swimdays-home-island-days__media">
+                {% if cutout != blank %}
+                  {{
+                    cutout
+                    | image_url: width: 1200
+                    | image_tag:
+                      class: 'swimdays-home-island-days__cutout',
+                      alt: product_title,
+                      widths: '360, 480, 720, 960, 1200',
+                      sizes: '(max-width: 749px) 78vw, (max-width: 1023px) 30vw, 22vw',
+                      loading: 'lazy'
+                  }}
+                {% elsif cutout_asset != blank %}
+                  <img
+                    class="swimdays-home-island-days__cutout"
+                    src="{{ cutout_asset | asset_url }}"
+                    alt="{{ product_title | escape }}"
+                    width="492"
+                    height="614"
+                    loading="lazy"
+                  >
+                {% endif %}
+              </div>
+              <div class="swimdays-home-island-days__card-caption">
+                <span class="swimdays-home-island-days__swatch" aria-hidden="true"></span>
+                <span class="swimdays-home-island-days__colour-name">{{ colour_name }}</span>
+              </div>
+            {% if product_url != blank %}
+              </a>
+            {% else %}
+              </div>
+            {% endif %}
+          </article>
+        {% endfor %}
+      </div>
+
+      <div class="swimdays-home-island-days__mobile-meta">
+        <p class="swimdays-home-island-days__mobile-name" data-morpher-label>
+          {% if section.blocks.first %}
+            {{ section.blocks.first.settings.colour_name | default: section.blocks.first.settings.product.title | default: 'Blue Sea Star' }}
+          {% endif %}
+        </p>
+
+        <div class="swimdays-home-island-days__chips" role="group" aria-label="Tote colours">
+          {% for block in section.blocks %}
+            {% liquid
+              assign colour_name = block.settings.colour_name
+              if colour_name == blank and block.settings.product != blank
+                assign colour_name = block.settings.product.title
+              endif
+              if colour_name == blank
+                assign colour_name = 'Colour ' | append: forloop.index
+              endif
+              assign colour_hex = block.settings.colour_hex | default: '#34565b'
+            %}
+            <button
+              type="button"
+              class="swimdays-home-island-days__chip{% if forloop.first %} is-active{% endif %}"
+              data-morpher-chip
+              style="--chip-colour: {{ colour_hex }};"
+              aria-label="{{ colour_name | escape }}"
+              aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"
+            >
+              <span class="swimdays-home-island-days__chip-swatch" aria-hidden="true"></span>
+            </button>
+          {% endfor %}
+        </div>
+
+        {% liquid
+          assign first_product = section.blocks.first.settings.product
+          assign first_url = blank
+          if first_product != blank
+            assign first_url = first_product.url
+          endif
+        %}
+        <a
+          class="swimdays-home-island-days__shop-colour{% if first_url == blank %} is-disabled{% endif %}"
+          data-morpher-shop
+          {% if first_url != blank %}href="{{ first_url }}"{% else %}aria-disabled="true"{% endif %}
+        >
+          {{ shop_colour_label }}
+        </a>
+      </div>
+    </div>
+
+    {% if cta_label != blank %}
+      <div class="swimdays-home-island-days__cta-wrap">
+        <a class="swimdays-home-island-days__cta" href="{{ cta_link }}">{{ cta_label }}</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .swimdays-home-island-days {
+    --swimdays-cream: #faf6f1;
+    --swimdays-ocean: #34565b;
+    --swimdays-rose: #a84f77;
+    --swimdays-island-pad: clamp(1rem, 4vw, 2.5rem);
+    background: var(--swimdays-cream);
+    color: var(--swimdays-ocean);
+    overflow: clip;
+    padding: clamp(3.75rem, 8vw, 6.5rem) var(--swimdays-island-pad);
+    position: relative;
+    width: 100%;
+  }
+
+  .swimdays-home-island-days__shell {
+    display: grid;
+    gap: clamp(2rem, 4.5vw, 3.5rem);
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    margin: 0 auto;
+    max-width: 1240px;
+    width: 100%;
+  }
+
+  .swimdays-home-island-days__intro {
+    display: grid;
+    gap: 0.85rem;
+    justify-items: center;
+    max-width: 38rem;
+    text-align: center;
+  }
+
+  .swimdays-home-island-days__eyebrow {
+    color: var(--swimdays-rose);
+    font-family: "Swimdays Subhead", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  .swimdays-home-island-days__heading {
+    color: var(--swimdays-ocean);
+    font-family: "Swimdays Heading", Georgia, serif;
+    font-size: clamp(2.8rem, 7vw, 4.6rem);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 0.94;
+    margin: 0;
+  }
+
+  .swimdays-home-island-days__copy {
+    color: rgba(52, 86, 91, 0.8);
+    font-family: "Swimdays Subhead", sans-serif;
+    font-size: clamp(0.95rem, 1.35vw, 1.1rem);
+    line-height: 1.65;
+    margin: 0;
+    max-width: 32rem;
+    text-wrap: pretty;
+  }
+
+  .swimdays-home-island-days__gallery {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .swimdays-home-island-days__card {
+    --tote-colour: #34565b;
+  }
+
+  .swimdays-home-island-days__card-link {
+    color: inherit;
+    display: grid;
+    gap: 0.9rem;
+    justify-items: center;
+    position: relative;
+    text-decoration: none;
+  }
+
+  .swimdays-home-island-days__card-link--static {
+    cursor: default;
+  }
+
+  .swimdays-home-island-days__panel-bg {
+    display: none;
+  }
+
+  .swimdays-home-island-days__media {
+    aspect-ratio: 4 / 5;
+    position: relative;
+    width: 100%;
+  }
+
+  .swimdays-home-island-days__cutout {
+    display: block;
+    height: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+    transition: transform 0.55s cubic-bezier(0.25, 1, 0.5, 1);
+    width: 100%;
+  }
+
+  .swimdays-home-island-days__card-caption {
+    align-items: center;
+    display: inline-flex;
+    gap: 0.55rem;
+    justify-content: center;
+    position: relative;
+  }
+
+  .swimdays-home-island-days__swatch {
+    background: var(--tote-colour);
+    border: 1px solid rgba(52, 86, 91, 0.12);
+    border-radius: 999px;
+    display: block;
+    flex-shrink: 0;
+    height: 0.6rem;
+    width: 0.6rem;
+  }
+
+  .swimdays-home-island-days__colour-name {
+    font-family: "Swimdays Heading", Georgia, serif;
+    font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 1.1;
+  }
+
+  .swimdays-home-island-days__mobile-meta {
+    display: grid;
+    gap: 0.85rem;
+    justify-items: center;
+    margin-top: 1.25rem;
+    text-align: center;
+  }
+
+  .swimdays-home-island-days__mobile-name {
+    font-family: "Swimdays Heading", Georgia, serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    margin: 0;
+  }
+
+  .swimdays-home-island-days__chips {
+    display: flex;
+    gap: 0.7rem;
+  }
+
+  .swimdays-home-island-days__chip {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    padding: 0.2rem;
+  }
+
+  .swimdays-home-island-days__chip-swatch {
+    background: var(--chip-colour);
+    border: 1px solid rgba(52, 86, 91, 0.18);
+    border-radius: 999px;
+    display: block;
+    height: 1.35rem;
+    transition: transform 0.25s ease;
+    width: 1.35rem;
+  }
+
+  .swimdays-home-island-days__chip.is-active .swimdays-home-island-days__chip-swatch {
+    box-shadow:
+      0 0 0 2px var(--swimdays-cream),
+      0 0 0 3px var(--swimdays-ocean);
+    transform: scale(1.05);
+  }
+
+  .swimdays-home-island-days__chip:focus-visible {
+    outline: 2px solid var(--swimdays-ocean);
+    outline-offset: 3px;
+  }
+
+  .swimdays-home-island-days__shop-colour {
+    color: var(--swimdays-ocean);
+    font-family: "Swimdays Subhead", sans-serif;
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-transform: uppercase;
+    text-underline-offset: 0.28em;
+  }
+
+  .swimdays-home-island-days__shop-colour.is-disabled {
+    cursor: default;
+    opacity: 0.45;
+    pointer-events: none;
+    text-decoration: none;
+  }
+
+  .swimdays-home-island-days__cta-wrap {
+    margin-top: 0.15rem;
+  }
+
+  .swimdays-home-island-days__cta {
+    align-items: center;
+    background: var(--swimdays-ocean);
+    border: 1px solid var(--swimdays-ocean);
+    color: var(--swimdays-cream);
+    display: inline-flex;
+    font-family: "Swimdays Subhead", sans-serif;
+    font-size: 0.76rem;
+    font-weight: 500;
+    justify-content: center;
+    letter-spacing: 0.2em;
+    min-height: 3.1rem;
+    padding: 0.85rem 2.5rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition:
+      background 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+      color 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .swimdays-home-island-days__cta:hover {
+    background: transparent;
+    color: var(--swimdays-ocean);
+  }
+
+  .swimdays-home-island-days__cta:focus-visible {
+    outline: 2px solid var(--swimdays-rose);
+    outline-offset: 3px;
+  }
+
+  /* ------------------------------------------------------------
+     Desktop / tablet (>= 750px): clean equal trio
+     ------------------------------------------------------------ */
+  @media screen and (min-width: 750px) {
+    .swimdays-home-island-days__stage {
+      align-items: end;
+      display: grid;
+      gap: clamp(3.5rem, 8vw, 6rem);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      width: 100%;
+    }
+
+    .swimdays-home-island-days__card {
+      position: relative;
+    }
+
+    .swimdays-home-island-days__mobile-meta {
+      display: none;
+    }
+
+    .swimdays-home-island-days__card-link:hover .swimdays-home-island-days__cutout,
+    .swimdays-home-island-days__card-link:focus-visible .swimdays-home-island-days__cutout {
+      transform: translateY(-0.4rem);
+    }
+
+    .swimdays-home-island-days__card-link:focus-visible {
+      outline: 2px solid var(--swimdays-ocean);
+      outline-offset: 6px;
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .swimdays-home-island-days__intro {
+      max-width: 42rem;
+    }
+  }
+
+  /* ------------------------------------------------------------
+     Mobile (< 750px): three rough variants, switched via
+     data-mobile-variant on the section (?island-days-mobile=)
+     ------------------------------------------------------------ */
+  @media screen and (max-width: 749px) {
+    /* Variant A: peek carousel (default) */
+    [data-mobile-variant='peek'] .swimdays-home-island-days__stage {
+      display: flex;
+      gap: 11vw;
+      margin-inline: calc(-1 * var(--swimdays-island-pad));
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      padding-inline: 14vw;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+
+    [data-mobile-variant='peek'] .swimdays-home-island-days__stage::-webkit-scrollbar {
+      display: none;
+    }
+
+    [data-mobile-variant='peek'] .swimdays-home-island-days__card {
+      flex: 0 0 72vw;
+      scroll-snap-align: center;
+    }
+
+    [data-mobile-variant='peek'] .swimdays-home-island-days__mobile-name {
+      display: none;
+    }
+
+    /* Variant B: full-bleed colour panels */
+    [data-mobile-variant='panels'] .swimdays-home-island-days__stage {
+      display: flex;
+      margin-inline: calc(-1 * var(--swimdays-island-pad));
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+
+    [data-mobile-variant='panels'] .swimdays-home-island-days__stage::-webkit-scrollbar {
+      display: none;
+    }
+
+    [data-mobile-variant='panels'] .swimdays-home-island-days__card {
+      flex: 0 0 100%;
+      scroll-snap-align: center;
+    }
+
+    [data-mobile-variant='panels'] .swimdays-home-island-days__card-link {
+      gap: 0;
+      isolation: isolate;
+      padding: 1.75rem 1.5rem 1.5rem;
+    }
+
+    [data-mobile-variant='panels'] .swimdays-home-island-days__panel-bg {
+      background: var(--tote-colour);
+      display: block;
+      inset: 0;
+      opacity: 0.16;
+      position: absolute;
+      z-index: 0;
+    }
+
+    [data-mobile-variant='panels'] .swimdays-home-island-days__media {
+      width: min(100%, 20rem);
+      z-index: 1;
+    }
+
+    [data-mobile-variant='panels'] .swimdays-home-island-days__card-caption {
+      margin-top: 0.9rem;
+      z-index: 1;
+    }
+
+    [data-mobile-variant='panels'] .swimdays-home-island-days__mobile-name {
+      display: none;
+    }
+
+    /* Variant C: fan stack */
+    [data-mobile-variant='fan'] .swimdays-home-island-days__stage {
+      aspect-ratio: 1;
+      margin: 0 auto;
+      position: relative;
+      touch-action: pan-y;
+      width: min(100%, 20rem);
+    }
+
+    [data-mobile-variant='fan'] .swimdays-home-island-days__card {
+      --fan-pos: var(--tote-index, 0);
+      inset: 0;
+      position: absolute;
+      transform:
+        rotate(calc(var(--fan-pos) * 7deg))
+        translateX(calc(var(--fan-pos) * 9%))
+        scale(calc(1 - var(--fan-pos) * 0.07));
+      transform-origin: 50% 88%;
+      transition:
+        transform 0.55s cubic-bezier(0.25, 1, 0.5, 1),
+        opacity 0.55s cubic-bezier(0.25, 1, 0.5, 1);
+      z-index: calc(3 - var(--fan-pos));
+    }
+
+    [data-mobile-variant='fan'] .swimdays-home-island-days__card:not(.is-active) {
+      opacity: 0.55;
+      pointer-events: none;
+    }
+
+    [data-mobile-variant='fan'] .swimdays-home-island-days__card-caption {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .swimdays-home-island-days__card,
+    .swimdays-home-island-days__cutout,
+    .swimdays-home-island-days__cta,
+    .swimdays-home-island-days__chip-swatch {
+      transition: none !important;
+    }
+
+    @media screen and (max-width: 749px) {
+      [data-mobile-variant='peek'] .swimdays-home-island-days__stage,
+      [data-mobile-variant='panels'] .swimdays-home-island-days__stage {
+        scroll-behavior: auto;
+      }
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Island Days",
+  "tag": "section",
+  "class": "shopify-section--swimdays-home-island-days",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "New collection"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Island Days"
+    },
+    {
+      "type": "textarea",
+      "id": "copy",
+      "label": "Copy",
+      "default": "Blue Sea Star, Fire Jellyfish, and Tender Coconut. Three lightweight companions for SPF, sandy sandals, and wet towels."
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Island Days collection"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "Shop Island Days"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA link",
+      "info": "Defaults to the selected collection URL"
+    },
+    {
+      "type": "text",
+      "id": "shop_colour_label",
+      "label": "Shop this colour label (mobile)",
+      "default": "Shop this colour"
+    },
+    {
+      "type": "range",
+      "id": "interval_ms",
+      "label": "Fan auto-cycle (ms, mobile fan variant)",
+      "min": 3000,
+      "max": 8000,
+      "step": 500,
+      "default": 4500
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tote",
+      "name": "Tote colour",
+      "settings": [
+        {
+          "type": "text",
+          "id": "colour_name",
+          "label": "Colour name",
+          "default": "Blue Sea Star"
+        },
+        {
+          "type": "color",
+          "id": "colour_hex",
+          "label": "Accent colour",
+          "default": "#295252"
+        },
+        {
+          "type": "image_picker",
+          "id": "cutout",
+          "label": "Transparent cutout"
+        },
+        {
+          "type": "text",
+          "id": "cutout_asset",
+          "label": "Theme asset cutout filename",
+          "info": "Fallback when cutout image is empty"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Island Days",
+      "blocks": [
+        {
+          "type": "tote",
+          "settings": {
+            "colour_name": "Blue Sea Star",
+            "colour_hex": "#295252",
+            "cutout_asset": "island-days-tote-blue-sea-cutout.png"
+          }
+        },
+        {
+          "type": "tote",
+          "settings": {
+            "colour_name": "Fire Jellyfish",
+            "colour_hex": "#63020f",
+            "cutout_asset": "island-days-tote-fire-cutout.png"
+          }
+        },
+        {
+          "type": "tote",
+          "settings": {
+            "colour_name": "Tender Coconut",
+            "colour_hex": "#eab1b2",
+            "cutout_asset": "island-days-tote-tender-coconut-cutout.png"
+          }
+        }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "templates": ["index"]
+  }
+}
+{% endschema %}

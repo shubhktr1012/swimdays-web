@@ -12,6 +12,11 @@
   launch_announcement_text: section.settings.launch_announcement_text,
   launch_announcement_link_label: section.settings.launch_announcement_link_label,
   launch_announcement_link_url: section.settings.launch_announcement_link_url,
+  offer_announcement_enabled: section.settings.offer_announcement_enabled,
+  offer_announcement_label: section.settings.offer_announcement_label,
+  offer_announcement_text: section.settings.offer_announcement_text,
+  offer_announcement_link_label: section.settings.offer_announcement_link_label,
+  offer_announcement_link_url: section.settings.offer_announcement_link_url,
   launch_announcement_background: section.settings.launch_announcement_background
 %}
 
@@ -130,7 +135,7 @@
       "type": "text",
       "id": "launch_announcement_text",
       "label": "Launch text",
-      "default": "Sea Spurrey in Pink"
+      "default": "Island Days beach totes"
     },
     {
       "type": "text",
@@ -144,10 +149,39 @@
       "label": "Launch link URL"
     },
     {
+      "type": "checkbox",
+      "id": "offer_announcement_enabled",
+      "label": "Show multi-buy offer announcement",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "offer_announcement_label",
+      "label": "Offer announcement label",
+      "default": "Offer"
+    },
+    {
+      "type": "text",
+      "id": "offer_announcement_text",
+      "label": "Offer announcement text",
+      "default": "Buy 2 get 15% · Buy 3 get 20%"
+    },
+    {
+      "type": "text",
+      "id": "offer_announcement_link_label",
+      "label": "Offer announcement link label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "offer_announcement_link_url",
+      "label": "Offer announcement link"
+    },
+    {
       "type": "color",
       "id": "launch_announcement_background",
-      "label": "Launch background",
-      "default": "#CFA7BB"
+      "label": "Announcement bar background",
+      "default": "#df84b2"
     }
   ],
   "presets": [
