@@ -41,52 +41,10 @@
       %}
 
       {% if featured_product != blank %}
-        {% liquid
-          assign badge_label = blank
-          assign badge_class = blank
-          assign product_tags_string = featured_product.tags | join: ', ' | downcase
-
-          if product_tags_string contains 'bestseller'
-            assign badge_label = 'Bestseller'
-            assign badge_class = 'swimdays-product-card__badge--bestseller'
-          elsif product_tags_string contains 'new arrival' or product_tags_string contains 'new-arrival'
-            assign badge_label = 'New Arrival'
-            assign badge_class = 'swimdays-product-card__badge--new-arrival'
-          elsif product_tags_string contains 'limited edition' or product_tags_string contains 'limited'
-            assign badge_label = 'Limited Edition'
-            assign badge_class = 'swimdays-product-card__badge--limited'
-          endif
+        {% render 'swimdays-shop-all-product-card',
+          product: featured_product,
+          shop_now_label: shop_now_label
         %}
-
-        <article class="swimdays-product-card">
-          <a href="{{ featured_product.url }}" class="swimdays-product-card__link">
-            <div class="swimdays-product-card__image-wrapper">
-              {% if badge_label != blank %}
-                <span class="swimdays-product-card__badge {{ badge_class }}">{{ badge_label }}</span>
-              {% endif %}
-
-              {% if featured_product.featured_image != blank %}
-                {{
-                  featured_product.featured_image
-                  | image_url: width: 800
-                  | image_tag:
-                    class: 'swimdays-product-card__image swimdays-product-card__image--primary',
-                    alt: featured_product.featured_image.alt | default: featured_product.title,
-                    widths: '280, 360, 480, 640, 800',
-                    sizes: '(max-width: 639px) 82vw, (max-width: 1023px) 42vw, 20vw',
-                    loading: 'lazy'
-                }}
-              {% endif %}
-
-              <span class="swimdays-product-card__quick-add">{{ shop_now_label }}</span>
-            </div>
-
-            <div class="swimdays-product-card__info">
-              <h3 class="swimdays-product-card__title">{{ featured_product.title }}</h3>
-              <p class="swimdays-product-card__price">{{ featured_product.price | money_without_trailing_zeros }}</p>
-            </div>
-          </a>
-        </article>
 
         {% liquid
           assign rendered_products = rendered_products | plus: 1
@@ -117,51 +75,10 @@
             {% continue %}
           {% endif %}
 
-          {% liquid
-            assign badge_label = blank
-            assign badge_class = blank
-
-            if product_tags_string contains 'bestseller'
-              assign badge_label = 'Bestseller'
-              assign badge_class = 'swimdays-product-card__badge--bestseller'
-            elsif product_tags_string contains 'new arrival' or product_tags_string contains 'new-arrival'
-              assign badge_label = 'New Arrival'
-              assign badge_class = 'swimdays-product-card__badge--new-arrival'
-            elsif product_tags_string contains 'limited edition' or product_tags_string contains 'limited'
-              assign badge_label = 'Limited Edition'
-              assign badge_class = 'swimdays-product-card__badge--limited'
-            endif
+          {% render 'swimdays-shop-all-product-card',
+            product: product,
+            shop_now_label: shop_now_label
           %}
-
-          <article class="swimdays-product-card">
-            <a href="{{ product.url }}" class="swimdays-product-card__link">
-              <div class="swimdays-product-card__image-wrapper">
-                {% if badge_label != blank %}
-                  <span class="swimdays-product-card__badge {{ badge_class }}">{{ badge_label }}</span>
-                {% endif %}
-
-                {% if product.featured_image != blank %}
-                  {{
-                    product.featured_image
-                    | image_url: width: 800
-                    | image_tag:
-                      class: 'swimdays-product-card__image swimdays-product-card__image--primary',
-                      alt: product.featured_image.alt | default: product.title,
-                      widths: '280, 360, 480, 640, 800',
-                      sizes: '(max-width: 639px) 82vw, (max-width: 1023px) 42vw, 20vw',
-                      loading: 'lazy'
-                  }}
-                {% endif %}
-
-                <span class="swimdays-product-card__quick-add">{{ shop_now_label }}</span>
-              </div>
-
-              <div class="swimdays-product-card__info">
-                <h3 class="swimdays-product-card__title">{{ product.title }}</h3>
-                <p class="swimdays-product-card__price">{{ product.price | money_without_trailing_zeros }}</p>
-              </div>
-            </a>
-          </article>
 
           {% liquid
             assign rendered_products = rendered_products | plus: 1
@@ -176,52 +93,10 @@
               {% break %}
             {% endif %}
 
-            {% liquid
-              assign badge_label = blank
-              assign badge_class = blank
-              assign product_tags_string = product.tags | join: ', ' | downcase
-
-              if product_tags_string contains 'bestseller'
-                assign badge_label = 'Bestseller'
-                assign badge_class = 'swimdays-product-card__badge--bestseller'
-              elsif product_tags_string contains 'new arrival' or product_tags_string contains 'new-arrival'
-                assign badge_label = 'New Arrival'
-                assign badge_class = 'swimdays-product-card__badge--new-arrival'
-              elsif product_tags_string contains 'limited edition' or product_tags_string contains 'limited'
-                assign badge_label = 'Limited Edition'
-                assign badge_class = 'swimdays-product-card__badge--limited'
-              endif
+            {% render 'swimdays-shop-all-product-card',
+              product: product,
+              shop_now_label: shop_now_label
             %}
-
-            <article class="swimdays-product-card">
-              <a href="{{ product.url }}" class="swimdays-product-card__link">
-                <div class="swimdays-product-card__image-wrapper">
-                  {% if badge_label != blank %}
-                    <span class="swimdays-product-card__badge {{ badge_class }}">{{ badge_label }}</span>
-                  {% endif %}
-
-                  {% if product.featured_image != blank %}
-                    {{
-                      product.featured_image
-                      | image_url: width: 800
-                      | image_tag:
-                        class: 'swimdays-product-card__image swimdays-product-card__image--primary',
-                        alt: product.featured_image.alt | default: product.title,
-                        widths: '280, 360, 480, 640, 800',
-                        sizes: '(max-width: 639px) 82vw, (max-width: 1023px) 42vw, 20vw',
-                        loading: 'lazy'
-                    }}
-                  {% endif %}
-
-                  <span class="swimdays-product-card__quick-add">{{ shop_now_label }}</span>
-                </div>
-
-                <div class="swimdays-product-card__info">
-                  <h3 class="swimdays-product-card__title">{{ product.title }}</h3>
-                  <p class="swimdays-product-card__price">{{ product.price | money_without_trailing_zeros }}</p>
-                </div>
-              </a>
-            </article>
 
             {% liquid
               assign rendered_products = rendered_products | plus: 1
@@ -235,52 +110,10 @@
               {% break %}
             {% endif %}
 
-            {% liquid
-              assign badge_label = blank
-              assign badge_class = blank
-              assign product_tags_string = product.tags | join: ', ' | downcase
-
-              if product_tags_string contains 'bestseller'
-                assign badge_label = 'Bestseller'
-                assign badge_class = 'swimdays-product-card__badge--bestseller'
-              elsif product_tags_string contains 'new arrival' or product_tags_string contains 'new-arrival'
-                assign badge_label = 'New Arrival'
-                assign badge_class = 'swimdays-product-card__badge--new-arrival'
-              elsif product_tags_string contains 'limited edition' or product_tags_string contains 'limited'
-                assign badge_label = 'Limited Edition'
-                assign badge_class = 'swimdays-product-card__badge--limited'
-              endif
+            {% render 'swimdays-shop-all-product-card',
+              product: product,
+              shop_now_label: shop_now_label
             %}
-
-            <article class="swimdays-product-card">
-              <a href="{{ product.url }}" class="swimdays-product-card__link">
-                <div class="swimdays-product-card__image-wrapper">
-                  {% if badge_label != blank %}
-                    <span class="swimdays-product-card__badge {{ badge_class }}">{{ badge_label }}</span>
-                  {% endif %}
-
-                  {% if product.featured_image != blank %}
-                    {{
-                      product.featured_image
-                      | image_url: width: 800
-                      | image_tag:
-                        class: 'swimdays-product-card__image swimdays-product-card__image--primary',
-                        alt: product.featured_image.alt | default: product.title,
-                        widths: '280, 360, 480, 640, 800',
-                        sizes: '(max-width: 639px) 82vw, (max-width: 1023px) 42vw, 20vw',
-                        loading: 'lazy'
-                    }}
-                  {% endif %}
-
-                  <span class="swimdays-product-card__quick-add">{{ shop_now_label }}</span>
-                </div>
-
-                <div class="swimdays-product-card__info">
-                  <h3 class="swimdays-product-card__title">{{ product.title }}</h3>
-                  <p class="swimdays-product-card__price">{{ product.price | money_without_trailing_zeros }}</p>
-                </div>
-              </a>
-            </article>
 
             {% liquid
               assign rendered_products = rendered_products | plus: 1
@@ -446,9 +279,19 @@
     text-decoration: none;
   }
 
+  .swimdays-home-shop-all-products .swimdays-product-card__media-link {
+    color: inherit;
+    display: block;
+    height: 100%;
+    inset: 0;
+    position: absolute;
+    text-decoration: none;
+  }
+
   .swimdays-home-shop-all-products .swimdays-product-card__image-wrapper {
     aspect-ratio: 3 / 4;
     background-color: #fffdfa;
+    flex: 0 0 auto;
     margin-bottom: 1rem;
     overflow: hidden;
     position: relative;
@@ -459,6 +302,7 @@
     display: block;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     transition: transform 0.5s ease;
     width: 100%;
   }
@@ -508,24 +352,94 @@
     border-top: 1px solid rgba(28, 27, 26, 0.08);
     bottom: 0;
     color: #2e2b26;
+    display: block;
     font-family: "Swimdays Subhead", sans-serif;
     font-size: 0.75rem;
+    height: auto;
     left: 0;
     letter-spacing: 0.05em;
-    padding: 0.75rem;
+    min-height: 2.6rem;
+    padding: 0;
     position: absolute;
     text-align: center;
     text-transform: uppercase;
-    transform: translateY(100%);
+    transform: translateY(0);
     transition: transform 0.3s ease;
     width: 100%;
-    z-index: 2;
+    z-index: 3;
   }
 
   @media (hover: hover) {
-    .swimdays-home-shop-all-products .swimdays-product-card:hover .swimdays-product-card__quick-add {
+    .swimdays-home-shop-all-products .swimdays-product-card__quick-add {
+      transform: translateY(100%);
+    }
+
+    .swimdays-home-shop-all-products .swimdays-product-card:hover .swimdays-product-card__quick-add,
+    .swimdays-home-shop-all-products .swimdays-product-card:focus-within .swimdays-product-card__quick-add {
       transform: translateY(0);
     }
+  }
+
+  .swimdays-home-shop-all-products .swimdays-product-card__quick-add .quick-add {
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    z-index: 1;
+  }
+
+  .swimdays-home-shop-all-products .swimdays-product-card__quick-add .quick-add__product-form-component,
+  .swimdays-home-shop-all-products .swimdays-product-card__quick-add .shopify-product-form,
+  .swimdays-home-shop-all-products .quick-add[data-quick-add-button='add'] add-to-cart-component {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+
+  .swimdays-home-shop-all-products .swimdays-product-card__quick-add .quick-add__button {
+    align-items: center;
+    background: transparent;
+    backdrop-filter: none;
+    border: 0;
+    border-radius: 0;
+    bottom: 0;
+    color: inherit;
+    display: flex !important;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    min-height: 2.6rem;
+    opacity: 1 !important;
+    overflow: hidden;
+    padding: 0.75rem;
+    pointer-events: all;
+    position: absolute;
+    right: 0;
+    scale: 1;
+    top: 0;
+    width: 100%;
+  }
+
+  .swimdays-home-shop-all-products .swimdays-product-card__quick-add .quick-add__button:hover,
+  .swimdays-home-shop-all-products .swimdays-product-card__quick-add .quick-add__button:active {
+    scale: 1;
+  }
+
+  .swimdays-home-shop-all-products .swimdays-product-card__quick-add .quick-add__button .add-to-cart-icon,
+  .swimdays-home-shop-all-products .swimdays-product-card__quick-add .quick-add__button .add-to-cart-text,
+  .swimdays-home-shop-all-products .swimdays-product-card__quick-add .add-to-cart__added {
+    opacity: 0;
+  }
+
+  .swimdays-home-shop-all-products .swimdays-product-card__quick-add-label {
+    align-items: center;
+    display: flex;
+    inset: 0;
+    justify-content: center;
+    letter-spacing: 0.05em;
+    pointer-events: none;
+    position: absolute;
+    text-transform: uppercase;
+    z-index: 2;
   }
 
   .swimdays-home-shop-all-products .swimdays-product-card__info {

@@ -1,0 +1,72 @@
+{%- doc -%}
+  Product card for the homepage Shop All scroller.
+
+  @param {object} product - The product object
+  @param {string} shop_now_label - Overlay label for quick add
+{%- enddoc -%}
+
+{% liquid
+  assign badge_label = blank
+  assign badge_class = blank
+  assign product_tags_string = product.tags | join: ', ' | downcase
+
+  if product_tags_string contains 'bestseller'
+    assign badge_label = 'Bestseller'
+    assign badge_class = 'swimdays-product-card__badge--bestseller'
+  elsif product_tags_string contains 'new arrival' or product_tags_string contains 'new-arrival'
+    assign badge_label = 'New Arrival'
+    assign badge_class = 'swimdays-product-card__badge--new-arrival'
+  elsif product_tags_string contains 'limited edition' or product_tags_string contains 'limited'
+    assign badge_label = 'Limited Edition'
+    assign badge_class = 'swimdays-product-card__badge--limited'
+  endif
+%}
+
+<article class="swimdays-product-card">
+  <div class="swimdays-product-card__image-wrapper">
+    <a href="{{ product.url }}" class="swimdays-product-card__media-link">
+      {% if badge_label != blank %}
+        <span class="swimdays-product-card__badge {{ badge_class }}">{{ badge_label }}</span>
+      {% endif %}
+
+      {% if product.featured_image != blank %}
+        {{
+          product.featured_image
+          | image_url: width: 800
+          | image_tag:
+            class: 'swimdays-product-card__image swimdays-product-card__image--primary',
+            alt: product.featured_image.alt | default: product.title,
+            widths: '280, 360, 480, 640, 800',
+            sizes: '(max-width: 639px) 82vw, (max-width: 1023px) 42vw, 20vw',
+            loading: 'lazy'
+        }}
+      {% endif %}
+    </a>
+
+    {% if product.available %}
+      <product-card
+        class="swimdays-product-card__quick-add"
+        data-product-id="{{ product.id }}"
+        style="--quick-add-display: flex; --quick-add-mobile-display: flex; --quick-add-mobile-opacity: 1;"
+      >
+        <a
+          id="shop-all-{{ section.id }}-{{ product.id }}"
+          class="visually-hidden"
+          href="{{ product.url }}"
+          ref="productCardLink"
+        >
+          {{ product.title }}
+        </a>
+        {% render 'quick-add', product: product, section_id: section.id %}
+        <span class="swimdays-product-card__quick-add-label" aria-hidden="true">{{ shop_now_label }}</span>
+      </product-card>
+    {% endif %}
+  </div>
+
+  <a href="{{ product.url }}" class="swimdays-product-card__link">
+    <div class="swimdays-product-card__info">
+      <h3 class="swimdays-product-card__title">{{ product.title }}</h3>
+      <p class="swimdays-product-card__price">{{ product.price | money_without_trailing_zeros }}</p>
+    </div>
+  </a>
+</article>

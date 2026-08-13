@@ -238,55 +238,19 @@
     </form>
 
     {% if has_size_option %}
-      <dialog-component class="variant-picker__size-guide">
-        <button
-          type="button"
-          on:click="/showDialog"
+      <div class="variant-picker__size-guide">
+        <a
+          href="{{ size_guide_url }}"
           class="button button-unstyled variant-picker__size-guide-link"
+          target="_blank"
+          rel="noopener"
         >
           Size guide
           <span aria-hidden="true">
             {{ 'icon-external.svg' | inline_asset_content }}
           </span>
-        </button>
-
-        <dialog
-          ref="dialog"
-          class="variant-picker__size-guide-dialog dialog-modal color-{{ settings.popover_color_scheme }}"
-          scroll-lock
-          aria-labelledby="size-guide-heading-{{ section.id }}-{{ block.id }}"
-        >
-          <div class="variant-picker__size-guide-dialog-inner">
-            <div class="variant-picker__size-guide-dialog-header">
-              <h2
-                id="size-guide-heading-{{ section.id }}-{{ block.id }}"
-                class="variant-picker__size-guide-dialog-title"
-              >
-                Size guide
-              </h2>
-              <button
-                type="button"
-                ref="closeButton"
-                on:click="/closeDialog"
-                class="button button-unstyled close-button variant-picker__size-guide-close"
-                aria-label="{{ 'accessibility.close_dialog' | t }}"
-              >
-                {{ 'icon-close.svg' | inline_asset_content }}
-              </button>
-            </div>
-
-            <div class="variant-picker__size-guide-frame-wrapper">
-              <iframe
-                class="variant-picker__size-guide-frame"
-                src="{{ size_guide_url }}"
-                title="Size guide PDF"
-                width="800"
-                height="1100"
-              ></iframe>
-            </div>
-          </div>
-        </dialog>
-      </dialog-component>
+        </a>
+      </div>
     {% endif %}
   </variant-picker>
 {% endunless %}
@@ -329,69 +293,6 @@
 
   .variant-picker__size-guide-link:hover {
     opacity: 0.75;
-  }
-
-  .variant-picker__size-guide-dialog {
-    width: min(56rem, 94vw);
-    max-width: 94vw;
-    height: min(88dvh, 56rem);
-    max-height: 88dvh;
-    border: var(--style-border-popover);
-    border-radius: var(--style-border-radius-popover);
-    box-shadow: var(--shadow-popover);
-    background: var(--color-background);
-    padding: 0;
-  }
-
-  .variant-picker__size-guide-dialog[open] {
-    animation: modalSlideInTop var(--animation-speed) var(--animation-easing) forwards;
-  }
-
-  .variant-picker__size-guide-dialog.dialog-closing {
-    animation: modalSlideOutTop var(--animation-speed) var(--animation-easing) forwards;
-  }
-
-  .variant-picker__size-guide-dialog-inner {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    min-height: 0;
-  }
-
-  .variant-picker__size-guide-dialog-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 1rem 1rem 0.75rem;
-    border-bottom: 1px solid rgb(var(--color-border-rgb) / 0.15);
-  }
-
-  .variant-picker__size-guide-dialog-title {
-    margin: 0;
-    font: inherit;
-    font-size: 1rem;
-    line-height: 1.2;
-  }
-
-  .variant-picker__size-guide-close {
-    opacity: 0.8;
-  }
-
-  .variant-picker__size-guide-frame-wrapper {
-    flex: 1;
-    min-height: 0;
-    padding: 0.75rem 1rem 1rem;
-  }
-
-  .variant-picker__size-guide-frame {
-    display: block;
-    width: 100%;
-    height: 100%;
-    min-height: 22rem;
-    aspect-ratio: 8 / 11;
-    border: 0;
-    background: transparent;
   }
 
   .variant-picker[data-shopify-visual-preview] {
@@ -476,24 +377,5 @@
 
   .variant-picker--right .variant-picker__size-guide {
     text-align: right;
-  }
-
-  @media screen and (max-width: 749px) {
-    .variant-picker__size-guide-dialog {
-      width: 100vw;
-      max-width: 100vw;
-      height: 100dvh;
-      max-height: 100dvh;
-      border-radius: 0;
-      margin: 0 0 0 auto;
-    }
-
-    .variant-picker__size-guide-dialog-header {
-      padding: 1rem 1rem 0.75rem;
-    }
-
-    .variant-picker__size-guide-frame-wrapper {
-      padding: 0.5rem 0.75rem 0.75rem;
-    }
   }
 {% endstylesheet %}

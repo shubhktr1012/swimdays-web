@@ -11,7 +11,7 @@
     assign is_collection_or_search_page = true
   endif
 
-  if is_product_page or is_collection_or_search_page
+  if is_product_page or is_collection_or_search_page or template.name == 'index' or request.page_type == 'index'
     assign needs_product_experience_scripts = true
   endif
 %}

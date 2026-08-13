@@ -288,6 +288,35 @@
   .quick-add-modal__content .product-details :is(.view-product-title, .buy-buttons-block) {
     flex: 0 0 auto;
   }
+
+  .quick-add-modal__content .product-form-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--gap-md);
+    width: 100%;
+  }
+
+  .quick-add-modal__content .product-form-buttons > *:not(.quantity-selector-wrapper, .quantity-rules, .quantity-label, .volume-pricing),
+  .quick-add-modal__content add-to-cart-component,
+  .quick-add-modal__content .accelerated-checkout-block,
+  .quick-add-modal__content .shopify-payment-button,
+  .quick-add-modal__content .shopify-payment-button__button,
+  .quick-add-modal__content button.shopify-payment-button__button--unbranded,
+  .quick-add-modal__content .product-form-buttons .button,
+  .quick-add-modal__content .add-to-cart-button {
+    display: block;
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .quick-add-modal__content .product-form-buttons .button,
+  .quick-add-modal__content .add-to-cart-button {
+    display: grid;
+  }
+
   .quick-add-modal__content .product-details :is(.buy-buttons-block) {
     margin-top: auto;
     position: sticky;
