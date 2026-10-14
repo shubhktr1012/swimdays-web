@@ -6,7 +6,7 @@
 
 <div align="center">
   <h3>
-    <a href="https://swimdays-web.vercel.app">Live Demo (Vercel)</a>
+    <a href="https://shopswimdays.com">Live Storefront</a>
     <span> | </span>
     <a href="https://github.com/shubhktr1012/swimdays-web">GitHub Repository</a>
   </h3>
@@ -51,4 +51,4 @@ git clone https://github.com/shubhktr1012/swimdays-web.git
 npx serve .
 ```
 
-3. Visit `http://localhost:3000` or check the live edge deployment at `https://swimdays-web.vercel.app`.
+3. Visit `http://localhost:3000` or check the live storefront at `https://shopswimdays.com`.
